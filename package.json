@@ -1,0 +1,23 @@
+{
+  "name": "remix-compute",
+  "version": "1.0.0",
+  "description": "Remix adapter and server runtime for Netlify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netlify/remix-compute.git"
+  },
+  "keywords": [
+    "remix",
+    "netlify"
+  ],
+  "author": "Nick Taylor <nick@iamdeveloper.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/remix-compute/issues"
+  },
+  "homepage": "https://github.com/netlify/remix-compute#readme"
+}
