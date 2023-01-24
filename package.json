@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
+    "@netlify/eslint-config-node": "^7.0.1",
     "@types/node": "^18.11.18",
+    "prettier": "^2.8.3",
     "typescript": "^4.9.4"
   }
 }
