@@ -14,22 +14,17 @@ automatically close the issue.
 - Related Issue #
 - Closes #
 
-For us to review and ship your PR efficiently, please perform the following steps:
-
-- [ ] Open a [bug/issue](https://github.com/netlify/remix-compute/issues/new/choose) before writing your code 🧑‍💻. This ensures we can discuss the changes and get feedback from everyone that should be involved. If you\`re fixing a typo or something that\`s on fire 🔥 (e.g. incident related), you can skip this step.
-- [ ] Read the [contribution guidelines](../blob/main/CONTRIBUTING.md) 📖. This ensures your code follows our style guide and
-
 ## QA Instructions, Screenshots, Recordings
 
 _Please replace this line with instructions on how to test your changes_
 
-## Added/updated tests?
+For us to review and ship your PR efficiently, please perform the following steps:
 
-- [ ] Yes
-- [ ] No, and this is why: _please replace this line with details on why tests
-      have not been included_
-- [ ] I need help with writing tests
+- [ ] Open a [bug/issue](https://github.com/netlify/cli/issues/new/choose) before writing your code 🧑‍💻. This ensures we can discuss the changes and get feedback from everyone that should be involved. If you\`re fixing a typo or something that\`s on fire 🔥 (e.g. incident related), you can skip this step.
+- [ ] Read the [contribution guidelines](../blob/main/CONTRIBUTING.md) 📖. This ensures your code follows our style guide and
+      passes our tests.
+- [ ] Update or add tests (if any source code was changed or added) 🧪
+- [ ] Update or add documentation (if features were changed or added) 📝
+- [ ] Make sure the status checks below are successful ✅
 
-## [optional] What gif best describes this PR or how it makes you feel?
-
-![alt_text](gif_link)
+**A picture of a cute animal (not mandatory, but encouraged)**
