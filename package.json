@@ -4,7 +4,8 @@
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@netlify/eslint-config-node": "^7.0.1",
     "@types/node": "^18.11.18",
     "prettier": "^2.8.3",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vitest": "^0.28.2"
   }
 }
