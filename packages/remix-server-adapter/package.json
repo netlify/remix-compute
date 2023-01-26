@@ -1,0 +1,40 @@
+{
+  "name": "@netlify/remix-server-adapter",
+  "version": "1.0.0",
+  "description": "Remix Adapter for Netlify Edge",
+  "types": "./build/src/index.d.ts",
+  "main": "./build/src/index.js",
+  "exports": {
+    ".": "./build/src/index.js"
+  },
+  "files": [
+    "build/src/**/*.js",
+    "build/src/**/*.js.map",
+    "build/src/**/*.d.ts",
+    "build/src/**/*.d.ts.map",
+    "resources/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "npm run clean && npm run compile",
+    "compile": "tsc --build tsconfig.json",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netlify/remix-compute.git"
+  },
+  "keywords": [
+    "remix",
+    "netlify"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/remix-compute/issues"
+  },
+  "homepage": "https://github.com/netlify/remix-compute#readme",
+  "dependencies": {
+    "@netlify/remix-server-runtime": "^1.0.0"
+  }
+}

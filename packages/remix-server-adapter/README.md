@@ -1,0 +1,1 @@
+## Remix Adapter for Netlify
