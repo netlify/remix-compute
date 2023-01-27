@@ -4,7 +4,7 @@
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
   "workspaces": [
-    "packages/remix-server-adapter",
+    "packages/remix-adapter",
     "packages/remix-server-runtime",
     "packages/edge-demo-site"
   ],

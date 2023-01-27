@@ -1,6 +1,6 @@
 // Import path interpreted by the Remix compiler
 import * as build from '@remix-run/dev/server-build'
-import { createRequestHandler } from '@netlify/remix-server-adapter'
+import { createRequestHandler } from '@netlify/remix-adapter'
 
 export default createRequestHandler({
   build,

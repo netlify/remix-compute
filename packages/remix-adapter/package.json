@@ -1,5 +1,5 @@
 {
-  "name": "@netlify/remix-server-adapter",
+  "name": "@netlify/remix-adapter",
   "version": "1.0.0",
   "description": "Remix Adapter for Netlify Edge",
   "types": "./build/src/index.d.ts",

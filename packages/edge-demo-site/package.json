@@ -21,7 +21,7 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
     "@netlify/edge-functions": "^2.0.0",
-    "@netlify/remix-server-adapter": "^1.0.0",
+    "@netlify/remix-adapter": "^1.0.0",
     "@remix-run/react": "^1.11.1",
     "cross-env": "^7.0.3",
     "react": "^18.2.0",

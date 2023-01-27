@@ -1,4 +1,4 @@
-const { config } = require('@netlify/remix-server-adapter')
+const { config } = require('@netlify/remix-adapter')
 
 /**
  * @type {import('@remix-run/dev').AppConfig}
