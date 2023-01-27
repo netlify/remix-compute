@@ -5,7 +5,8 @@
   "main": "index.js",
   "workspaces": [
     "packages/remix-server-adapter",
-    "packages/remix-server-runtime"
+    "packages/remix-server-runtime",
+    "packages/edge-demo-site"
   ],
   "scripts": {
     "test": "vitest",
