@@ -4,13 +4,15 @@ Declare types for `process` here so that they are available in Deno.
 */
 
 interface ProcessEnv {
-  NODE_ENV: 'development' | 'production' | 'test'
+  NODE_ENV?: "development" | "production" | "test";
+  [key: string]: string | undefined;
 }
 interface Process {
-  env: ProcessEnv
+  env: ProcessEnv;
 }
-// deno-lint-ignore no-unused-vars no-var
-var process: Process
+declare global {
+  // deno-lint-ignore no-var
+  var process: Process;
+}
+globalThis.process ||= { env: Deno.env.toObject() };
 
-// @ts-ignore
-globalThis.process ||= { env: Deno.env.toObject() }
