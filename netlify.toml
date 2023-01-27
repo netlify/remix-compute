@@ -1,0 +1,2 @@
+[build]
+  base = "packages/edge-demo-site"
