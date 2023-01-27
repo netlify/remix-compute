@@ -5,4 +5,6 @@ export const config: AppConfig = {
   server: './server.js',
   ignoredRouteFiles: ['**/.*'],
   serverBuildPath: '.netlify/edge-functions/server.js',
+  serverModuleFormat: 'esm',
+  serverPlatform: 'neutral',
 }
