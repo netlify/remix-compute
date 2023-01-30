@@ -43,5 +43,9 @@
   },
   "engines": {
     "node": ">=14"
-  }
+  },
+  "workspaces": [
+    "packages/remix-edge-adapter",
+    "packages/remix-runtime"
+  ]
 }
