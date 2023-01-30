@@ -1,5 +1,5 @@
 {
-  "name": "@netlify/remix-server-runtime",
+  "name": "@netlify/remix-runtime",
   "version": "1.0.0",
   "description": "Remix Runtime for Netlify Edge",
   "types": "./build/src/index.d.ts",

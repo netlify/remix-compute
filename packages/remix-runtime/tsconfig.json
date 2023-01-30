@@ -8,6 +8,6 @@
     "./src"
   ],
   // "references": [
-  //   { "path": "../remix-server-runtime/tsconfig.json"}
+  //   { "path": "../remix-runtime/tsconfig.json"}
   // ]
 }
