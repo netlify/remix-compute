@@ -4,9 +4,7 @@
     "rootDir": ".",
     "outDir": "./build"
   },
-  "include": [
-    "./src"
-  ],
+  "include": ["./src"]
   // "references": [
   //   { "path": "../remix-runtime/tsconfig.json"}
   // ]
