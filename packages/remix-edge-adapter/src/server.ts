@@ -24,23 +24,23 @@ export function createRequestHandler({
   mode?: string
   getLoadContext?: GetLoadContextFunction
 }): RequestHandler {
-  let remixHandler = createRemixRequestHandler(build, mode)
+  const remixHandler = createRemixRequestHandler(build, mode)
 
-  let assetPath = build.assets.url.split('/').slice(0, -1).join('/')
+  const assetPath = build.assets.url.split('/').slice(0, -1).join('/')
 
   return async (request: Request, context: LoadContext): Promise<Response | void> => {
-    let { pathname } = new URL(request.url)
+    const { pathname } = new URL(request.url)
     // Skip the handler for static files
     if (pathname.startsWith(`${assetPath}/`)) {
       return
     }
     try {
-      let loadContext = (await getLoadContext?.(request, context)) || context
+      const loadContext = (await getLoadContext?.(request, context)) || context
 
-      let response = await remixHandler(request, loadContext)
+      const response = await remixHandler(request, loadContext)
       if (response.status === 404) {
         // Check if there is a matching static file
-        let originResponse = await context.next({
+        const originResponse = await context.next({
           sendConditionalRequest: true,
         })
         if (originResponse.status !== 404) {
