@@ -1,11 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   plugins: ['@typescript-eslint'],
   parserOptions: {
     sourceType: 'module',
@@ -16,4 +12,4 @@ module.exports = {
     es2019: true,
     node: true,
   },
-};
+}

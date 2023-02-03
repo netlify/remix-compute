@@ -1,1 +1,1 @@
-console.log('nothing for now');
+console.log('nothing for now')
