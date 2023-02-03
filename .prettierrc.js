@@ -1,4 +1,7 @@
 module.exports = {
-  ...require('@netlify/eslint-config-node/.prettierrc.json'),
-  endOfLine: 'auto',
+  semi: false,
+  singleQuote: true,
+  printWidth: 120,
+  proseWrap: 'always',
+  trailingComma: 'all',
 }
