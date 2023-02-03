@@ -11,7 +11,7 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepare": "husky install",
+    "prepare": "if-env CI=1 || husky install",
     "format": "run-s format:fix:*",
     "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
@@ -48,7 +48,8 @@
     "vitest": "^0.28.2"
   },
   "dependencies": {
-    "@netlify/edge-functions": "^2.0.0"
+    "@netlify/edge-functions": "^2.0.0",
+    "if-env": "^1.0.4"
   },
   "engines": {
     "node": ">=14"
