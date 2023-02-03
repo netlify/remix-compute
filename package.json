@@ -17,7 +17,8 @@
     "format:check:lint": "eslint --cache .",
     "format:fix:lint": "eslint --fix --cache .",
     "format:check:prettier": "prettier --cache .",
-    "format:fix:prettier": "prettier --write --cache ."
+    "format:fix:prettier": "prettier --write --cache .",
+    "e2e": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,9 @@
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "commitlint": "^17.4.2",
+    "cypress": "^12.5.1",
     "eslint": "^8.33.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-prettier-config": "^1.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
