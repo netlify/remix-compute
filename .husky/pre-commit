@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+FILES=$(git diff --cached --name-only)
+[ -z "$FILES" ] && exit 0
+
+# Run lint-staged on all staged
+echo "$FILES" | npx lint-staged

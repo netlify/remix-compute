@@ -19,6 +19,11 @@ node_modules
 
 # Test
 lib
-tsconfig.json
 
 **/CHANGELOG.md
+
+package-lock.json
+
+/.netlify
+/.vscode
+**/build
