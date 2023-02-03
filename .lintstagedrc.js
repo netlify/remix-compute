@@ -1,5 +1,4 @@
 module.exports = {
-  '*.{json,yml}': ['prettier --write'],
-  '*.md': ['prettier --write --prose-wrap always'],
+  '*.{json,yml,md}': ['prettier --write'],
   '*.{ts,js,cjs}': ['prettier --write', 'eslint --fix', 'vitest run related --passWithNoTests'],
 }
