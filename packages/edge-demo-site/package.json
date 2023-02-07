@@ -4,6 +4,7 @@
   "description": "Demo site to test the Netlify Remix server adapter",
   "main": "index.js",
   "scripts": {
+    "preinstall": "cd ../../ && npm install",
     "prebuild": "cd ../../ && npm run compile -w=packages/remix-runtime && npm run compile -w=packages/remix-edge-adapter",
     "build": "remix build",
     "dev": "remix dev",
