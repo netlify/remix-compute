@@ -58,7 +58,7 @@ jobs:
           headless: true
           record: true
           parallel: true
-          config-file: cypress/config/edge-cypres.config.ts
+          config-file: cypress/config/edge-cypress.config.ts
           group: 'Remix Edge Demo'
         env:
           DEBUG: '@cypress/github-action'
