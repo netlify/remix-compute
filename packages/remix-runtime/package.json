@@ -7,6 +7,7 @@
   "scripts": {
     "prepack": "npm run clean && npm run build",
     "build": "tsc --build tsconfig.json",
+    "build:watch": "npm run build -- --watch",
     "clean": "rm -rf build"
   },
   "repository": {

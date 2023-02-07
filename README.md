@@ -18,3 +18,18 @@ npm install
 
 This installs all the dependencies for all the packages and builds the `@netlify/remix-runtime` and
 `@netlify/remix-edge-adapter` packages.
+
+## Development
+
+Run the build watch command to have packages built when they are changed.
+
+```bash
+npm run build:watch
+```
+
+When you're ready to test your changes, you can run the demo site locally.
+
+```bash
+ntl build --offline
+ntl serve
+```

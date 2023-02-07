@@ -20,6 +20,7 @@
     "format:fix:prettier": "prettier --write --cache .",
     "e2e": "cypress open",
     "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter",
+    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter",
     "build:edge-demo": "npm run build -w=packages/edge-demo-site"
   },
   "repository": {
