@@ -5,8 +5,8 @@
   "types": "./build/src/index.d.ts",
   "main": "./build/src/index.js",
   "scripts": {
-    "prepack": "npm run clean && npm run compile",
-    "compile": "tsc --build tsconfig.json",
+    "prepack": "npm run clean && npm run build",
+    "build": "tsc --build tsconfig.json",
     "clean": "rm -rf build"
   },
   "repository": {
