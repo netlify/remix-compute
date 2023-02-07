@@ -6,6 +6,7 @@ const { config } = require('@netlify/remix-edge-adapter')
  */
 module.exports = {
   ...config,
+  serverBuildPath: '../../.netlify/edge-functions/server.js',
   // This works out of the box with the Netlify adapter, but you can
   // add your own custom config here if you want to.
   //
