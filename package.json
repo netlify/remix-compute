@@ -18,7 +18,9 @@
     "format:fix:lint": "eslint --fix --cache .",
     "format:check:prettier": "prettier --cache .",
     "format:fix:prettier": "prettier --write --cache .",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "prebuild:edge-demo": "npm run compile -w=packages/remix-runtime && npm run compile -w=packages/remix-edge-adapter",
+    "build:edge-demo": "npm run build -w=packages/edge-demo-site"
   },
   "repository": {
     "type": "git",
