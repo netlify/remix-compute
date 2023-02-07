@@ -11,14 +11,16 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepare": "if-env CI=1 || husky install",
+    "prepare": "(if-env CI=1 || husky install) && npm run build:packages",
     "format": "run-s format:fix:*",
     "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
     "format:fix:lint": "eslint --fix --cache .",
     "format:check:prettier": "prettier --cache .",
     "format:fix:prettier": "prettier --write --cache .",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "build:packages": "npm run compile -w=packages/remix-runtime -w=packages/remix-edge-adapter",
+    "build:edge-demo": "npm run build -w=packages/edge-demo-site"
   },
   "repository": {
     "type": "git",

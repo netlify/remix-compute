@@ -1,3 +1,9 @@
+export function headers({ loaderHeaders, parentHeaders }: { loaderHeaders: Headers; parentHeaders: Headers }) {
+  return {
+    'Cache-Control': 'public, max-age=31536000, s-maxage=31536000',
+  }
+}
+
 export default function Index() {
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
