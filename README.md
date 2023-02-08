@@ -1,13 +1,14 @@
 # Remix Compute for Netlify
 
-The Remix Compute for Netlify packages allow you to deploy your Remix apps to Netlify on the Edge.
+The Remix Compute for Netlify packages allow you to deploy your Remix apps to
+[Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/).
 
 This project is not a template for Remix apps. It is a set of packages used by the Netlify Remix template.
 
 The project is a monorepo. Packages are located in the `packages` directory. There are three packages:
 
-- `@netlify/remix-runtime` - The Remix runtime for Netlify on the Edge
-- `@netlify/remix-edge-adapter` - The Remix adapter for Netlify on the Edge
+- `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
+- `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
 - `@netlify/remix-edge-demo-site` - A demo site for testing the packages
 
 ## Installation
