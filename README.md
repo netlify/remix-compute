@@ -1,6 +1,6 @@
 # Remix Compute for Netlify
 
-The Remix Compute for Netlify packages allows you to deploy your Remix apps to Netlify on the Edge.
+The Remix Compute for Netlify packages allow you to deploy your Remix apps to Netlify on the Edge.
 
 This project is not a template for Remix apps. It is a set of packages used by the Netlify Remix template.
 
