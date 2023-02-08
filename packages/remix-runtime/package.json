@@ -2,22 +2,24 @@
   "name": "@netlify/remix-runtime",
   "version": "1.0.0",
   "description": "Remix Runtime for Netlify Edge",
-  "main": "index.js",
-  "devDependencies": {},
+  "types": "./build/src/index.d.ts",
+  "main": "./build/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepack": "npm run clean && npm run build",
+    "build": "tsc --build tsconfig.json",
+    "build:watch": "npm run build -- --watch",
+    "clean": "rm -rf build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/netlify/remix-compute.git"
   },
-  "keywords": [
-    "remix",
-    "netlify"
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/netlify/remix-compute/issues"
   },
-  "homepage": "https://github.com/netlify/remix-compute#readme"
+  "homepage": "https://github.com/netlify/remix-compute#readme",
+  "dependencies": {
+    "@remix-run/server-runtime": "^1.11.1"
+  }
 }

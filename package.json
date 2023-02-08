@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
+  "workspaces": [
+    "packages/remix-edge-adapter",
+    "packages/remix-runtime",
+    "packages/edge-demo-site"
+  ],
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepare": "husky install",
+    "prepare": "(if-env CI=1 || husky install) && npm run build:packages",
     "format": "run-s format:fix:*",
     "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
     "format:fix:lint": "eslint --fix --cache .",
     "format:check:prettier": "prettier --cache .",
     "format:fix:prettier": "prettier --write --cache .",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter",
+    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter",
+    "build:edge-demo": "npm run build -w=packages/edge-demo-site"
   },
   "repository": {
     "type": "git",
@@ -38,18 +46,18 @@
     "eslint": "^8.33.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-prettier-config": "^1.0.1",
-    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
     "run-s": "^0.0.0",
     "typescript": "^4.9.4",
     "vitest": "^0.28.2"
   },
+  "dependencies": {
+    "@netlify/edge-functions": "^2.0.0",
+    "husky": "^8.0.3",
+    "if-env": "^1.0.4"
+  },
   "engines": {
     "node": ">=14"
-  },
-  "workspaces": [
-    "packages/remix-edge-adapter",
-    "packages/remix-runtime"
-  ]
+  }
 }

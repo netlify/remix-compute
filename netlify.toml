@@ -1,0 +1,3 @@
+[build]
+command = "npm run build:edge-demo"
+publish = "packages/edge-demo-site/public"
