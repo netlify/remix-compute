@@ -38,6 +38,10 @@ export function createRequestHandler({
       const loadContext = (await getLoadContext?.(request, context)) || context
 
       const response = await remixHandler(request, loadContext)
+
+      // A useful header for debugging
+      response.headers.set('x-nf-runtime', 'Edge')
+
       if (response.status === 404) {
         // Check if there is a matching static file
         const originResponse = await context.next({
