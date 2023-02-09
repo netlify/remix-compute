@@ -9,7 +9,7 @@ The project is a monorepo. Packages are located in the `packages` directory. The
 
 - `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
-- `@netlify/remix-edge-demo-site` - A demo site for testing the packages
+- `remix-edge-demo-site` - A demo site for testing the packages
 
 ## Installation
 
