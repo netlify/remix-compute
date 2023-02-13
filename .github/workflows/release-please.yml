@@ -30,7 +30,7 @@ jobs:
         run: CI=1 npm ci --no-audit
         if: ${{ steps.release.outputs.releases_created }}
       - run: npm publish packages/remix-edge-adapter/
-        if: ${{ steps.release.outputs['packages/packages/remix-edge-adapter--version'] }}
+        if: ${{ steps.release.outputs['packages/remix-edge-adapter--version'] }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm publish packages/remix-runtime/
