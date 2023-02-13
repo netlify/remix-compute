@@ -1,5 +1,5 @@
 {
-  "bootstrap-sha": "62a4ce414f5b02f539902f88dd4b548df5cfa8ef",
+  "bootstrap-sha": "a368ce845682b7509b9e320b66c5316972de512b",
   "packages": {
     "packages/remix-edge-adapter": {},
     "packages/remix-runtime": {}
