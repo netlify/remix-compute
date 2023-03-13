@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@remix-run/server-runtime": "^1.11.1"
+    "@remix-run/server-runtime": "^1.14.1"
   },
   "publishConfig": {
     "access": "public"
