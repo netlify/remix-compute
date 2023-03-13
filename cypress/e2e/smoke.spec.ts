@@ -6,4 +6,9 @@ describe('Smoke Test', () => {
     cy.findByRole('link', { name: /Deep Dive Jokes App Tutorial/i }).should('exist')
     cy.findByRole('link', { name: /Remix Docs/i }).should('exist')
   })
+
+  it('Should load the about route', () => {
+    cy.visit('/about')
+    cy.findByRole('heading', { name: /About/i }).should('exist')
+  })
 })
