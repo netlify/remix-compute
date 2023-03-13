@@ -1,6 +1,6 @@
 {
   "name": "@netlify/remix-edge-adapter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Remix Adapter for Netlify Edge Functions",
   "types": "./build/src/index.d.ts",
   "main": "./build/src/index.js",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/remix-runtime": "^1.0.0"
+    "@netlify/remix-runtime": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"
