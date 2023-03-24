@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v1.1.0...remix-edge-adapter-v1.2.0) (2023-03-24)
+
+
+### Features
+
+* moved away from deprecated serverBuildTarget ([#63](https://github.com/netlify/remix-compute/issues/63)) ([376378f](https://github.com/netlify/remix-compute/commit/376378f4d4fc8b51ad22a71cb7526ad3f3b23633))
+
 ## [1.1.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v1.0.0...remix-edge-adapter-v1.1.0) (2023-03-13)
 
 
