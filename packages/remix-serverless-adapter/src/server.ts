@@ -13,7 +13,7 @@ import {
 } from '@remix-run/node'
 import type { Handler, HandlerEvent, HandlerContext, HandlerResponse } from '@netlify/functions'
 
-import { isBinaryType } from './binaryTypes'
+import { isBinaryType } from './binary-types'
 
 /**
  * A function that returns the value to use as `context` in route `loader` and

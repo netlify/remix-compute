@@ -35,7 +35,9 @@
     "@remix-run/node": "1.16.0"
   },
   "devDependencies": {
-    "@netlify/functions": "^1.0.0"
+    "@netlify/functions": "^1.0.0",
+    "@types/lambda-tester": "^3.6.1",
+    "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
     "@netlify/functions": "^1.0.0"
