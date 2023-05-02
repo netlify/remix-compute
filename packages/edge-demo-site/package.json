@@ -4,7 +4,7 @@
   "description": "Demo site to test the Netlify Remix edge adapter",
   "main": "index.js",
   "scripts": {
-    "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter",
+    "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter && npm run build -w=packages/remix-serverless-adapter",
     "build": "remix build",
     "dev": "remix dev",
     "start": "cross-env NODE_ENV=production netlify dev",
