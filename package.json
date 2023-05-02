@@ -5,6 +5,7 @@
   "main": "index.js",
   "workspaces": [
     "packages/remix-edge-adapter",
+    "packages/remix-serverless-adapter",
     "packages/remix-runtime",
     "packages/edge-demo-site"
   ],

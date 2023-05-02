@@ -1,0 +1,49 @@
+{
+  "name": "@netlify/remix-serverless-adapter",
+  "version": "1.0.0",
+  "description": "Remix Adapter for Netlify Serverless Functions",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "files": [
+    "dist/",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "npm run clean && npm run build",
+    "build": "tsc --build tsconfig.json",
+    "build:watch": "npm run build -- --watch",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netlify/remix-compute",
+    "directory": "packages/remix-serverless-adapter"
+  },
+  "keywords": [
+    "remix",
+    "netlify"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/remix-compute/issues"
+  },
+  "homepage": "https://github.com/netlify/remix-compute#readme",
+  "dependencies": {
+    "@remix-run/node": "1.16.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@netlify/functions": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
