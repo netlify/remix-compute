@@ -3,7 +3,7 @@
   "packages": {
     "packages/remix-edge-adapter": {},
     "packages/remix-runtime": {},
-    "packages/remix-serverless-adapter": {}
+    "packages/remix-adapter": {}
   },
   "plugins": ["node-workspace"]
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@netlify/remix-serverless-adapter",
+  "name": "@netlify/remix-adapter",
   "version": "1.0.0",
-  "description": "Remix Adapter for Netlify Serverless Functions",
+  "description": "Remix Adapter for Netlify Functions",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/netlify/remix-compute",
-    "directory": "packages/remix-serverless-adapter"
+    "directory": "packages/remix-adapter"
   },
   "keywords": [
     "remix",
