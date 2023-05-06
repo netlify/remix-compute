@@ -1,7 +1,7 @@
 import type { AppConfig } from '@remix-run/dev'
 
 export const config: AppConfig = {
-  server: './server.js',
+  server: './server.ts',
   ignoredRouteFiles: ['**/.*'],
   serverBuildPath: '.netlify/edge-functions/server.js',
   serverConditions: ['deno', 'worker'],
@@ -9,8 +9,11 @@ export const config: AppConfig = {
   serverMainFields: ['module', 'main'],
   serverModuleFormat: 'esm',
   serverPlatform: 'neutral',
-  // See https://remix.run/docs/en/main/file-conventions/route-files-v2
+  // See https://remix.run/pages/v2
   future: {
+    v2_errorBoundary: true,
+    v2_meta: true,
+    v2_normalizeFormMethod: true,
     v2_routeConvention: true,
   },
 }
