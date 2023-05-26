@@ -4,7 +4,7 @@
  * For more information, see https://remix.run/file-conventions/entry.server
  */
 
-import type { AppLoadContext, EntryContext } from '@remix-run/node'
+import type { AppLoadContext, EntryContext } from '@remix-run/server-runtime'
 import { RemixServer } from '@remix-run/react'
 // Looking to use renderReadableStream? See https://github.com/netlify/remix-template/discussions/100
 import { renderToString } from 'react-dom/server'
