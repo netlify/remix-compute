@@ -1,4 +1,4 @@
-import type { HeadersFunction, V2_MetaFunction } from '@remix-run/node'
+import type { HeadersFunction, V2_MetaFunction } from '@remix-run/server-runtime'
 
 export const headers: HeadersFunction = () => {
   return {
