@@ -1,27 +1,28 @@
-/**
- * By default, Remix will handle generating the HTTP Response for you.
- * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
- * For more information, see https://remix.run/file-conventions/entry.server
- */
-
-import type { AppLoadContext, EntryContext } from '@remix-run/server-runtime'
+import type { EntryContext } from '@remix-run/server-runtime'
 import { RemixServer } from '@remix-run/react'
-// Looking to use renderReadableStream? See https://github.com/netlify/remix-template/discussions/100
-import { renderToString } from 'react-dom/server'
+import { renderToReadableStream } from 'react-dom/server'
+import isbot from 'isbot'
 
-export default function handleRequest(
+export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext,
 ) {
-  const markup = renderToString(<RemixServer context={remixContext} url={request.url} />)
+  const body = await renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
+    onError() {
+      responseStatusCode = 500
+    },
+  })
+
+  if (isbot(request.headers.get('user-agent'))) {
+    await body.allReady
+  }
 
   responseHeaders.set('Content-Type', 'text/html')
 
-  return new Response('<!DOCTYPE html>' + markup, {
-    headers: responseHeaders,
+  return new Response(body, {
     status: responseStatusCode,
+    headers: responseHeaders,
   })
 }
