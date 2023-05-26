@@ -1,9 +1,6 @@
 import { createRequestHandler } from '@netlify/remix-edge-adapter'
 // Import path interpreted by the Remix compiler
 import * as build from '@remix-run/dev/server-build'
-import { installGlobals } from '@remix-run/node'
-
-installGlobals()
 
 export default createRequestHandler({
   build,
