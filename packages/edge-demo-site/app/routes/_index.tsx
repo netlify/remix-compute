@@ -3,7 +3,7 @@ import type { HeadersFunction, V2_MetaFunction } from '@remix-run/node'
 export const headers: HeadersFunction = () => {
   return {
     // This is an example of how to set caching headers for a route
-    // For more info on headers in Remix, see: https://remix.run/docs/en/v1/route/headers
+    // For more info on headers in Remix, see: https://remix.run/route/headers
     'Cache-Control': 'public, max-age=60, s-maxage=60',
   }
 }
