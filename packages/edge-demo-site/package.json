@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter && npm run build -w=packages/remix-adapter",
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "remix watch",
     "start": "cross-env NODE_ENV=production netlify dev",
     "typecheck": "tsc -b"
   },
