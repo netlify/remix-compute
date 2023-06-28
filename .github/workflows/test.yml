@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Adapter Tests
 
 on:
   pull_request:
