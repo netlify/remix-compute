@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v1.2.0...remix-edge-adapter-v2.0.0) (2023-06-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **remix-edge-adapter:** update default config ([#115](https://github.com/netlify/remix-compute/issues/115))
+* **remix-edge-adapter:** update default config ([#84](https://github.com/netlify/remix-compute/issues/84))
+
+### Features
+
+* **remix-edge-adapter:** update default config ([#115](https://github.com/netlify/remix-compute/issues/115)) ([b5e35b2](https://github.com/netlify/remix-compute/commit/b5e35b221b7ec979de70b38f45a26381444ecae0))
+* **remix-edge-adapter:** update default config ([#84](https://github.com/netlify/remix-compute/issues/84)) ([bed0399](https://github.com/netlify/remix-compute/commit/bed0399bac3d09fc270fcbed482e2288254daf4d))
+
 ## [1.2.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v1.1.0...remix-edge-adapter-v1.2.0) (2023-03-24)
 
 
