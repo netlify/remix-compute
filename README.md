@@ -10,6 +10,8 @@ The project is a monorepo. Packages are located in the `packages` directory. The
 - `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
 - `remix-edge-demo-site` - A demo site for testing the packages
+- `@netlify/hydrogen-edge-adapter` - The Hydrogen/Remix adapter for Netlify Edge Functions
+- `@netlify/hydrogen-netlify-plugin` - The Netlify Build Plugin for Hydrogen projects on Netlify
 
 ## Installation
 

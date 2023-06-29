@@ -6,7 +6,9 @@
   "workspaces": [
     "packages/remix-edge-adapter",
     "packages/remix-runtime",
-    "packages/edge-demo-site"
+    "packages/edge-demo-site",
+    "packages/hydrogen-edge-adapter",
+    "packages/hydrogen-netlify-plugin"
   ],
   "scripts": {
     "test": "vitest",
@@ -19,8 +21,8 @@
     "format:check:prettier": "prettier --cache .",
     "format:fix:prettier": "prettier --write --cache .",
     "e2e": "cypress open",
-    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter",
-    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter",
+    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter -w=packages/hydrogen-edge-adapter",
+    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter & npm run build:watch -w=packages/hydrogen-edge-adapter",
     "build:edge-demo": "npm run build -w=packages/edge-demo-site"
   },
   "repository": {

@@ -1,0 +1,48 @@
+{
+  "name": "@netlify/hydrogen-edge-adapter",
+  "version": "1.0.0",
+  "description": "Hydrogen/Remix Adapter for Netlify Edge Functions",
+  "types": "./build/src/index.d.ts",
+  "main": "./build/src/index.js",
+  "exports": {
+    ".": "./build/src/index.js",
+    "./config": "./build/src/defaultRemixConfig.js"
+  },
+  "files": [
+    "build/src/**/*.js",
+    "build/src/**/*.js.map",
+    "build/src/**/*.d.ts",
+    "build/src/**/*.d.ts.map",
+    "resources/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "npm run clean && npm run build",
+    "build": "tsc --build tsconfig.json",
+    "build:watch": "npm run build -- --watch",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netlify/remix-compute.git"
+  },
+  "keywords": [
+    "hydrogen",
+    "remix",
+    "netlify"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/remix-compute/issues"
+  },
+  "homepage": "https://github.com/netlify/remix-compute#readme",
+  "dependencies": {
+    "@netlify/remix-runtime": "^1.1.0",
+    "@shopify/hydrogen": "^2023.4.6",
+    "@shopify/remix-oxygen": "^1.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
