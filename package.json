@@ -7,7 +7,8 @@
     "packages/remix-edge-adapter",
     "packages/remix-adapter",
     "packages/remix-runtime",
-    "packages/edge-demo-site"
+    "packages/edge-demo-site",
+    "packages/demo-site"
   ],
   "scripts": {
     "test": "vitest",
@@ -22,7 +23,8 @@
     "e2e": "cypress open",
     "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter",
     "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter",
-    "build:edge-demo": "npm run build -w=packages/edge-demo-site"
+    "build:edge-demo": "npm run build -w=packages/edge-demo-site",
+    "build:demo": "npm run build -w=packages/demo-site"
   },
   "repository": {
     "type": "git",
