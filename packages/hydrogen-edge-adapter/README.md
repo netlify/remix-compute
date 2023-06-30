@@ -1,6 +1,6 @@
 ## Hydrogen Remix Adapter for Netlify
 
-The Hydrogen Remix Adapter for Netlify allows you to deploy your [Shopify Hydorgen](https://hydrogen.shopify.dev/) (via
+The Hydrogen Remix Adapter for Netlify allows you to deploy your [Shopify Hydrogen](https://hydrogen.shopify.dev/) (via
 [Remix](https://remix.run)) app to [Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/).
 
 ### Usage
