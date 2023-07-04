@@ -1,0 +1,6 @@
+[build]
+command = "npm run build:demo"
+publish = "packages/demo-site/public"
+
+[dev]
+command = "npm run dev -w packages/demo-site"
