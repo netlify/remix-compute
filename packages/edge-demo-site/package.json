@@ -7,7 +7,7 @@
     "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter && npm run build -w=packages/remix-adapter",
     "build": "remix build",
     "dev": "remix watch",
-    "start": "cross-env NODE_ENV=production netlify dev",
+    "start": "netlify serve",
     "typecheck": "tsc -b"
   },
   "repository": {
@@ -23,16 +23,16 @@
   "dependencies": {
     "@netlify/edge-functions": "^2.0.0",
     "@netlify/remix-edge-adapter": "*",
-    "@remix-run/css-bundle": "^1.17.0",
-    "@remix-run/react": "^1.17.0",
+    "@remix-run/css-bundle": "^1.18.0",
+    "@remix-run/react": "^1.18.0",
     "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.17.0",
-    "@remix-run/eslint-config": "^1.17.0",
-    "@remix-run/serve": "^1.17.0",
+    "@remix-run/dev": "^1.18.0",
+    "@remix-run/eslint-config": "^1.18.0",
+    "@remix-run/serve": "^1.18.0",
     "@testing-library/cypress": "^9.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
