@@ -1,9 +1,9 @@
-## Hydrogen Remix Adapter for Netlify
+# Hydrogen Remix Adapter for Netlify
 
 The Hydrogen Remix Adapter for Netlify allows you to deploy your [Shopify Hydrogen](https://hydrogen.shopify.dev/) (via
 [Remix](https://remix.run)) app to [Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/).
 
-### Usage
+## Usage
 
 1. Modify your `server.js` file to use Netlify’s Hydrogen Edge Adapter:
 
@@ -38,7 +38,7 @@ module.exports = {
 }
 ```
 
-3. Add a `netlify.toml` file using the Netlify Hydrogen Build plugin (this may be automated later):
+3. Add a `netlify.toml` file using the `@netlify/hydrogen-netlify-plugin` build plugin:
 
 ```toml
 [build]

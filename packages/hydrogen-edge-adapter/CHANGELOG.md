@@ -4,4 +4,4 @@
 
 ### Features
 
-* `@netlify/hydrogen-edge-adapter` first version supports Hydrogen 2.0 with Netlify Edge Functions.
+* `@netlify/hydrogen-edge-adapter`: Initial release that supports [Shopify Hydrogen 2.0](https://hydrogen.shopify.dev/) with [Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/).
