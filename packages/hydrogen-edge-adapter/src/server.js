@@ -4,7 +4,7 @@ import { createRequestHandler as netlifyCreateRequestHandler } from '@netlify/re
 import { createRequestHandler as hydrogenCreateRequestHandler, getStorefrontHeaders } from '@shopify/remix-oxygen'
 import { createStorefrontClient, storefrontRedirect } from '@shopify/hydrogen'
 
-export async function getHydrogenClient({ env, request, waitUntil, caches, HydrogenSession, getLocaleFromRequest }) {
+export async function getHydrogenClient({ env, request, waitUntil, HydrogenSession, getLocaleFromRequest }) {
   /**
    * Open a cache instance in the worker and a custom session instance.
    */
@@ -46,7 +46,6 @@ export function createHydrogenHandler(overrides) {
           request,
           env,
           waitUntil,
-          caches,
         },
         overrides,
       ),
