@@ -84,7 +84,7 @@ export function createHydrogenHandler(overrides) {
 export function createNetlifyEdgeHandler(overrides) {
   return async function (request, context) {
     // eslint-disable-next-line no-undef
-    const env = Netlify.env.toObject()
+    const env = process.env
     const waitUntil = () => Promise.resolve()
     const { storefront, session } = await getHydrogenClient(
       Object.assign(
