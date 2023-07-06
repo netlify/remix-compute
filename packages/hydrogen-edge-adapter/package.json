@@ -10,7 +10,6 @@
   },
   "files": [
     "build/src/**/*.js",
-    "build/src/**/*.d.ts",
     "resources/**/*",
     "LICENSE",
     "README.md"
