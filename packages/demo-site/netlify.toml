@@ -4,3 +4,8 @@ publish = "packages/demo-site/public"
 
 [dev]
 command = "npm run dev -w packages/demo-site"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
