@@ -1,1 +1,1 @@
-import '@remix-run/node/install'
+import '../src/globals'
