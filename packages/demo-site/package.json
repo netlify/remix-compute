@@ -6,9 +6,9 @@
   "scripts": {
     "prebuild": "cd ../../ && npm run build -w=packages/remix-adapter",
     "build": "remix build",
-    "dev": "remix watch",
-    "start": "cross-env NODE_ENV=production netlify dev",
-    "typecheck": "tsc -b"
+    "dev": "remix dev",
+    "start": "netlify serve",
+    "typecheck": "tsc"
   },
   "repository": {
     "type": "git",
