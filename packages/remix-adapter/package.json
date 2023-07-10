@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@remix-run/node": "^1.18.0"
+    "@remix-run/node": "^1.18.1"
   },
   "devDependencies": {
     "@netlify/functions": "^1.0.0",
