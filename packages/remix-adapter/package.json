@@ -2,11 +2,11 @@
   "name": "@netlify/remix-adapter",
   "version": "1.0.0",
   "description": "Remix Adapter for Netlify Functions",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "exports": "./dist/index.js",
+  "types": "./build/index.d.ts",
+  "main": "./build/index.js",
+  "exports": "./build/index.js",
   "files": [
-    "dist/",
+    "build/",
     "CHANGELOG.md",
     "LICENSE.md",
     "README.md"
