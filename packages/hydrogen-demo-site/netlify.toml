@@ -1,0 +1,10 @@
+[build]
+command = "npm run build"
+publish = "public"
+
+[dev]
+command = "npm run dev"
+targetPort = 3000
+
+[[plugins]]
+package = "../../packages/hydrogen-netlify-plugin"
