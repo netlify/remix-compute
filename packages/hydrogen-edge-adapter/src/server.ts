@@ -83,8 +83,7 @@ export function createHydrogenHandler(overrides: HandlerOverrides) {
 
     const handler = hydrogenCreateRequestHandler({
       build: remixBuild,
-      // mode: process.env.NODE_ENV,
-      mode: 'production',
+      mode: process.env.NODE_ENV,
       getLoadContext: () => ({
         session,
         waitUntil,
@@ -136,7 +135,17 @@ export function createNetlifyEdgeHandler(overrides: HandlerOverrides): RequestHa
     const handler = netlifyCreateRequestHandler({
       build: remixBuild,
       mode: 'production',
-      getLoadContext: () => context,
+      getLoadContext: () => {
+        return Object.assign(
+          {
+            session,
+            storefront,
+            waitUntil,
+            env,
+          },
+          context,
+        )
+      },
     })
 
     const response = await handler(request, context)
