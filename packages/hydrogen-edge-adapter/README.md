@@ -41,7 +41,7 @@ module.exports = {
 }
 ```
 
-3. Add a `netlify.toml` file using the `@netlify/hydrogen-netlify-plugin` build plugin:
+3. Add a `netlify.toml` file using the `@netlify/hydrogen-integration` build integration:
 
 ```toml
 [build]
@@ -53,7 +53,7 @@ command = "npm run dev"
 targetPort = 3000
 
 [[plugins]]
-package = "@netlify/hydrogen-netlify-plugin"
+package = "@netlify/hydrogen-integration"
 ```
 
 4. Run `npx netlify serve` in your project root to host your Hydrogen project via the Netlify CLI. You may also run the

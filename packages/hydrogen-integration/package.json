@@ -1,5 +1,5 @@
 {
-  "name": "@netlify/hydrogen-netlify-plugin",
+  "name": "@netlify/hydrogen-integration",
   "version": "1.0.0",
   "description": "Netlify plugin to modify build output for bundling with Netlify Edge Functions",
   "main": "./index.js",
