@@ -133,3 +133,5 @@ build/
 
 # Local Netlify folder
 .netlify
+
+.ds_store

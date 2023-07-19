@@ -36,7 +36,8 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/remix-runtime": "*"
+    "@netlify/remix-runtime": "*",
+    "@remix-run/dev": "^1.18.1"
   },
   "publishConfig": {
     "access": "public"

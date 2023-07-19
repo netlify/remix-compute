@@ -1,14 +1,14 @@
 {
-  "name": "edge-demo-site",
+  "name": "demo-site",
   "version": "1.0.0",
-  "description": "Demo site to test the Netlify Remix edge adapter",
+  "description": "Demo site to test the Netlify Remix adapter",
   "main": "index.js",
   "scripts": {
-    "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter && npm run build -w=packages/remix-adapter",
+    "prebuild": "cd ../../ && npm run build -w=packages/remix-adapter",
     "build": "remix build",
-    "dev": "remix watch",
+    "dev": "remix dev",
     "start": "netlify serve",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,10 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/edge-functions": "^2.0.0",
-    "@netlify/remix-edge-adapter": "*",
+    "@netlify/functions": "^1.4.0",
+    "@netlify/remix-adapter": "*",
     "@remix-run/css-bundle": "^1.18.1",
     "@remix-run/react": "^1.18.1",
-    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -33,11 +32,9 @@
     "@remix-run/dev": "^1.18.1",
     "@remix-run/eslint-config": "^1.18.1",
     "@remix-run/serve": "^1.18.1",
-    "@testing-library/cypress": "^9.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "@types/testing-library__cypress": "^5.0.9",
     "eslint": "^8.32.0",
-    "typescript": "^5.0.0"
+    "typescript": "^4.9.4"
   }
 }
