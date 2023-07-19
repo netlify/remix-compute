@@ -37,3 +37,7 @@ jobs:
         if: ${{ steps.release.outputs['packages/remix-runtime--version'] }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish packages/remix-adapter/
+        if: ${{ steps.release.outputs['packages/remix-adapter--version'] }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

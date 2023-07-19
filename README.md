@@ -7,9 +7,11 @@ This project is not a template for Remix apps. It is a set of packages used by t
 
 The project is a monorepo. Packages are located in the `packages` directory. There are three packages:
 
+- `@netlify/remix-adapter` - The Remix adapter for Netlify Functions
+- `remix-demo-site` - A demo site for testing the remix-adapter
 - `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
-- `remix-edge-demo-site` - A demo site for testing the packages
+- `remix-edge-demo-site` - A demo site for testing the remix-edge-adapter
 
 ## Installation
 
@@ -17,8 +19,8 @@ The project is a monorepo. Packages are located in the `packages` directory. The
 npm install
 ```
 
-This installs all the dependencies for all the packages and builds the `@netlify/remix-runtime` and
-`@netlify/remix-edge-adapter` packages.
+This installs all the dependencies for all the packages and builds the `@netlify/remix-runtime`,
+`@netlify/remix-adapter`, and `@netlify/remix-edge-adapter` packages.
 
 ## Development
 

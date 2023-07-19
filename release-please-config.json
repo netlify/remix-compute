@@ -2,7 +2,8 @@
   "bootstrap-sha": "a368ce845682b7509b9e320b66c5316972de512b",
   "packages": {
     "packages/remix-edge-adapter": {},
-    "packages/remix-runtime": {}
+    "packages/remix-runtime": {},
+    "packages/remix-adapter": {}
   },
   "plugins": ["node-workspace"]
 }
