@@ -1,5 +1,5 @@
 [build]
-command = "npm run build:edge-demo"
+command = "npm run build -w=packages/edge-demo-site"
 publish = "packages/edge-demo-site/public"
 
 [dev]
