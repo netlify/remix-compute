@@ -1,10 +1,10 @@
 [build]
-command = "npm run build"
-publish = "public"
+command = "npm run build -w packages/hydrogen-demo-site"
+publish = "packages/hydrogen-demo-site/public"
 
 [dev]
-command = "npm run dev"
+command = "npm run dev -w packages/hydrogen-demo-site"
 targetPort = 3000
 
-[[plugins]]
-package = "../../packages/hydrogen-integration"
+# [[plugins]]
+# package = "../../packages/hydrogen-integration"
