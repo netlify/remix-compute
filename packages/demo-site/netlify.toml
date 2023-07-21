@@ -1,9 +1,9 @@
 [build]
-command = "npm run build:demo"
-publish = "packages/demo-site/public"
+command = "npm run build"
+publish = "public"
 
 [dev]
-command = "npm run dev -w packages/demo-site"
+command = "npm run dev"
 
 [[redirects]]
   from = "/*"
