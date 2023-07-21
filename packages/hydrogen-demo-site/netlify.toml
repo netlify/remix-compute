@@ -6,5 +6,5 @@ publish = "public"
 command = "npm run dev"
 targetPort = 3000
 
-# [[plugins]]
-# package = "../../packages/hydrogen-integration"
+[[plugins]]
+package = "../../packages/hydrogen-integration"
