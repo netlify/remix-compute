@@ -10,17 +10,17 @@ function onBuild(options) {
   } = options
   const buildDir = path.join(build.publish, 'build')
   console.log('build dir', buildDir)
-  console.log('Hydrogen server file', path.join(build.publish, '/dist/worker/index.js'))
-  console.log('client build dir', path.join(build.publish, 'dist/client/build/'))
+  console.log('Hydrogen server file', path.join(build.publish, '../dist/worker/index.js'))
+  console.log('client build dir', path.join(build.publish, '../dist/client/build/'))
 
   fs.mkdirSync(INTERNAL_EDGE_FUNCTIONS_SRC, { recursive: true })
   fs.copyFileSync(
-    path.join(build.publish, '/dist/worker/index.js'),
+    path.join(build.publish, '../dist/worker/index.js'),
     path.join(INTERNAL_EDGE_FUNCTIONS_SRC, 'server.js'),
   )
 
   fs.mkdirSync(buildDir, { recursive: true })
-  fs.cpSync(path.join(build.publish, 'dist/client/build/'), buildDir, { recursive: true })
+  fs.cpSync(path.join(build.publish, '../dist/client/build/'), buildDir, { recursive: true })
 
   // eslint-disable-next-line no-console
   console.log(
