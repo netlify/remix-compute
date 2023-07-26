@@ -37,7 +37,7 @@ export async function getHydrogenClient(args: GetHydrogenClientObject) {
    * Open a cache instance in the worker and a custom session instance.
    */
   const [cache, session] = await Promise.all([
-    caches ? caches.open('hydrogen') : Promise.resolve(undefined),
+    'caches' in globalThis ? caches.open('hydrogen') : Promise.resolve(undefined),
     HydrogenSession.init(request, [env.SESSION_SECRET]),
   ])
 
