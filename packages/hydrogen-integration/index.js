@@ -7,7 +7,7 @@ function onBuild(options) {
   console.dir(options)
 
   const {
-    constants: { INTERNAL_EDGE_FUNCTIONS_SRC, PUBLISH_DIR },
+    constants: { INTERNAL_EDGE_FUNCTIONS_SRC },
     netlifyConfig: { build },
   } = options
   // Check to see if the path exists. Currently with the monorepo support, the current
