@@ -1,54 +1,62 @@
-import { json } from '@shopify/remix-oxygen'
-import { useLoaderData } from '@remix-run/react'
+import {json} from '@shopify/remix-oxygen';
+import {useLoaderData} from '@remix-run/react';
 import {
   flattenConnection,
   AnalyticsPageType,
-  Pagination__unstable as Pagination,
-  getPaginationVariables__unstable as getPaginationVariables,
-} from '@shopify/hydrogen'
-import invariant from 'tiny-invariant'
+  Pagination as Pagination,
+  getPaginationVariables as getPaginationVariables,
+} from '@shopify/hydrogen';
+import invariant from 'tiny-invariant';
 
-import { PageHeader, Section, Text, SortFilter, Grid, ProductCard, Button } from '~/components'
-import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments'
-import { routeHeaders } from '~/data/cache'
-import { seoPayload } from '~/lib/seo.server'
-import { getImageLoadingPriority } from '~/lib/const'
+import {
+  PageHeader,
+  Section,
+  Text,
+  SortFilter,
+  Grid,
+  ProductCard,
+  Button,
+} from '~/components';
+import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {routeHeaders} from '~/data/cache';
+import {seoPayload} from '~/lib/seo.server';
+import {getImageLoadingPriority} from '~/lib/const';
 
-export const headers = routeHeaders
+export const headers = routeHeaders;
 
-export async function loader({ params, request, context }) {
+export async function loader({params, request, context}) {
   const paginationVariables = getPaginationVariables(request, {
     pageBy: 8,
-  })
-  const { collectionHandle } = params
+  });
+  const {collectionHandle} = params;
 
-  invariant(collectionHandle, 'Missing collectionHandle param')
+  invariant(collectionHandle, 'Missing collectionHandle param');
 
-  const searchParams = new URL(request.url).searchParams
-  const knownFilters = ['productVendor', 'productType']
-  const available = 'available'
-  const variantOption = 'variantOption'
-  const { sortKey, reverse } = getSortValuesFromParam(searchParams.get('sort'))
-  const filters = []
-  const appliedFilters = []
+  const searchParams = new URL(request.url).searchParams;
+  const knownFilters = ['productVendor', 'productType'];
+  const available = 'available';
+  const variantOption = 'variantOption';
+  const {sortKey, reverse} = getSortValuesFromParam(searchParams.get('sort'));
+  const filters = [];
+  const appliedFilters = [];
 
   for (const [key, value] of searchParams.entries()) {
     if (available === key) {
-      filters.push({ available: value === 'true' })
+      filters.push({available: value === 'true'});
       appliedFilters.push({
         label: value === 'true' ? 'In stock' : 'Out of stock',
         urlParam: {
           key: available,
           value,
         },
-      })
+      });
     } else if (knownFilters.includes(key)) {
-      filters.push({ [key]: value })
-      appliedFilters.push({ label: value, urlParam: { key, value } })
+      filters.push({[key]: value});
+      appliedFilters.push({label: value, urlParam: {key, value}});
     } else if (key.includes(variantOption)) {
-      const [name, val] = value.split(':')
-      filters.push({ variantOption: { name, value: val } })
-      appliedFilters.push({ label: val, urlParam: { key, value } })
+      const [name, val] = value.split(':');
+      filters.push({variantOption: {name, value: val}});
+      appliedFilters.push({label: val, urlParam: {key, value}});
     }
   }
 
@@ -56,43 +64,46 @@ export async function loader({ params, request, context }) {
   // the filters array. See price filters limitations:
   // https://shopify.dev/custom-storefronts/products-collections/filter-products#limitations
   if (searchParams.has('minPrice') || searchParams.has('maxPrice')) {
-    const price = {}
+    const price = {};
     if (searchParams.has('minPrice')) {
-      price.min = Number(searchParams.get('minPrice')) || 0
+      price.min = Number(searchParams.get('minPrice')) || 0;
       appliedFilters.push({
         label: `Min: $${price.min}`,
-        urlParam: { key: 'minPrice', value: searchParams.get('minPrice') },
-      })
+        urlParam: {key: 'minPrice', value: searchParams.get('minPrice')},
+      });
     }
     if (searchParams.has('maxPrice')) {
-      price.max = Number(searchParams.get('maxPrice')) || 0
+      price.max = Number(searchParams.get('maxPrice')) || 0;
       appliedFilters.push({
         label: `Max: $${price.max}`,
-        urlParam: { key: 'maxPrice', value: searchParams.get('maxPrice') },
-      })
+        urlParam: {key: 'maxPrice', value: searchParams.get('maxPrice')},
+      });
     }
     filters.push({
       price,
-    })
+    });
   }
 
-  const { collection, collections } = await context.storefront.query(COLLECTION_QUERY, {
-    variables: {
-      ...paginationVariables,
-      handle: collectionHandle,
-      filters,
-      sortKey,
-      reverse,
-      country: context.storefront.i18n.country,
-      language: context.storefront.i18n.language,
+  const {collection, collections} = await context.storefront.query(
+    COLLECTION_QUERY,
+    {
+      variables: {
+        ...paginationVariables,
+        handle: collectionHandle,
+        filters,
+        sortKey,
+        reverse,
+        country: context.storefront.i18n.country,
+        language: context.storefront.i18n.language,
+      },
     },
-  })
+  );
 
   if (!collection) {
-    throw new Response('collection', { status: 404 })
+    throw new Response('collection', {status: 404});
   }
 
-  const seo = seoPayload.collection({ collection, url: request.url })
+  const seo = seoPayload.collection({collection, url: request.url});
 
   return json({
     collection,
@@ -104,11 +115,11 @@ export async function loader({ params, request, context }) {
       resourceId: collection.id,
     },
     seo,
-  })
+  });
 }
 
 export default function Collection() {
-  const { collection, collections, appliedFilters } = useLoaderData()
+  const {collection, collections, appliedFilters} = useLoaderData();
 
   return (
     <>
@@ -124,9 +135,13 @@ export default function Collection() {
         )}
       </PageHeader>
       <Section>
-        <SortFilter filters={collection.products.filters} appliedFilters={appliedFilters} collections={collections}>
+        <SortFilter
+          filters={collection.products.filters}
+          appliedFilters={appliedFilters}
+          collections={collections}
+        >
           <Pagination connection={collection.products}>
-            {({ nodes, isLoading, PreviousLink, NextLink }) => (
+            {({nodes, isLoading, PreviousLink, NextLink}) => (
               <>
                 <div className="flex items-center justify-center mb-6">
                   <Button as={PreviousLink} variant="secondary" width="full">
@@ -135,7 +150,11 @@ export default function Collection() {
                 </div>
                 <Grid layout="products">
                   {nodes.map((product, i) => (
-                    <ProductCard key={product.id} product={product} loading={getImageLoadingPriority(i)} />
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      loading={getImageLoadingPriority(i)}
+                    />
                   ))}
                 </Grid>
                 <div className="flex items-center justify-center mt-6">
@@ -149,7 +168,7 @@ export default function Collection() {
         </SortFilter>
       </Section>
     </>
-  )
+  );
 }
 
 const COLLECTION_QUERY = `#graphql
@@ -222,7 +241,7 @@ const COLLECTION_QUERY = `#graphql
     }
   }
   ${PRODUCT_CARD_FRAGMENT}
-`
+`;
 
 function getSortValuesFromParam(sortParam) {
   switch (sortParam) {
@@ -230,31 +249,31 @@ function getSortValuesFromParam(sortParam) {
       return {
         sortKey: 'PRICE',
         reverse: true,
-      }
+      };
     case 'price-low-high':
       return {
         sortKey: 'PRICE',
         reverse: false,
-      }
+      };
     case 'best-selling':
       return {
         sortKey: 'BEST_SELLING',
         reverse: false,
-      }
+      };
     case 'newest':
       return {
         sortKey: 'CREATED',
         reverse: true,
-      }
+      };
     case 'featured':
       return {
         sortKey: 'MANUAL',
         reverse: false,
-      }
+      };
     default:
       return {
         sortKey: 'RELEVANCE',
         reverse: false,
-      }
+      };
   }
 }

@@ -1,10 +1,10 @@
-import { defer } from '@shopify/remix-oxygen'
-import { Await, Form, useLoaderData } from '@remix-run/react'
-import { Suspense } from 'react'
+import {defer} from '@shopify/remix-oxygen';
+import {Await, Form, useLoaderData} from '@remix-run/react';
+import {Suspense} from 'react';
 import {
-  Pagination__unstable as Pagination,
-  getPaginationVariables__unstable as getPaginationVariables,
-} from '@shopify/hydrogen'
+  Pagination as Pagination,
+  getPaginationVariables as getPaginationVariables,
+} from '@shopify/hydrogen';
 
 import {
   FeaturedCollections,
@@ -16,29 +16,29 @@ import {
   ProductSwimlane,
   Section,
   Text,
-} from '~/components'
-import { PAGINATION_SIZE } from '~/lib/const'
-import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments'
-import { getImageLoadingPriority } from '~/lib/const'
-import { seoPayload } from '~/lib/seo.server'
+} from '~/components';
+import {PAGINATION_SIZE} from '~/lib/const';
+import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {getImageLoadingPriority} from '~/lib/const';
+import {seoPayload} from '~/lib/seo.server';
 
-import { getFeaturedData } from './($locale).featured-products'
+import {getFeaturedData} from './($locale).featured-products';
 
-export async function loader({ request, context: { storefront } }) {
-  const searchParams = new URL(request.url).searchParams
-  const searchTerm = searchParams.get('q')
-  const variables = getPaginationVariables(request, { pageBy: 8 })
+export async function loader({request, context: {storefront}}) {
+  const searchParams = new URL(request.url).searchParams;
+  const searchTerm = searchParams.get('q');
+  const variables = getPaginationVariables(request, {pageBy: 8});
 
-  const { products } = await storefront.query(SEARCH_QUERY, {
+  const {products} = await storefront.query(SEARCH_QUERY, {
     variables: {
       searchTerm,
       ...variables,
       country: storefront.i18n.country,
       language: storefront.i18n.language,
     },
-  })
+  });
 
-  const shouldGetRecommendations = !searchTerm || products?.nodes?.length === 0
+  const shouldGetRecommendations = !searchTerm || products?.nodes?.length === 0;
 
   const seo = seoPayload.collection({
     url: request.url,
@@ -56,19 +56,21 @@ export async function loader({ request, context: { storefront } }) {
       products,
       updatedAt: new Date().toISOString(),
     },
-  })
+  });
 
   return defer({
     seo,
     searchTerm,
     products,
-    noResultRecommendations: shouldGetRecommendations ? getNoResultRecommendations(storefront) : Promise.resolve(null),
-  })
+    noResultRecommendations: shouldGetRecommendations
+      ? getNoResultRecommendations(storefront)
+      : Promise.resolve(null),
+  });
 }
 
 export default function Search() {
-  const { searchTerm, products, noResultRecommendations } = useLoaderData()
-  const noResults = products?.nodes?.length === 0
+  const {searchTerm, products, noResultRecommendations} = useLoaderData();
+  const noResults = products?.nodes?.length === 0;
 
   return (
     <>
@@ -77,21 +79,34 @@ export default function Search() {
           Search
         </Heading>
         <Form method="get" className="relative flex w-full text-heading">
-          <Input defaultValue={searchTerm} name="q" placeholder="Search…" type="search" variant="search" />
+          <Input
+            defaultValue={searchTerm}
+            name="q"
+            placeholder="Search…"
+            type="search"
+            variant="search"
+          />
           <button className="absolute right-0 py-2" type="submit">
             Go
           </button>
         </Form>
       </PageHeader>
       {!searchTerm || noResults ? (
-        <NoResults noResults={noResults} recommendations={noResultRecommendations} />
+        <NoResults
+          noResults={noResults}
+          recommendations={noResultRecommendations}
+        />
       ) : (
         <Section>
           <Pagination connection={products}>
-            {({ nodes, isLoading, NextLink, PreviousLink }) => {
+            {({nodes, isLoading, NextLink, PreviousLink}) => {
               const itemsMarkup = nodes.map((product, i) => (
-                <ProductCard key={product.id} product={product} loading={getImageLoadingPriority(i)} />
-              ))
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  loading={getImageLoadingPriority(i)}
+                />
+              ));
 
               return (
                 <>
@@ -107,44 +122,55 @@ export default function Search() {
                     </NextLink>
                   </div>
                 </>
-              )
+              );
             }}
           </Pagination>
         </Section>
       )}
     </>
-  )
+  );
 }
 
-function NoResults({ noResults, recommendations }) {
+function NoResults({noResults, recommendations}) {
   return (
     <>
       {noResults && (
         <Section padding="x">
-          <Text className="opacity-50">No results, try a different search.</Text>
+          <Text className="opacity-50">
+            No results, try a different search.
+          </Text>
         </Section>
       )}
       <Suspense>
-        <Await errorElement="There was a problem loading related products" resolve={recommendations}>
+        <Await
+          errorElement="There was a problem loading related products"
+          resolve={recommendations}
+        >
           {(result) => {
-            if (!result) return null
-            const { featuredCollections, featuredProducts } = result
+            if (!result) return null;
+            const {featuredCollections, featuredProducts} = result;
 
             return (
               <>
-                <FeaturedCollections title="Trending Collections" collections={featuredCollections} />
-                <ProductSwimlane title="Trending Products" products={featuredProducts} />
+                <FeaturedCollections
+                  title="Trending Collections"
+                  collections={featuredCollections}
+                />
+                <ProductSwimlane
+                  title="Trending Products"
+                  products={featuredProducts}
+                />
               </>
-            )
+            );
           }}
         </Await>
       </Suspense>
     </>
-  )
+  );
 }
 
 export function getNoResultRecommendations(storefront) {
-  return getFeaturedData(storefront, { pageBy: PAGINATION_SIZE })
+  return getFeaturedData(storefront, {pageBy: PAGINATION_SIZE});
 }
 
 const SEARCH_QUERY = `#graphql
@@ -178,4 +204,4 @@ const SEARCH_QUERY = `#graphql
   }
 
   ${PRODUCT_CARD_FRAGMENT}
-`
+`;

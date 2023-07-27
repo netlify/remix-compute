@@ -1,56 +1,63 @@
-import { json } from '@shopify/remix-oxygen'
-import { useLoaderData } from '@remix-run/react'
+import {json} from '@shopify/remix-oxygen';
+import {useLoaderData} from '@remix-run/react';
 import {
   Image,
-  Pagination__unstable as Pagination,
-  getPaginationVariables__unstable as getPaginationVariables,
-} from '@shopify/hydrogen'
+  Pagination as Pagination,
+  getPaginationVariables as getPaginationVariables,
+} from '@shopify/hydrogen';
 
-import { Grid, Heading, PageHeader, Section, Link, Button } from '~/components'
-import { getImageLoadingPriority } from '~/lib/const'
-import { seoPayload } from '~/lib/seo.server'
-import { routeHeaders } from '~/data/cache'
+import {Grid, Heading, PageHeader, Section, Link, Button} from '~/components';
+import {getImageLoadingPriority} from '~/lib/const';
+import {seoPayload} from '~/lib/seo.server';
+import {routeHeaders} from '~/data/cache';
 
-const PAGINATION_SIZE = 4
+const PAGINATION_SIZE = 4;
 
-export const headers = routeHeaders
+export const headers = routeHeaders;
 
-export const loader = async ({ request, context: { storefront } }) => {
-  const variables = getPaginationVariables(request, { pageBy: PAGINATION_SIZE })
-  const { collections } = await storefront.query(COLLECTIONS_QUERY, {
+export const loader = async ({request, context: {storefront}}) => {
+  const variables = getPaginationVariables(request, {pageBy: PAGINATION_SIZE});
+  const {collections} = await storefront.query(COLLECTIONS_QUERY, {
     variables: {
       ...variables,
       country: storefront.i18n.country,
       language: storefront.i18n.language,
     },
-  })
+  });
 
   const seo = seoPayload.listCollections({
     collections,
     url: request.url,
-  })
+  });
 
-  return json({ collections, seo })
-}
+  return json({collections, seo});
+};
 
 export default function Collections() {
-  const { collections } = useLoaderData()
+  const {collections} = useLoaderData();
 
   return (
     <>
       <PageHeader heading="Collections" />
       <Section>
         <Pagination connection={collections}>
-          {({ nodes, isLoading, PreviousLink, NextLink }) => (
+          {({nodes, isLoading, PreviousLink, NextLink}) => (
             <>
               <div className="flex items-center justify-center mb-6">
                 <Button as={PreviousLink} variant="secondary" width="full">
                   {isLoading ? 'Loading...' : 'Previous collections'}
                 </Button>
               </div>
-              <Grid items={nodes.length === 3 ? 3 : 2} data-test="collection-grid">
+              <Grid
+                items={nodes.length === 3 ? 3 : 2}
+                data-test="collection-grid"
+              >
                 {nodes.map((collection, i) => (
-                  <CollectionCard collection={collection} key={collection.id} loading={getImageLoadingPriority(i, 2)} />
+                  <CollectionCard
+                    collection={collection}
+                    key={collection.id}
+                    loading={getImageLoadingPriority(i, 2)}
+                  />
                 ))}
               </Grid>
               <div className="flex items-center justify-center mt-6">
@@ -63,22 +70,27 @@ export default function Collections() {
         </Pagination>
       </Section>
     </>
-  )
+  );
 }
 
-function CollectionCard({ collection, loading }) {
+function CollectionCard({collection, loading}) {
   return (
     <Link to={`/collections/${collection.handle}`} className="grid gap-4">
       <div className="card-image bg-primary/5 aspect-[3/2]">
         {collection?.image && (
-          <Image data={collection.image} aspectRatio="6/4" sizes="(max-width: 32em) 100vw, 45vw" loading={loading} />
+          <Image
+            data={collection.image}
+            aspectRatio="6/4"
+            sizes="(max-width: 32em) 100vw, 45vw"
+            loading={loading}
+          />
         )}
       </div>
       <Heading as="h3" size="copy">
         {collection.title}
       </Heading>
     </Link>
-  )
+  );
 }
 
 const COLLECTIONS_QUERY = `#graphql
@@ -116,4 +128,4 @@ const COLLECTIONS_QUERY = `#graphql
       }
     }
   }
-`
+`;

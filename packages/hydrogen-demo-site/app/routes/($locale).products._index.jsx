@@ -1,23 +1,23 @@
-import { json } from '@shopify/remix-oxygen'
-import { useLoaderData } from '@remix-run/react'
-import invariant from 'tiny-invariant'
+import {json} from '@shopify/remix-oxygen';
+import {useLoaderData} from '@remix-run/react';
+import invariant from 'tiny-invariant';
 import {
-  Pagination__unstable as Pagination,
-  getPaginationVariables__unstable as getPaginationVariables,
-} from '@shopify/hydrogen'
+  Pagination as Pagination,
+  getPaginationVariables as getPaginationVariables,
+} from '@shopify/hydrogen';
 
-import { PageHeader, Section, ProductCard, Grid } from '~/components'
-import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments'
-import { getImageLoadingPriority } from '~/lib/const'
-import { seoPayload } from '~/lib/seo.server'
-import { routeHeaders } from '~/data/cache'
+import {PageHeader, Section, ProductCard, Grid} from '~/components';
+import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import {getImageLoadingPriority} from '~/lib/const';
+import {seoPayload} from '~/lib/seo.server';
+import {routeHeaders} from '~/data/cache';
 
-const PAGE_BY = 8
+const PAGE_BY = 8;
 
-export const headers = routeHeaders
+export const headers = routeHeaders;
 
-export async function loader({ request, context: { storefront } }) {
-  const variables = getPaginationVariables(request, { pageBy: PAGE_BY })
+export async function loader({request, context: {storefront}}) {
+  const variables = getPaginationVariables(request, {pageBy: PAGE_BY});
 
   const data = await storefront.query(ALL_PRODUCTS_QUERY, {
     variables: {
@@ -25,9 +25,9 @@ export async function loader({ request, context: { storefront } }) {
       country: storefront.i18n.country,
       language: storefront.i18n.language,
     },
-  })
+  });
 
-  invariant(data, 'No data returned from Shopify API')
+  invariant(data, 'No data returned from Shopify API');
 
   const seo = seoPayload.collection({
     url: request.url,
@@ -45,26 +45,30 @@ export async function loader({ request, context: { storefront } }) {
       products: data.products,
       updatedAt: '',
     },
-  })
+  });
 
   return json({
     products: data.products,
     seo,
-  })
+  });
 }
 
 export default function AllProducts() {
-  const { products } = useLoaderData()
+  const {products} = useLoaderData();
 
   return (
     <>
       <PageHeader heading="All Products" variant="allCollections" />
       <Section>
         <Pagination connection={products}>
-          {({ nodes, isLoading, NextLink, PreviousLink }) => {
+          {({nodes, isLoading, NextLink, PreviousLink}) => {
             const itemsMarkup = nodes.map((product, i) => (
-              <ProductCard key={product.id} product={product} loading={getImageLoadingPriority(i)} />
-            ))
+              <ProductCard
+                key={product.id}
+                product={product}
+                loading={getImageLoadingPriority(i)}
+              />
+            ));
 
             return (
               <>
@@ -80,12 +84,12 @@ export default function AllProducts() {
                   </NextLink>
                 </div>
               </>
-            )
+            );
           }}
         </Pagination>
       </Section>
     </>
-  )
+  );
 }
 
 const ALL_PRODUCTS_QUERY = `#graphql
@@ -110,4 +114,4 @@ const ALL_PRODUCTS_QUERY = `#graphql
     }
   }
   ${PRODUCT_CARD_FRAGMENT}
-`
+`;
