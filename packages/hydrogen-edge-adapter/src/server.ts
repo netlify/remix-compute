@@ -4,6 +4,7 @@ import * as remixBuild from '@remix-run/dev/server-build'
 import { createRequestHandler as netlifyCreateRequestHandler, type RequestHandler } from '@netlify/remix-edge-adapter'
 import { createRequestHandler as hydrogenCreateRequestHandler, getStorefrontHeaders } from '@shopify/remix-oxygen'
 import { createStorefrontClient, storefrontRedirect } from '@shopify/hydrogen'
+import type { CountryCode, CurrencyCode, LanguageCode } from '@shopify/hydrogen/storefront-api-types'
 
 import type { Context } from '@netlify/edge-functions'
 import type { AppLoadContext } from '@netlify/remix-runtime'
@@ -18,16 +19,36 @@ type Env = {
   PUBLIC_STOREFRONT_ID: string
 }
 
+// Types taken from https://github.com/Shopify/hydrogen/blob/a01e58656786e74555feb50fbda3b06825a62aec/templates/demo-store/app/lib/type.ts
+export type Locale = {
+  language: LanguageCode
+  country: CountryCode
+  label: string
+  currency: CurrencyCode
+}
+
+export type I18nLocale = Locale & {
+  pathPrefix: string
+}
+
+// The full type is not required at the moment but can be extracted from this class definition
+// https://github.com/Shopify/hydrogen/blob/a01e58656786e74555feb50fbda3b06825a62aec/templates/demo-store/app/lib/session.server.ts
+type HydrogenSession = {
+  init: (request: Request, keys: string[]) => Promise<HydrogenSession>
+}
+
+type WaitUntil = ExecutionContext['waitUntil']
+
 type GetHydrogenClientObject = {
   env: Env
   request: Request
-  waitUntil: any
-  HydrogenSession: any
-  getLocaleFromRequest: any
+  waitUntil: WaitUntil
+  HydrogenSession: HydrogenSession
+  getLocaleFromRequest: (request: Request) => I18nLocale
 }
 
-export async function getHydrogenClient(args: GetHydrogenClientObject) {
-  const { env, request, waitUntil, HydrogenSession, getLocaleFromRequest } = args
+export async function getHydrogenClient(options: GetHydrogenClientObject) {
+  const { env, request, waitUntil, HydrogenSession, getLocaleFromRequest } = options
 
   if (!env?.SESSION_SECRET) {
     throw new Error('SESSION_SECRET environment variable is not set')
@@ -62,13 +83,13 @@ export async function getHydrogenClient(args: GetHydrogenClientObject) {
 }
 
 type HandlerOverrides = {
-  HydrogenSession: any
-  getLocaleFromRequest: any
+  HydrogenSession: HydrogenSession
+  getLocaleFromRequest: GetHydrogenClientObject['getLocaleFromRequest']
 }
 
 export function createHydrogenHandler(overrides: HandlerOverrides) {
   return async function (request: Request, env: Env, executionContext: ExecutionContext): Promise<Response> {
-    const waitUntil = (p: Promise<any>) => executionContext.waitUntil(p)
+    const waitUntil: WaitUntil = (p) => executionContext.waitUntil(p)
 
     const { storefront, session } = await getHydrogenClient(
       Object.assign(
