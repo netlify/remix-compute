@@ -1,8 +1,8 @@
 import type { AppConfig } from '@remix-run/dev'
 
 export const config: AppConfig = {
-  server: './server.ts',
   ignoredRouteFiles: ['**/.*'],
+  server: './server.ts',
   serverBuildPath: '.netlify/edge-functions/server.js',
   serverConditions: ['deno', 'worker'],
   serverDependenciesToBundle: 'all',
