@@ -35,12 +35,12 @@
     "@remix-run/node": "^1.18.1"
   },
   "devDependencies": {
-    "@netlify/functions": "^1.6.0",
+    "@netlify/functions": "^2.0.0",
     "@types/lambda-tester": "^3.6.1",
     "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
-    "@netlify/functions": "^1.6.0"
+    "@netlify/functions": "^2.0.0"
   },
   "engines": {
     "node": ">=14"
