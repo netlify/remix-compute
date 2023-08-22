@@ -24,9 +24,8 @@
     "format:check:prettier": "prettier --cache .",
     "format:fix:prettier": "prettier --write --cache .",
     "e2e": "cypress open",
-    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-edge-adapter -w=packages/hydrogen-edge-adapter",
-    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter & npm run build:watch -w=packages/hydrogen-edge-adapter",
-    "build:demo": "npm run build -w=packages/demo-site"
+    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-adapter -w=packages/remix-edge-adapter",
+    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter"
   },
   "repository": {
     "type": "git",
