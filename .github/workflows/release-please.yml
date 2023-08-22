@@ -41,7 +41,3 @@ jobs:
         if: ${{ steps.release.outputs['packages/remix-adapter--version'] }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: npm publish packages/hydrogen-integration/
-        if: ${{ steps.release.outputs['packages/hydrogen-integration--version'] }}
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
