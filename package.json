@@ -10,6 +10,7 @@
     "packages/edge-demo-site",
     "packages/hydrogen-demo-site",
     "packages/hydrogen-edge-adapter",
+    "packages/hydrogen-integration",
     "packages/demo-site"
   ],
   "scripts": {

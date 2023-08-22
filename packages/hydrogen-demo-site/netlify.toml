@@ -4,3 +4,6 @@ publish = "packages/hydrogen-demo-site/public"
 
 [dev]
 command = "npm run dev -w packages/hydrogen-demo-site"
+
+[[plugins]]
+package = "./packages/hydrogen-integration"
