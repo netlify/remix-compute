@@ -4,8 +4,6 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 function onBuild(options) {
-  console.dir(options)
-
   const {
     constants: { INTERNAL_EDGE_FUNCTIONS_SRC },
     netlifyConfig: { build },
