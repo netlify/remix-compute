@@ -1,128 +1,110 @@
+import {useLoaderData, Link} from '@remix-run/react';
 import {json} from '@shopify/remix-oxygen';
-import {useLoaderData} from '@remix-run/react';
-import {
-  Image,
-  Pagination as Pagination,
-  getPaginationVariables as getPaginationVariables,
-} from '@shopify/hydrogen';
+import {Pagination, getPaginationVariables, Image} from '@shopify/hydrogen';
 
-import {Grid, Heading, PageHeader, Section, Link, Button} from '~/components';
-import {getImageLoadingPriority} from '~/lib/const';
-import {seoPayload} from '~/lib/seo.server';
-import {routeHeaders} from '~/data/cache';
-
-const PAGINATION_SIZE = 4;
-
-export const headers = routeHeaders;
-
-export const loader = async ({request, context: {storefront}}) => {
-  const variables = getPaginationVariables(request, {pageBy: PAGINATION_SIZE});
-  const {collections} = await storefront.query(COLLECTIONS_QUERY, {
-    variables: {
-      ...variables,
-      country: storefront.i18n.country,
-      language: storefront.i18n.language,
-    },
+export async function loader({context, request}) {
+  const paginationVariables = getPaginationVariables(request, {
+    pageBy: 4,
   });
 
-  const seo = seoPayload.listCollections({
-    collections,
-    url: request.url,
+  const {collections} = await context.storefront.query(COLLECTIONS_QUERY, {
+    variables: paginationVariables,
   });
 
-  return json({collections, seo});
-};
+  return json({collections});
+}
 
 export default function Collections() {
   const {collections} = useLoaderData();
 
   return (
-    <>
-      <PageHeader heading="Collections" />
-      <Section>
-        <Pagination connection={collections}>
-          {({nodes, isLoading, PreviousLink, NextLink}) => (
-            <>
-              <div className="flex items-center justify-center mb-6">
-                <Button as={PreviousLink} variant="secondary" width="full">
-                  {isLoading ? 'Loading...' : 'Previous collections'}
-                </Button>
-              </div>
-              <Grid
-                items={nodes.length === 3 ? 3 : 2}
-                data-test="collection-grid"
-              >
-                {nodes.map((collection, i) => (
-                  <CollectionCard
-                    collection={collection}
-                    key={collection.id}
-                    loading={getImageLoadingPriority(i, 2)}
-                  />
-                ))}
-              </Grid>
-              <div className="flex items-center justify-center mt-6">
-                <Button as={NextLink} variant="secondary" width="full">
-                  {isLoading ? 'Loading...' : 'Next collections'}
-                </Button>
-              </div>
-            </>
-          )}
-        </Pagination>
-      </Section>
-    </>
+    <div className="collections">
+      <h1>Collections</h1>
+      <Pagination connection={collections}>
+        {({nodes, isLoading, PreviousLink, NextLink}) => (
+          <div>
+            <PreviousLink>
+              {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
+            </PreviousLink>
+            <CollectionsGrid collections={nodes} />
+            <NextLink>
+              {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+            </NextLink>
+          </div>
+        )}
+      </Pagination>
+    </div>
   );
 }
 
-function CollectionCard({collection, loading}) {
+function CollectionsGrid({collections}) {
   return (
-    <Link to={`/collections/${collection.handle}`} className="grid gap-4">
-      <div className="card-image bg-primary/5 aspect-[3/2]">
-        {collection?.image && (
-          <Image
-            data={collection.image}
-            aspectRatio="6/4"
-            sizes="(max-width: 32em) 100vw, 45vw"
-            loading={loading}
-          />
-        )}
-      </div>
-      <Heading as="h3" size="copy">
-        {collection.title}
-      </Heading>
+    <div className="collections-grid">
+      {collections.map((collection, index) => (
+        <CollectionItem
+          key={collection.id}
+          collection={collection}
+          index={index}
+        />
+      ))}
+    </div>
+  );
+}
+
+function CollectionItem({collection, index}) {
+  return (
+    <Link
+      className="collection-item"
+      key={collection.id}
+      to={`/collections/${collection.handle}`}
+      prefetch="intent"
+    >
+      {collection.image && (
+        <Image
+          alt={collection.image.altText || collection.title}
+          aspectRatio="1/1"
+          data={collection.image}
+          loading={index < 3 ? 'eager' : undefined}
+        />
+      )}
+      <h5>{collection.title}</h5>
     </Link>
   );
 }
 
 const COLLECTIONS_QUERY = `#graphql
-  query Collections(
+  fragment Collection on Collection {
+    id
+    title
+    handle
+    image {
+      id
+      url
+      altText
+      width
+      height
+    }
+  }
+  query StoreCollections(
     $country: CountryCode
-    $language: LanguageCode
+    $endCursor: String
     $first: Int
+    $language: LanguageCode
     $last: Int
     $startCursor: String
-    $endCursor: String
   ) @inContext(country: $country, language: $language) {
-    collections(first: $first, last: $last, before: $startCursor, after: $endCursor) {
+    collections(
+      first: $first,
+      last: $last,
+      before: $startCursor,
+      after: $endCursor
+    ) {
       nodes {
-        id
-        title
-        description
-        handle
-        seo {
-          description
-          title
-        }
-        image {
-          id
-          url
-          width
-          height
-          altText
-        }
+        ...Collection
       }
       pageInfo {
-        hasPreviousPage
         hasNextPage
+        hasPreviousPage
         startCursor
         endCursor
       }

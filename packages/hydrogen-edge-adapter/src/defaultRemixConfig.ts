@@ -5,6 +5,8 @@ const config: AppConfig = {}
 
 if (process.env.NODE_ENV === 'production') {
   config.serverConditions = ['deno', 'worker']
+  config.assetsBuildDirectory = 'public/build'
+  config.serverBuildPath = '.netlify/edge-functions/server.js'
 }
 
 // This can’t be an export via index.ts
