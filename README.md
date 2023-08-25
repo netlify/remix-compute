@@ -36,3 +36,37 @@ When you're ready to test your changes, you can run the demo site locally.
 ntl build --offline
 ntl serve
 ```
+
+## Run Demo Sites Locally in Development Mode
+
+Running the demos sites locally requires the Netlify CLI. Ensure you are
+[running the latest version of the Netlify CLI](https://docs.netlify.com/cli/get-started/).
+
+To start the demo site, run the following commands:
+
+```bash
+ntl dev --filter demo-site
+```
+
+To start the edge demo site, run the following commands:
+
+```bash
+ntl dev --filter edge-demo-site
+```
+
+## Run Demo Sites Locally
+
+Running the demos sites locally requires the Netlify CLI. Ensure you are
+[running the latest version of the Netlify CLI](https://docs.netlify.com/cli/get-started/).
+
+To start the demo site, run the following commands:
+
+```bash
+ntl serve --filter demo-site
+```
+
+To start the edge demo site, run the following commands:
+
+```bash
+ntl serve --filter edge-demo-site
+```
