@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Demo site to test the Netlify Remix edge adapter",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "prebuild": "cd ../../ && npm run build -w=packages/remix-runtime && npm run build -w=packages/remix-edge-adapter && npm run build -w=packages/remix-adapter",
     "build": "remix build",

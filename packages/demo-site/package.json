@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Demo site to test the Netlify Remix adapter",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "prebuild": "cd ../../ && npm run build -w=packages/remix-adapter",
     "build": "remix build",
