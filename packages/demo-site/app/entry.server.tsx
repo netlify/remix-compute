@@ -89,15 +89,16 @@ function handleBrowserRequest(
           const stream = createReadableStreamFromReadable(body)
 
           responseHeaders.set('Content-Type', 'text/html')
-
+          console.log('resolving')
           resolve(
             new Response(stream, {
               headers: responseHeaders,
               status: responseStatusCode,
             }),
           )
-
+          console.log('piping')
           pipe(body)
+          console.log('piped')
         },
         onShellError(error: unknown) {
           reject(error)
@@ -114,6 +115,9 @@ function handleBrowserRequest(
       },
     )
 
-    setTimeout(abort, ABORT_DELAY)
+    setTimeout(() => {
+      console.log('aborting')
+      abort()
+    }, ABORT_DELAY)
   })
 }
