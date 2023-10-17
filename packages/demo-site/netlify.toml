@@ -1,6 +1,7 @@
 [build]
-command = "npm run build -w packages/demo-site"
-publish = "packages/demo-site/public"
+# command = "npm run build && echo '{\"config\":{\"nodeModuleFormat\":\"esm\"},\"version\":1}' > .netlify/functions-internal/server.json"
+command = "npm run build"
+publish = "public"
 
 [dev]
 command = "npm run dev -w packages/demo-site"

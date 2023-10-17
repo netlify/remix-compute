@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "prebuild": "cd ../../ && npm run build -w=packages/remix-adapter",
     "build": "remix build",
     "dev": "remix dev",
     "start": "netlify serve",
