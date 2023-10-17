@@ -45,7 +45,7 @@ export function createRequestHandler({
     const loadContext = await getLoadContext?.(event, context)
 
     const response = (await handleRequest(request, loadContext)) as NodeResponse
-
+    console.log('response', response)
     return sendRemixResponse(response)
   }
 }

@@ -32,7 +32,6 @@ function createMockEvent(event: Partial<HandlerEvent> = {}): HandlerEvent {
     multiValueQueryStringParameters: null,
     body: null,
     isBase64Encoded: false,
-    netlifyGraphToken: undefined,
     ...event,
   }
 }
