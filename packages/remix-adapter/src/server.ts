@@ -24,9 +24,12 @@ export function createRequestHandler({
   mode?: string
   getLoadContext?: GetLoadContextFunction
 }): RequestHandler {
+  console.log('createRequestHandler')
   const remixHandler = createRemixRequestHandler(build, mode)
 
   return async (request: Request, context: LoadContext): Promise<Response | void> => {
+    const start = Date.now()
+    console.log(`[${request.method}] ${request.url}`)
     try {
       const loadContext = (await getLoadContext?.(request, context)) || context
 
@@ -34,7 +37,7 @@ export function createRequestHandler({
 
       // A useful header for debugging
       response.headers.set('x-nf-runtime', 'Node')
-
+      console.log(`[${response.status}] ${request.url} (${Date.now() - start}ms)`)
       return response
     } catch (error: unknown) {
       console.error(error)
