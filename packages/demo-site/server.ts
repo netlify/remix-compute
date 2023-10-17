@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as build from '@remix-run/dev/server-build'
 import { createRequestHandler } from '@netlify/remix-adapter'
-import { installGlobals } from '@remix-run/node'
 import type { Config } from '@netlify/functions'
-
-installGlobals()
 
 const handle = createRequestHandler({
   build,
@@ -14,6 +10,7 @@ const handle = createRequestHandler({
 export default function handler(event, context) {
   return handle(event, context)
 }
-const config: Config = {
+
+export const config: Config = {
   path: '/*',
 }

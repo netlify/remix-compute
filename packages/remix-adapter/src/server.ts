@@ -26,14 +26,7 @@ export function createRequestHandler({
 }): RequestHandler {
   const remixHandler = createRemixRequestHandler(build, mode)
 
-  const assetPath = build.assets.url.split('/').slice(0, -1).join('/')
-
   return async (request: Request, context: LoadContext): Promise<Response | void> => {
-    const { pathname } = new URL(request.url)
-    // Skip the handler for static files
-    if (pathname.startsWith(`${assetPath}/`)) {
-      return
-    }
     try {
       const loadContext = (await getLoadContext?.(request, context)) || context
 
