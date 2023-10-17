@@ -7,7 +7,7 @@
 import { PassThrough } from 'node:stream'
 
 import type { AppLoadContext, EntryContext } from '@remix-run/node'
-import { createReadableStreamFromReadable } from '@remix-run/node'
+import { createReadableStreamFromReadable } from './stream'
 import { RemixServer } from '@remix-run/react'
 import isbot from 'isbot'
 import { renderToPipeableStream } from 'react-dom/server'
@@ -102,6 +102,9 @@ function handleBrowserRequest(
         },
         onShellError(error: unknown) {
           reject(error)
+        },
+        onAllReady() {
+          console.log('all ready')
         },
         onError(error: unknown) {
           responseStatusCode = 500
