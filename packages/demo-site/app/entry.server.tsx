@@ -105,6 +105,7 @@ function handleBrowserRequest(
         },
         onAllReady() {
           console.log('all ready')
+          clearTimeout(timer)
         },
         onError(error: unknown) {
           responseStatusCode = 500
@@ -118,7 +119,7 @@ function handleBrowserRequest(
       },
     )
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       console.log('aborting')
       abort()
     }, ABORT_DELAY)
