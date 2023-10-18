@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build:
-    name: Lint
+    name: Unit tests
     runs-on: ${{ matrix.os }}
 
     strategy:
