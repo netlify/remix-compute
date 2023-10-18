@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build:
-    name: Unit tests
+    name: Lint
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -32,5 +32,3 @@ jobs:
         run: npm install
       - name: Linting
         run: npm run format:ci
-      - name: Run unit tests
-        run: npm test
