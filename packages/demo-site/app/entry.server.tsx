@@ -7,7 +7,7 @@
 import { PassThrough } from 'node:stream'
 
 import type { AppLoadContext, EntryContext } from '@remix-run/node'
-import { createReadableStreamFromReadable } from './stream'
+import { createReadableStreamFromReadable } from '@remix-run/node'
 import { RemixServer } from '@remix-run/react'
 import isbot from 'isbot'
 import { renderToPipeableStream } from 'react-dom/server'
@@ -47,6 +47,7 @@ export default function handleRequest(
           reject(error)
         },
         onAllReady() {
+          // Avoid a bug where responses aren't flushed if there's an outstanding timer.
           clearTimeout(timer)
           if (bot) {
             shellRendered = true
@@ -73,7 +74,6 @@ export default function handleRequest(
     )
 
     const timer = setTimeout(() => {
-      console.log('aborting')
       abort()
     }, ABORT_DELAY)
   })

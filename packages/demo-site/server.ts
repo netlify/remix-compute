@@ -8,7 +8,6 @@ const handle = createRequestHandler({
 })
 
 export default function handler(request: Request, context: Context) {
-  console.log('handler')
   return handle(request, context)
 }
 

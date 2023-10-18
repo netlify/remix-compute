@@ -24,7 +24,6 @@ export function createRequestHandler({
   mode?: string
   getLoadContext?: GetLoadContextFunction
 }): RequestHandler {
-  console.log('createRequestHandler')
   const remixHandler = createRemixRequestHandler(build, mode)
 
   return async (request: Request, context: LoadContext): Promise<Response | void> => {
