@@ -1,14 +1,11 @@
 [build]
-command = "npm run build -w packages/demo-site"
-publish = "packages/demo-site/public"
+command = "npm run build -w=packages/demo-site"
+# command = "npm run build"
+publish = "/packages/demo-site/public"
 
 [dev]
 command = "npm run dev -w packages/demo-site"
 
-[[redirects]]
-from = "/*"
-to = "/.netlify/functions/server"
-status = 200
 
 [[headers]]
 for = "/build/*"

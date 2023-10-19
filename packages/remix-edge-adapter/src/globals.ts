@@ -1,3 +1,2 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-globalThis.process ||= { env: Deno.env.toObject() }
+// @ts-expect-error This global is available in Netlify Edge Functions
+globalThis.process ||= { env: Netlify.env.toObject() }
