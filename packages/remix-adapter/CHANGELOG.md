@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v1.0.0...remix-adapter-v2.0.0) (2023-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Remix 2 ([#191](https://github.com/netlify/remix-compute/issues/191))
+
+### Features
+
+* upgrade to Remix 2 ([#191](https://github.com/netlify/remix-compute/issues/191)) ([81b169f](https://github.com/netlify/remix-compute/commit/81b169f1a796fddc7dfdc97d83ec01116fd7c3fb))
+
 ## 1.0.0 (2023-07-19)
 
 
