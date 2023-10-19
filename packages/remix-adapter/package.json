@@ -40,7 +40,7 @@
     "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
-    "@netlify/functions": "^2.0.2"
+    "@netlify/functions": "^2.3.0"
   },
   "engines": {
     "node": ">=14"
