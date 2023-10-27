@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@remix-run/node": "^1.18.1"
+    "@remix-run/node": "^2.0.0",
+    "isbot": "^3.7.0"
   },
   "devDependencies": {
     "@netlify/functions": "^2.3.0",
-    "@types/lambda-tester": "^3.6.1",
     "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
