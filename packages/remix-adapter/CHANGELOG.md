@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.0.0...remix-adapter-v2.1.0) (2023-10-27)
+
+
+### Features
+
+* **remix-adapter:** add default config ([#153](https://github.com/netlify/remix-compute/issues/153)) ([d3b8075](https://github.com/netlify/remix-compute/commit/d3b80756ec5b27201aa4036de13465a470b502af))
+
 ## [2.0.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v1.0.0...remix-adapter-v2.0.0) (2023-10-19)
 
 
