@@ -1,3 +1,1 @@
-import { handleRequest } from '@netlify/remix-edge-adapter'
-
-export default handleRequest
+export { handleRequest as default } from '@netlify/remix-edge-adapter'
