@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.1.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.0.0...remix-edge-adapter-v3.1.0) (2023-10-30)
+
+
+### Features
+
+* export the default 'handleRequest' from adapters ([#204](https://github.com/netlify/remix-compute/issues/204)) ([12054d8](https://github.com/netlify/remix-compute/commit/12054d8f4d14d1c8942dc71c96734c0d8d09181d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.0.0 to 2.1.0
+
 ## [3.0.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v2.0.0...remix-edge-adapter-v3.0.0) (2023-10-19)
 
 

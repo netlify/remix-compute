@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.0.0...remix-runtime-v2.1.0) (2023-10-30)
+
+
+### Features
+
+* export the default 'handleRequest' from adapters ([#204](https://github.com/netlify/remix-compute/issues/204)) ([12054d8](https://github.com/netlify/remix-compute/commit/12054d8f4d14d1c8942dc71c96734c0d8d09181d))
+
+
+### Bug Fixes
+
+* **deps:** update remix monorepo to v1.19.3 ([#209](https://github.com/netlify/remix-compute/issues/209)) ([3fc06d8](https://github.com/netlify/remix-compute/commit/3fc06d8bc37aa566a7aadd122a629e904105d276))
+
 ## [2.0.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v1.1.0...remix-runtime-v2.0.0) (2023-10-19)
 
 
