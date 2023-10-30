@@ -66,17 +66,32 @@ export default {
 
 ## Update your entrypoint files
 
-You need to update your server.ts and entry.server.ts files to v2. You should be able to copy these unchanged:
+The adapter packages now export `handleRequest`, so you can replace the contents of your `app/entry.server.tsx` with the
+following:
+
+### Netlify Functions
+
+```ts
+export { handleRequest as default } from '@netlify/remix-adapter'
+```
+
+### Netlify Edge Functions
+
+```ts
+export { handleRequest as default } from '@netlify/remix-edge-adapter'
+```
+
+## Update your server files
+
+Replace your `server.ts` or `server.js` file with the following files:
 
 ### Netlify Functions
 
 - [`server.ts`](https://github.com/netlify/remix-compute/blob/main/packages/demo-site/server.ts)
-- [`app/entry.server.tsx`](https://github.com/netlify/remix-compute/blob/main/packages/demo-site/app/entry.server.tsx)
 
 ### Netlify Edge Functions
 
 - [`server.ts`](https://github.com/netlify/remix-compute/blob/main/packages/edge-demo-site/server.ts)
-- [`app/entry.server.tsx`](https://github.com/netlify/remix-compute/blob/main/packages/edge-demo-site/app/entry.server.tsx)
 
 ## Update your build commands
 
