@@ -1,6 +1,6 @@
 {
   "name": "@netlify/remix-adapter",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Remix Adapter for Netlify Functions",
   "types": "./build/index.d.ts",
   "main": "./build/index.js",
@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@remix-run/node": "^1.18.1"
+    "@remix-run/node": "^2.0.0",
+    "isbot": "^3.7.0"
   },
   "devDependencies": {
     "@netlify/functions": "^2.3.0",
-    "@types/lambda-tester": "^3.6.1",
     "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
