@@ -130,6 +130,8 @@ dist
 .pnp.*
 
 build/
+dist/
+.tshy/
 
 # Local Netlify folder
 .netlify

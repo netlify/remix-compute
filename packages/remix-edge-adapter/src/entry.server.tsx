@@ -1,7 +1,7 @@
 import type { AppLoadContext, EntryContext } from '@netlify/remix-runtime'
 import { RemixServer } from '@remix-run/react'
 import isbot from 'isbot'
-import { renderToReadableStream } from 'react-dom/server'
+import reactDomServer from 'react-dom/server'
 
 export async function handleRequest(
   request: Request,
@@ -10,7 +10,7 @@ export async function handleRequest(
   remixContext: EntryContext,
   loadContext: AppLoadContext,
 ) {
-  const body = await renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
+  const body = await reactDomServer.renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
     signal: request.signal,
     onError(error: unknown) {
       // Log streaming rendering errors from inside the shell

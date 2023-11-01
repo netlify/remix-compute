@@ -1,6 +1,6 @@
-import './globals'
+import './globals.js'
 
-export type { GetLoadContextFunction, RequestHandler } from './server'
-export { createRequestHandler } from './server'
-export { config } from './defaultRemixConfig'
-export { handleRequest } from './entry.server'
+export type { GetLoadContextFunction, RequestHandler } from './server.js'
+export { createRequestHandler } from './server.js'
+export { config } from './defaultRemixConfig.js'
+export { handleRequest } from './entry.server.js'

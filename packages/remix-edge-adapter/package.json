@@ -2,23 +2,14 @@
   "name": "@netlify/remix-edge-adapter",
   "version": "3.1.0",
   "description": "Remix Adapter for Netlify Edge Functions",
-  "types": "./build/src/index.d.ts",
-  "main": "./build/src/index.js",
-  "exports": {
-    ".": "./build/src/index.js"
-  },
   "files": [
-    "build/src/**/*.js",
-    "build/src/**/*.js.map",
-    "build/src/**/*.d.ts",
-    "build/src/**/*.d.ts.map",
-    "resources/**/*",
+    "dist",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
     "prepack": "npm run clean && npm run build",
-    "build": "tsc --build tsconfig.json",
+    "build": "tshy",
     "build:watch": "npm run build -- --watch",
     "clean": "rm -rf build"
   },
@@ -40,9 +31,32 @@
     "isbot": "^3.7.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.0.0"
+    "@remix-run/dev": "^2.0.0",
+    "tshy": "^1.7.0"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "type": "module"
 }
