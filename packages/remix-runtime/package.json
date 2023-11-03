@@ -39,6 +39,9 @@
   "peerDependencies": {
     "@remix-run/server-runtime": "^2.7.1"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "publishConfig": {
     "access": "public"
   }
