@@ -36,11 +36,11 @@
     "isbot": "^3.7.0"
   },
   "devDependencies": {
-    "@netlify/functions": "^2.3.0",
+    "@netlify/functions": "^2.4.0",
     "lambda-tester": "^4.0.1"
   },
   "peerDependencies": {
-    "@netlify/functions": "^2.3.0"
+    "@netlify/functions": "^2.4.0"
   },
   "engines": {
     "node": ">=14"
