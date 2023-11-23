@@ -1,11 +1,25 @@
 import type { SignFunction, UnsignFunction } from '@remix-run/server-runtime'
 
+// globalThis.crypto was only introduced in Node.js 20,
+// but we still need to support Node v18.
+// So we fall back if globalThis.crypto is not available,
+// but use globalThis.crypto if it is to keep it browser-compatible.
+const getSubtleCrypto = async () => {
+  if (globalThis.crypto?.subtle) {
+    return globalThis.crypto.subtle
+  }
+
+  const { subtle } = await import('node:crypto')
+  return subtle
+}
+
 const encoder = new TextEncoder()
 
 export const sign: SignFunction = async (value, secret) => {
   const data = encoder.encode(value)
   const key = await createKey(secret, ['sign'])
-  const signature = await crypto.subtle.sign('HMAC', key, data)
+  const subtleCrypto = await getSubtleCrypto()
+  const signature = await subtleCrypto.sign('HMAC', key, data)
   const hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(/=+$/, '')
 
   return value + '.' + hash
@@ -18,13 +32,15 @@ export const unsign: UnsignFunction = async (cookie, secret) => {
   const data = encoder.encode(value)
   const key = await createKey(secret, ['verify'])
   const signature = byteStringToUint8Array(atob(hash))
-  const valid = await crypto.subtle.verify('HMAC', key, signature, data)
+  const subtleCrypto = await getSubtleCrypto()
+  const valid = await subtleCrypto.verify('HMAC', key, signature, data)
 
   return valid ? value : false
 }
 
 async function createKey(secret: string, usages: CryptoKey['usages']): Promise<CryptoKey> {
-  const key = await crypto.subtle.importKey(
+  const subtleCrypto = await getSubtleCrypto()
+  const key = await subtleCrypto.importKey(
     'raw',
     encoder.encode(secret),
     { name: 'HMAC', hash: 'SHA-256' },
