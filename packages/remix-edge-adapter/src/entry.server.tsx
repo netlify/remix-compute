@@ -1,6 +1,6 @@
 import type { AppLoadContext, EntryContext } from '@netlify/remix-runtime'
 import { RemixServer } from '@remix-run/react'
-import isbot from 'isbot'
+import { isbot } from 'isbot'
 import { renderToReadableStream } from 'react-dom/server'
 
 export async function handleRequest(

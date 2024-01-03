@@ -37,7 +37,7 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
     "@netlify/remix-runtime": "2.1.0",
-    "isbot": "^3.7.0"
+    "isbot": "^4.1.2"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.0.0"
