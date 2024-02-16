@@ -4,6 +4,7 @@
   "description": "Demo site to test the Netlify Remix adapter",
   "main": "index.js",
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
