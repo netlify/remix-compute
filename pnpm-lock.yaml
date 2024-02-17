@@ -24,6 +24,9 @@ importers:
       '@netlify/eslint-config-node':
         specifier: ^7.0.1
         version: 7.0.1(typescript@5.3.3)
+      '@remix-run/eslint-config':
+        specifier: ^2.6.0
+        version: 2.6.0(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3)
       '@types/node':
         specifier: ^18.11.18
         version: 18.19.17
@@ -51,12 +54,12 @@ importers:
       lint-staged:
         specifier: ^13.1.0
         version: 13.3.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
       prettier:
         specifier: ^3.0.0
         version: 3.2.5
-      run-s:
-        specifier: ^0.0.0
-        version: 0.0.0
       typescript:
         specifier: ^5.0.0
         version: 5.3.3
@@ -75,6 +78,9 @@ importers:
       '@remix-run/css-bundle':
         specifier: ^2.0.0
         version: 2.6.0
+      '@remix-run/node':
+        specifier: ^2.6.0
+        version: 2.6.0(typescript@5.3.3)
       '@remix-run/react':
         specifier: ^2.0.0
         version: 2.6.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -4331,7 +4337,7 @@ packages:
       debug: 3.2.7(supports-color@8.1.1)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8592,10 +8598,6 @@ packages:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
       queue-microtask: 1.2.3
-    dev: true
-
-  /run-s@0.0.0:
-    resolution: {integrity: sha512-KPDNauF2Tpnm3nG0+0LJuJxwBFrhAdthpM8bVdDvjWQA7pWP7QoNwEl1+dJ7WVJj81AQP/i6kl6JUmAk7tg3Og==}
     dev: true
 
   /rxjs@6.6.7:
