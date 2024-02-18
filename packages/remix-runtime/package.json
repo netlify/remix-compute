@@ -33,11 +33,11 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
-    "@remix-run/server-runtime": "^2.1.0",
+    "@remix-run/server-runtime": "^2.7.0-pre.1",
     "tsup": "^8.0.2"
   },
   "peerDependencies": {
-    "@remix-run/server-runtime": "^2.0.0"
+    "@remix-run/server-runtime": "^2.7.0-pre.1"
   },
   "publishConfig": {
     "access": "public"

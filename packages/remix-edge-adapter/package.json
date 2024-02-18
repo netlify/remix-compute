@@ -26,14 +26,17 @@
         "types": "./dist/plugin.d.mts",
         "default": "./dist/plugin.mjs"
       }
-    }
+    },
+    "./entry.server": "./src/entry.server.tsx"
   },
   "files": [
     "dist/**/*",
     "LICENSE",
     "README.md",
     "plugin.js",
-    "plugin.d.ts"
+    "plugin.d.ts",
+    "src/entry.server.tsx",
+    "src/server.ts"
   ],
   "scripts": {
     "prepack": "pnpm run build",
@@ -59,8 +62,8 @@
     "isbot": "^3.7.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.6.0",
-    "@remix-run/react": "^2.6.0",
+    "@remix-run/dev": "^2.7.0-pre.1",
+    "@remix-run/react": "^2.7.0-pre.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",

@@ -3,7 +3,7 @@ import { RemixServer } from '@remix-run/react'
 import isbot from 'isbot'
 import { renderToReadableStream } from 'react-dom/server'
 
-export async function handleRequest(
+export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
