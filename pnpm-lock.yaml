@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.2.0
+        specifier: ^2.3.1
         version: 2.3.1
       '@testing-library/cypress':
         specifier: ^9.0.0
@@ -119,7 +119,7 @@ importers:
   demos/edge-demo-site:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.2.0
+        specifier: ^2.3.1
         version: 2.3.1
       '@netlify/remix-edge-adapter':
         specifier: workspace:*
