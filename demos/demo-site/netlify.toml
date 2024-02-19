@@ -1,10 +1,10 @@
 [build]
-command = "npm run build -w=packages/demo-site"
+command = "pnpm --filter demo-site... build"
 # command = "npm run build"
-publish = "/packages/demo-site/public"
+publish = "/demos/demo-site/public"
 
 [dev]
-command = "npm run dev -w packages/demo-site"
+command = "pnpm --filter edge-demo-site dev"
 
 [[redirects]]
 from = "/*"
