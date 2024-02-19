@@ -73,7 +73,7 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^2.4.1
+        specifier: ^2.6.0
         version: 2.6.0
       '@netlify/remix-adapter':
         specifier: '*'
@@ -181,7 +181,7 @@ importers:
         version: 3.8.0
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.4.1
+        specifier: ^2.6.0
         version: 2.6.0
       '@remix-run/dev':
         specifier: ^2.6.0
@@ -4276,7 +4276,7 @@ packages:
       debug: 3.2.7(supports-color@8.1.1)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
