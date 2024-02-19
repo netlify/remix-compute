@@ -73,7 +73,7 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^2.4.1
+        specifier: ^2.6.0
         version: 2.6.0
       '@netlify/remix-adapter':
         specifier: '*'
@@ -181,7 +181,7 @@ importers:
         version: 3.8.0
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.4.1
+        specifier: ^2.6.0
         version: 2.6.0
       '@remix-run/dev':
         specifier: ^2.6.0
