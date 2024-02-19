@@ -28,7 +28,8 @@ jobs:
         with:
           node-version: 18
           check-latest: true
-      - name: NPM Install
-        run: npm install
+      - run: corepack enable
+      - name: Install
+        run: pnpm install
       - name: Linting
-        run: npm run format:ci
+        run: pnpm run format:ci
