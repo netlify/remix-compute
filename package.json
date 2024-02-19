@@ -10,7 +10,7 @@
     "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
     "format:fix:lint": "eslint --fix --cache .",
-    "format:check:prettier": "prettier --cache .",
+    "format:check:prettier": "prettier --check --cache .",
     "format:fix:prettier": "prettier --write --cache .",
     "e2e": "cypress open",
     "build:packages": "pnpm run --filter '@netlify/*' build",
