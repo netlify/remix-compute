@@ -53,10 +53,9 @@ jobs:
       - name: Cypress run
         if: ${{ steps.deploy.outputs.origin-url }}
         id: cypress
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          headless: true
           record: true
           parallel: true
           config-file: cypress/config/edge-cypress.config.ts
