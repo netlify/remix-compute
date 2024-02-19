@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@netlify/edge-functions": "^2.2.0",
+    "@testing-library/cypress": "^9.0.0",
     "husky": "^8.0.3",
     "if-env": "^1.0.4",
     "isbot": "^3.6.6"
