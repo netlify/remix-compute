@@ -13,7 +13,7 @@ importers:
         version: 2.3.1
       '@testing-library/cypress':
         specifier: ^9.0.0
-        version: 9.0.0(cypress@12.17.4)
+        version: 9.0.0(cypress@13.6.5)
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -43,8 +43,8 @@ importers:
         specifier: ^17.4.2
         version: 17.8.1
       cypress:
-        specifier: ^12.5.1
-        version: 12.17.4
+        specifier: ^13.0.0
+        version: 13.6.5
       eslint:
         specifier: ^8.33.0
         version: 8.56.0
@@ -857,6 +857,30 @@ packages:
 
   /@cypress/request@2.88.12:
     resolution: {integrity: sha512-tOn+0mDZxASFM+cuAP9szGUGPI1HwWVSvdzm7V4cCsPdFTx6qMj29CwaQmRAMIEhORIUBFBsYROYJcveK4uOjA==}
+    engines: {node: '>= 6'}
+    dependencies:
+      aws-sign2: 0.7.0
+      aws4: 1.12.0
+      caseless: 0.12.0
+      combined-stream: 1.0.8
+      extend: 3.0.2
+      forever-agent: 0.6.1
+      form-data: 2.3.3
+      http-signature: 1.3.6
+      is-typedarray: 1.0.0
+      isstream: 0.1.2
+      json-stringify-safe: 5.0.1
+      mime-types: 2.1.35
+      performance-now: 2.1.0
+      qs: 6.10.4
+      safe-buffer: 5.2.1
+      tough-cookie: 4.1.3
+      tunnel-agent: 0.6.0
+      uuid: 8.3.2
+    dev: true
+
+  /@cypress/request@3.0.1:
+    resolution: {integrity: sha512-TWivJlJi8ZDx2wGOw1dbLuHJKUYX7bWySw377nlnGOW3hP9/MUKIsEdXT/YngWxVdgNCHRBmFlBipE+5/2ZZlQ==}
     engines: {node: '>= 6'}
     dependencies:
       aws-sign2: 0.7.0
@@ -2062,6 +2086,18 @@ packages:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 8.20.1
       cypress: 12.17.4
+    dev: true
+
+  /@testing-library/cypress@9.0.0(cypress@13.6.5):
+    resolution: {integrity: sha512-c1XiCGeHGGTWn0LAU12sFUfoX3qfId5gcSE2yHode+vsyHDWraxDPALjVnHd4/Fa3j4KBcc5k++Ccy6A9qnkMA==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      cypress: ^12.0.0
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@testing-library/dom': 8.20.1
+      cypress: 13.6.5
+    dev: false
 
   /@testing-library/dom@7.31.2:
     resolution: {integrity: sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==}
@@ -2198,6 +2234,7 @@ packages:
 
   /@types/node@16.18.82:
     resolution: {integrity: sha512-pcDZtkx9z8XYV+ius2P3Ot2VVrcYOfXffBQUBuiszrlUzKSmoDYqo+mV+IoL8iIiIjjtOMvNSmH1hwJ+Q+f96Q==}
+    dev: true
 
   /@types/node@18.19.17:
     resolution: {integrity: sha512-SzyGKgwPzuWp2SHhlpXKzCX0pIOfcI4V2eF37nNBJOhwlegQ83omtVQ1XxZpDE06V/d6AQvfQdPfnw0tRC//Ng==}
@@ -3525,6 +3562,56 @@ packages:
       '@cypress/request': 2.88.12
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/node': 16.18.82
+      '@types/sinonjs__fake-timers': 8.1.1
+      '@types/sizzle': 2.3.8
+      arch: 2.2.0
+      blob-util: 2.0.2
+      bluebird: 3.7.2
+      buffer: 5.7.1
+      cachedir: 2.4.0
+      chalk: 4.1.2
+      check-more-types: 2.24.0
+      cli-cursor: 3.1.0
+      cli-table3: 0.6.3
+      commander: 6.2.1
+      common-tags: 1.8.2
+      dayjs: 1.11.10
+      debug: 4.3.4(supports-color@8.1.1)
+      enquirer: 2.4.1
+      eventemitter2: 6.4.7
+      execa: 4.1.0
+      executable: 4.1.1
+      extract-zip: 2.0.1(supports-color@8.1.1)
+      figures: 3.2.0
+      fs-extra: 9.1.0
+      getos: 3.2.1
+      is-ci: 3.0.1
+      is-installed-globally: 0.4.0
+      lazy-ass: 1.6.0
+      listr2: 3.14.0(enquirer@2.4.1)
+      lodash: 4.17.21
+      log-symbols: 4.1.0
+      minimist: 1.2.8
+      ospath: 1.2.2
+      pretty-bytes: 5.6.0
+      process: 0.11.10
+      proxy-from-env: 1.0.0
+      request-progress: 3.0.0
+      semver: 7.6.0
+      supports-color: 8.1.1
+      tmp: 0.2.1
+      untildify: 4.0.0
+      yauzl: 2.10.0
+    dev: true
+
+  /cypress@13.6.5:
+    resolution: {integrity: sha512-2NxSDcO2zHw5kTcosc6dzv2zppEqiXrFFhZw5cx/EWrSNZABTzpr/EyvYzGgrWm46o5173JUfuJfDQcaiZZPVQ==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@cypress/request': 3.0.1
+      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.8
       arch: 2.2.0
