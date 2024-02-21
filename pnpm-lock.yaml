@@ -360,7 +360,7 @@ importers:
   packages/remix-edge-adapter:
     dependencies:
       '@netlify/remix-runtime':
-        specifier: workspace:*
+        specifier: 2.2.0
         version: link:../remix-runtime
       isbot:
         specifier: ^4.1.0
@@ -4597,7 +4597,7 @@ packages:
       debug: 3.2.7(supports-color@8.1.1)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
     transitivePeerDependencies:
       - supports-color
     dev: true

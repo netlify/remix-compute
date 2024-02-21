@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.2.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.1.0...remix-edge-adapter-v3.2.0) (2024-02-21)
+
+
+### Features
+
+* add support for Vite ([#251](https://github.com/netlify/remix-compute/issues/251)) ([a32191c](https://github.com/netlify/remix-compute/commit/a32191c58525006f8ecf5cb72e662f88e229c9ad))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped to 2.2.0
+
 ## [3.1.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.0.0...remix-edge-adapter-v3.1.0) (2023-10-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.1.0...remix-runtime-v2.2.0) (2024-02-21)
+
+
+### Features
+
+* add support for Vite ([#251](https://github.com/netlify/remix-compute/issues/251)) ([a32191c](https://github.com/netlify/remix-compute/commit/a32191c58525006f8ecf5cb72e662f88e229c9ad))
+
 ## [2.1.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.0.0...remix-runtime-v2.1.0) (2023-10-30)
 
 
