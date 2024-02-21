@@ -247,7 +247,7 @@ importers:
   demos/vite-functions:
     dependencies:
       '@netlify/remix-adapter':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../../packages/remix-adapter
       '@netlify/remix-runtime':
         specifier: ^2.1.0
@@ -4597,7 +4597,7 @@ packages:
       debug: 3.2.7(supports-color@8.1.1)
       eslint: 8.56.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
