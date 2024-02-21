@@ -177,7 +177,7 @@ importers:
         specifier: ^3.2.0
         version: link:../../packages/remix-edge-adapter
       '@netlify/remix-runtime':
-        specifier: ^2.1.0
+        specifier: ^2.2.0
         version: link:../../packages/remix-runtime
       '@remix-run/deno':
         specifier: ^2.7.1
@@ -250,7 +250,7 @@ importers:
         specifier: ^2.3.0
         version: link:../../packages/remix-adapter
       '@netlify/remix-runtime':
-        specifier: ^2.1.0
+        specifier: ^2.2.0
         version: link:../../packages/remix-runtime
       '@remix-run/node':
         specifier: ^2.7.1
