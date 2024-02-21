@@ -1,6 +1,7 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import { writeFile, mkdir, readdir } from 'node:fs/promises'
 import { join, relative } from 'node:path'
+import { version, name } from '../package.json'
 
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
@@ -17,6 +18,8 @@ function generateEntrypoint(server: string, exclude: Array<string> = []) {
   return /* js */ `
     export { default } from "${server}";
     export const config = {
+      name: "Remix server handler",
+      generator: "${name}@${version}",
       cache: "manual",
       path: "/*",
       excludedPath: ${JSON.stringify(exclude)},
@@ -110,7 +113,7 @@ export function netlifyPlugin(): Plugin {
 
         await mkdir(edgeFunctionDir, { recursive: true })
         await writeFile(
-          join(edgeFunctionDir, 'server.mjs'),
+          join(edgeFunctionDir, 'remix-server.mjs'),
           generateEntrypoint(relative(edgeFunctionDir, join(resolvedConfig.build.outDir, 'server.js')), exclude),
         )
       }

@@ -1,6 +1,7 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
+import { version, name } from '../package.json'
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
 
@@ -16,6 +17,8 @@ function generateNetlifyFunction(server: string) {
   return /* js */ `
     export { default } from "${server}";
     export const config = {
+      name: "Remix server handler",
+      generator: "${name}@${version}",
       path: "/*",
       preferStatic: true,
     };
@@ -67,7 +70,7 @@ export function netlifyPlugin(): Plugin {
         const functionDir = join(resolvedConfig.root, '.netlify/functions-internal')
         await mkdir(functionDir, { recursive: true })
         await writeFile(
-          join(functionDir, 'server.mjs'),
+          join(functionDir, 'remix-server.mjs'),
           generateNetlifyFunction(relative(functionDir, join(resolvedConfig.build.outDir, 'server.js'))),
         )
       }
