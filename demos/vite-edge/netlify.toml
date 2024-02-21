@@ -1,0 +1,7 @@
+[build]
+command = "npm run build"
+publish = "build/client"
+
+[dev]
+command = "npm run dev"
+framework = "vite"

@@ -2,13 +2,26 @@
   "name": "@netlify/remix-runtime",
   "version": "2.1.0",
   "description": "Remix Runtime for Netlify Edge Functions",
-  "types": "./build/src/index.d.ts",
-  "main": "./build/src/index.js",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
   "scripts": {
-    "prepack": "npm run clean && npm run build",
-    "build": "tsc --build tsconfig.json",
-    "build:watch": "npm run build -- --watch",
-    "clean": "rm -rf build"
+    "prepack": "pnpm run build",
+    "build": "tsup-node src/index.ts --format esm,cjs --dts --target node16 --clean",
+    "build:watch": "pnpm run build --watch"
   },
   "repository": {
     "type": "git",
@@ -20,10 +33,11 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
-    "@remix-run/server-runtime": "^2.1.0"
+    "@remix-run/server-runtime": "^2.7.1",
+    "tsup": "^8.0.2"
   },
   "peerDependencies": {
-    "@remix-run/server-runtime": "^2.0.0"
+    "@remix-run/server-runtime": "^2.7.1"
   },
   "publishConfig": {
     "access": "public"
