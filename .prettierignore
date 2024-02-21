@@ -28,3 +28,4 @@ pnpm-lock.yaml
 /.netlify
 /.vscode
 **/build
+.release-please-manifest.json
