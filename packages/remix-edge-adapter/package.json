@@ -59,11 +59,11 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
     "@netlify/remix-runtime": "workspace:*",
-    "isbot": "^3.7.0"
+    "isbot": "^4.1.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.7.0-pre.1",
-    "@remix-run/react": "^2.7.0-pre.1",
+    "@remix-run/dev": "^2.7.1",
+    "@remix-run/react": "^2.7.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",

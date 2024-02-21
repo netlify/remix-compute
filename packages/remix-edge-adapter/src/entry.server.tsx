@@ -1,6 +1,9 @@
+// We load this as a virtual module in the site.
+// This is mostly copied from the Remix Deno template
+// https://github.com/remix-run/remix/blob/main/templates/deno/app/entry.server.tsx
 import type { AppLoadContext, EntryContext } from '@netlify/remix-runtime'
 import { RemixServer } from '@remix-run/react'
-import isbot from 'isbot'
+import { isbot } from 'isbot'
 import * as ReactDOMServer from 'react-dom/server'
 
 export default async function handleRequest(
@@ -20,7 +23,7 @@ export default async function handleRequest(
     },
   })
 
-  if (isbot(request.headers.get('user-agent'))) {
+  if (isbot(request.headers.get('user-agent') || '')) {
     await body.allReady
   }
 

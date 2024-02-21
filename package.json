@@ -31,7 +31,7 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
     "@netlify/eslint-config-node": "^7.0.1",
-    "@remix-run/eslint-config": "^2.7.0-pre.1",
+    "@remix-run/eslint-config": "^2.7.1",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
@@ -51,7 +51,7 @@
     "@testing-library/cypress": "^9.0.0",
     "husky": "^8.0.3",
     "if-env": "^1.0.4",
-    "isbot": "^3.6.6"
+    "isbot": "^4.1.0"
   },
   "engines": {
     "node": ">=14"
