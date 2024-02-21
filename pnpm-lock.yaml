@@ -247,7 +247,7 @@ importers:
   demos/vite-functions:
     dependencies:
       '@netlify/remix-adapter':
-        specifier: ^2.2.0
+        specifier: ^2.3.0
         version: link:../../packages/remix-adapter
       '@netlify/remix-runtime':
         specifier: ^2.1.0
