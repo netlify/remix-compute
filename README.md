@@ -1,22 +1,23 @@
 # Remix Compute for Netlify
 
 The Remix Compute for Netlify packages allow you to deploy your Remix apps to
-[Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/).
+[Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/) or
+[Netlify Functions](https://docs.netlify.com/functions/overview/).
 
 This project is not a template for Remix apps. It is a set of packages used by the Netlify Remix template.
 
-The project is a monorepo. Packages are located in the `packages` directory. There are three packages:
+The project is a pnpm monorepo. Packages are located in the `packages` directory, and demo sites are in `demos`. There
+are three packages:
 
 - `@netlify/remix-adapter` - The Remix adapter for Netlify Functions
-- `remix-demo-site` - A demo site for testing the remix-adapter
-- `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
-- `remix-edge-demo-site` - A demo site for testing the remix-edge-adapter
+- `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 
 ## Installation
 
 ```bash
-npm install
+corepack enable
+pnpm install
 ```
 
 This installs all the dependencies for all the packages and builds the `@netlify/remix-runtime`,
@@ -24,10 +25,16 @@ This installs all the dependencies for all the packages and builds the `@netlify
 
 ## Development
 
+To build the packages, run the build command.
+
+```bash
+pnpm run build:packages
+```
+
 Run the build watch command to have packages built when they are changed.
 
 ```bash
-npm run build:watch
+pnpm run build:packages:watch
 ```
 
 When you're ready to test your changes, you can run the demo site locally.
