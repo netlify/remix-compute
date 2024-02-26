@@ -57,9 +57,9 @@ importers:
       lint-staged:
         specifier: ^13.1.0
         version: 13.3.0
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
+      npm-run-all2:
+        specifier: ^5.0.0
+        version: 5.0.2
       prettier:
         specifier: ^3.0.0
         version: 3.2.5
@@ -7698,6 +7698,20 @@ packages:
       semver: 7.6.0
     dev: true
 
+  /npm-run-all2@5.0.2:
+    resolution: {integrity: sha512-S2G6FWZ3pNWAAKm2PFSOtEAG/N+XO/kz3+9l6V91IY+Y3XFSt7Lp7DV92KCgEboEW0hRTu0vFaMe4zXDZYaOyA==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    dependencies:
+      ansi-styles: 5.2.0
+      cross-spawn: 7.0.3
+      memorystream: 0.3.1
+      minimatch: 3.1.2
+      pidtree: 0.5.0
+      read-pkg: 5.2.0
+      shell-quote: 1.8.1
+    dev: true
+
   /npm-run-all@1.4.0:
     resolution: {integrity: sha512-Le4iFE4VsbjPG4IMtuMN7gHu3UXIVnywPqBS2s3vHQe0JMGewfyWE8WYyqM509PjUybi4wbSqgW69mr3XGFr0w==}
     hasBin: true
@@ -8120,6 +8134,12 @@ packages:
 
   /pidtree@0.3.1:
     resolution: {integrity: sha512-qQbW94hLHEqCg7nhby4yRC7G2+jYHY4Rguc2bjw7Uug4GIJuu1tvf2uHaZv5Q8zdt+WKJ6qK1FOI6amaWUo5FA==}
+    engines: {node: '>=0.10'}
+    hasBin: true
+    dev: true
+
+  /pidtree@0.5.0:
+    resolution: {integrity: sha512-9nxspIM7OpZuhBxPg73Zvyq7j1QMPMPsGKTqRc2XOaFQauDvoNz9fM1Wdkjmeo7l9GXOZiRs97sPkuayl39wjA==}
     engines: {node: '>=0.10'}
     hasBin: true
     dev: true
