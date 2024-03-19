@@ -1,6 +1,6 @@
 [build]
-command = "npm run build"
-publish = "build/client"
+command = "pnpm --filter vite-edge... build"
+publish = "/demos/vite-edge/build/client"
 
 [dev]
 command = "npm run dev"
