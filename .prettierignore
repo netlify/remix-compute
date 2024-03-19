@@ -23,7 +23,9 @@ lib
 **/CHANGELOG.md
 
 package-lock.json
+pnpm-lock.yaml
 
 /.netlify
 /.vscode
 **/build
+.release-please-manifest.json

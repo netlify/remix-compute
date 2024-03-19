@@ -6,6 +6,10 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: navikt/github-app-token-generator@a3831f44404199df32d8f39f7c0ad9bb8fa18b1c
         id: get-token
@@ -20,10 +24,10 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
       - uses: actions/setup-node@v4
         with:
-          cache: 'pnpm'
           check-latest: true
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.releases_created }}
+      - run: corepack enable
       - name: Install dependencies
         run: pnpm install
       - run: pnpm build:packages

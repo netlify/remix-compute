@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.2.0...remix-adapter-v2.3.0) (2024-02-21)
+
+
+### Features
+
+* add support for Vite ([#251](https://github.com/netlify/remix-compute/issues/251)) ([a32191c](https://github.com/netlify/remix-compute/commit/a32191c58525006f8ecf5cb72e662f88e229c9ad))
+
 ## [2.2.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.1.0...remix-adapter-v2.2.0) (2023-10-30)
 
 

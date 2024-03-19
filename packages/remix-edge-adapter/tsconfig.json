@@ -1,12 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "./build",
-    "jsx": "react-jsx"
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "outDir": "./build"
   },
   "include": ["./src"]
-  // "references": [
-  //   { "path": "../remix-runtime/tsconfig.json"}
-  // ]
 }

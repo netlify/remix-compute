@@ -1,26 +1,47 @@
 {
   "name": "@netlify/remix-edge-adapter",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Remix Adapter for Netlify Edge Functions",
-  "types": "./build/src/index.d.ts",
-  "main": "./build/src/index.js",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./build/src/index.js"
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    },
+    "./plugin": {
+      "require": {
+        "types": "./dist/plugin.d.ts",
+        "default": "./dist/plugin.js"
+      },
+      "import": {
+        "types": "./dist/plugin.d.mts",
+        "default": "./dist/plugin.mjs"
+      }
+    },
+    "./entry.server": "./src/entry.server.tsx"
   },
   "files": [
-    "build/src/**/*.js",
-    "build/src/**/*.js.map",
-    "build/src/**/*.d.ts",
-    "build/src/**/*.d.ts.map",
-    "resources/**/*",
+    "dist/**/*",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "plugin.js",
+    "plugin.d.ts",
+    "src/entry.server.tsx",
+    "src/server.ts"
   ],
   "scripts": {
-    "prepack": "pnpm run clean && pnpm run build",
-    "build": "tsc --build tsconfig.json",
-    "build:watch": "pnpm run build -- --watch",
-    "clean": "rm -rf build"
+    "prepack": "pnpm run build",
+    "build": "tsup-node src/index.ts src/plugin.ts --format esm,cjs --dts --target node16 --clean",
+    "build:watch": "pnpm run build --watch"
   },
   "repository": {
     "type": "git",
@@ -37,16 +58,17 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/remix-runtime": "workspace:*",
-    "isbot": "^3.7.0"
+    "@netlify/remix-runtime": "2.2.0",
+    "isbot": "^4.1.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.6.0",
-    "@remix-run/react": "^2.6.0",
+    "@remix-run/dev": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tsup": "^8.0.2",
     "vite": "^5.1.3"
   },
   "peerDependencies": {
@@ -59,5 +81,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
