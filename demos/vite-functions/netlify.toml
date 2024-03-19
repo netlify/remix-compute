@@ -1,0 +1,7 @@
+[build]
+command = "pnpm --filter vite-functions... build"
+publish = "/demos/vite-functions/build/client"
+
+[dev]
+command = "npm run dev"
+framework = "vite"

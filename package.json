@@ -3,26 +3,18 @@
   "version": "1.0.0",
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
-  "workspaces": [
-    "packages/remix-edge-adapter",
-    "packages/remix-adapter",
-    "packages/remix-runtime",
-    "packages/edge-demo-site",
-    "packages/demo-site"
-  ],
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepare": "(if-env CI=1 || husky install) && npm run build:packages",
     "format": "run-s format:fix:*",
     "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
     "format:fix:lint": "eslint --fix --cache .",
-    "format:check:prettier": "prettier --cache .",
+    "format:check:prettier": "prettier --check --cache .",
     "format:fix:prettier": "prettier --write --cache .",
     "e2e": "cypress open",
-    "build:packages": "npm run build -w=packages/remix-runtime -w=packages/remix-adapter -w=packages/remix-edge-adapter",
-    "build:packages:watch": "npm run build:watch -w=packages/remix-runtime & npm run build:watch -w=packages/remix-edge-adapter"
+    "build:packages": "pnpm run --filter '@netlify/*' build",
+    "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch"
   },
   "repository": {
     "type": "git",
@@ -39,27 +31,30 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
     "@netlify/eslint-config-node": "^7.0.1",
-    "@types/node": "^18.11.18",
+    "@remix-run/eslint-config": "^2.8.1",
+    "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "commitlint": "^17.4.2",
-    "cypress": "^12.5.1",
+    "cypress": "^13.6.4",
     "eslint": "^8.33.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-prettier-config": "^1.0.1",
     "lint-staged": "^13.1.0",
+    "npm-run-all2": "^5.0.0",
     "prettier": "^3.0.0",
-    "run-s": "^0.0.0",
     "typescript": "^5.0.0",
     "vitest": "^0.34.0"
   },
   "dependencies": {
-    "@netlify/edge-functions": "^2.2.0",
+    "@netlify/edge-functions": "^2.3.1",
+    "@testing-library/cypress": "^9.0.0",
     "husky": "^8.0.3",
     "if-env": "^1.0.4",
-    "isbot": "^3.6.6"
+    "isbot": "^4.1.0"
   },
   "engines": {
     "node": ">=14"
-  }
+  },
+  "packageManager": "pnpm@8.15.5"
 }

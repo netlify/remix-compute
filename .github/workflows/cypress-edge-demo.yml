@@ -15,7 +15,7 @@ jobs:
         containers: [1]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Generate Github token
         uses: navikt/github-app-token-generator@v1
@@ -25,7 +25,7 @@ jobs:
           app-id: ${{ secrets.TOKENS_APP_ID }}
 
       - name: Checkout @netlify/wait-for-deploy-action
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: netlify/wait-for-deploy-action
           token: ${{ steps.get-token.outputs.token }}
@@ -45,17 +45,17 @@ jobs:
       - name: Node
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
 
-      - run: npm install
+      - run: corepack enable
+      - run: pnpm install
 
       - name: Cypress run
         if: ${{ steps.deploy.outputs.origin-url }}
         id: cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          headless: true
           record: true
           parallel: true
           config-file: cypress/config/edge-cypress.config.ts

@@ -1,0 +1,3 @@
+[build]
+command = "pnpm --filter edge-demo-site... build"
+publish = "demos/edge-demo-site/public"
