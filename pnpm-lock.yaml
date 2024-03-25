@@ -105,7 +105,7 @@ importers:
         version: 2.8.1(typescript@5.4.2)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.2.22
@@ -154,10 +154,10 @@ importers:
         version: 2.8.1(typescript@5.4.2)
       '@testing-library/cypress':
         specifier: ^10.0.0
-        version: 10.0.1(cypress@13.6.6)
+        version: 10.0.1(cypress@13.7.1)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.2.22
@@ -206,7 +206,7 @@ importers:
         version: 2.8.1(@remix-run/serve@2.8.1)(@types/node@20.5.1)(ts-node@10.9.2)(typescript@5.4.2)(vite@5.1.4)
       '@types/react':
         specifier: ^18.2.20
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.2.7
         version: 18.2.22
@@ -279,7 +279,7 @@ importers:
         version: 2.8.1(@remix-run/serve@2.8.1)(@types/node@20.5.1)(ts-node@10.9.2)(typescript@5.4.2)(vite@5.1.4)
       '@types/react':
         specifier: ^18.2.20
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.2.7
         version: 18.2.22
@@ -337,7 +337,7 @@ importers:
         version: 2.8.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.2.22
@@ -374,7 +374,7 @@ importers:
         version: 2.8.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.2.67
+        version: 18.2.69
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.2.22
@@ -2309,6 +2309,18 @@ packages:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 9.3.4
       cypress: 13.6.6
+    dev: false
+
+  /@testing-library/cypress@10.0.1(cypress@13.7.1):
+    resolution: {integrity: sha512-e8uswjTZIBhaIXjzEcrQQ8nHRWHgZH7XBxKuIWxZ/T7FxfWhCR48nFhUX5nfPizjVOKSThEfOSv67jquc1ASkw==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      cypress: ^12.0.0 || ^13.0.0
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@testing-library/dom': 9.3.4
+      cypress: 13.7.1
+    dev: true
 
   /@testing-library/dom@7.31.2:
     resolution: {integrity: sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==}
@@ -2470,20 +2482,20 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/prop-types@15.7.11:
-    resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
+  /@types/prop-types@15.7.12:
+    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
     dev: true
 
   /@types/react-dom@18.2.22:
     resolution: {integrity: sha512-fHkBXPeNtfvri6gdsMYyW+dW7RXFo6Ad09nLFK0VQWR7yGLai/Cyvyj696gbwYvBnhGtevUG9cET0pmUbMtoPQ==}
     dependencies:
-      '@types/react': 18.2.67
+      '@types/react': 18.2.69
     dev: true
 
-  /@types/react@18.2.67:
-    resolution: {integrity: sha512-vkIE2vTIMHQ/xL0rgmuoECBCkZFZeHr49HeWSc24AptMbNRo7pwSBvj73rlJJs9fGKj0koS+V7kQB1jHS0uCgw==}
+  /@types/react@18.2.69:
+    resolution: {integrity: sha512-W1HOMUWY/1Yyw0ba5TkCV+oqynRjG7BnteBB+B7JmAK7iw3l2SW+VGOxL+akPweix6jk2NNJtyJKpn4TkpfK3Q==}
     dependencies:
-      '@types/prop-types': 15.7.11
+      '@types/prop-types': 15.7.12
       '@types/scheduler': 0.16.8
       csstype: 3.1.3
     dev: true
@@ -3620,6 +3632,15 @@ packages:
     optionalDependencies:
       '@colors/colors': 1.5.0
 
+  /cli-table3@0.6.4:
+    resolution: {integrity: sha512-Lm3L0p+/npIQWNIiyF/nAn7T5dnOwR3xNTHXYEBFBFVPXzCVNZ5lqEC/1eo/EVfpDsQ1I+TX4ORPQgp+UI0CRw==}
+    engines: {node: 10.* || >= 12.*}
+    dependencies:
+      string-width: 4.2.3
+    optionalDependencies:
+      '@colors/colors': 1.5.0
+    dev: true
+
   /cli-truncate@2.1.0:
     resolution: {integrity: sha512-n8fOixwDD6b/ObinzTrp1ZKFzbgvKZvuz/TvejnLn1aQfC6r52XEx85FmuC+3HI+JM7coBRXUvNqEU2PHVrHpg==}
     engines: {node: '>=8'}
@@ -4054,6 +4075,56 @@ packages:
       tmp: 0.2.1
       untildify: 4.0.0
       yauzl: 2.10.0
+
+  /cypress@13.7.1:
+    resolution: {integrity: sha512-4u/rpFNxOFCoFX/Z5h+uwlkBO4mWzAjveURi3vqdSu56HPvVdyGTxGw4XKGWt399Y1JwIn9E1L9uMXQpc0o55w==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@cypress/request': 3.0.1
+      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
+      '@types/sinonjs__fake-timers': 8.1.1
+      '@types/sizzle': 2.3.8
+      arch: 2.2.0
+      blob-util: 2.0.2
+      bluebird: 3.7.2
+      buffer: 5.7.1
+      cachedir: 2.4.0
+      chalk: 4.1.2
+      check-more-types: 2.24.0
+      cli-cursor: 3.1.0
+      cli-table3: 0.6.4
+      commander: 6.2.1
+      common-tags: 1.8.2
+      dayjs: 1.11.10
+      debug: 4.3.4(supports-color@8.1.1)
+      enquirer: 2.4.1
+      eventemitter2: 6.4.7
+      execa: 4.1.0
+      executable: 4.1.1
+      extract-zip: 2.0.1(supports-color@8.1.1)
+      figures: 3.2.0
+      fs-extra: 9.1.0
+      getos: 3.2.1
+      is-ci: 3.0.1
+      is-installed-globally: 0.4.0
+      lazy-ass: 1.6.0
+      listr2: 3.14.0(enquirer@2.4.1)
+      lodash: 4.17.21
+      log-symbols: 4.1.0
+      minimist: 1.2.8
+      ospath: 1.2.2
+      pretty-bytes: 5.6.0
+      process: 0.11.10
+      proxy-from-env: 1.0.0
+      request-progress: 3.0.0
+      semver: 7.6.0
+      supports-color: 8.1.1
+      tmp: 0.2.3
+      untildify: 4.0.0
+      yauzl: 2.10.0
+    dev: true
 
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -9829,6 +9900,11 @@ packages:
     engines: {node: '>=8.17.0'}
     dependencies:
       rimraf: 3.0.2
+
+  /tmp@0.2.3:
+    resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
+    engines: {node: '>=14.14'}
+    dev: true
 
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
