@@ -1,7 +1,9 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import { mkdir, writeFile } from 'node:fs/promises'
-import { join, relative } from 'node:path'
+import { dirname, join, relative, resolve } from 'node:path'
+import { createRequire } from 'node:module'
 import { version, name } from '../package.json'
+
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
 
@@ -23,6 +25,20 @@ function generateNetlifyFunction(server: string) {
       preferStatic: true,
     };
     `
+}
+
+let defaultEntryServer: string | undefined = undefined
+let entryServerNetlifyDefault: string | undefined = undefined
+
+try {
+  const remixEntryPath = createRequire(import.meta.url).resolve('@remix-run/dev')
+  defaultEntryServer = resolve(dirname(remixEntryPath), 'config', 'defaults', 'entry.server.node.tsx')
+  const indexURL = new URL('./index.mjs', import.meta.url)
+  entryServerNetlifyDefault = /* js */ `
+  export { handleRequest as default } from '${indexURL.pathname}'
+  `
+} catch {
+  // Ignore
 }
 
 export function netlifyPlugin(): Plugin {
@@ -59,6 +75,10 @@ export function netlifyPlugin(): Plugin {
     load(id) {
       if (id === RESOLVED_SERVER_ID) {
         return serverCode
+      }
+
+      if (defaultEntryServer && entryServerNetlifyDefault && defaultEntryServer === id) {
+        return entryServerNetlifyDefault
       }
     },
     async configResolved(config) {
