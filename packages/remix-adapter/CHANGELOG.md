@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.3.0...remix-adapter-v2.3.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* Use posix path in import when building on windows ([#281](https://github.com/netlify/remix-compute/issues/281)) ([64455ed](https://github.com/netlify/remix-compute/commit/64455ed617bd7caca59788aa5c31f257cab96540))
+
 ## [2.3.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.2.0...remix-adapter-v2.3.0) (2024-02-21)
 
 
