@@ -1,10 +1,13 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import { writeFile, mkdir, readdir } from 'node:fs/promises'
-import { join, relative } from 'node:path'
+import { join, relative, sep } from 'node:path'
+import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../package.json'
 
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
+
+const toPosixPath = (path: string) => path.split(sep).join(posixSep)
 
 // The virtual module that is the compiled server entrypoint.
 const serverCode = /* js */ `
@@ -12,6 +15,7 @@ import { createRequestHandler } from "@netlify/remix-edge-adapter";
 import * as build from "virtual:remix/server-build";
 export default createRequestHandler({ build });
 `
+
 // This is written to the edge functions directory. It just re-exports
 // the compiled entrypoint, along with the Netlify function config.
 function generateEntrypoint(server: string, exclude: Array<string> = []) {
@@ -93,12 +97,13 @@ export function netlifyPlugin(): Plugin {
       }
     },
     async writeBundle() {
+      // Write the server entrypoint to the Netlify functions directory
       if (currentCommand === 'build' && isSsr) {
-        const edgeFunctionDir = join(resolvedConfig.root, '.netlify/edge-functions')
         const exclude: Array<string> = []
         try {
           // Get the client files so we can skip them in the edge function
-          const entries = await readdir(join(resolvedConfig.build.outDir, '..', 'client'), { withFileTypes: true })
+          const clientDirectory = join(resolvedConfig.build.outDir, '..', 'client')
+          const entries = await readdir(clientDirectory, { withFileTypes: true })
           for (const entry of entries) {
             // With directories we don't bother to recurse into it and just skip the whole thing.
             if (entry.isDirectory()) {
@@ -111,10 +116,16 @@ export function netlifyPlugin(): Plugin {
           // Ignore if it doesn't exist
         }
 
-        await mkdir(edgeFunctionDir, { recursive: true })
+        const edgeFunctionsDirectory = join(resolvedConfig.root, '.netlify/edge-functions')
+
+        await mkdir(edgeFunctionsDirectory, { recursive: true })
+
+        const serverPath = join(resolvedConfig.build.outDir, 'server.js')
+        const relativeServerPath = toPosixPath(relative(edgeFunctionsDirectory, serverPath))
+
         await writeFile(
-          join(edgeFunctionDir, 'remix-server.mjs'),
-          generateEntrypoint(relative(edgeFunctionDir, join(resolvedConfig.build.outDir, 'server.js')), exclude),
+          join(edgeFunctionsDirectory, 'remix-server.mjs'),
+          generateEntrypoint(relativeServerPath, exclude),
         )
       }
     },
