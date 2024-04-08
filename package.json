@@ -47,7 +47,7 @@
     "vitest": "^0.34.0"
   },
   "dependencies": {
-    "@netlify/edge-functions": "^2.4.3",
+    "@netlify/edge-functions": "^2.5.1",
     "@testing-library/cypress": "^10.0.0",
     "husky": "^8.0.3",
     "if-env": "^1.0.4",
