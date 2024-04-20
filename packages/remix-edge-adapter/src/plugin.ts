@@ -99,7 +99,7 @@ export function netlifyPlugin(): Plugin {
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
       if (currentCommand === 'build' && isSsr) {
-        const exclude: Array<string> = []
+        const exclude: Array<string> = ['/.netlify/*']
         try {
           // Get the client files so we can skip them in the edge function
           const clientDirectory = join(resolvedConfig.build.outDir, '..', 'client')
