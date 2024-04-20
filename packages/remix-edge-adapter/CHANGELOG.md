@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.2](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.1...remix-edge-adapter-v3.2.2) (2024-04-20)
+
+
+### Bug Fixes
+
+* **remix-edge-adapter:** exclude /.netlify paths from edge function ([#296](https://github.com/netlify/remix-compute/issues/296)) ([09bf62b](https://github.com/netlify/remix-compute/commit/09bf62b9c847fe6d50cc4baa999253f409f547b0))
+
 ## [3.2.1](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.0...remix-edge-adapter-v3.2.1) (2024-04-03)
 
 
