@@ -50,7 +50,7 @@ importers:
         version: 8.57.0
       eslint-plugin-cypress:
         specifier: ^2.12.1
-        version: 2.15.1(eslint@8.57.0)
+        version: 2.15.2(eslint@8.57.0)
       eslint-prettier-config:
         specifier: ^1.0.1
         version: 1.0.1
@@ -154,7 +154,7 @@ importers:
         version: 2.8.1(typescript@5.4.5)
       '@testing-library/cypress':
         specifier: ^10.0.0
-        version: 10.0.1(cypress@13.7.3)
+        version: 10.0.1(cypress@13.8.0)
       '@types/react':
         specifier: ^18.0.27
         version: 18.2.73
@@ -2000,7 +2000,7 @@ packages:
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
       eslint-plugin-ava: 13.2.0(eslint@8.57.0)
-      eslint-plugin-cypress: 2.15.1(eslint@8.57.0)
+      eslint-plugin-cypress: 2.15.2(eslint@8.57.0)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.57.0)
       eslint-plugin-fp: 2.3.0(eslint@8.57.0)
       eslint-plugin-html: 7.1.0
@@ -2638,7 +2638,7 @@ packages:
       cypress: 13.6.6
     dev: false
 
-  /@testing-library/cypress@10.0.1(cypress@13.7.3):
+  /@testing-library/cypress@10.0.1(cypress@13.8.0):
     resolution: {integrity: sha512-e8uswjTZIBhaIXjzEcrQQ8nHRWHgZH7XBxKuIWxZ/T7FxfWhCR48nFhUX5nfPizjVOKSThEfOSv67jquc1ASkw==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -2646,7 +2646,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 9.3.4
-      cypress: 13.7.3
+      cypress: 13.8.0
     dev: true
 
   /@testing-library/dom@7.31.2:
@@ -4404,8 +4404,8 @@ packages:
       untildify: 4.0.0
       yauzl: 2.10.0
 
-  /cypress@13.7.3:
-    resolution: {integrity: sha512-uoecY6FTCAuIEqLUYkTrxamDBjMHTYak/1O7jtgwboHiTnS1NaMOoR08KcTrbRZFCBvYOiS4tEkQRmsV+xcrag==}
+  /cypress@13.8.0:
+    resolution: {integrity: sha512-Qau//mtrwEGOU9cn2YjavECKyDUwBh8J2tit+y9s1wsv6C3BX+rlv6I9afmQnL8PmEEzJ6be7nppMHacFzZkTw==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
@@ -5292,8 +5292,8 @@ packages:
       resolve-from: 5.0.0
     dev: true
 
-  /eslint-plugin-cypress@2.15.1(eslint@8.57.0):
-    resolution: {integrity: sha512-eLHLWP5Q+I4j2AWepYq0PgFEei9/s5LvjuSqWrxurkg1YZ8ltxdvMNmdSf0drnsNo57CTgYY/NIHHLRSWejR7w==}
+  /eslint-plugin-cypress@2.15.2(eslint@8.57.0):
+    resolution: {integrity: sha512-CtcFEQTDKyftpI22FVGpx8bkpKyYXBlNge6zSo0pl5/qJvBAnzaD76Vu2AsP16d6mTj478Ldn2mhgrWV+Xr0vQ==}
     peerDependencies:
       eslint: '>= 3.2.1'
     dependencies:
