@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.6.0
-        version: 2.6.0
+        specifier: ^2.6.1
+        version: 2.6.1
       '@testing-library/cypress':
         specifier: ^10.0.0
         version: 10.0.1(cypress@13.8.1)
@@ -119,8 +119,8 @@ importers:
   demos/edge-demo-site:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.6.0
-        version: 2.6.0
+        specifier: ^2.6.1
+        version: 2.6.1
       '@netlify/remix-edge-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-edge-adapter
@@ -272,8 +272,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@netlify/edge-functions':
-        specifier: ^2.6.0
-        version: 2.6.0
+        specifier: ^2.6.1
+        version: 2.6.1
       '@remix-run/dev':
         specifier: ^2.8.1
         version: 2.8.1(@remix-run/serve@2.8.1)(@types/node@20.12.7)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.1.7)
@@ -1989,8 +1989,8 @@ packages:
       outvariant: 1.4.2
       strict-event-emitter: 0.5.1
 
-  /@netlify/edge-functions@2.6.0:
-    resolution: {integrity: sha512-BcTl+11j0dUNEvrGoC0Dcuade5zPdd849ozgo+lloq0MZuGzBybmBHNPaWKB1WNfZeyeZB4DIarFAZHRxn8PSw==}
+  /@netlify/edge-functions@2.6.1:
+    resolution: {integrity: sha512-ENuf1ce4MXu0XusfWYfpKVeUwNp4yfkZTevzNQ8Sx3K8RGE2qgt/44HUMHRj2u15mcM6SJKvvDB1az8oilCG2g==}
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.4.5):
     resolution: {integrity: sha512-4xAE0lM3BaVOZu1Oil5Yy1FsiYjZwNS/uwE+4fY61Buuyv3An16mC9LbNCxQ5EFzo3g7U2SRyZdGBHM6ACRLpw==}
