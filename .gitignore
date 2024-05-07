@@ -135,3 +135,7 @@ build/
 .netlify
 
 .ds_store
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
