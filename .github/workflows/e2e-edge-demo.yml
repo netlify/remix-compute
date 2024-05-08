@@ -50,7 +50,7 @@ jobs:
 
       - name: Run Playwright tests
         if: ${{ steps.deploy.outputs.origin-url }}
-        run: pnpm exec playwright test
+        run: pnpm run test:e2e
         env:
           BASE_URL: ${{ steps.deploy.outputs.origin-url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
