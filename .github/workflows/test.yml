@@ -32,5 +32,5 @@ jobs:
       - name: Install
         run: pnpm install
       - name: Linting
-        run: pnpm run format:ci
+        run: pnpm run format:check
         if: matrix.os == 'ubuntu-latest'

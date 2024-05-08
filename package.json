@@ -4,17 +4,18 @@
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "format": "run-s format:fix:*",
-    "format:ci": "run-s format:check:*",
-    "format:check:lint": "eslint --cache .",
-    "format:fix:lint": "eslint --fix --cache .",
-    "format:check:prettier": "prettier --check --cache .",
-    "format:fix:prettier": "prettier --write --cache .",
-    "e2e": "pnpm exec playwright test",
     "build:packages": "pnpm run --filter '@netlify/*' build",
-    "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch"
+    "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch",
+    "coverage": "vitest run --coverage",
+    "e2e": "pnpm exec playwright test",
+    "format": "run-s format:fix:*",
+    "format:check:lint": "eslint --cache .",
+    "format:check:prettier": "prettier --check --cache .",
+    "format:check": "run-s format:check:*",
+    "format:fix:lint": "eslint --fix --cache .",
+    "format:fix:prettier": "prettier --write --cache .",
+    "test": "pnpm run format:check && pnpm run test:unit && pnpm run e2e",
+    "test:unit": "vitest"
   },
   "repository": {
     "type": "git",
