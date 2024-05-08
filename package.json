@@ -14,8 +14,9 @@
     "format:check": "run-s format:check:*",
     "format:fix:lint": "eslint --fix --cache .",
     "format:fix:prettier": "prettier --write --cache .",
-    "test": "pnpm run format:check && pnpm run test:unit && pnpm run e2e",
-    "test:unit": "vitest"
+    "test": "pnpm run typecheck && pnpm run format:check && pnpm run test:unit && pnpm run e2e",
+    "test:unit": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

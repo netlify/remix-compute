@@ -12,14 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Unit tests
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-      fail-fast: false
+  test:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +25,13 @@ jobs:
       - run: corepack enable
       - name: Install
         run: pnpm install
+      - name: Build
+        run: pnpm run build:packages
       - name: Linting
         run: pnpm run format:check
-        if: matrix.os == 'ubuntu-latest'
+      - name: Typecheck
+        run: pnpm run typecheck
+        if: success() || failure()
+      - name: Unit Tests
+        run: pnpm run test:unit
+        if: success() || failure()
