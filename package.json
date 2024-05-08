@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build:packages": "pnpm run --filter '@netlify/*' build",
     "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch",
