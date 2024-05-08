@@ -3,16 +3,11 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches:
-      - main
+    branches: [main]
 jobs:
-  cypress:
-    name: Cypress
+  e2e:
+    name: End-to-end integration tests
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,19 +45,19 @@ jobs:
       - run: corepack enable
       - run: pnpm install
 
-      - name: Cypress run
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run Playwright tests
         if: ${{ steps.deploy.outputs.origin-url }}
-        id: cypress
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          record: true
-          parallel: true
-          config-file: cypress/config/edge-cypress.config.ts
-          group: 'Remix Serverless Demo'
+        run: pnpm run test:e2e
         env:
-          DEBUG: '@cypress/github-action'
-          CYPRESS_baseUrl: ${{ steps.deploy.outputs.origin-url }}
-          CYPRESS_NETLIFY_CONTEXT: ${{ steps.deploy.outputs.context }}
+          BASE_URL: ${{ steps.deploy.outputs.origin-url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CYPRESS_RECORD_KEY: ${{ secrets.REMIX_EDGE_CYPRESS_RECORD_KEY }}
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

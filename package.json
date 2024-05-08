@@ -4,17 +4,19 @@
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "build:packages": "pnpm run --filter '@netlify/*' build",
+    "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch",
     "coverage": "vitest run --coverage",
     "format": "run-s format:fix:*",
-    "format:ci": "run-s format:check:*",
     "format:check:lint": "eslint --cache .",
-    "format:fix:lint": "eslint --fix --cache .",
     "format:check:prettier": "prettier --check --cache .",
+    "format:check": "run-s format:check:*",
+    "format:fix:lint": "eslint --fix --cache .",
     "format:fix:prettier": "prettier --write --cache .",
-    "e2e": "cypress open",
-    "build:packages": "pnpm run --filter '@netlify/*' build",
-    "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch"
+    "test": "pnpm run typecheck && pnpm run format:check && pnpm run test:unit && pnpm run test:e2e",
+    "test:e2e": "pnpm exec playwright test",
+    "test:unit": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -31,15 +33,16 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
     "@netlify/eslint-config-node": "^7.0.1",
+    "@playwright/test": "^1.44.0",
     "@remix-run/eslint-config": "^2.8.1",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "commitlint": "^19.0.0",
-    "cypress": "^13.6.4",
     "eslint": "^8.33.0",
-    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-playwright": "^1.6.0",
     "eslint-prettier-config": "^1.0.1",
+    "husky": "^9.0.11",
     "lint-staged": "^13.1.0",
     "npm-run-all2": "^5.0.0",
     "prettier": "^3.0.0",
@@ -48,9 +51,6 @@
   },
   "dependencies": {
     "@netlify/edge-functions": "^2.6.1",
-    "@testing-library/cypress": "^10.0.0",
-    "husky": "^8.0.3",
-    "if-env": "^1.0.4",
     "isbot": "^4.1.0"
   },
   "engines": {

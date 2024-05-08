@@ -4,7 +4,7 @@ command = "pnpm --filter demo-site... build"
 publish = "/demos/demo-site/public"
 
 [dev]
-command = "pnpm --filter edge-demo-site dev"
+command = "pnpm --filter demo-site dev"
 
 [[redirects]]
 from = "/*"
