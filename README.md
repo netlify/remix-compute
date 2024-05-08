@@ -37,9 +37,37 @@ Run the build watch command to have packages built when they are changed.
 pnpm run build:packages:watch
 ```
 
-When you're ready to test your changes, you can run the demo site locally.
+To run unit tests:
 
 ```bash
-ntl build --offline
-ntl serve
+pnpm run test:unit
 ```
+
+To run all tests (including linting and typechecking):
+
+```bash
+pnpm run test
+```
+
+### End-to-end integration tests
+
+These tests are meant to be very terse, basic, happy-path "user journey" system tests. These should generally map to
+user-facing features and should rarely be added to.
+
+Prerequisites:
+
+- [Netlify CLI](https://docs.netlify.com/cli/get-started/) installed globally
+- Install Playwright browsers (it should prompt you automatically the first time):
+  - `pnpm exec playwright install --with-deps`
+
+To run end-to-end integration tests:
+
+```bash
+pnpm run test:e2e
+```
+
+To add a new fixture site called `my-fixture`:
+
+1. create a new directory `tests/e2e/fixtures/my-fixture`
+2. register it in `tests/e2e/support/fixtures` as `myFixture`
+3. [inject `myFixture` directly into any test](https://playwright.dev/docs/test-fixtures#using-a-fixture)

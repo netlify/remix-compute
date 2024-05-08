@@ -1,10 +1,9 @@
 [build]
-command = "pnpm --filter demo-site... build"
-# command = "npm run build"
-publish = "/demos/demo-site/public"
+command = "npm run build"
+publish = "public"
 
 [dev]
-command = "pnpm --filter demo-site dev"
+command = "npm run dev"
 
 [[redirects]]
 from = "/*"
