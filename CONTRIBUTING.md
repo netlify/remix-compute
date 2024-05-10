@@ -3,7 +3,7 @@
 🎉 Thanks for considering contributing to this project! 🎉
 
 When contributing to this repository, please first discuss the change you wish to make via an
-[issue](https://github.com/netlify/next-runtime/issues/new/choose). Please use the issue templates. They are there to
+[issue](https://github.com/netlify/remix-compute/issues/new/choose). Please use the issue templates. They are there to
 help you and to help the maintainers gather information.
 
 Before working on an issue, ask to be assigned to it. This makes it clear to other potential contributors that someone
@@ -22,17 +22,7 @@ promote a positive and inclusive environment.
 First fork and clone the repository. If you're not sure how to do this, please watch
 [these videos](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
-Run:
-
-```bash
-npm install
-```
-
-Make sure everything is correctly setup with:
-
-```bash
-npm test
-```
+See the README for more detailed development instructions.
 
 ## How to write commit messages
 
@@ -46,5 +36,4 @@ Most common commit message prefixes are:
 
 ## Releasing
 
-1. Merge the release PR
-2. Run `npm publish`
+Merge the release PR
