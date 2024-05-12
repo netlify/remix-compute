@@ -3,6 +3,7 @@ import { writeFile, mkdir, readdir } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../package.json'
+import { isBuiltin } from 'node:module'
 
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
@@ -46,7 +47,8 @@ export function netlifyPlugin(): Plugin {
           config.ssr = {
             ...config.ssr,
             target: 'webworker',
-            noExternal: true,
+            // Only externalize Node builtins
+            noExternal: /^(?!node:).*$/,
           }
           // We need to add an extra entrypoint, as we need to compile
           // the server entrypoint too. This is because it uses virtual
@@ -67,29 +69,42 @@ export function netlifyPlugin(): Plugin {
     async configResolved(config) {
       resolvedConfig = config
     },
-    async resolveId(source, importer, options) {
-      // Conditionally resolve the server entry based on the command.
-      // The Vite dev server uses Node, so we use a different entrypoint
-      if (source === 'virtual:netlify-server-entry') {
-        if (currentCommand === 'build' && options.ssr) {
-          // This is building for edge functions, so use the edge adapter
-          return this.resolve('@netlify/remix-edge-adapter/entry.server', importer, {
-            ...options,
-            skipSelf: true,
-          })
-        } else {
-          // This is building for the dev server, so use the Node adapter
-          return this.resolve('@remix-run/dev/dist/config/defaults/entry.server.node', importer, {
-            ...options,
-            skipSelf: true,
-          })
+
+    resolveId: {
+      order: 'pre',
+      async handler(source, importer, options) {
+        // Conditionally resolve the server entry based on the command.
+        // The Vite dev server uses Node, so we use a different entrypoint
+        if (source === 'virtual:netlify-server-entry') {
+          if (currentCommand === 'build' && options.ssr) {
+            // This is building for edge functions, so use the edge adapter
+            return this.resolve('@netlify/remix-edge-adapter/entry.server', importer, {
+              ...options,
+              skipSelf: true,
+            })
+          } else {
+            // This is building for the dev server, so use the Node adapter
+            return this.resolve('@remix-run/dev/dist/config/defaults/entry.server.node', importer, {
+              ...options,
+              skipSelf: true,
+            })
+          }
         }
-      }
-      // Our virtual entrypoint module
-      if (source === SERVER_ID) {
-        return RESOLVED_SERVER_ID
-      }
-      return null
+        // Our virtual entrypoint module
+        if (source === SERVER_ID) {
+          return RESOLVED_SERVER_ID
+        }
+
+        if (isSsr && isBuiltin(source)) {
+          return {
+            // Deno needs Node builtins to be prefixed
+            id: source.startsWith('node:') ? source : `node:${source}`,
+            external: true,
+            moduleSideEffects: false,
+          }
+        }
+        return null
+      },
     },
     load(id) {
       if (id === RESOLVED_SERVER_ID) {
