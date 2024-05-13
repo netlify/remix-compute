@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.3](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.2...remix-edge-adapter-v3.2.3) (2024-05-13)
+
+
+### Bug Fixes
+
+* **edge:** externalize node builtins ([#317](https://github.com/netlify/remix-compute/issues/317)) ([521bfee](https://github.com/netlify/remix-compute/commit/521bfee7115186fc934ffdc7f579ea44fa8803b6))
+
 ## [3.2.2](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.1...remix-edge-adapter-v3.2.2) (2024-04-20)
 
 
