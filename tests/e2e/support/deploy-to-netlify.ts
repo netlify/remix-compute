@@ -35,21 +35,7 @@ const prepareFixture = async (fixtureName: string): Promise<string> => {
   console.log(`📂 Copying fixture '${fixtureName}' to '${isolatedFixtureRoot}'...`)
 
   const src = fileURLToPath(new URL(`../fixtures/${fixtureName}`, import.meta.url))
-  const files = await fg.glob('**/*', {
-    ignore: ['node_modules'],
-    dot: true,
-    cwd: src,
-  })
-
-  const limit = pLimit(Math.max(2, cpus().length))
-  await Promise.all(
-    files.map((file) =>
-      limit(async () => {
-        await mkdir(join(isolatedFixtureRoot, dirname(file)), { recursive: true })
-        await copyFile(join(src, file), join(isolatedFixtureRoot, file))
-      }),
-    ),
-  )
+  await copyFixture(src, isolatedFixtureRoot)
 
   await prepareDeps(isolatedFixtureRoot, resolve('.', 'packages'))
 
@@ -104,4 +90,23 @@ const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
 
   const [deployId] = new URL(url).host.split('--')
   return { url, deployId, logs: output }
+}
+
+const copyFixture = async (src: string, dest: string): Promise<void> => {
+  const files = await fg.glob('**/*', {
+    ignore: ['node_modules'],
+    dot: true,
+    cwd: src,
+  })
+
+  // There could be thousands of files here, so ensure we avoid resource exhaustion.
+  const limit = pLimit(Math.max(2, cpus().length))
+  await Promise.all(
+    files.map((file) =>
+      limit(async () => {
+        await mkdir(join(dest, dirname(file)), { recursive: true })
+        await copyFile(join(src, file), join(dest, file))
+      }),
+    ),
+  )
 }
