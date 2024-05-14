@@ -76,7 +76,7 @@ const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
   console.log(`🚀 Building and deploying site...`)
 
   const outputFile = 'deploy-output.txt'
-  const cmd = `pnpm exec ntl deploy --build --site ${SITE_ID}`
+  const cmd = `ntl deploy --build --site ${SITE_ID}`
 
   await execaCommand(cmd, { cwd: isolatedFixtureRoot, all: true }).pipeAll?.(join(isolatedFixtureRoot, outputFile))
   const output = await readFile(join(isolatedFixtureRoot, outputFile), 'utf-8')
