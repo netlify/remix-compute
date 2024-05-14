@@ -10,3 +10,6 @@ dist
 package-lock.json
 **/build
 pnpm-lock.yaml
+
+# Fixture sites are mostly generated
+/tests/e2e/fixtures
