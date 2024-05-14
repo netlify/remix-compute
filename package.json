@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Remix adapter and server runtime for Netlify",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build:packages": "pnpm run --filter '@netlify/*' build",
     "build:packages:watch": "pnpm run --filter '@netlify/*' build:watch",
@@ -14,7 +15,7 @@
     "format:fix:lint": "eslint --fix --cache .",
     "format:fix:prettier": "prettier --write --cache .",
     "test": "pnpm run typecheck && pnpm run format:check && pnpm run test:unit && pnpm run test:e2e",
-    "test:e2e": "pnpm exec playwright test",
+    "test:e2e": "pnpm run build:packages && pnpm exec playwright test",
     "test:unit": "vitest",
     "typecheck": "tsc --noEmit"
   },
@@ -42,9 +43,13 @@
     "eslint": "^8.33.0",
     "eslint-plugin-playwright": "^1.6.0",
     "eslint-prettier-config": "^1.0.1",
+    "execa": "^8.0.1",
+    "fast-glob": "^3.3.2",
     "husky": "^9.0.11",
     "lint-staged": "^13.1.0",
+    "netlify-cli": "^17.23.2",
     "npm-run-all2": "^5.0.0",
+    "p-limit": "^5.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
     "vitest": "^0.34.0"
