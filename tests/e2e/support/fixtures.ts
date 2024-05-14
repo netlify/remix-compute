@@ -12,21 +12,15 @@ interface WorkerFixtures {
 export const test = base.extend<TestFixtures, WorkerFixtures>({
   serverlessSite: [
     async ({}, use) => {
-      // Set up the fixture
       const fixture = await deployFixture('serverless-site')
-      // Use the fixture value in the test
       await use(fixture)
-      // Cleanup goes here
     },
     { scope: 'worker' },
   ],
   edgeSite: [
     async ({}, use) => {
-      // Set up the fixture
       const fixture = await deployFixture('edge-site')
-      // Use the fixture value in the test
       await use(fixture)
-      // Cleanup goes here
     },
     { scope: 'worker' },
   ],
