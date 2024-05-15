@@ -1,15 +1,14 @@
 {
-  "name": "edge-demo-site",
+  "name": "classic-serverless-site",
   "version": "1.0.0",
-  "description": "Demo site to test the Netlify Remix edge adapter",
   "main": "index.js",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev --manual -c \"ntl dev --framework=#static\"",
+    "dev": "remix dev",
     "start": "netlify serve",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc"
   },
   "repository": {
     "type": "git",
@@ -22,12 +21,11 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/edge-functions": "^2.7.0",
-    "@netlify/remix-edge-adapter": "*",
-    "@netlify/remix-runtime": "*",
+    "@netlify/functions": "^2.6.3",
+    "@netlify/remix-adapter": "*",
     "@remix-run/css-bundle": "^2.8.1",
+    "@remix-run/node": "^2.8.1",
     "@remix-run/react": "^2.8.1",
-    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -38,6 +36,6 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.32.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.2.2"
   }
 }
