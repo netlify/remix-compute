@@ -79,8 +79,8 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^2.6.3
-        version: 2.6.3(@opentelemetry/api@1.8.0)
+        specifier: ^2.7.0
+        version: 2.7.0(@opentelemetry/api@1.8.0)
       '@netlify/remix-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-adapter
@@ -199,8 +199,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.6.3
-        version: 2.6.3(@opentelemetry/api@1.8.0)
+        specifier: ^2.7.0
+        version: 2.7.0(@opentelemetry/api@1.8.0)
       '@remix-run/dev':
         specifier: ^2.8.1
         version: 2.9.2(@remix-run/react@2.9.2)(@remix-run/serve@2.9.2)(@types/node@20.12.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.2.11)
@@ -327,8 +327,8 @@ importers:
         version: 4.4.0
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.6.3
-        version: 2.6.3(@opentelemetry/api@1.8.0)
+        specifier: ^2.7.0
+        version: 2.7.0(@opentelemetry/api@1.8.0)
       '@remix-run/dev':
         specifier: ^2.8.1
         version: 2.9.2(@remix-run/react@2.9.2)(@remix-run/serve@2.9.2)(@types/node@20.12.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.2.11)
@@ -2550,17 +2550,6 @@ packages:
       - supports-color
     dev: true
 
-  /@mswjs/interceptors@0.27.2:
-    resolution: {integrity: sha512-mE6PhwcoW70EX8+h+Y/4dLfHk33GFt/y5PzDJz56ktMyaVGFXMJ5BYLbUjdmGEABfE0x5GgAGyKbrbkYww2s3A==}
-    engines: {node: '>=18'}
-    dependencies:
-      '@open-draft/deferred-promise': 2.2.0
-      '@open-draft/logger': 0.3.0
-      '@open-draft/until': 2.1.0
-      is-node-process: 1.2.0
-      outvariant: 1.4.2
-      strict-event-emitter: 0.5.1
-
   /@netlify/binary-info@1.0.0:
     resolution: {integrity: sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==}
     dev: true
@@ -2817,11 +2806,11 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/functions@2.6.3(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-7Z9gWyAuPI2NnBOvpYPD66KIWOgNznLz9BkyZ0c7qeRE6p23UCMVZ2VsrJpjPDgoJtKplGSBzASl6fQD7iEeWw==}
+  /@netlify/functions@2.7.0(@opentelemetry/api@1.8.0):
+    resolution: {integrity: sha512-4pXC/fuj3eGQ86wbgPiM4zY8+AsNrdz6vcv6FEdUJnZW+LqF8IWjQcY3S0d1hLeLKODYOqq4CkrzGyCpce63Nw==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@netlify/serverless-functions-api': 1.18.0(@opentelemetry/api@1.8.0)
+      '@netlify/serverless-functions-api': 1.18.1(@opentelemetry/api@1.8.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
@@ -2991,21 +2980,6 @@ packages:
       execa: 6.1.0
     dev: true
 
-  /@netlify/serverless-functions-api@1.18.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-VCU5btoGZ8M6iI7HSwpfZXCpBLKWFmRtq5xYt0K7dY96BZWVBmaZY6Tn+w4L2DrGXwAsIeOFNp8CHjVXfuCAkg==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@mswjs/interceptors': 0.27.2
-      '@netlify/node-cookies': 0.1.0
-      '@opentelemetry/core': 1.24.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.50.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.24.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.24.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.24.0
-      urlpattern-polyfill: 8.0.2
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-
   /@netlify/serverless-functions-api@1.18.1(@opentelemetry/api@1.8.0):
     resolution: {integrity: sha512-DrSvivchuwsuQW03zbVPT3nxCQa5tn7m4aoPOsQKibuJXIuSbfxzCBxPLz0+LchU5ds7YyOaCc9872Y32ngYzg==}
     engines: {node: '>=18.0.0'}
@@ -3019,7 +2993,6 @@ packages:
       urlpattern-polyfill: 8.0.2
     transitivePeerDependencies:
       - '@opentelemetry/api'
-    dev: true
 
   /@netlify/zip-it-and-ship-it@9.32.2(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
     resolution: {integrity: sha512-0AHtKKTWlVgbYD46/8ns3/55uVefbPgun8omYEoVYeW50t2j380D+sq3O+2x6cH9a6zjuxH1IDvRoppBZGWAkw==}
@@ -3260,18 +3233,6 @@ packages:
     dependencies:
       '@octokit/openapi-types': 18.1.1
     dev: true
-
-  /@open-draft/deferred-promise@2.2.0:
-    resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
-
-  /@open-draft/logger@0.3.0:
-    resolution: {integrity: sha512-X2g45fzhxH238HKO4xbSr7+wBS8Fvw6ixhTDuvLd5mqh6bJJCFAPwU9mPDxbcrRtfxv4u5IHCEH77BmxvXmmxQ==}
-    dependencies:
-      is-node-process: 1.2.0
-      outvariant: 1.4.2
-
-  /@open-draft/until@2.1.0:
-    resolution: {integrity: sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==}
 
   /@opentelemetry/api-logs@0.50.0:
     resolution: {integrity: sha512-JdZuKrhOYggqOpUljAq4WWNi5nB10PmgoF0y2CvedLGXd0kSawb/UBnWT8gg1ND3bHCNHStAIVT0ELlxJJRqrA==}
@@ -4629,7 +4590,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.24.1(@babel/core@7.24.5)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.5
       '@vanilla-extract/css': 1.15.1
-      esbuild: 0.17.6
+      esbuild: 0.19.12
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -10340,9 +10301,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /is-node-process@1.2.0:
-    resolution: {integrity: sha512-Vg4o6/fqPxIjtxgUH5QLJhwZ7gW5diGCVlXpuUfELC62CuxM1iHcRe51f2W1FDy04Ai4KJkagKjx3XaqyfRKXw==}
-
   /is-npm@6.0.0:
     resolution: {integrity: sha512-JEjxbSmtPSt1c8XTkVrlujcXdKV1/tvuQ7GwKcAlyiVLeYFQ2VHat8xfrDJsIkhCdF/tZ7CiIR3sy141c6+gPQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -12943,9 +12901,6 @@ packages:
     resolution: {integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==}
     dev: true
 
-  /outvariant@1.4.2:
-    resolution: {integrity: sha512-Ou3dJ6bA/UJ5GVHxah4LnqDwZRwAmWxrG3wtrHrbGnP4RnLCtA64A4F+ae7Y8ww660JaddSoArUR5HjipWSHAQ==}
-
   /p-cancelable@3.0.0:
     resolution: {integrity: sha512-mlVgR3PGuzlo0MmTdk4cXqXWlwQDLnONTAg6sm62XkMJEiRxN3GL3SffkYvqwonbkJBcrI7Uvv5Zh9yjvn2iUw==}
     engines: {node: '>=12.20'}
@@ -14926,9 +14881,6 @@ packages:
     optionalDependencies:
       bare-events: 2.2.2
     dev: true
-
-  /strict-event-emitter@0.5.1:
-    resolution: {integrity: sha512-vMgjE/GGEPEFnhFub6pa4FmJBRBVOLpIII2hvCZ8Kzb7K0hlHo7mQv6xYrBvCL2LtAIBwFUK8wvuJgTVSQ5MFQ==}
 
   /string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
