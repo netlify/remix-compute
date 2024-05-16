@@ -1,6 +1,6 @@
 import { execaCommand } from 'execa'
 import fg from 'fast-glob'
-import { copyFile, mkdir, mkdtemp, readFile } from 'node:fs/promises'
+import { writeFile, copyFile, mkdir, mkdtemp, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -47,7 +47,7 @@ const prepareFixture = async (fixtureName: string): Promise<string> => {
 const packages = [
   { name: '@netlify/remix-adapter', dirName: 'remix-adapter' },
   { name: '@netlify/remix-edge-adapter', dirName: 'remix-edge-adapter' },
-  { name: '@netlify-remix-runtime', dirName: 'remix-runtime' },
+  { name: '@netlify/remix-runtime', dirName: 'remix-runtime' },
 ]
 
 /**
@@ -57,8 +57,9 @@ const packages = [
  * needs to be self-contained to be deployable to Netlify (i.e. it can't have symlinks).
  */
 const prepareDeps = async (cwd: string, packagesAbsoluteDir: string): Promise<void> => {
-  await execaCommand('pnpm install', { cwd })
-  const { dependencies, devDependencies } = JSON.parse(await readFile(`${cwd}/package.json`, 'utf-8'))
+  const packageJson = JSON.parse(await readFile(`${cwd}/package.json`, 'utf-8'))
+  packageJson.pnpm ??= { overrides: {} }
+  const { dependencies = {}, devDependencies = {} } = packageJson
   for (const pkg of packages) {
     if (pkg.name in dependencies || pkg.name in devDependencies) {
       const isDevDep = pkg.name in devDependencies
@@ -67,9 +68,12 @@ const prepareDeps = async (cwd: string, packagesAbsoluteDir: string): Promise<vo
         cwd: join(packagesAbsoluteDir, pkg.dirName),
       })
       const [{ filename }] = JSON.parse(stdout)
-      await execaCommand(`pnpm add ${isDevDep ? '--save-dev' : ''} file:${join(cwd, filename)}`, { cwd })
+      // Ensure that even a transitive dependency on this package is overridden.
+      packageJson.pnpm.overrides[pkg.name] = `file:${filename}`
     }
   }
+  await writeFile(`${cwd}/package.json`, JSON.stringify(packageJson, null, 2))
+  await execaCommand('pnpm install', { cwd })
 }
 
 const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
