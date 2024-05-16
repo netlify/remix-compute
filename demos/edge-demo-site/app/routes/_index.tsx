@@ -1,4 +1,4 @@
-import type { HeadersFunction, V2_MetaFunction } from '@remix-run/node'
+import type { HeadersFunction, MetaFunction } from '@netlify/remix-runtime'
 
 export const headers: HeadersFunction = () => {
   return {
@@ -8,7 +8,7 @@ export const headers: HeadersFunction = () => {
   }
 }
 
-export const meta: V2_MetaFunction = () => [{ title: 'New Remix App' }]
+export const meta: MetaFunction = () => [{ title: 'New Remix App' }]
 
 export default function Index() {
   return (

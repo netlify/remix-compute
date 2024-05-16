@@ -1,2 +1,2 @@
-/// <reference types="@remix-run/node" />
+/// <reference types="@netlify/remix-runtime" />
 /// <reference types="vite/client" />

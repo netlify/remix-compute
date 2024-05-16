@@ -13,7 +13,6 @@
   "dependencies": {
     "@netlify/remix-edge-adapter": "*",
     "@netlify/remix-runtime": "*",
-    "@remix-run/deno": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "@remix-run/serve": "^2.8.1",
     "isbot": "^4.1.0",
