@@ -1,18 +1,12 @@
-import type { HeadersFunction, MetaFunction } from '@netlify/remix-runtime'
+import type { MetaFunction } from '@remix-run/node'
 
-export const headers: HeadersFunction = () => {
-  return {
-    // This is an example of how to set caching headers for a route
-    // For more info on headers in Remix, see: https://remix.run/route/headers
-    'Cache-Control': 'public, max-age=60, s-maxage=60',
-  }
+export const meta: MetaFunction = () => {
+  return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }]
 }
-
-export const meta: MetaFunction = () => [{ title: 'New Remix App' }]
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
+    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
       <h1>Welcome to Remix</h1>
       <ul>
         <li>

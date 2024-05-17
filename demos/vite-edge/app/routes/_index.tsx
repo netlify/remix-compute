@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/deno";
+import type { MetaFunction } from "@netlify/remix-runtime";
 
 export const meta: MetaFunction = () => {
   return [

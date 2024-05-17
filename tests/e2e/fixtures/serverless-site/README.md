@@ -1,69 +1,36 @@
-# Welcome to Remix!
+# Welcome to Remix + Vite!
 
-- [Remix Docs](https://remix.run/docs)
-- [Netlify Functions](https://www.netlify.com/products/functions/)
-
-## Netlify Setup
-
-1. Install the [Netlify CLI](https://www.netlify.com/products/dev/):
-
-```sh
-npm i -g netlify-cli
-```
-
-If you have previously installed the Netlify CLI, you should update it to the latest version:
-
-```sh
-npm i -g netlify-cli@latest
-```
-
-2. Sign up and log in to Netlify:
-
-```sh
-netlify login
-```
-
-3. Create a new site:
-
-```sh
-netlify init
-```
+📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
 
 ## Development
 
-The Remix dev server starts your app in development mode, rebuilding assets on file changes. To start the Remix dev
-server:
+Run the Vite dev server:
 
-```sh
+```shellscript
 npm run dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000), and you should be ready to go!
-
-The Netlify CLI builds a production version of your Remix App Server and splits it into Netlify Functions that run
-locally. This includes any custom Netlify functions you've developed. The Netlify CLI runs all of this in its
-development mode.
-
-```sh
-netlify dev
-```
-
-Open up [http://localhost:3000](http://localhost:3000), and you should be ready to go!
-
-Note: When running the Netlify CLI, file changes will rebuild assets, but you will not see the changes to the page you
-are on unless you do a browser refresh of the page. Due to how the Netlify CLI builds the Remix App Server, it does not
-support hot module reloading.
-
 ## Deployment
 
-There are two ways to deploy your app to Netlify, you can either link your app to your git repo and have it auto deploy
-changes to Netlify, or you can deploy your app manually. If you've followed the setup instructions already, all you need
-to do is run this:
+First, build your app for production:
 
 ```sh
-# preview deployment
-netlify deploy --build
-
-# production deployment
-netlify deploy --build --prod
+npm run build
 ```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+- `build/server`
+- `build/client`

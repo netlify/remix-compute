@@ -179,9 +179,6 @@ importers:
       '@netlify/remix-runtime':
         specifier: ^2.2.0
         version: link:../../packages/remix-runtime
-      '@remix-run/deno':
-        specifier: ^2.8.1
-        version: 2.9.2(typescript@5.4.5)
       '@remix-run/react':
         specifier: ^2.8.1
         version: 2.9.2(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
@@ -249,9 +246,6 @@ importers:
       '@netlify/remix-adapter':
         specifier: ^2.3.1
         version: link:../../packages/remix-adapter
-      '@netlify/remix-runtime':
-        specifier: ^2.2.0
-        version: link:../../packages/remix-runtime
       '@remix-run/node':
         specifier: ^2.8.1
         version: 2.9.2(typescript@5.4.5)
@@ -271,9 +265,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@netlify/edge-functions':
-        specifier: ^2.8.0
-        version: 2.8.0
       '@remix-run/dev':
         specifier: ^2.8.1
         version: 2.9.2(@remix-run/react@2.9.2)(@remix-run/serve@2.9.2)(@types/node@20.12.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.2.11)
@@ -2736,6 +2727,7 @@ packages:
 
   /@netlify/edge-functions@2.8.0:
     resolution: {integrity: sha512-96QaSfVwr4A0OPWlqHFb6zM0ywFlzbtm5dPdBwrzSOtI9pdzhYNrSF9kUefpo7pX7hygpzVIDww3nt0mer+P3Q==}
+    dev: false
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.4.5):
     resolution: {integrity: sha512-4xAE0lM3BaVOZu1Oil5Yy1FsiYjZwNS/uwE+4fY61Buuyv3An16mC9LbNCxQ5EFzo3g7U2SRyZdGBHM6ACRLpw==}
@@ -3533,20 +3525,6 @@ packages:
   /@remix-run/css-bundle@2.9.2:
     resolution: {integrity: sha512-q+rfqcM+1Tf+kTpwaGlyBhwAGZyaQtE8sD0cJQBbhP6GZzMrnKUp2KY+w2Xuh04HnKSO3kTp67SvVUCdN+xllg==}
     engines: {node: '>=18.0.0'}
-    dev: false
-
-  /@remix-run/deno@2.9.2(typescript@5.4.5):
-    resolution: {integrity: sha512-EvB4qHOhmuwuwj+eHDyUosHVa9Ll9NK4GFW/6YfZREHOlaxfbYCikDXOi8MgoGiByIBpPJXPHWq/+89t4ByPmQ==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      typescript: ^5.1.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@remix-run/server-runtime': 2.9.2(typescript@5.4.5)
-      mime: 3.0.0
-      typescript: 5.4.5
     dev: false
 
   /@remix-run/dev@2.9.2(@remix-run/react@2.9.2)(@remix-run/serve@2.9.2)(@types/node@20.12.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.2.11):
@@ -11890,6 +11868,7 @@ packages:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
     hasBin: true
+    dev: true
 
   /mimic-fn@1.2.0:
     resolution: {integrity: sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==}
