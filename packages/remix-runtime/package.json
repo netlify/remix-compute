@@ -1,6 +1,6 @@
 {
   "name": "@netlify/remix-runtime",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Remix Runtime for Netlify Edge Functions",
   "type": "commonjs",
   "main": "./dist/index.js",

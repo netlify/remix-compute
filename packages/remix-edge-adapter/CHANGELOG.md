@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.2.4](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.3...remix-edge-adapter-v3.2.4) (2024-05-17)
+
+
+### Bug Fixes
+
+* require node 18 like remix itself ([#212](https://github.com/netlify/remix-compute/issues/212)) ([cf05c1e](https://github.com/netlify/remix-compute/commit/cf05c1e22709531410f2bb574994319785c08c2d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.2.0 to 2.2.1
+
 ## [3.2.3](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.2...remix-edge-adapter-v3.2.3) (2024-05-13)
 
 
