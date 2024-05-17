@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.2.0...remix-runtime-v2.2.1) (2024-05-17)
+
+
+### Bug Fixes
+
+* require node 18 like remix itself ([#212](https://github.com/netlify/remix-compute/issues/212)) ([cf05c1e](https://github.com/netlify/remix-compute/commit/cf05c1e22709531410f2bb574994319785c08c2d))
+
 ## [2.2.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.1.0...remix-runtime-v2.2.0) (2024-02-21)
 
 

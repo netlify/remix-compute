@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.2](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.3.1...remix-adapter-v2.3.2) (2024-05-17)
+
+
+### Bug Fixes
+
+* require node 18 like remix itself ([#212](https://github.com/netlify/remix-compute/issues/212)) ([cf05c1e](https://github.com/netlify/remix-compute/commit/cf05c1e22709531410f2bb574994319785c08c2d))
+
 ## [2.3.1](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.3.0...remix-adapter-v2.3.1) (2024-04-03)
 
 

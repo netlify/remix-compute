@@ -1,6 +1,6 @@
 {
   "name": "@netlify/remix-adapter",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Remix Adapter for Netlify Functions",
   "type": "commonjs",
   "main": "./dist/index.js",
