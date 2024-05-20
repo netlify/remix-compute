@@ -52,7 +52,7 @@
     "p-limit": "^5.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
-    "vitest": "^0.34.0"
+    "vitest": "^1.0.0"
   },
   "dependencies": {
     "@netlify/edge-functions": "^2.8.0",
