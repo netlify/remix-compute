@@ -20,6 +20,10 @@ export {
   unstable_composeUploadHandlers,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,
+  unstable_defineLoader,
+  unstable_defineAction,
+  unstable_setDevServerHooks,
+  UNSAFE_SingleFetchRedirectSymbol,
 } from '@remix-run/server-runtime'
 
 // Remix server runtime packages should re-export these types
@@ -54,8 +58,11 @@ export type {
   ServerBuild,
   ServerEntryModule,
   ServerRuntimeMetaArgs as MetaArgs,
+  ServerRuntimeMetaArgs,
   ServerRuntimeMetaDescriptor as MetaDescriptor,
+  ServerRuntimeMetaDescriptor,
   ServerRuntimeMetaFunction as MetaFunction,
+  ServerRuntimeMetaFunction,
   Session,
   SessionData,
   SessionIdStorageStrategy,
@@ -66,4 +73,9 @@ export type {
   UnsignFunction,
   UploadHandlerPart,
   UploadHandler,
+  unstable_Loader,
+  unstable_Action,
+  unstable_Serialize,
+  UNSAFE_SingleFetchResults,
+  UNSAFE_SingleFetchResult,
 } from '@remix-run/server-runtime'
