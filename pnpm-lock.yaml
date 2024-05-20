@@ -12,8 +12,8 @@ importers:
         specifier: ^2.8.0
         version: 2.8.0
       isbot:
-        specifier: ^4.1.0
-        version: 4.4.0
+        specifier: ^5.0.0
+        version: 5.1.6
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.3.0
@@ -186,8 +186,8 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.4.5)
       isbot:
-        specifier: ^4.1.0
-        version: 4.4.0
+        specifier: ^5.0.0
+        version: 5.1.6
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -256,8 +256,8 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.4.5)
       isbot:
-        specifier: ^4.1.0
-        version: 4.4.0
+        specifier: ^5.0.0
+        version: 5.1.6
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -314,8 +314,8 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.4.5)
       isbot:
-        specifier: ^4.1.0
-        version: 4.4.0
+        specifier: ^5.0.0
+        version: 5.1.6
     devDependencies:
       '@netlify/functions':
         specifier: ^2.7.0
@@ -354,8 +354,8 @@ importers:
         specifier: 2.2.1
         version: link:../remix-runtime
       isbot:
-        specifier: ^4.1.0
-        version: 4.4.0
+        specifier: ^5.0.0
+        version: 5.1.6
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.9.2
@@ -4395,7 +4395,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.24.1(@babel/core@7.24.5)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.5
       '@vanilla-extract/css': 1.15.1
-      esbuild: 0.17.6
+      esbuild: 0.19.12
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -8547,6 +8547,7 @@ packages:
 
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
 
   /filename-reserved-regex@3.0.0:
@@ -10214,8 +10215,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@4.4.0:
-    resolution: {integrity: sha512-8ZvOWUA68kyJO4hHJdWjyreq7TYNWTS9y15IzeqVdKxR9pPr3P/3r9AHcoIv9M0Rllkao5qWz2v1lmcyKIVCzQ==}
+  /isbot@5.1.6:
+    resolution: {integrity: sha512-Phksj1A0dBP/M/5xeOx0zWemKlZRQvrbNzI19/HWso0uodiOcR8YYCXN60IdzwbKsGj5LnxPkMy6FuBtgckMNw==}
     engines: {node: '>=18'}
     dev: false
 
