@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@netlify/edge-functions": "^2.8.0",
-    "isbot": "^4.1.0"
+    "isbot": "^5.0.0"
   },
   "engines": {
     "node": ">=18"
