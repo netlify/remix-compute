@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.2.1...remix-runtime-v2.3.0) (2024-05-23)
+
+
+### Features
+
+* **deps:** bump Remix dependencies ([#339](https://github.com/netlify/remix-compute/issues/339)) ([2a82244](https://github.com/netlify/remix-compute/commit/2a82244023fcda7a8579d5c295211a0b1b0c032d))
+
 ## [2.2.1](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.2.0...remix-runtime-v2.2.1) (2024-05-17)
 
 

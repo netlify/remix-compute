@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.3.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.4...remix-edge-adapter-v3.3.0) (2024-05-23)
+
+
+### Features
+
+* **deps:** bump Remix dependencies ([#339](https://github.com/netlify/remix-compute/issues/339)) ([2a82244](https://github.com/netlify/remix-compute/commit/2a82244023fcda7a8579d5c295211a0b1b0c032d))
+
+
+### Bug Fixes
+
+* **deps:** update dependency isbot to v5 ([#326](https://github.com/netlify/remix-compute/issues/326)) ([252ba6f](https://github.com/netlify/remix-compute/commit/252ba6fb0b70cdd1d81db49cbcd640d7aee5762c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.2.1 to 2.3.0
+
 ## [3.2.4](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.3...remix-edge-adapter-v3.2.4) (2024-05-17)
 
 
