@@ -177,7 +177,7 @@ importers:
         specifier: ^3.3.0
         version: link:../../packages/remix-edge-adapter
       '@netlify/remix-runtime':
-        specifier: ^2.2.1
+        specifier: ^2.3.0
         version: link:../../packages/remix-runtime
       '@remix-run/react':
         specifier: ^2.9.2
