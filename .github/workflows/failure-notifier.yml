@@ -1,0 +1,67 @@
+# We've configured Renovate to open bump PRs for Remix dependencies within our
+# test fixtures. This workflow sends notifications when one of these PRs fails.
+
+name: Notify on Remix bump failures
+
+on:
+  check_suite:
+    types:
+      - completed
+jobs:
+  notify-on-failure:
+    if: >-
+      (github.event.check_suite.conclusion == 'failure' || github.event.check_suite.conclusion == 'timed_out')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Check for required label
+        id: check_label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // See `renovate.json5` at project root.
+            const requiredLabel = "bump-framework-in-fixtures";
+            const pullRequest = github.event.check_suite.pull_requests[0];
+            if (!pullRequest) {
+              core.setOutput("label_exists", "false");
+              return;
+            }
+
+            const { data: labels } = await github.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pullRequest.number,
+            });
+
+            const labelExists = labels.some(label => label.name === requiredLabel);
+            core.setOutput("label_exists", labelExists ? "true" : "false");
+
+      - name: Create issue on failure
+        if: ${{ steps.check_label.outputs.label_exists == 'true' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const ISSUE_LABEL = "framework-bump-failure";
+            const issues = await github.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: ISSUE_LABEL
+            });
+            if (issues.length > 0) {
+              console.log(`Open issue already exists: ${issues[0].html_url}`);
+              return;
+            }
+            const issue = await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Possible regression with new framework release",
+              labels: ISSUE_LABEL,
+              body: `A framework release bump in test fixtures has failed. Check ${github.event.check_suite.pull_requests[0].url}.`
+            });
+
+            console.log(`Created issue: ${issue.data.html_url}`);
