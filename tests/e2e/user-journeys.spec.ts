@@ -119,4 +119,16 @@ test.describe('User journeys', () => {
       expect(response?.headers()['x-nf-edge-functions']).toBe('server')
     })
   })
+
+  test('response has user-defined Cache-Control header when using origin SSR', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/headers`)
+    await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+  })
+
+  test('response has user-defined Cache-Control header when using edge SSR', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/headers`)
+    await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+  })
 })
