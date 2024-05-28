@@ -4,64 +4,100 @@
 name: Notify on Remix bump failures
 
 on:
-  check_suite:
-    types:
-      - completed
+  pull_request:
+    types: [opened, synchronize, labeled, unlabeled]
 jobs:
+  waitForWorkflows:
+    name: Wait for workflows
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Wait for workflows
+        id: wait
+        uses: smartcontractkit/chainlink-github-actions/utils/wait-for-workflows@b49a9d04744b0237908831730f8553f26d73a94b
+        with:
+          max-timeout: '900'
+          polling-interval: '30'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
   notify-on-failure:
-    if: >-
-      (github.event.check_suite.conclusion == 'failure' || github.event.check_suite.conclusion == 'timed_out')
+    name: Notify on failure
+    needs: [waitForWorkflows]
+    # Note that this doesn't imply success of the workflows themselves, just the waiting.
+    if: needs.waitForWorkflows.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2
-
-      - name: Check for required label
+        uses: actions/checkout@v4
+      - name: Check conditions for failure notification
         id: check_label
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
-            // See `renovate.json5` at project root.
-            const requiredLabel = "bump-framework-in-fixtures";
-            const pullRequest = github.event.check_suite.pull_requests[0];
-            if (!pullRequest) {
-              core.setOutput("label_exists", "false");
+            const { owner, repo } = context.repo;
+            const sha = context.payload.pull_request.head.sha;
+            const prNumber = context.payload.pull_request.number;
+
+            // Get PR status, which is now settled
+            const { data: {check_suites: checkSuites} } = await github.rest.checks.listSuitesForRef({
+              owner,
+              repo,
+              ref: sha
+            });
+
+            // Get current PR state and labels
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: prNumber,
+              // Don't filter on `state` here so we can gracefuly handle an "expected" race
+              // condition (PR closed between trigger and query) but still throw on unexpected errors.
+            });
+            if (pullRequest == null) {
+              core.setFailed("Aborting - cannot find PR corresponding to event trigger");
               return;
             }
 
-            const { data: labels } = await github.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pullRequest.number,
-            });
-
-            const labelExists = labels.some(label => label.name === requiredLabel);
-            core.setOutput("label_exists", labelExists ? "true" : "false");
-
+            const prIsOpen = pullRequest.state === "open";
+            // NOTE: Technically, we should query both Check Suites and Commit Statuses.
+            // We're assuming here that this repo exclusively uses the Checks API.
+            const prDidFail = checkSuites.some(({conclusion}) =>
+              conclusion === "failure" || conclusion === "timed_out"
+            );
+            // See `renovate.json5` at project root.
+            const REQUIRED_LABEL = "bump-framework-in-fixtures";
+            const prHasRequiredLabel = pullRequest.labels.some(label => label.name === REQUIRED_LABEL);
+            const shouldSendNotification = prIsOpen && prDidFail && prHasRequiredLabel;
+            core.setOutput("should_send_notif", shouldSendNotification ? "true" : "false");
       - name: Create issue on failure
-        if: ${{ steps.check_label.outputs.label_exists == 'true' }}
-        uses: actions/github-script@v6
+        if: ${{ steps.check_label.outputs.should_send_notif == 'true' }}
+        uses: actions/github-script@v7
         with:
           script: |
             const ISSUE_LABEL = "framework-bump-failure";
-            const issues = await github.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            const { owner, repo } = context.repo;
+            const {data: issues} = await github.rest.issues.listForRepo({
+              owner,
+              repo,
               state: "open",
-              labels: ISSUE_LABEL
+              labels: [ISSUE_LABEL]
             });
             if (issues.length > 0) {
               console.log(`Open issue already exists: ${issues[0].html_url}`);
               return;
             }
-            const issue = await github.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            const prUrl = context.payload.pull_request.html_url;
+            const {data: issue} = await github.rest.issues.create({
+              owner,
+              repo,
               title: "Possible regression with new framework release",
-              labels: ISSUE_LABEL,
-              body: `A framework release bump in test fixtures has failed. Check ${github.event.check_suite.pull_requests[0].url}.`
+              labels: [ISSUE_LABEL],
+              body: `A framework release bump in test fixtures has failed. Check ${prUrl}.`
             });
-
-            console.log(`Created issue: ${issue.data.html_url}`);
+            console.log(`Created issue: ${issue.html_url}`);
