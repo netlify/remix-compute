@@ -201,4 +201,52 @@ test.describe('User journeys', () => {
       'Fourth response should not have matching date and time with previous responses',
     ).not.toEqual(responseGeneratedAtText1)
   })
+
+  test('user can on-demand purge response cached on CDN when using origin SSR', async ({ page, serverlessSite }) => {
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText3,
+      'Third response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('user can on-demand purge response cached on CDN when using edge SSR', async ({ page, edgeSite }) => {
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText3,
+      'Third response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
 })
