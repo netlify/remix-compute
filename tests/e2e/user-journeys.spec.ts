@@ -131,4 +131,74 @@ test.describe('User journeys', () => {
     await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
     expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
   })
+
+  test('user can configure Stale-while-revalidate when using origin SSR', async ({ page, serverlessSite }) => {
+    // attempt to purge cdn cache in case this is a retry
+    await fetch(`${serverlessSite.url}/purge-cdn?tag=stale-while-revalidate-tag`)
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await new Promise((resolve) => setTimeout(resolve, 6000))
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText4,
+      'Fourth response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('user can configure Stale-while-revalidate when using edge SSR', async ({ page, edgeSite }) => {
+    // attempt to purge cdn cache in case this is a retry
+    await fetch(`${edgeSite.url}/purge-cdn?tag=stale-while-revalidate-tag`)
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await new Promise((resolve) => setTimeout(resolve, 6000))
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText4,
+      'Fourth response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
 })
