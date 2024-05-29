@@ -249,4 +249,16 @@ test.describe('User journeys', () => {
       'Third response should not have matching date and time with previous responses',
     ).not.toEqual(responseGeneratedAtText1)
   })
+
+  test('Netlify Edge Middleware can add response headers when using origin SSR', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/middleware-header`)
+    expect(response?.status()).toBe(200)
+    expect(response?.headers()['foo']).toBe('bar')
+  })
+
+  test('Netlify Edge Middleware can add response headers when using edge SSR', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/middleware-header`)
+    expect(response?.status()).toBe(200)
+    expect(response?.headers()['foo']).toBe('bar')
+  })
 })
