@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.5
       netlify-cli:
-        specifier: ^17.23.8
-        version: 17.23.8(@types/node@20.12.12)
+        specifier: ^17.24.0
+        version: 17.24.0(@types/node@20.12.12)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.0
@@ -2503,8 +2503,8 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.42.2(@opentelemetry/api@1.8.0)(@types/node@20.12.12):
-    resolution: {integrity: sha512-7mQ+eIlq7uEocQuMJJCK0pgQfY3ahg2vcm+GmxZel58v2RpNq7PmyI4VUvdlblmb2TYwAAnHcAmTfTPpNCgclQ==}
+  /@netlify/build@29.46.0(@opentelemetry/api@1.8.0)(@types/node@20.12.12):
+    resolution: {integrity: sha512-HI3RgsCge1qLzGUUKnU95t9ylPKQBSdZyFKBeLHH+zHc8yi/0Qe/lVjAnkBF9KrPgbpV4qWG1C7W504cfS8LQg==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -2517,15 +2517,15 @@ packages:
       '@bugsnag/js': 7.23.0
       '@netlify/blobs': 7.3.0
       '@netlify/cache-utils': 5.1.5
-      '@netlify/config': 20.12.6
+      '@netlify/config': 20.13.0
       '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
-      '@netlify/framework-info': 9.8.12
-      '@netlify/functions-utils': 5.2.57(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/framework-info': 9.8.13
+      '@netlify/functions-utils': 5.2.60(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       '@netlify/git-utils': 5.1.1
       '@netlify/opentelemetry-utils': 1.2.1(@opentelemetry/api@1.8.0)
       '@netlify/plugins-list': 6.80.0
       '@netlify/run-utils': 5.1.1
-      '@netlify/zip-it-and-ship-it': 9.33.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.34.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       '@opentelemetry/api': 1.8.0
       '@sindresorhus/slugify': 2.2.1
       ansi-escapes: 6.2.1
@@ -2595,8 +2595,8 @@ packages:
       readdirp: 3.6.0
     dev: true
 
-  /@netlify/config@20.12.6:
-    resolution: {integrity: sha512-COJlWkpFHRPG3bltTeQ2EX2Vm+qO/BYHUYSd5SZaM8kd49b0mb2dCocw+SxKITLalp3T1TimnajEvvye//h18g==}
+  /@netlify/config@20.13.0:
+    resolution: {integrity: sha512-4ZhuZA3FoNTu5VIWps5nlYt+pYGhyA6H3jl9jRoDfcC8rBHRkVvBq/XFQg/847DzgJhj704uz8ygfkho30DNIQ==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2705,8 +2705,8 @@ packages:
       - typescript
     dev: true
 
-  /@netlify/framework-info@9.8.12:
-    resolution: {integrity: sha512-tk7sQFEO9CW5+1jcAqObvgzmJdyBsDMnQvNgXOIlVKSlBbEfMIgyyMad+fQ4ddnaLx+MmQuroJN5G80IkqJ7+Q==}
+  /@netlify/framework-info@9.8.13:
+    resolution: {integrity: sha512-ZZXCggokY/y5Sz93XYbl/Lig1UAUSWPMBiQRpkVfbrrkjmW2ZPkYS/BgrM2/MxwXRvYhc/TQpZX6y5JPe3quQg==}
     engines: {node: ^14.14.0 || >=16.0.0}
     dependencies:
       ajv: 8.13.0
@@ -2717,15 +2717,15 @@ packages:
       p-filter: 3.0.0
       p-locate: 6.0.0
       process: 0.11.10
-      read-package-up: 11.0.0
+      read-pkg-up: 9.1.0
       semver: 7.6.2
     dev: true
 
-  /@netlify/functions-utils@5.2.57(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-87ZwjQ94YLJnVp/7qo0GBvw/8IUxc8nK122A4aYBQaqU2PnZDhGeZsDKyuF/yqy47aNdJtmzK2xxlK8vsEI3+A==}
+  /@netlify/functions-utils@5.2.60(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
+    resolution: {integrity: sha512-gTzrajMk4rkJgDQnKprVB/wanQja6vF8NRfL8KW5eiVDWKaLqNqWpZmYOp80uD2k9Oxvowt6+BjPupwkOORKWA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
-      '@netlify/zip-it-and-ship-it': 9.33.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.34.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       cpy: 9.0.1
       path-exists: 5.0.0
     transitivePeerDependencies:
@@ -2748,7 +2748,7 @@ packages:
     dependencies:
       execa: 6.1.0
       map-obj: 5.0.2
-      micromatch: 4.0.5
+      micromatch: 4.0.7
       moize: 6.1.6
       path-exists: 5.0.0
     dev: true
@@ -2922,15 +2922,74 @@ packages:
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  /@netlify/zip-it-and-ship-it@9.33.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-xHXX5lPM4p3GPRFi90yDCSwJVsS5tYb9n80Yk1YrHhBTDopO93X7ZvE1Xf5wC9WulflUyMrje/13nib7/NIbzA==}
+  /@netlify/serverless-functions-api@1.18.2(@opentelemetry/api@1.8.0):
+    resolution: {integrity: sha512-KHhcNWP1B+8Io2aAobzRRuT1FSWb7Bfsih16dxKgaU9IgP/OxMVvssbmhRAmoR01rVGhQEiNN0vk6juMzOafOw==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@netlify/node-cookies': 0.1.0
+      '@opentelemetry/core': 1.24.1(@opentelemetry/api@1.8.0)
+      '@opentelemetry/otlp-transformer': 0.50.0(@opentelemetry/api@1.8.0)
+      '@opentelemetry/resources': 1.24.1(@opentelemetry/api@1.8.0)
+      '@opentelemetry/sdk-trace-base': 1.24.1(@opentelemetry/api@1.8.0)
+      '@opentelemetry/semantic-conventions': 1.24.1
+      urlpattern-polyfill: 8.0.2
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+    dev: true
+
+  /@netlify/zip-it-and-ship-it@9.33.2(@opentelemetry/api@1.8.0):
+    resolution: {integrity: sha512-5BC51IdR5JldgRwyFEXgTS+GJ/04QhlWY/GhcwXzOblrhugBl1VTK5ErIiEBCWX+56zIP+0QS0Dq5MwgrqaFqA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     dependencies:
       '@babel/parser': 7.24.5
       '@babel/types': 7.24.5
       '@netlify/binary-info': 1.0.0
-      '@netlify/serverless-functions-api': 1.18.1(@opentelemetry/api@1.8.0)
+      '@netlify/serverless-functions-api': 1.18.2(@opentelemetry/api@1.8.0)
+      '@vercel/nft': 0.23.1(supports-color@9.4.0)
+      archiver: 7.0.1
+      common-path-prefix: 3.0.0
+      cp-file: 10.0.0
+      es-module-lexer: 1.5.3
+      esbuild: 0.19.11
+      execa: 6.1.0
+      fast-glob: 3.3.2
+      filter-obj: 5.1.0
+      find-up: 6.3.0
+      glob: 8.1.0
+      is-builtin-module: 3.2.1
+      is-path-inside: 4.0.0
+      junk: 4.0.1
+      locate-path: 7.2.0
+      merge-options: 3.0.4
+      minimatch: 9.0.4
+      normalize-path: 3.0.0
+      p-map: 5.5.0
+      path-exists: 5.0.0
+      precinct: 11.0.5(supports-color@9.4.0)
+      require-package-name: 2.0.1
+      resolve: 2.0.0-next.5
+      semver: 7.6.2
+      tmp-promise: 3.0.3
+      toml: 3.0.0
+      unixify: 1.0.0
+      urlpattern-polyfill: 8.0.2
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+      - encoding
+      - supports-color
+    dev: true
+
+  /@netlify/zip-it-and-ship-it@9.34.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
+    resolution: {integrity: sha512-nv3UVZGbZDaAmkqmBqpEAhKihBB3sHEJqu2GUHujSdRJ6oZy8J5/jCSz0kmWTdzKTrcF+Y74QnNRLU83sQMqxg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      '@babel/parser': 7.24.5
+      '@babel/types': 7.24.5
+      '@netlify/binary-info': 1.0.0
+      '@netlify/serverless-functions-api': 1.18.2(@opentelemetry/api@1.8.0)
       '@vercel/nft': 0.23.1(supports-color@9.4.0)
       archiver: 7.0.1
       common-path-prefix: 3.0.0
@@ -3342,7 +3401,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dependencies:
       is-glob: 4.0.3
-      micromatch: 4.0.5
+      micromatch: 4.0.7
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -3380,7 +3439,7 @@ packages:
     dependencies:
       detect-libc: 1.0.3
       is-glob: 4.0.3
-      micromatch: 4.0.5
+      micromatch: 4.0.7
       node-addon-api: 7.1.0
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.4.1
@@ -4525,7 +4584,7 @@ packages:
       estree-walker: 2.0.2
       glob: 7.2.3
       graceful-fs: 4.2.11
-      micromatch: 4.0.5
+      micromatch: 4.0.7
       node-gyp-build: 4.8.1
       resolve-from: 5.0.0
     transitivePeerDependencies:
@@ -4547,7 +4606,7 @@ packages:
       estree-walker: 2.0.2
       glob: 7.2.3
       graceful-fs: 4.2.11
-      micromatch: 4.0.5
+      micromatch: 4.0.7
       node-gyp-build: 4.8.1
       resolve-from: 5.0.0
     transitivePeerDependencies:
@@ -5384,13 +5443,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
+    dev: true
 
   /braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.1.1
-    dev: true
 
   /browserify-zlib@0.1.4:
     resolution: {integrity: sha512-19OEpq7vWgsH6WkvkBJQDFvJS1uPcbFOQ4v9CU839dO+ZZXUZO6XpE6hNCqvlIIj+4fZvRiJ6DsAQ382GwiyTQ==}
@@ -5656,7 +5715,7 @@ packages:
     engines: {node: '>= 8.10.0'}
     dependencies:
       anymatch: 3.1.3
-      braces: 3.0.2
+      braces: 3.0.3
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
       is-glob: 4.0.3
@@ -6186,7 +6245,7 @@ packages:
       cp-file: 9.1.0
       globby: 13.2.2
       junk: 4.0.1
-      micromatch: 4.0.5
+      micromatch: 4.0.7
       nested-error-stacks: 2.1.1
       p-filter: 3.0.0
       p-map: 5.5.0
@@ -8509,13 +8568,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
+    dev: true
 
   /fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
-    dev: true
 
   /filter-obj@3.0.0:
     resolution: {integrity: sha512-oQZM+QmVni8MsYzcq9lgTHD/qeLqaG8XaOPOW7dzuSafVxSUlH1+1ZDefj2OD9f2XsmG5lFl2Euc9NI4jgwFWg==}
@@ -8966,6 +9025,7 @@ packages:
 
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -8978,6 +9038,7 @@ packages:
   /glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -9313,7 +9374,7 @@ packages:
       http-proxy: 1.18.1(debug@4.3.4)
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
-      micromatch: 4.0.5
+      micromatch: 4.0.7
     transitivePeerDependencies:
       - debug
     dev: true
@@ -11613,8 +11674,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.23.8(@types/node@20.12.12):
-    resolution: {integrity: sha512-13eynAnJkhTK9RZMe7L+DRBnC2lJi2jBPsqIojN2ecblJkersunRNfHbo+aXSj2sgImDyGj+bTtFH791h2AUlg==}
+  /netlify-cli@17.24.0(@types/node@20.12.12):
+    resolution: {integrity: sha512-ToIFss4pz/I+PU+XYvxCi49LNwiPBhLvOqnnJtTMU7Y+JfGODCnUK/yImSvtFIZD7y+wQ0BabsJqQbaF4tkrOQ==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -11622,13 +11683,13 @@ packages:
       '@bugsnag/js': 7.23.0
       '@fastify/static': 7.0.4
       '@netlify/blobs': 7.3.0
-      '@netlify/build': 29.42.2(@opentelemetry/api@1.8.0)(@types/node@20.12.12)
+      '@netlify/build': 29.46.0(@opentelemetry/api@1.8.0)(@types/node@20.12.12)
       '@netlify/build-info': 7.13.2
-      '@netlify/config': 20.12.6
+      '@netlify/config': 20.13.0
       '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
       '@netlify/edge-functions': 2.8.1
       '@netlify/local-functions-proxy': 1.1.1
-      '@netlify/zip-it-and-ship-it': 9.33.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.33.2(@opentelemetry/api@1.8.0)
       '@octokit/rest': 20.1.1
       '@opentelemetry/api': 1.8.0
       ansi-escapes: 7.0.0
@@ -13265,6 +13326,15 @@ packages:
       type-fest: 0.8.1
     dev: true
 
+  /read-pkg-up@9.1.0:
+    resolution: {integrity: sha512-vaMRR1AC1nrd5CQM0PhlRsO5oc2AAigqr7cCrZ/MW/Rsaflz4RlgzkpL4qoU/z1F6wrbd85iFv1OQj/y5RdGvg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      find-up: 6.3.0
+      read-pkg: 7.1.0
+      type-fest: 2.19.0
+    dev: true
+
   /read-pkg@3.0.0:
     resolution: {integrity: sha512-BLq/cCO9two+lBgiTYNqD6GdtK8s4NpaWrl6/rCO9w0TUS8oJl7cmToOZfRYllKTISY6nt1U7jQ53brmKqY6BA==}
     engines: {node: '>=4'}
@@ -13618,6 +13688,7 @@ packages:
 
   /rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -13625,6 +13696,7 @@ packages:
 
   /rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
