@@ -119,4 +119,136 @@ test.describe('User journeys', () => {
       expect(response?.headers()['x-nf-edge-functions']).toBe('server')
     })
   })
+
+  test('response has user-defined Cache-Control header when using origin SSR', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/headers`)
+    await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+  })
+
+  test('response has user-defined Cache-Control header when using edge SSR', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/headers`)
+    await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+  })
+
+  test('user can configure Stale-while-revalidate when using origin SSR', async ({ page, serverlessSite }) => {
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await page.waitForTimeout(5000)
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await page.waitForTimeout(6000)
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await page.waitForTimeout(1000)
+
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText4,
+      'Fourth response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('user can configure Stale-while-revalidate when using edge SSR', async ({ page, edgeSite }) => {
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await page.waitForTimeout(5000)
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await page.waitForTimeout(6000)
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await page.waitForTimeout(1000)
+
+    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText4,
+      'Fourth response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('user can on-demand purge response cached on CDN when using origin SSR', async ({ page, serverlessSite }) => {
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await page.waitForTimeout(5000)
+
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+
+    await page.waitForTimeout(1000)
+
+    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText3,
+      'Third response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('user can on-demand purge response cached on CDN when using edge SSR', async ({ page, edgeSite }) => {
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+
+    await page.waitForTimeout(5000)
+
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
+    expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
+      responseGeneratedAtText1,
+    )
+
+    await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+
+    await page.waitForTimeout(1000)
+
+    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
+    expect(
+      responseGeneratedAtText3,
+      'Third response should not have matching date and time with previous responses',
+    ).not.toEqual(responseGeneratedAtText1)
+  })
+
+  test('Netlify Edge Middleware can add response headers when using origin SSR', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/middleware-header`)
+    expect(response?.status()).toBe(200)
+    expect(response?.headers()['foo']).toBe('bar')
+  })
+
+  test('Netlify Edge Middleware can add response headers when using edge SSR', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/middleware-header`)
+    expect(response?.status()).toBe(200)
+    expect(response?.headers()['foo']).toBe('bar')
+  })
 })
