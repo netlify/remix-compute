@@ -24,6 +24,11 @@ jobs:
           node-version: '18'
 
       - run: corepack enable
+      - name: Install Deno
+        uses: denoland/setup-deno@v1
+        with:
+          # Should match the `DENO_VERSION_RANGE` from https://github.com/netlify/edge-bundler/blob/main/node/bridge.ts#L17
+          deno-version: v1.37.0
       - run: pnpm install
 
       - name: Install Playwright Browsers
