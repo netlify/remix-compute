@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.7
       netlify-cli:
-        specifier: ^17.28.0
-        version: 17.28.0(@types/node@20.14.2)
+        specifier: ^17.29.0
+        version: 17.29.0(@types/node@20.14.2)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.0
@@ -2328,8 +2328,8 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.47.3(@opentelemetry/api@1.8.0)(@types/node@20.14.2):
-    resolution: {integrity: sha512-9SD+zZJgAtH0YDLb2NzoD7UYuE+kRGK5TzvRMnva7Yld4kjQv+DgCa5D6q8qLoFHQ6hzpUCuTkBDzfYWb00pFQ==}
+  /@netlify/build@29.48.2(@opentelemetry/api@1.8.0)(@types/node@20.14.2):
+    resolution: {integrity: sha512-QuBVXKTjQohncI6drs3MRVeoNKRfRW9B6TpuXd3h6YjgX7bXqWSPa5Ma0xsa0r/QVfIbvucIaKDEGxAE+1KhJw==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -2342,15 +2342,15 @@ packages:
       '@bugsnag/js': 7.23.0
       '@netlify/blobs': 7.3.0
       '@netlify/cache-utils': 5.1.5
-      '@netlify/config': 20.15.2
+      '@netlify/config': 20.15.3
       '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
       '@netlify/framework-info': 9.8.13
-      '@netlify/functions-utils': 5.2.66(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/functions-utils': 5.2.69(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       '@netlify/git-utils': 5.1.1
       '@netlify/opentelemetry-utils': 1.2.1(@opentelemetry/api@1.8.0)
       '@netlify/plugins-list': 6.80.0
       '@netlify/run-utils': 5.1.1
-      '@netlify/zip-it-and-ship-it': 9.34.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       '@opentelemetry/api': 1.8.0
       '@sindresorhus/slugify': 2.2.1
       ansi-escapes: 6.2.1
@@ -2420,8 +2420,8 @@ packages:
       readdirp: 3.6.0
     dev: true
 
-  /@netlify/config@20.15.2:
-    resolution: {integrity: sha512-nPakZuXLiQ6b5OshwB7Jmbjirj15E3/yMlBqx6VUrSln8cE/aohtmH157ZZdw9RKqk5Fd71kDFZmhAhmarhvmg==}
+  /@netlify/config@20.15.3:
+    resolution: {integrity: sha512-+aLUs5t8wSKfauEs0W4cs8wTJOTEqNrWsoqzbCJoZoVrGr2+t1X7JmF5al/eJjKPR9m0BMP2yCJaJOVZugM11w==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2439,7 +2439,7 @@ packages:
       is-plain-obj: 4.1.0
       js-yaml: 4.1.0
       map-obj: 5.0.2
-      netlify: 13.1.18
+      netlify: 13.1.19
       netlify-headers-parser: 7.1.4
       netlify-redirect-parser: 14.3.0
       node-fetch: 3.3.2
@@ -2546,11 +2546,11 @@ packages:
       semver: 7.6.2
     dev: true
 
-  /@netlify/functions-utils@5.2.66(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-TUup+Q389iJ7vMh53daPuZb85h3OF5JZZVWGKwkNZ0t2/F9B1jhAy72Sof5XR0mzVDffFkChdWeH6OCrXHx1/Q==}
+  /@netlify/functions-utils@5.2.69(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
+    resolution: {integrity: sha512-001B2R7BWqh7C7uRiK7hpM554hbBBYsucHPbdsD7dNy/MbqX8TSt3NkfgM2KvSigtWUnFGFAF4GUhfdQQ+XlBw==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
-      '@netlify/zip-it-and-ship-it': 9.35.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       cpy: 9.0.1
       path-exists: 5.0.0
     transitivePeerDependencies:
@@ -2707,8 +2707,8 @@ packages:
     resolution: {integrity: sha512-OAs1xG+FfLX0LoRASpqzVntVV/RpYkgpI0VrUnw2u0Q1qiZUzcPffxRK8HF3gc4GjuhG5ahOEMJ9bswBiZPq0g==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  /@netlify/open-api@2.32.0:
-    resolution: {integrity: sha512-pw3tfLvKm/6RwF2fNAXe1tJyf6R9OgU/wuGz//N3jhig0FGVNusbt+bwcj5eTzwOvCb0KkUh0OLT8e1gSSz8qQ==}
+  /@netlify/open-api@2.33.1:
+    resolution: {integrity: sha512-EP5nVae2sRSg8orieT/PvmykIUkPWr/Qzk2vj1QIUAPeMbR8JM3Aq+W/4fK9m0Yq+1CZ3sWeNy/r6nsxLqnXVg==}
     engines: {node: '>=14'}
     dev: true
 
@@ -2763,52 +2763,8 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/zip-it-and-ship-it@9.34.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-Lh7mOVQgiuQFUzSdRMk7AOq0GkT2B0+EUcufH8MAGKUnTmxIujXAjQ5dfA6qrzqjA3cGIUoUrpW/yKYTPmRXdg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    dependencies:
-      '@babel/parser': 7.24.5
-      '@babel/types': 7.24.6
-      '@netlify/binary-info': 1.0.0
-      '@netlify/serverless-functions-api': 1.18.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
-      '@vercel/nft': 0.27.1(supports-color@9.4.0)
-      archiver: 7.0.1
-      common-path-prefix: 3.0.0
-      cp-file: 10.0.0
-      es-module-lexer: 1.5.3
-      esbuild: 0.19.11
-      execa: 6.1.0
-      fast-glob: 3.3.2
-      filter-obj: 5.1.0
-      find-up: 6.3.0
-      glob: 8.1.0
-      is-builtin-module: 3.2.1
-      is-path-inside: 4.0.0
-      junk: 4.0.1
-      locate-path: 7.2.0
-      merge-options: 3.0.4
-      minimatch: 9.0.4
-      normalize-path: 3.0.0
-      p-map: 5.5.0
-      path-exists: 5.0.0
-      precinct: 11.0.5(supports-color@9.4.0)
-      require-package-name: 2.0.1
-      resolve: 2.0.0-next.5
-      semver: 7.6.2
-      tmp-promise: 3.0.3
-      toml: 3.0.0
-      unixify: 1.0.0
-      urlpattern-polyfill: 8.0.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - encoding
-      - supports-color
-    dev: true
-
-  /@netlify/zip-it-and-ship-it@9.35.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-klkvJ3HuMsborzDF3jVsiofRG3EnbSANqy516oMofhod+gk+auop8u1v8kXfmsykYCZdElYG1hDM94OpcakAJQ==}
+  /@netlify/zip-it-and-ship-it@9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
+    resolution: {integrity: sha512-RxPkeLXnNEolJh3dfJ9DMBOpJ3RGhpGFMmFITase5aLSwy+MBae9n1M58dnpWHEQUNeuQ1fLRrkCsp5DD0JelA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -11651,8 +11607,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.28.0(@types/node@20.14.2):
-    resolution: {integrity: sha512-PZSuj9N4egsJfvkMHAT9GDi5mBEbmC2bRiY3DtYMszzNOCl/HF8aXxwHPo3KB1JE0IiEks2BoeXRhWnYPwXa2w==}
+  /netlify-cli@17.29.0(@types/node@20.14.2):
+    resolution: {integrity: sha512-XASN7ZCbq8V3o9Tftty1O+quAzl9ApnpYqnunW0aR+COv0scHAw+OGjuzD3TAbI+TwxlJywsbkN2fG+dUgcQJA==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -11660,13 +11616,13 @@ packages:
       '@bugsnag/js': 7.23.0
       '@fastify/static': 7.0.4
       '@netlify/blobs': 7.3.0
-      '@netlify/build': 29.47.3(@opentelemetry/api@1.8.0)(@types/node@20.14.2)
+      '@netlify/build': 29.48.2(@opentelemetry/api@1.8.0)(@types/node@20.14.2)
       '@netlify/build-info': 7.13.2
-      '@netlify/config': 20.15.2
+      '@netlify/config': 20.15.3
       '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
       '@netlify/edge-functions': 2.8.1
       '@netlify/local-functions-proxy': 1.1.1
-      '@netlify/zip-it-and-ship-it': 9.34.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
       '@octokit/rest': 20.1.1
       '@opentelemetry/api': 1.8.0
       ansi-escapes: 7.0.0
@@ -11733,7 +11689,7 @@ packages:
       maxstache: 1.0.7
       maxstache-stream: 1.0.4
       multiparty: 4.2.3
-      netlify: 13.1.18
+      netlify: 13.1.19
       netlify-headers-parser: 7.1.4
       netlify-redirect-parser: 14.3.0
       netlify-redirector: 0.5.0
@@ -11769,7 +11725,7 @@ packages:
       uuid: 9.0.1
       wait-port: 1.1.0
       write-file-atomic: 5.0.1
-      ws: 8.17.0
+      ws: 8.17.1
       zod: 3.23.8
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -11824,11 +11780,11 @@ packages:
     resolution: {integrity: sha512-4zdzIP+6muqPCuE8avnrgDJ6KW/2+UpHTRcTbMXCIRxiRmyrX+IZ4WSJGZdHPWF3WmQpXpy603XxecZ9iygN7w==}
     dev: true
 
-  /netlify@13.1.18:
-    resolution: {integrity: sha512-1IDnULb21Fx1CVCBEhMwwKA8uZwhSmsqWzrfhvaWuUYQMHIjEhs9dPSci09I8zWOrAIiRI1mQSG1ZfnmqFZE+Q==}
+  /netlify@13.1.19:
+    resolution: {integrity: sha512-po4fWl2QcN+A4lFRMDHdq2D6gWNE1cqavD3rW++dVTakDzibmkHRJZ4L5C7SfI5ovbU0hAEeERjWnYgESA3/3g==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
-      '@netlify/open-api': 2.32.0
+      '@netlify/open-api': 2.33.1
       lodash-es: 4.17.21
       micro-api-client: 3.3.0
       node-fetch: 3.3.2
@@ -15839,8 +15795,8 @@ packages:
         optional: true
     dev: true
 
-  /ws@8.17.0:
-    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
+  /ws@8.17.1:
+    resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
