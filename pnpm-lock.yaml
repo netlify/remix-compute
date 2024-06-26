@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.7
       netlify-cli:
-        specifier: ^17.29.0
-        version: 17.29.0(@types/node@20.14.8)
+        specifier: ^17.30.0
+        version: 17.30.0(@types/node@20.14.8)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.0
@@ -2325,8 +2325,8 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.48.2(@opentelemetry/api@1.8.0)(@types/node@20.14.8):
-    resolution: {integrity: sha512-QuBVXKTjQohncI6drs3MRVeoNKRfRW9B6TpuXd3h6YjgX7bXqWSPa5Ma0xsa0r/QVfIbvucIaKDEGxAE+1KhJw==}
+  /@netlify/build@29.50.0(@opentelemetry/api@1.8.0)(@types/node@20.14.8):
+    resolution: {integrity: sha512-9/xFufOlqB5jydYnqqzO8N93YP2ZFJ6qAdRgo/JclJyxQ3yNBfVLzwWiY7FhKpT0p/laag0RJ/a8TNENwHhPhg==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -2339,15 +2339,15 @@ packages:
       '@bugsnag/js': 7.23.0
       '@netlify/blobs': 7.3.0
       '@netlify/cache-utils': 5.1.5
-      '@netlify/config': 20.15.3
-      '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
+      '@netlify/config': 20.15.4
+      '@netlify/edge-bundler': 12.1.1(supports-color@9.4.0)
       '@netlify/framework-info': 9.8.13
-      '@netlify/functions-utils': 5.2.69(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/functions-utils': 5.2.70(supports-color@9.4.0)
       '@netlify/git-utils': 5.1.1
       '@netlify/opentelemetry-utils': 1.2.1(@opentelemetry/api@1.8.0)
       '@netlify/plugins-list': 6.80.0
       '@netlify/run-utils': 5.1.1
-      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.2(supports-color@9.4.0)
       '@opentelemetry/api': 1.8.0
       '@sindresorhus/slugify': 2.2.1
       ansi-escapes: 6.2.1
@@ -2417,8 +2417,8 @@ packages:
       readdirp: 3.6.0
     dev: true
 
-  /@netlify/config@20.15.3:
-    resolution: {integrity: sha512-+aLUs5t8wSKfauEs0W4cs8wTJOTEqNrWsoqzbCJoZoVrGr2+t1X7JmF5al/eJjKPR9m0BMP2yCJaJOVZugM11w==}
+  /@netlify/config@20.15.4:
+    resolution: {integrity: sha512-qH9kubtF4A53GJwem3BZGVaVRjBpnfeRrkC4Krz45yp4isdhI6mt6L0rDiSSkUl64uu3SQWWd1JapG+hzdhqNQ==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2436,7 +2436,7 @@ packages:
       is-plain-obj: 4.1.0
       js-yaml: 4.1.0
       map-obj: 5.0.2
-      netlify: 13.1.19
+      netlify: 13.1.20
       netlify-headers-parser: 7.1.4
       netlify-redirect-parser: 14.3.0
       node-fetch: 3.3.2
@@ -2448,8 +2448,8 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/edge-bundler@12.0.1(supports-color@9.4.0):
-    resolution: {integrity: sha512-7Soa0Ny2mDhPHfBbdg28FJ96Kk71Q6vDJfJ3d5BLBqSh6buw+TRcDJye84wJ9LaMlff+eAN/vlMgsoumCH5L9Q==}
+  /@netlify/edge-bundler@12.1.1(supports-color@9.4.0):
+    resolution: {integrity: sha512-Jmq4JrWfTRdEJMgIrZt4kr6ETTCCVGupG6AgBwVZ6p93T7z9u9QBb4nkMDbCG6o9roGgUNlh2DtMG8HvD4zdUA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
       '@import-maps/resolve': 1.0.1
@@ -2543,15 +2543,14 @@ packages:
       semver: 7.6.2
     dev: true
 
-  /@netlify/functions-utils@5.2.69(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-001B2R7BWqh7C7uRiK7hpM554hbBBYsucHPbdsD7dNy/MbqX8TSt3NkfgM2KvSigtWUnFGFAF4GUhfdQQ+XlBw==}
+  /@netlify/functions-utils@5.2.70(supports-color@9.4.0):
+    resolution: {integrity: sha512-7SSLuLmvcyIs4vGVyp4K1Vs9fvwNMmpwjBSLOYqrC89rGKFA9zJ7QWgHxtoYF+7I1zf91vRQpz1oiir8kW9F1g==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
-      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.2(supports-color@9.4.0)
       cpy: 9.0.1
       path-exists: 5.0.0
     transitivePeerDependencies:
-      - '@opentelemetry/api'
       - encoding
       - supports-color
     dev: true
@@ -2731,22 +2730,6 @@ packages:
       execa: 6.1.0
     dev: true
 
-  /@netlify/serverless-functions-api@1.18.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-5R0kOKrOqhlFFrA7oduzJS+LQRjnX2CX8kJaYI9PQKIpNvzF18n+LNGWTS42YxPfIpAE64yaHbppeAigms2QTw==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@netlify/node-cookies': 0.1.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-node': 0.52.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
-      '@opentelemetry/sdk-trace-node': 1.25.0(@opentelemetry/api@1.8.0)
-      urlpattern-polyfill: 8.0.2
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - supports-color
-    dev: true
-
   /@netlify/serverless-functions-api@1.18.4(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-5R0kOKrOqhlFFrA7oduzJS+LQRjnX2CX8kJaYI9PQKIpNvzF18n+LNGWTS42YxPfIpAE64yaHbppeAigms2QTw==}
     engines: {node: '>=18.0.0'}
@@ -2762,15 +2745,23 @@ packages:
       - '@opentelemetry/api'
       - supports-color
 
-  /@netlify/zip-it-and-ship-it@9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-RxPkeLXnNEolJh3dfJ9DMBOpJ3RGhpGFMmFITase5aLSwy+MBae9n1M58dnpWHEQUNeuQ1fLRrkCsp5DD0JelA==}
+  /@netlify/serverless-functions-api@1.18.5:
+    resolution: {integrity: sha512-2/LCG0b7xPee9uVMh422h4TPQdT5/Uk4o2H9L//sKDp8PLlvEdJJkagmWqBOYDtGMId/aO5KyZ/iF/zRA7Nq5A==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@netlify/node-cookies': 0.1.0
+      urlpattern-polyfill: 8.0.2
+    dev: true
+
+  /@netlify/zip-it-and-ship-it@9.37.2(supports-color@9.4.0):
+    resolution: {integrity: sha512-ZOibSzp4ICeNgBu66UjVnRkEUpxZ59OtvR2Wk0bZxU708jCgcYzyQfIXrWqDHNq3QTFjFpZVuhBe6CTSOZkPjg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     dependencies:
       '@babel/parser': 7.24.5
       '@babel/types': 7.24.6
       '@netlify/binary-info': 1.0.0
-      '@netlify/serverless-functions-api': 1.18.4(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/serverless-functions-api': 1.18.5
       '@vercel/nft': 0.27.1(supports-color@9.4.0)
       archiver: 7.0.1
       common-path-prefix: 3.0.0
@@ -2802,7 +2793,6 @@ packages:
       yargs: 17.7.2
       zod: 3.23.8
     transitivePeerDependencies:
-      - '@opentelemetry/api'
       - encoding
       - supports-color
     dev: true
@@ -2986,24 +2976,16 @@ packages:
     resolution: {integrity: sha512-HxjD7xH9iAE4OyhNaaSec65i1H6QZYBWSwWkowFfsc5YAcDvJG30/J1sRKXEQqdmUcKTXEAnA66UciqZha/4+Q==}
     engines: {node: '>=14'}
     dependencies:
-      '@opentelemetry/api': 1.8.0
+      '@opentelemetry/api': 1.9.0
 
   /@opentelemetry/api@1.8.0:
     resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
     engines: {node: '>=8.0.0'}
+    dev: true
 
   /@opentelemetry/api@1.9.0:
     resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
     engines: {node: '>=8.0.0'}
-
-  /@opentelemetry/context-async-hooks@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-sBW313mnMyFg0cp/40BRzrZBWG+581s2j5gIsa5fgGadswyILk4mNFATsqrCOpAx945RDuZ2B7ThQLgor9OpfA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-    dev: true
 
   /@opentelemetry/context-async-hooks@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-sBW313mnMyFg0cp/40BRzrZBWG+581s2j5gIsa5fgGadswyILk4mNFATsqrCOpAx945RDuZ2B7ThQLgor9OpfA==}
@@ -3013,16 +2995,6 @@ packages:
     dependencies:
       '@opentelemetry/api': 1.9.0
 
-  /@opentelemetry/core@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-n0B3s8rrqGrasTgNkXLKXzN0fXo+6IYP7M5b7AMsrZM33f/y6DS6kJ0Btd7SespASWq8bgL3taLo0oe0vB52IQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/semantic-conventions': 1.25.0
-    dev: true
-
   /@opentelemetry/core@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-n0B3s8rrqGrasTgNkXLKXzN0fXo+6IYP7M5b7AMsrZM33f/y6DS6kJ0Btd7SespASWq8bgL3taLo0oe0vB52IQ==}
     engines: {node: '>=14'}
@@ -3031,21 +3003,6 @@ packages:
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/semantic-conventions': 1.25.0
-
-  /@opentelemetry/exporter-trace-otlp-grpc@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-Ln3HU54/ytTeEMrDGNDj01357YV8Kk9PkGDHvBRo1n7bWhwZoTEnX/cTuXLYOiygBIJJjCCM+VMfWCnvtFl4Kw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@grpc/grpc-js': 1.10.8
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-grpc-exporter-base': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/exporter-trace-otlp-grpc@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-Ln3HU54/ytTeEMrDGNDj01357YV8Kk9PkGDHvBRo1n7bWhwZoTEnX/cTuXLYOiygBIJJjCCM+VMfWCnvtFl4Kw==}
@@ -3061,20 +3018,6 @@ packages:
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.9.0)
 
-  /@opentelemetry/exporter-trace-otlp-http@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-umj9tOSEAuUdqw2EZua1Dby3c+FZ6xWGT2OF/KGLFLtyIvxhtTOSeMfBy/9CaxHn4vF8mAynmAP5MvVKnRYunA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-exporter-base': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
-
   /@opentelemetry/exporter-trace-otlp-http@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-umj9tOSEAuUdqw2EZua1Dby3c+FZ6xWGT2OF/KGLFLtyIvxhtTOSeMfBy/9CaxHn4vF8mAynmAP5MvVKnRYunA==}
     engines: {node: '>=14'}
@@ -3087,20 +3030,6 @@ packages:
       '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.9.0)
-
-  /@opentelemetry/exporter-trace-otlp-proto@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-mpMEZFGaGnvon5pbjLieh7ffE9BuYnrG7qd4O5P3j1fk/4PCR3BcGfGhIfyZi0X8kBcjEhipiBfaHYqI7rxcXg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-exporter-base': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/exporter-trace-otlp-proto@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-mpMEZFGaGnvon5pbjLieh7ffE9BuYnrG7qd4O5P3j1fk/4PCR3BcGfGhIfyZi0X8kBcjEhipiBfaHYqI7rxcXg==}
@@ -3115,19 +3044,6 @@ packages:
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.9.0)
 
-  /@opentelemetry/exporter-zipkin@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-nnhY0e5DHg8BfUSNCQZoGZnGeqz+zMTeEUOh1dfgtaXmF99uM0QPuTa1i2lH+eZqebP8w1WDWZlewu9FUlHqIg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.25.0
-    dev: true
-
   /@opentelemetry/exporter-zipkin@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-nnhY0e5DHg8BfUSNCQZoGZnGeqz+zMTeEUOh1dfgtaXmF99uM0QPuTa1i2lH+eZqebP8w1WDWZlewu9FUlHqIg==}
     engines: {node: '>=14'}
@@ -3140,23 +3056,6 @@ packages:
       '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.0
 
-  /@opentelemetry/instrumentation@0.52.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-LPwSIrw+60cheWaXsfGL8stBap/AppKQJFE+qqRvzYrgttXFH2ofoIMxWadeqPTq4BYOXM/C7Bdh/T+B60xnlQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.3.0
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/api-logs': 0.52.0
-      '@types/shimmer': 1.0.5
-      import-in-the-middle: 1.8.0
-      require-in-the-middle: 7.3.0(supports-color@9.4.0)
-      semver: 7.6.2
-      shimmer: 1.2.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@opentelemetry/instrumentation@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-LPwSIrw+60cheWaXsfGL8stBap/AppKQJFE+qqRvzYrgttXFH2ofoIMxWadeqPTq4BYOXM/C7Bdh/T+B60xnlQ==}
     engines: {node: '>=14'}
@@ -3167,22 +3066,11 @@ packages:
       '@opentelemetry/api-logs': 0.52.0
       '@types/shimmer': 1.0.5
       import-in-the-middle: 1.8.0
-      require-in-the-middle: 7.3.0(supports-color@9.4.0)
+      require-in-the-middle: 7.3.0
       semver: 7.6.2
       shimmer: 1.2.1
     transitivePeerDependencies:
       - supports-color
-
-  /@opentelemetry/otlp-exporter-base@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-rlyg5UKW9yMTNMUxYYib9XxEE/krpH7Q6mIuJNOBMbjLwmqe1WQ2MNKNzobVZTKop/FX4CvyNN3wUEl/6gnvfw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/otlp-exporter-base@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-rlyg5UKW9yMTNMUxYYib9XxEE/krpH7Q6mIuJNOBMbjLwmqe1WQ2MNKNzobVZTKop/FX4CvyNN3wUEl/6gnvfw==}
@@ -3193,19 +3081,6 @@ packages:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.9.0)
-
-  /@opentelemetry/otlp-grpc-exporter-base@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-iVq3wCElOoKUkxBOuvV8cfaELG8WO/zfLWIZil6iw/6hj6rktLodnJ7kVOneVmLki7Po1BjE1K7JOp2G3UPgYg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.0.0
-    dependencies:
-      '@grpc/grpc-js': 1.10.8
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-exporter-base': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/otlp-grpc-exporter-base@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-iVq3wCElOoKUkxBOuvV8cfaELG8WO/zfLWIZil6iw/6hj6rktLodnJ7kVOneVmLki7Po1BjE1K7JOp2G3UPgYg==}
@@ -3218,22 +3093,6 @@ packages:
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/otlp-exporter-base': 0.52.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/otlp-transformer': 0.52.0(@opentelemetry/api@1.9.0)
-
-  /@opentelemetry/otlp-transformer@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-40acy3JxCAqQYcYepypF/64GVB8jerC6Oiz1HRUXxiSTVwg+ud7UtywfOkPRpc9bjHiyJouWxTjiUPQ9VBMKbg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/api-logs': 0.52.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-logs': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-metrics': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-      protobufjs: 7.3.0
-    dev: true
 
   /@opentelemetry/otlp-transformer@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-40acy3JxCAqQYcYepypF/64GVB8jerC6Oiz1HRUXxiSTVwg+ud7UtywfOkPRpc9bjHiyJouWxTjiUPQ9VBMKbg==}
@@ -3250,16 +3109,6 @@ packages:
       '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.9.0)
       protobufjs: 7.3.0
 
-  /@opentelemetry/propagator-b3@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-/A+1Tbnf0uwnP51OkoaQlrb9YILdHsoqIISna1MNXpZRzf42xm6LVLb49i+m/zlJoW1e8P4ekcrditR5pfmwog==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
-
   /@opentelemetry/propagator-b3@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-/A+1Tbnf0uwnP51OkoaQlrb9YILdHsoqIISna1MNXpZRzf42xm6LVLb49i+m/zlJoW1e8P4ekcrditR5pfmwog==}
     engines: {node: '>=14'}
@@ -3268,16 +3117,6 @@ packages:
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
-
-  /@opentelemetry/propagator-jaeger@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-uwA5xqaPISXeX+YutqbjmzENnCGCvrIXlqIXP5gRoA5N6S3W28p+ExL77TugMKHN5gXklapF67jDfz7lq5ETzQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/propagator-jaeger@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-uwA5xqaPISXeX+YutqbjmzENnCGCvrIXlqIXP5gRoA5N6S3W28p+ExL77TugMKHN5gXklapF67jDfz7lq5ETzQ==}
@@ -3288,17 +3127,6 @@ packages:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
 
-  /@opentelemetry/resources@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-iHjydPMYJ+Li1auveJCq2rp5U2h6Mhq8BidiyE0jfVlDTFyR1ny8AfJHfmFzJ/RAM8vT8L7T21kcmGybxZC7lQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.25.0
-    dev: true
-
   /@opentelemetry/resources@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-iHjydPMYJ+Li1auveJCq2rp5U2h6Mhq8BidiyE0jfVlDTFyR1ny8AfJHfmFzJ/RAM8vT8L7T21kcmGybxZC7lQ==}
     engines: {node: '>=14'}
@@ -3308,18 +3136,6 @@ packages:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.0
-
-  /@opentelemetry/sdk-logs@0.52.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-Dp6g7w7WglrDZMn2yHBMAKRGqQy8C0PUbFovkSwcSsmL47n4FSEc3eeGblZTtueOUW+rTsPJpLHoUpEdS0Wibw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.4.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/api-logs': 0.52.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-    dev: true
 
   /@opentelemetry/sdk-logs@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-Dp6g7w7WglrDZMn2yHBMAKRGqQy8C0PUbFovkSwcSsmL47n4FSEc3eeGblZTtueOUW+rTsPJpLHoUpEdS0Wibw==}
@@ -3332,18 +3148,6 @@ packages:
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
 
-  /@opentelemetry/sdk-metrics@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-IF+Sv4VHgBr/BPMKabl+GouJIhEqAOexCHgXVTISdz3q9P9H/uA8ScCF+22gitQ69aFtESbdYOV+Fen5+avQng==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      lodash.merge: 4.6.2
-    dev: true
-
   /@opentelemetry/sdk-metrics@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-IF+Sv4VHgBr/BPMKabl+GouJIhEqAOexCHgXVTISdz3q9P9H/uA8ScCF+22gitQ69aFtESbdYOV+Fen5+avQng==}
     engines: {node: '>=14'}
@@ -3354,30 +3158,6 @@ packages:
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
       lodash.merge: 4.6.2
-
-  /@opentelemetry/sdk-node@0.52.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0):
-    resolution: {integrity: sha512-3RNnsoHGutya3oVsoc2WRrk/TKlxr+R2uN6H4boNJvW7kc8yxS4QrOI6DlbQYAgEMeC1PMu95jW9LirPOWcMGw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/api-logs': 0.52.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/exporter-trace-otlp-grpc': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/exporter-trace-otlp-http': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/exporter-trace-otlp-proto': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/exporter-zipkin': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/instrumentation': 0.52.0(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-logs': 0.52.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-metrics': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-node': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.25.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /@opentelemetry/sdk-node@0.52.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-3RNnsoHGutya3oVsoc2WRrk/TKlxr+R2uN6H4boNJvW7kc8yxS4QrOI6DlbQYAgEMeC1PMu95jW9LirPOWcMGw==}
@@ -3402,18 +3182,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@opentelemetry/sdk-trace-base@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-6+g2fiRQUG39guCsKVeY8ToeuUf3YUnPkN6DXRA1qDmFLprlLvZm9cS6+chgbW70cZJ406FTtSCDnJwxDC5sGQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/semantic-conventions': 1.25.0
-    dev: true
-
   /@opentelemetry/sdk-trace-base@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-6+g2fiRQUG39guCsKVeY8ToeuUf3YUnPkN6DXRA1qDmFLprlLvZm9cS6+chgbW70cZJ406FTtSCDnJwxDC5sGQ==}
     engines: {node: '>=14'}
@@ -3424,21 +3192,6 @@ packages:
       '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.25.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.25.0
-
-  /@opentelemetry/sdk-trace-node@1.25.0(@opentelemetry/api@1.8.0):
-    resolution: {integrity: sha512-sYdZmNCkqthPpjwCxAJk5aQNLxCOQjT1u3JMGvO6rb3Ic8uFdnzXavP13Md9uYPcZBo+KxetyDhCf0x8wJGRng==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@opentelemetry/context-async-hooks': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/core': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/propagator-b3': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/propagator-jaeger': 1.25.0(@opentelemetry/api@1.8.0)
-      '@opentelemetry/sdk-trace-base': 1.25.0(@opentelemetry/api@1.8.0)
-      semver: 7.6.2
-    dev: true
 
   /@opentelemetry/sdk-trace-node@1.25.0(@opentelemetry/api@1.9.0):
     resolution: {integrity: sha512-sYdZmNCkqthPpjwCxAJk5aQNLxCOQjT1u3JMGvO6rb3Ic8uFdnzXavP13Md9uYPcZBo+KxetyDhCf0x8wJGRng==}
@@ -10553,6 +10306,18 @@ packages:
       wrap-ansi: 9.0.0
     dev: true
 
+  /listr2@8.2.3:
+    resolution: {integrity: sha512-Lllokma2mtoniUOS94CcOErHWAug5iu7HOmDrvWgpw8jyQH2fomgB+7lZS4HWZxytUuQwkGOwe49FvwVaA85Xw==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      cli-truncate: 4.0.0
+      colorette: 2.0.20
+      eventemitter3: 5.0.1
+      log-update: 6.0.0
+      rfdc: 1.4.1
+      wrap-ansi: 9.0.0
+    dev: true
+
   /load-json-file@4.0.0:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
     engines: {node: '>=4'}
@@ -11686,8 +11451,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.29.0(@types/node@20.14.8):
-    resolution: {integrity: sha512-XASN7ZCbq8V3o9Tftty1O+quAzl9ApnpYqnunW0aR+COv0scHAw+OGjuzD3TAbI+TwxlJywsbkN2fG+dUgcQJA==}
+  /netlify-cli@17.30.0(@types/node@20.14.8):
+    resolution: {integrity: sha512-B6BcWxeEPaYaV7bWnMQczhavNc7nbXcxqjC2tmhXjZ4z7/ESgfUZqnGiaupAiAWnh7EjszX4Dmdy5lThA+8Hvg==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -11695,13 +11460,13 @@ packages:
       '@bugsnag/js': 7.23.0
       '@fastify/static': 7.0.4
       '@netlify/blobs': 7.3.0
-      '@netlify/build': 29.48.2(@opentelemetry/api@1.8.0)(@types/node@20.14.8)
+      '@netlify/build': 29.50.0(@opentelemetry/api@1.8.0)(@types/node@20.14.8)
       '@netlify/build-info': 7.13.2
-      '@netlify/config': 20.15.3
-      '@netlify/edge-bundler': 12.0.1(supports-color@9.4.0)
+      '@netlify/config': 20.15.4
+      '@netlify/edge-bundler': 12.1.1(supports-color@9.4.0)
       '@netlify/edge-functions': 2.8.1
       '@netlify/local-functions-proxy': 1.1.1
-      '@netlify/zip-it-and-ship-it': 9.37.1(@opentelemetry/api@1.8.0)(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.2(supports-color@9.4.0)
       '@octokit/rest': 20.1.1
       '@opentelemetry/api': 1.8.0
       ansi-escapes: 7.0.0
@@ -11760,7 +11525,7 @@ packages:
       jsonwebtoken: 9.0.2
       jwt-decode: 4.0.0
       lambda-local: 2.2.0
-      listr2: 8.2.1
+      listr2: 8.2.3
       locate-path: 7.2.0
       lodash: 4.17.21
       log-symbols: 6.0.0
@@ -11768,7 +11533,7 @@ packages:
       maxstache: 1.0.7
       maxstache-stream: 1.0.4
       multiparty: 4.2.3
-      netlify: 13.1.19
+      netlify: 13.1.20
       netlify-headers-parser: 7.1.4
       netlify-redirect-parser: 14.3.0
       netlify-redirector: 0.5.0
@@ -11859,8 +11624,8 @@ packages:
     resolution: {integrity: sha512-4zdzIP+6muqPCuE8avnrgDJ6KW/2+UpHTRcTbMXCIRxiRmyrX+IZ4WSJGZdHPWF3WmQpXpy603XxecZ9iygN7w==}
     dev: true
 
-  /netlify@13.1.19:
-    resolution: {integrity: sha512-po4fWl2QcN+A4lFRMDHdq2D6gWNE1cqavD3rW++dVTakDzibmkHRJZ4L5C7SfI5ovbU0hAEeERjWnYgESA3/3g==}
+  /netlify@13.1.20:
+    resolution: {integrity: sha512-pfYUCfaywrzkMzN8If4IVM58DqsAYq2JroAFziuYK7m0LKYPzlbuSNYWhlfQL/zoBmRm8kxzRxEiK6fj1tvOOw==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
       '@netlify/open-api': 2.33.1
@@ -13594,7 +13359,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /require-in-the-middle@7.3.0(supports-color@9.4.0):
+  /require-in-the-middle@7.3.0:
     resolution: {integrity: sha512-nQFEv9gRw6SJAwWD2LrL0NmQvAcO7FBwJbwmr2ttPAacfy0xuiOjE5zt+zM4xDyuyvUaxBi/9gb2SoCyNEVJcw==}
     engines: {node: '>=8.6.0'}
     dependencies:
