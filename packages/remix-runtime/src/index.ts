@@ -1,3 +1,9 @@
+/**
+ * This package defines a Remix "server runtime" - for Netlify Edge Functions. As such, it must
+ * re-export certain types and conform to a certain interface that Remix expects. See
+ * https://github.com/remix-run/remix/tree/main/packages/remix-server-runtime#readme.
+ */
+
 export {
   createCookie,
   createCookieSessionStorage,
@@ -26,7 +32,6 @@ export {
   UNSAFE_SingleFetchRedirectSymbol,
 } from '@remix-run/server-runtime'
 
-// Remix server runtime packages should re-export these types
 export type {
   ActionFunction,
   ActionFunctionArgs,

@@ -1,1 +1,1 @@
-module.exports = require('./dist/plugin.js')
+module.exports = require('./dist/vite/plugin.js')

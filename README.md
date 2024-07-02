@@ -4,7 +4,8 @@ The Remix Compute for Netlify packages allow you to deploy your Remix apps to
 [Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/) or
 [Netlify Functions](https://docs.netlify.com/functions/overview/).
 
-This project is not a template for Remix apps. It is a set of packages used by the Netlify Remix template.
+This project is not a template for Remix apps. It is a set of packages used by
+[the Netlify Remix template](https://github.com/netlify/remix-template).
 
 The project is a pnpm monorepo. Packages are located in the `packages` directory, and demo sites are in `demos`. There
 are three packages:
@@ -13,7 +14,9 @@ are three packages:
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
 - `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 
-## Installation
+## Development
+
+### Installation
 
 ```bash
 corepack enable
@@ -23,7 +26,7 @@ pnpm install
 This installs all the dependencies for all the packages and builds the `@netlify/remix-runtime`,
 `@netlify/remix-adapter`, and `@netlify/remix-edge-adapter` packages.
 
-## Development
+### Testing
 
 To build the packages, run the build command.
 
@@ -49,7 +52,7 @@ To run all tests (including linting and typechecking):
 pnpm run test
 ```
 
-### End-to-end integration tests
+#### End-to-end integration tests
 
 These tests are meant to be very terse, basic, happy-path "user journey" system tests. These should generally map to
 user-facing features and should rarely be added to.

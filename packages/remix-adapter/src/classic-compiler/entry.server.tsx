@@ -13,8 +13,7 @@ export function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  loadContext: AppLoadContext,
+  _loadContext: AppLoadContext,
 ) {
   const bot = isbot(request.headers.get('user-agent'))
   return new Promise((resolve, reject) => {
