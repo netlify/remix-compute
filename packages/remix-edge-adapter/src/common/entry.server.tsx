@@ -1,6 +1,12 @@
-// We load this as a virtual module in the site.
 // This is mostly copied from the Remix Deno template
-// https://github.com/remix-run/remix/blob/main/templates/deno/app/entry.server.tsx
+// https://github.com/remix-run/remix/blob/main/templates/classic-remix-compiler/deno/app/entry.server.tsx
+
+// When using the classic Remix compiler, this is imported directly from the site's `app/entry.server`.
+// When using Vite, we load this as a virtual module, so that it can be loaded conditionally
+// depending on whether we are in dev mode or not. This file is only loaded in production.
+// We need to do this because in dev mode we are going through Vite which does not yet suport
+// Deno and thus uses Node.js. See https://github.com/vitejs/vite/discussions/16358.
+
 import type { AppLoadContext, EntryContext } from '@netlify/remix-runtime'
 import { RemixServer } from '@remix-run/react'
 import { isbot } from 'isbot'
@@ -11,9 +17,10 @@ export default async function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  loadContext: AppLoadContext,
+  _loadContext: AppLoadContext,
 ) {
+  // The main difference between this and the default Node.js entrypoint is
+  // this use of web streams as opposed to Node.js streams.
   const body = await ReactDOMServer.renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
     signal: request.signal,
     onError(error: unknown) {

@@ -2,7 +2,7 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import { writeFile, mkdir, readdir } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
-import { version, name } from '../package.json'
+import { version, name } from '../../package.json'
 import { isBuiltin } from 'node:module'
 
 const SERVER_ID = 'virtual:netlify-server'
@@ -77,7 +77,7 @@ export function netlifyPlugin(): Plugin {
         // The Vite dev server uses Node, so we use a different entrypoint
         if (source === 'virtual:netlify-server-entry') {
           if (currentCommand === 'build' && options.ssr) {
-            // This is building for edge functions, so use the edge adapter
+            // This is building for edge functions, so use our edge adapter
             return this.resolve('@netlify/remix-edge-adapter/entry.server', importer, {
               ...options,
               skipSelf: true,
@@ -90,7 +90,8 @@ export function netlifyPlugin(): Plugin {
             })
           }
         }
-        // Our virtual entrypoint module
+        // Our virtual entrypoint module. See
+        // https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
         if (source === SERVER_ID) {
           return RESOLVED_SERVER_ID
         }
@@ -106,11 +107,13 @@ export function netlifyPlugin(): Plugin {
         return null
       },
     },
+    // See https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
     load(id) {
       if (id === RESOLVED_SERVER_ID) {
         return serverCode
       }
     },
+    // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
       if (currentCommand === 'build' && isSsr) {

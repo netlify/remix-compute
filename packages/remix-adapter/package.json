@@ -19,12 +19,12 @@
     },
     "./plugin": {
       "require": {
-        "types": "./dist/plugin.d.ts",
-        "default": "./dist/plugin.js"
+        "types": "./dist/vite/plugin.d.ts",
+        "default": "./dist/vite/plugin.js"
       },
       "import": {
-        "types": "./dist/plugin.d.mts",
-        "default": "./dist/plugin.mjs"
+        "types": "./dist/vite/plugin.d.mts",
+        "default": "./dist/vite/plugin.mjs"
       }
     }
   },
@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "tsup-node src/index.ts src/plugin.ts --format esm,cjs --dts --target node16 --clean",
+    "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
     "build:watch": "pnpm run build --watch"
   },
   "repository": {

@@ -2,7 +2,7 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
-import { version, name } from '../package.json'
+import { version, name } from '../../package.json'
 
 const SERVER_ID = 'virtual:netlify-server'
 const RESOLVED_SERVER_ID = `\0${SERVER_ID}`
@@ -61,6 +61,7 @@ export function netlifyPlugin(): Plugin {
         return RESOLVED_SERVER_ID
       }
     },
+    // See https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
     load(id) {
       if (id === RESOLVED_SERVER_ID) {
         return serverCode
@@ -69,6 +70,7 @@ export function netlifyPlugin(): Plugin {
     async configResolved(config) {
       resolvedConfig = config
     },
+    // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
       if (currentCommand === 'build' && isSsr) {
