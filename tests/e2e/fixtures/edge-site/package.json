@@ -13,15 +13,15 @@
   "dependencies": {
     "@netlify/remix-edge-adapter": "*",
     "@netlify/remix-runtime": "*",
-    "@remix-run/react": "^2.10.1-pre",
-    "@remix-run/serve": "^2.10.1-pre",
+    "@remix-run/react": "^2.10.2-pre",
+    "@remix-run/serve": "^2.10.2-pre",
     "isbot": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@netlify/functions": "^2.8.0",
-    "@remix-run/dev": "^2.10.1-pre",
+    "@remix-run/dev": "^2.10.2-pre",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
