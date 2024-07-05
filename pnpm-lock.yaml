@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.7
       netlify-cli:
-        specifier: ^17.32.1
-        version: 17.32.1(@types/node@20.14.9)
+        specifier: ^17.33.0
+        version: 17.33.0(@types/node@20.14.9)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.0
@@ -2582,13 +2582,8 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/edge-functions@2.8.1:
-    resolution: {integrity: sha512-BoAz/gCWHLn9DVugGViORbWFDqaqrB/JHM+9N+ahk7U6C3EwaFojnnGKCMrQ65f2YOi6Wwlue1ZZO+8mq43RZA==}
-    dev: true
-
   /@netlify/edge-functions@2.9.0:
     resolution: {integrity: sha512-W1kdwLpvUlhfI2FTOe6SEcoobW7Fw+Vm9WN5Gwb5lTCG6QXBE3gpCZk+NVQ4p/XoOcXYwWAS5pfOTMKUoYNQnA==}
-    dev: false
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.4.5):
     resolution: {integrity: sha512-4xAE0lM3BaVOZu1Oil5Yy1FsiYjZwNS/uwE+4fY61Buuyv3An16mC9LbNCxQ5EFzo3g7U2SRyZdGBHM6ACRLpw==}
@@ -11620,8 +11615,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.32.1(@types/node@20.14.9):
-    resolution: {integrity: sha512-eGkPMR74lLzWutUf3RcwNirOoDquywMnlHNsvz2BQMAu/EJaZV8BX8HKiUD586dQczYbHcJItusNdHn113zwgg==}
+  /netlify-cli@17.33.0(@types/node@20.14.9):
+    resolution: {integrity: sha512-F5Bz0x5ribWx3fH7+LYeV7GSWVsGZqFasA9q1I1gaqvpppkRO/FeObyI/z0y0hEKqj1JyvAms+K7Cp/ilQE/DQ==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -11633,7 +11628,7 @@ packages:
       '@netlify/build-info': 7.14.0
       '@netlify/config': 20.16.0
       '@netlify/edge-bundler': 12.2.0(supports-color@9.4.0)
-      '@netlify/edge-functions': 2.8.1
+      '@netlify/edge-functions': 2.9.0
       '@netlify/local-functions-proxy': 1.1.1
       '@netlify/zip-it-and-ship-it': 9.37.5(supports-color@9.4.0)
       '@octokit/rest': 20.1.1
