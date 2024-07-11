@@ -55,7 +55,7 @@
     "vitest": "^1.0.0"
   },
   "dependencies": {
-    "@netlify/edge-functions": "^2.9.0",
+    "@netlify/edge-functions": "^2.10.0",
     "isbot": "^5.0.0"
   },
   "engines": {
