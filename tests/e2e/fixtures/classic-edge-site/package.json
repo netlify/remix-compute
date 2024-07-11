@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/edge-functions": "^2.9.0",
+    "@netlify/edge-functions": "^2.10.0",
     "@netlify/remix-edge-adapter": "*",
     "@netlify/remix-runtime": "*",
     "@remix-run/css-bundle": "^2.10.2-pre",
