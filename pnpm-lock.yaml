@@ -17,7 +17,7 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.3.0
-        version: 19.3.0(@types/node@20.14.10)(typescript@5.4.5)
+        version: 19.3.0(@types/node@20.14.11)(typescript@5.4.5)
       '@netlify/eslint-config-node':
         specifier: ^7.0.1
         version: 7.0.1(typescript@5.4.5)
@@ -29,7 +29,7 @@ importers:
         version: 2.10.2(eslint@8.57.0)(react@18.3.1)(typescript@5.4.5)
       '@types/node':
         specifier: ^20.0.0
-        version: 20.14.10
+        version: 20.14.11
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.0
         version: 7.16.1(@typescript-eslint/parser@7.16.1)(eslint@8.57.0)(typescript@5.4.5)
@@ -59,7 +59,7 @@ importers:
         version: 15.2.7
       netlify-cli:
         specifier: ^17.33.4
-        version: 17.33.4(@types/node@20.14.10)
+        version: 17.33.4(@types/node@20.14.11)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.2
@@ -74,7 +74,7 @@ importers:
         version: 5.4.5
       vitest:
         specifier: ^1.0.0
-        version: 1.6.0(@types/node@20.14.10)
+        version: 1.6.0(@types/node@20.14.11)
 
   demos/demo-site:
     dependencies:
@@ -102,7 +102,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@remix-run/eslint-config':
         specifier: ^2.9.2
         version: 2.10.2(eslint@8.57.0)(react@18.3.1)(typescript@5.4.5)
@@ -151,7 +151,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@remix-run/eslint-config':
         specifier: ^2.9.2
         version: 2.10.2(eslint@8.57.0)(react@18.3.1)(typescript@5.4.5)
@@ -200,7 +200,7 @@ importers:
         version: 2.8.1
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@types/react':
         specifier: ^18.2.20
         version: 18.3.3
@@ -236,7 +236,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.0.0
-        version: 5.3.1(@types/node@20.14.10)
+        version: 5.3.1(@types/node@20.14.11)
       vite-tsconfig-paths:
         specifier: ^4.2.1
         version: 4.3.2(typescript@5.4.5)(vite@5.3.1)
@@ -267,7 +267,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@types/react':
         specifier: ^18.2.20
         version: 18.3.3
@@ -303,7 +303,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.0.0
-        version: 5.3.1(@types/node@20.14.10)
+        version: 5.3.1(@types/node@20.14.11)
       vite-tsconfig-paths:
         specifier: ^4.2.1
         version: 4.3.2(typescript@5.4.5)(vite@5.3.1)
@@ -322,7 +322,7 @@ importers:
         version: 2.8.1
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@remix-run/react':
         specifier: ^2.9.2
         version: 2.10.2(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
@@ -346,7 +346,7 @@ importers:
         version: 8.1.0(postcss@8.4.39)(ts-node@10.9.2)(typescript@5.4.5)
       vite:
         specifier: ^5.1.3
-        version: 5.3.1(@types/node@20.14.10)
+        version: 5.3.1(@types/node@20.14.11)
 
   packages/remix-edge-adapter:
     dependencies:
@@ -359,7 +359,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
+        version: 2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1)
       '@remix-run/react':
         specifier: ^2.9.2
         version: 2.10.2(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
@@ -380,7 +380,7 @@ importers:
         version: 8.1.0(postcss@8.4.39)(ts-node@10.9.2)(typescript@5.4.5)
       vite:
         specifier: ^5.1.3
-        version: 5.3.1(@types/node@20.14.10)
+        version: 5.3.1(@types/node@20.14.11)
 
   packages/remix-runtime:
     devDependencies:
@@ -985,14 +985,14 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/cli@19.3.0(@types/node@20.14.10)(typescript@5.4.5):
+  /@commitlint/cli@19.3.0(@types/node@20.14.11)(typescript@5.4.5):
     resolution: {integrity: sha512-LgYWOwuDR7BSTQ9OLZ12m7F/qhNY+NpAyPBgo4YNMkACE7lGuUnuQq1yi9hz1KA4+3VqpOYl8H1rY/LYK43v7g==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 19.3.0
       '@commitlint/lint': 19.2.2
-      '@commitlint/load': 19.2.0(@types/node@20.14.10)(typescript@5.4.5)
+      '@commitlint/load': 19.2.0(@types/node@20.14.11)(typescript@5.4.5)
       '@commitlint/read': 19.2.1
       '@commitlint/types': 19.0.3
       execa: 8.0.1
@@ -1127,14 +1127,14 @@ packages:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.2(@types/node@20.14.10)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.14.11)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/load@19.2.0(@types/node@20.14.10)(typescript@5.4.5):
+  /@commitlint/load@19.2.0(@types/node@20.14.11)(typescript@5.4.5):
     resolution: {integrity: sha512-XvxxLJTKqZojCxaBQ7u92qQLFMMZc4+p9qrIq/9kJDy8DOrEa7P1yx7Tjdc2u2JxIalqT4KOGraVgCE7eCYJyQ==}
     engines: {node: '>=v18'}
     dependencies:
@@ -1144,7 +1144,7 @@ packages:
       '@commitlint/types': 19.0.3
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.4.5)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.14.10)(cosmiconfig@9.0.0)(typescript@5.4.5)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.14.11)(cosmiconfig@9.0.0)(typescript@5.4.5)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -2284,7 +2284,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       '@types/yargs': 16.0.9
       chalk: 4.1.2
     dev: true
@@ -2402,7 +2402,7 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.10):
+  /@netlify/build@29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.11):
     resolution: {integrity: sha512-bHnQLeMv6yHsENU9HQw1JQ+I4RikgjIiqtWo5pPgLAt0ktm+UH+5eFrPZ61zdkSwqMWup06364+wUqTlj4q1hQ==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
@@ -2468,7 +2468,7 @@ packages:
       strip-ansi: 7.1.0
       supports-color: 9.4.0
       terminal-link: 3.0.0
-      ts-node: 10.9.2(@types/node@20.14.10)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.14.11)(typescript@5.4.5)
       typescript: 5.4.5
       uuid: 9.0.1
       yargs: 17.7.2
@@ -3230,7 +3230,7 @@ packages:
     engines: {node: '>=18.0.0'}
     dev: false
 
-  /@remix-run/dev@2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.10)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1):
+  /@remix-run/dev@2.10.2(@remix-run/react@2.10.2)(@remix-run/serve@2.10.2)(@types/node@20.14.11)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.1):
     resolution: {integrity: sha512-7hHC9WY65IJ5ex9Vrv9PkSg15mmYH63unxPDAR74hSfSkectMgsWtMChzdx7Kp/CzN2rttt3cxPwZnAu6PXJUw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -3266,7 +3266,7 @@ packages:
       '@remix-run/serve': 2.10.2(typescript@5.4.5)
       '@remix-run/server-runtime': 2.10.2(typescript@5.4.5)
       '@types/mdx': 2.0.13
-      '@vanilla-extract/integration': 6.5.0(@types/node@20.14.10)
+      '@vanilla-extract/integration': 6.5.0(@types/node@20.14.11)
       arg: 5.0.2
       cacache: 17.1.4
       chalk: 4.1.2
@@ -3305,7 +3305,7 @@ packages:
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
       typescript: 5.4.5
-      vite: 5.3.1(@types/node@20.14.10)
+      vite: 5.3.1(@types/node@20.14.11)
       ws: 7.5.10
     transitivePeerDependencies:
       - '@types/node'
@@ -3835,7 +3835,7 @@ packages:
   /@types/conventional-commits-parser@5.0.0:
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
     dev: true
 
   /@types/cookie@0.6.0:
@@ -3870,7 +3870,7 @@ packages:
   /@types/http-proxy@1.17.14:
     resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
     dev: true
 
   /@types/istanbul-lib-coverage@2.0.6:
@@ -3915,8 +3915,8 @@ packages:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: true
 
-  /@types/node@20.14.10:
-    resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
+  /@types/node@20.14.11:
+    resolution: {integrity: sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -3976,7 +3976,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
     dev: true
     optional: true
 
@@ -4267,7 +4267,7 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /@vanilla-extract/integration@6.5.0(@types/node@20.14.10):
+  /@vanilla-extract/integration@6.5.0(@types/node@20.14.11):
     resolution: {integrity: sha512-E2YcfO8vA+vs+ua+gpvy1HRqvgWbI+MTlUpxA8FvatOvybuNcWAY0CKwQ/Gpj7rswYKtC6C7+xw33emM6/ImdQ==}
     dependencies:
       '@babel/core': 7.24.9
@@ -4281,8 +4281,8 @@ packages:
       lodash: 4.17.21
       mlly: 1.7.1
       outdent: 0.8.0
-      vite: 5.3.3(@types/node@20.14.10)
-      vite-node: 1.6.0(@types/node@20.14.10)
+      vite: 5.3.3(@types/node@20.14.11)
+      vite-node: 1.6.0(@types/node@20.14.11)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -5887,11 +5887,11 @@ packages:
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.4.5)
-      ts-node: 10.9.2(@types/node@20.14.10)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.14.11)(typescript@5.4.5)
       typescript: 5.4.5
     dev: true
 
-  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.14.10)(cosmiconfig@9.0.0)(typescript@5.4.5):
+  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.14.11)(cosmiconfig@9.0.0)(typescript@5.4.5):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -5899,7 +5899,7 @@ packages:
       cosmiconfig: '>=8.2'
       typescript: '>=4'
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       cosmiconfig: 9.0.0(typescript@5.4.5)
       jiti: 1.21.0
       typescript: 5.4.5
@@ -7051,7 +7051,7 @@ packages:
       eslint: '*'
       eslint-plugin-import: '*'
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.4
       enhanced-resolve: 5.16.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
@@ -7074,7 +7074,7 @@ packages:
       eslint: '*'
       eslint-plugin-import: '*'
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.4
       enhanced-resolve: 5.16.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
@@ -7302,7 +7302,7 @@ packages:
       eslint-import-resolver-node: 0.3.9
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
-      is-core-module: 2.14.0
+      is-core-module: 2.13.1
       is-glob: 4.0.3
       minimatch: 3.1.2
       object.fromentries: 2.0.8
@@ -7871,7 +7871,7 @@ packages:
     resolution: {integrity: sha512-EzV94NYKoO09GLXGjXj9JIlXijVck4ONSr5wiCWDvhsvj5jxSrzTmRU/9C1DyB6uToszLs8aifA6NQ7lEQdvFw==}
     engines: {node: '>= 0.8'}
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       require-like: 0.1.2
     dev: true
 
@@ -11388,7 +11388,7 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.33.4(@types/node@20.14.10):
+  /netlify-cli@17.33.4(@types/node@20.14.11):
     resolution: {integrity: sha512-wXWWxOHMab7ztaqNY1lq2OHq3lT31SW36O2upekyTekMI8KriSAGnfXQEXC8ddD4DwAViNUdBpxvjc6WaMjuug==}
     engines: {node: '>=18.14.0'}
     hasBin: true
@@ -11397,7 +11397,7 @@ packages:
       '@bugsnag/js': 7.25.0
       '@fastify/static': 7.0.4
       '@netlify/blobs': 7.4.0
-      '@netlify/build': 29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.10)
+      '@netlify/build': 29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.11)
       '@netlify/build-info': 7.14.1
       '@netlify/config': 20.17.1
       '@netlify/edge-bundler': 12.2.2(supports-color@9.4.0)
@@ -12567,7 +12567,7 @@ packages:
     dependencies:
       lilconfig: 3.1.2
       postcss: 8.4.39
-      ts-node: 10.9.2(@types/node@20.14.10)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.14.11)(typescript@5.4.5)
       yaml: 2.4.5
     dev: true
 
@@ -14533,7 +14533,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-node@10.9.2(@types/node@20.14.10)(typescript@5.4.5):
+  /ts-node@10.9.2(@types/node@20.14.11)(typescript@5.4.5):
     resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
@@ -14552,7 +14552,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       acorn: 8.12.1
       acorn-walk: 8.3.2
       arg: 4.1.3
@@ -15178,7 +15178,7 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite-node@1.6.0(@types/node@20.14.10):
+  /vite-node@1.6.0(@types/node@20.14.11):
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15187,7 +15187,7 @@ packages:
       debug: 4.3.5(supports-color@9.4.0)
       pathe: 1.1.2
       picocolors: 1.0.1
-      vite: 5.3.1(@types/node@20.14.10)
+      vite: 5.3.1(@types/node@20.14.11)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15210,13 +15210,13 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 3.0.3(typescript@5.4.5)
-      vite: 5.3.1(@types/node@20.14.10)
+      vite: 5.3.1(@types/node@20.14.11)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@5.3.1(@types/node@20.14.10):
+  /vite@5.3.1(@types/node@20.14.11):
     resolution: {integrity: sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15244,7 +15244,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       esbuild: 0.21.5
       postcss: 8.4.39
       rollup: 4.18.0
@@ -15252,7 +15252,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@5.3.3(@types/node@20.14.10):
+  /vite@5.3.3(@types/node@20.14.11):
     resolution: {integrity: sha512-NPQdeCU0Dv2z5fu+ULotpuq5yfCS1BzKUIPhNbP3YBfAMGJXbt2nS+sbTFu+qchaqWTD+H3JK++nRwr6XIcp6A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15280,7 +15280,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       esbuild: 0.21.5
       postcss: 8.4.39
       rollup: 4.18.1
@@ -15288,7 +15288,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.6.0(@types/node@20.14.10):
+  /vitest@1.6.0(@types/node@20.14.11):
     resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15313,7 +15313,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.14.10
+      '@types/node': 20.14.11
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
       '@vitest/snapshot': 1.6.0
@@ -15331,8 +15331,8 @@ packages:
       strip-literal: 2.1.0
       tinybench: 2.8.0
       tinypool: 0.8.4
-      vite: 5.3.1(@types/node@20.14.10)
-      vite-node: 1.6.0(@types/node@20.14.10)
+      vite: 5.3.1(@types/node@20.14.11)
+      vite-node: 1.6.0(@types/node@20.14.11)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
