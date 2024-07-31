@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.7
       netlify-cli:
-        specifier: ^17.33.4
-        version: 17.33.4(@types/node@20.14.13)
+        specifier: ^17.33.5
+        version: 17.33.5(@types/node@20.14.13)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.2
@@ -407,14 +407,6 @@ packages:
       '@babel/highlight': 7.24.7
     dev: true
 
-  /@babel/code-frame@7.24.2:
-    resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
-    dev: true
-
   /@babel/code-frame@7.24.7:
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
     engines: {node: '>=6.9.0'}
@@ -443,7 +435,7 @@ packages:
       '@babel/traverse': 7.24.8
       '@babel/types': 7.24.9
       convert-source-map: 2.0.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -466,7 +458,7 @@ packages:
       '@babel/traverse': 7.24.8
       '@babel/types': 7.24.9
       convert-source-map: 2.0.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -894,19 +886,10 @@ packages:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/parser': 7.24.8
       '@babel/types': 7.24.9
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/types@7.24.8:
-    resolution: {integrity: sha512-SkSBEHwwJRU52QEVZBmMBnE5Ux2/6WU1grdYyOhpbCNxbmJrDuDCphBzKZSO3taf0zztp+qkWlymE5tVL5l0TA==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.24.8
-      '@babel/helper-validator-identifier': 7.24.7
-      to-fast-properties: 2.0.0
     dev: true
 
   /@babel/types@7.24.9:
@@ -1088,7 +1071,7 @@ packages:
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/types': 19.0.3
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /@commitlint/lint@17.8.1:
@@ -2154,7 +2137,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.1
@@ -2231,7 +2214,7 @@ packages:
     engines: {node: '>=10.10.0'}
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -2346,7 +2329,7 @@ packages:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.6.2
+      semver: 7.6.3
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -2386,6 +2369,11 @@ packages:
     engines: {node: ^14.16.0 || >=16.0.0}
     dev: true
 
+  /@netlify/blobs@8.0.0:
+    resolution: {integrity: sha512-p9DdRSPvDuFhl9PYODWRo5QYWB4Du/lX5gbZNmwmtw+xfcaIpPD3lWs8I1OwHcpVgbay0Ik4JfCT75ZiPylKgA==}
+    engines: {node: ^14.16.0 || >=16.0.0}
+    dev: true
+
   /@netlify/build-info@7.14.1:
     resolution: {integrity: sha512-0FhHK8+v80pDt0hkN4s5+sFUL5OF8bVU4bqwqDx04NiSQ/jOUSwCZ70F5MHkbvjuqf4RoP0vVKqrvIB3EP0wyA==}
     engines: {node: ^14.16.0 || >=16.0.0}
@@ -2397,13 +2385,13 @@ packages:
       find-up: 6.3.0
       minimatch: 9.0.5
       read-pkg: 7.1.0
-      semver: 7.6.2
+      semver: 7.6.3
       yaml: 2.4.5
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.13):
-    resolution: {integrity: sha512-bHnQLeMv6yHsENU9HQw1JQ+I4RikgjIiqtWo5pPgLAt0ktm+UH+5eFrPZ61zdkSwqMWup06364+wUqTlj4q1hQ==}
+  /@netlify/build@29.51.4(@opentelemetry/api@1.8.0)(@types/node@20.14.13):
+    resolution: {integrity: sha512-yuUyhRpzNjcvQe7j1GdK7n3T57eajHYx5SVi5rdml9BhpJzQkARyhA9N3R0bSsS3oq5c/0EgvxtRu5k6M4/lPg==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -2419,12 +2407,12 @@ packages:
       '@netlify/config': 20.17.1
       '@netlify/edge-bundler': 12.2.2(supports-color@9.4.0)
       '@netlify/framework-info': 9.8.13
-      '@netlify/functions-utils': 5.2.75(supports-color@9.4.0)
+      '@netlify/functions-utils': 5.2.76(supports-color@9.4.0)
       '@netlify/git-utils': 5.1.1
       '@netlify/opentelemetry-utils': 1.2.1(@opentelemetry/api@1.8.0)
       '@netlify/plugins-list': 6.80.0
       '@netlify/run-utils': 5.1.1
-      '@netlify/zip-it-and-ship-it': 9.37.7(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.8(supports-color@9.4.0)
       '@opentelemetry/api': 1.8.0
       '@sindresorhus/slugify': 2.2.1
       ansi-escapes: 6.2.1
@@ -2463,7 +2451,7 @@ packages:
       resolve: 2.0.0-next.5
       rfdc: 1.4.1
       safe-json-stringify: 1.2.0
-      semver: 7.6.2
+      semver: 7.6.3
       string-width: 5.1.2
       strip-ansi: 7.1.0
       supports-color: 9.4.0
@@ -2548,7 +2536,7 @@ packages:
       p-retry: 5.1.2
       p-wait-for: 4.1.0
       path-key: 4.0.0
-      semver: 7.6.2
+      semver: 7.6.3
       tmp-promise: 3.0.3
       urlpattern-polyfill: 8.0.2
       uuid: 9.0.1
@@ -2622,14 +2610,14 @@ packages:
       p-locate: 6.0.0
       process: 0.11.10
       read-pkg-up: 9.1.0
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
-  /@netlify/functions-utils@5.2.75(supports-color@9.4.0):
-    resolution: {integrity: sha512-KTNEJhRvjNCz9I0IKgmr6WyFuHWlbFGg5BgV35b0qDhcpMVwIr+jTTykb5wuc2153++tLCpxTwYXNx2Uz73P8g==}
+  /@netlify/functions-utils@5.2.76(supports-color@9.4.0):
+    resolution: {integrity: sha512-ASxD+oZ5kNE1ZQYrM5kL0YgIiDQ7e2UyTUvSB+oh8vP/FHBoiDlt5CWpMfjDcto1aMpONrvTC3G7kfSKyBAmhw==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
-      '@netlify/zip-it-and-ship-it': 9.37.7(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.8(supports-color@9.4.0)
       cpy: 9.0.1
       path-exists: 5.0.0
     transitivePeerDependencies:
@@ -2816,23 +2804,23 @@ packages:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
 
-  /@netlify/serverless-functions-api@1.20.0:
-    resolution: {integrity: sha512-MsPw/753mUWCWYuaBvL6dkMa5uAh6o5hOSdjN16IhVuAQMrLLgZweSI9q2TW+C8QnQEgdtb5TV7iL8xAuxGsdA==}
+  /@netlify/serverless-functions-api@1.22.0:
+    resolution: {integrity: sha512-vv8fWCOIadSvdmR+8UYopdyHO/gOysl+8IBOxUUB0B3y7nnLOiBniE1JBeBR3y7gI/q/cnibBF2RhR3W04Wo/A==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
     dev: true
 
-  /@netlify/zip-it-and-ship-it@9.37.7(supports-color@9.4.0):
-    resolution: {integrity: sha512-d6PLXNFSjV5Q+maUMpyJeDybS1r8b6c7/qrIFPDpDioLnyxU97ur2gQ2cxn5WrlY0gfzLInRR7ipAa7MXdT3BQ==}
+  /@netlify/zip-it-and-ship-it@9.37.8(supports-color@9.4.0):
+    resolution: {integrity: sha512-hE/aRvRVndlaInzS//b5d5mD45cOUOvNf5u5pyTJDEbG9h/qpippILGMi33I8juJEEwYfgQjqjG8TBPpJGLNIw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     dependencies:
       '@babel/parser': 7.24.8
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
       '@netlify/binary-info': 1.0.0
-      '@netlify/serverless-functions-api': 1.20.0
+      '@netlify/serverless-functions-api': 1.22.0
       '@vercel/nft': 0.27.1(supports-color@9.4.0)
       archiver: 7.0.1
       common-path-prefix: 3.0.0
@@ -2856,7 +2844,7 @@ packages:
       precinct: 11.0.5(supports-color@9.4.0)
       require-package-name: 2.0.1
       resolve: 2.0.0-next.5
-      semver: 7.6.2
+      semver: 7.6.3
       tmp-promise: 3.0.3
       toml: 3.0.0
       unixify: 1.0.0
@@ -2899,7 +2887,7 @@ packages:
     resolution: {integrity: sha512-q9CRWjpHCMIh5sVyefoD1cA7PkvILqCZsnSOEUUivORLjxCO/Irmue2DprETiNgEqktDBZaM1Bi+jrarx1XdCg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /@npmcli/git@4.1.0:
@@ -2912,7 +2900,7 @@ packages:
       proc-log: 3.0.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.6.2
+      semver: 7.6.3
       which: 3.0.1
     transitivePeerDependencies:
       - bluebird
@@ -2928,7 +2916,7 @@ packages:
       json-parse-even-better-errors: 3.0.2
       normalize-package-data: 5.0.0
       proc-log: 3.0.0
-      semver: 7.6.2
+      semver: 7.6.3
     transitivePeerDependencies:
       - bluebird
     dev: true
@@ -3925,12 +3913,6 @@ packages:
     resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
     dev: true
 
-  /@types/node@22.0.0:
-    resolution: {integrity: sha512-VT7KSYudcPOzP5Q0wfbowyNLaVR8QWUdw+088uFWwfvpY6uCWaXpqV6ieLAu9WBcnTa7H4Z5RLK8I5t2FuOcqw==}
-    dependencies:
-      undici-types: 6.11.1
-    dev: true
-
   /@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
@@ -4002,12 +3984,12 @@ packages:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/type-utils': 5.62.0(eslint@8.57.0)(typescript@5.4.5)
       '@typescript-eslint/utils': 5.62.0(eslint@8.57.0)(typescript@5.4.5)
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       eslint: 8.57.0
       graphemer: 1.4.0
       ignore: 5.3.1
       natural-compare-lite: 1.4.0
-      semver: 7.6.2
+      semver: 7.6.3
       tsutils: 3.21.0(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4081,7 +4063,7 @@ packages:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/typescript-estree': 5.62.0(supports-color@9.4.0)(typescript@5.4.5)
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       eslint: 8.57.0
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4102,7 +4084,7 @@ packages:
       '@typescript-eslint/types': 7.16.1
       '@typescript-eslint/typescript-estree': 7.16.1(typescript@5.4.5)
       '@typescript-eslint/visitor-keys': 7.16.1
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.5
       eslint: 8.57.0
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4123,7 +4105,7 @@ packages:
       '@typescript-eslint/types': 7.17.0
       '@typescript-eslint/typescript-estree': 7.17.0(typescript@5.4.5)
       '@typescript-eslint/visitor-keys': 7.17.0
-      debug: 4.3.6
+      debug: 4.3.6(supports-color@9.4.0)
       eslint: 8.57.0
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4166,7 +4148,7 @@ packages:
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(supports-color@9.4.0)(typescript@5.4.5)
       '@typescript-eslint/utils': 5.62.0(eslint@8.57.0)(typescript@5.4.5)
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       eslint: 8.57.0
       tsutils: 3.21.0(typescript@5.4.5)
       typescript: 5.4.5
@@ -4186,7 +4168,7 @@ packages:
     dependencies:
       '@typescript-eslint/typescript-estree': 7.16.1(typescript@5.4.5)
       '@typescript-eslint/utils': 7.16.1(eslint@8.57.0)(typescript@5.4.5)
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       eslint: 8.57.0
       ts-api-utils: 1.3.0(typescript@5.4.5)
       typescript: 5.4.5
@@ -4220,10 +4202,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.2
+      semver: 7.6.3
       tsutils: 3.21.0(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4241,11 +4223,11 @@ packages:
     dependencies:
       '@typescript-eslint/types': 7.16.1
       '@typescript-eslint/visitor-keys': 7.16.1
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.6.2
+      semver: 7.6.3
       ts-api-utils: 1.3.0(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -4263,7 +4245,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 7.17.0
       '@typescript-eslint/visitor-keys': 7.17.0
-      debug: 4.3.6
+      debug: 4.3.6(supports-color@9.4.0)
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -4288,7 +4270,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.62.0(supports-color@9.4.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-scope: 5.1.1
-      semver: 7.6.2
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4613,7 +4595,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4622,7 +4604,7 @@ packages:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
     engines: {node: '>= 14'}
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4701,7 +4683,7 @@ packages:
       global-cache-dir: 4.4.0
       is-plain-obj: 4.1.0
       path-exists: 5.0.0
-      semver: 7.6.2
+      semver: 7.6.3
       write-file-atomic: 4.0.2
     dev: true
 
@@ -5062,7 +5044,7 @@ packages:
     dependencies:
       '@fastify/error': 3.4.1
       archy: 1.0.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       fastq: 1.17.1
     transitivePeerDependencies:
       - supports-color
@@ -5322,7 +5304,7 @@ packages:
   /builtins@5.1.0:
     resolution: {integrity: sha512-SW9lzGTLvWTP1AY8xeAMZimqDrIaSdLQUcVr9DMef51niJ022Ri87SwRRKYm4A6iHfkPaiVUu/Duw2Wc4J7kKg==}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /bundle-require@4.2.1(esbuild@0.21.5):
@@ -5862,7 +5844,7 @@ packages:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       md5-hex: 3.0.1
-      semver: 7.6.2
+      semver: 7.6.3
       well-known-symbols: 2.0.0
     dev: true
 
@@ -6287,7 +6269,7 @@ packages:
       ms: 2.1.2
     dev: true
 
-  /debug@4.3.5(supports-color@9.4.0):
+  /debug@4.3.5:
     resolution: {integrity: sha512-pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==}
     engines: {node: '>=6.0'}
     peerDependencies:
@@ -6297,10 +6279,9 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-      supports-color: 9.4.0
     dev: true
 
-  /debug@4.3.6:
+  /debug@4.3.6(supports-color@9.4.0):
     resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
     engines: {node: '>=6.0'}
     peerDependencies:
@@ -6310,6 +6291,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+      supports-color: 9.4.0
     dev: true
 
   /decache@4.6.2:
@@ -7147,7 +7129,7 @@ packages:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.13.1
+      is-core-module: 2.14.0
       resolve: 1.22.8
     transitivePeerDependencies:
       - supports-color
@@ -7411,7 +7393,7 @@ packages:
       eslint-import-resolver-node: 0.3.9
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
-      is-core-module: 2.13.1
+      is-core-module: 2.14.0
       is-glob: 4.0.3
       minimatch: 3.1.2
       object.fromentries: 2.0.8
@@ -7569,7 +7551,7 @@ packages:
       is-core-module: 2.14.0
       minimatch: 3.1.2
       resolve: 1.22.8
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /eslint-plugin-node@11.1.0(eslint@8.57.0):
@@ -7679,7 +7661,7 @@ packages:
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.27
       safe-regex: 2.1.1
-      semver: 7.6.2
+      semver: 7.6.3
       strip-indent: 3.0.0
     dev: true
 
@@ -7768,11 +7750,11 @@ packages:
     engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
     hasBin: true
     dependencies:
-      '@babel/code-frame': 7.24.2
+      '@babel/code-frame': 7.24.7
       ajv: 6.12.6
       chalk: 2.4.2
       cross-spawn: 6.0.5
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       doctrine: 3.0.0
       eslint-scope: 5.1.1
       eslint-utils: 1.4.3
@@ -7980,7 +7962,7 @@ packages:
     resolution: {integrity: sha512-EzV94NYKoO09GLXGjXj9JIlXijVck4ONSr5wiCWDvhsvj5jxSrzTmRU/9C1DyB6uToszLs8aifA6NQ7lEQdvFw==}
     engines: {node: '>= 0.8'}
     dependencies:
-      '@types/node': 22.0.0
+      '@types/node': 20.14.13
       require-like: 0.1.2
     dev: true
 
@@ -8134,7 +8116,7 @@ packages:
     engines: {node: '>= 10.17.0'}
     hasBin: true
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -8243,7 +8225,7 @@ packages:
       proxy-addr: 2.0.7
       rfdc: 1.4.1
       secure-json-parse: 2.7.0
-      semver: 7.6.2
+      semver: 7.6.3
       toad-cache: 3.7.0
     transitivePeerDependencies:
       - supports-color
@@ -8507,7 +8489,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.5
     dev: true
 
   /for-each@0.3.3:
@@ -8766,7 +8748,7 @@ packages:
     dependencies:
       '@xhmikosr/downloader': 13.0.1
       node-fetch: 3.3.2
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /git-raw-commits@2.0.11:
@@ -9216,7 +9198,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2(supports-color@9.4.0)
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9226,7 +9208,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9437,7 +9419,7 @@ packages:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
 
-  /ipx@2.1.0(@netlify/blobs@7.4.0):
+  /ipx@2.1.0(@netlify/blobs@8.0.0):
     resolution: {integrity: sha512-AVnPGXJ8L41vjd11Z4akIF2yd14636Klxul3tBySxHA6PKfCOQPxBDkCFK5zcWh0z/keR6toh1eg8qzdBVUgdA==}
     hasBin: true
     dependencies:
@@ -9455,7 +9437,7 @@ packages:
       sharp: 0.32.6
       svgo: 3.3.2
       ufo: 1.5.3
-      unstorage: 1.10.2(@netlify/blobs@7.4.0)
+      unstorage: 1.10.2(@netlify/blobs@8.0.0)
       xss: 1.0.15
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -10131,7 +10113,7 @@ packages:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /jsx-ast-utils@3.3.5:
@@ -10309,7 +10291,7 @@ packages:
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.5
       execa: 8.0.1
       lilconfig: 3.1.2
       listr2: 8.2.1
@@ -10526,7 +10508,7 @@ packages:
       jest-validate: 27.5.1
       map-obj: 5.0.2
       moize: 6.1.6
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /log-symbols@3.0.0:
@@ -10650,7 +10632,7 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /make-error@1.3.6:
@@ -11176,7 +11158,7 @@ packages:
   /micromark@2.11.4:
     resolution: {integrity: sha512-+WoovN/ppKolQOFIAajxi7Lu9kInbPxFuTBVEavFcL8eAfVstoc5MocPmqBeAdBOJV00uaVjegzH4+MA0DN/uA==}
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       parse-entities: 2.0.0
     transitivePeerDependencies:
       - supports-color
@@ -11186,7 +11168,7 @@ packages:
     resolution: {integrity: sha512-uD66tJj54JLYq0De10AhWycZWGQNUvDI55xPgk2sQM5kn1JYlhbCMTtEeT27+vAhW2FBQxLlOmS3pmA7/2z4aA==}
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.1.0
       micromark-factory-space: 1.1.0
@@ -11497,22 +11479,22 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.33.4(@types/node@20.14.13):
-    resolution: {integrity: sha512-wXWWxOHMab7ztaqNY1lq2OHq3lT31SW36O2upekyTekMI8KriSAGnfXQEXC8ddD4DwAViNUdBpxvjc6WaMjuug==}
+  /netlify-cli@17.33.5(@types/node@20.14.13):
+    resolution: {integrity: sha512-anLvAMr5YblLnFA85FjuqszL2LgMTNhnKOV7DtBFhdQ/YmukoHeWZlCa+as1gj0gj8jJR0ym+o28K4zanefWZg==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@bugsnag/js': 7.25.0
       '@fastify/static': 7.0.4
-      '@netlify/blobs': 7.4.0
-      '@netlify/build': 29.51.3(@opentelemetry/api@1.8.0)(@types/node@20.14.13)
+      '@netlify/blobs': 8.0.0
+      '@netlify/build': 29.51.4(@opentelemetry/api@1.8.0)(@types/node@20.14.13)
       '@netlify/build-info': 7.14.1
       '@netlify/config': 20.17.1
       '@netlify/edge-bundler': 12.2.2(supports-color@9.4.0)
       '@netlify/edge-functions': 2.9.0
       '@netlify/local-functions-proxy': 1.1.1
-      '@netlify/zip-it-and-ship-it': 9.37.7(supports-color@9.4.0)
+      '@netlify/zip-it-and-ship-it': 9.37.8(supports-color@9.4.0)
       '@octokit/rest': 20.1.1
       '@opentelemetry/api': 1.8.0
       ansi-escapes: 7.0.0
@@ -11533,7 +11515,7 @@ packages:
       content-type: 1.0.5
       cookie: 0.6.0
       cron-parser: 4.9.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.5
       decache: 4.6.2
       dot-prop: 9.0.0
       dotenv: 16.4.5
@@ -11562,7 +11544,7 @@ packages:
       https-proxy-agent: 7.0.5
       inquirer: 6.5.2
       inquirer-autocomplete-prompt: 1.4.0(inquirer@6.5.2)
-      ipx: 2.1.0(@netlify/blobs@7.4.0)
+      ipx: 2.1.0(@netlify/blobs@8.0.0)
       is-docker: 3.0.0
       is-stream: 4.0.1
       is-wsl: 3.1.0
@@ -11690,7 +11672,7 @@ packages:
     resolution: {integrity: sha512-CPMcGa+y33xuL1E0TcNIu4YyaZCxnnvkVaEXrsosR3FxN+fV8xvb7Mzpb7IgKler10qeMkE6+Dp8qJhpzdq35g==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /node-addon-api@6.1.0:
@@ -11767,7 +11749,7 @@ packages:
       is-plain-obj: 4.1.0
       normalize-node-version: 12.4.0
       path-exists: 5.0.0
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /nopt@5.0.0:
@@ -11784,7 +11766,7 @@ packages:
     dependencies:
       all-node-versions: 11.3.0
       filter-obj: 5.1.0
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /normalize-package-data@2.5.0:
@@ -11802,7 +11784,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.14.0
-      semver: 7.6.2
+      semver: 7.6.3
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -11812,7 +11794,7 @@ packages:
     dependencies:
       hosted-git-info: 6.1.1
       is-core-module: 2.14.0
-      semver: 7.6.2
+      semver: 7.6.3
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -11821,7 +11803,7 @@ packages:
     engines: {node: ^16.14.0 || >=18.0.0}
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.6.2
+      semver: 7.6.3
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -11845,7 +11827,7 @@ packages:
     resolution: {integrity: sha512-W29RiK/xtpCGqn6f3ixfRYGk+zRyr+Ew9F2E20BfXxT5/euLdA/Nm7fO7OeTGuAmTs30cpgInyJ0cYe708YTZw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /npm-normalize-package-bin@3.0.1:
@@ -11859,7 +11841,7 @@ packages:
     dependencies:
       hosted-git-info: 6.1.1
       proc-log: 3.0.0
-      semver: 7.6.2
+      semver: 7.6.3
       validate-npm-package-name: 5.0.1
     dev: true
 
@@ -11870,7 +11852,7 @@ packages:
       npm-install-checks: 6.3.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 10.1.0
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /npm-run-all2@6.2.2:
@@ -12349,7 +12331,7 @@ packages:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /pako@0.2.9:
@@ -13665,7 +13647,7 @@ packages:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
   /semver@5.7.2:
@@ -13776,7 +13758,7 @@ packages:
       detect-libc: 2.0.3
       node-addon-api: 6.1.0
       prebuild-install: 7.1.2
-      semver: 7.6.2
+      semver: 7.6.3
       simple-get: 4.0.1
       tar-fs: 3.0.6
       tunnel-agent: 0.6.0
@@ -14359,7 +14341,7 @@ packages:
   /tabtab@3.0.2:
     resolution: {integrity: sha512-jANKmUe0sIQc/zTALTBy186PoM/k6aPrh3A7p6AaAfF6WPSbTx1JYeGIGH162btpH+mmVEXln+UxwViZHO2Jhg==}
     dependencies:
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       es6-promisify: 6.1.1
       inquirer: 6.5.2
       minimist: 1.2.8
@@ -14736,7 +14718,7 @@ packages:
       bundle-require: 4.2.1(esbuild@0.21.5)
       cac: 6.7.14
       chokidar: 3.6.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.5
       esbuild: 0.21.5
       execa: 5.1.1
       globby: 11.1.0
@@ -14934,10 +14916,6 @@ packages:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
     dev: true
 
-  /undici-types@6.11.1:
-    resolution: {integrity: sha512-mIDEX2ek50x0OlRgxryxsenE5XaQD4on5U2inY7RApK3SOJpofyw7uW2AyfMKkhAxXIceo2DeWGVGwyvng1GNQ==}
-    dev: true
-
   /undici@6.19.2:
     resolution: {integrity: sha512-JfjKqIauur3Q6biAtHJ564e3bWa8VvT+7cSiOJHFbX4Erv6CLGDpg8z+Fmg/1OI/47RA+GI2QZaF48SSaLvyBA==}
     engines: {node: '>=18.17'}
@@ -15081,7 +15059,7 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  /unstorage@1.10.2(@netlify/blobs@7.4.0):
+  /unstorage@1.10.2(@netlify/blobs@8.0.0):
     resolution: {integrity: sha512-cULBcwDqrS8UhlIysUJs2Dk0Mmt8h7B0E6mtR+relW9nZvsf/u4SkAYyNliPiPW7XtFNb5u3IUMkxGxFTTRTgQ==}
     peerDependencies:
       '@azure/app-configuration': ^1.5.0
@@ -15125,7 +15103,7 @@ packages:
       ioredis:
         optional: true
     dependencies:
-      '@netlify/blobs': 7.4.0
+      '@netlify/blobs': 8.0.0
       anymatch: 3.1.3
       chokidar: 3.6.0
       destr: 2.0.3
@@ -15178,7 +15156,7 @@ packages:
       is-npm: 6.0.0
       latest-version: 7.0.0
       pupa: 3.1.0
-      semver: 7.6.2
+      semver: 7.6.3
       semver-diff: 4.0.0
       xdg-basedir: 5.1.0
     dev: true
@@ -15303,7 +15281,7 @@ packages:
     hasBin: true
     dependencies:
       cac: 6.7.14
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
       pathe: 1.1.2
       picocolors: 1.0.1
       vite: 5.3.1(@types/node@20.14.13)
@@ -15470,7 +15448,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       commander: 9.5.0
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
