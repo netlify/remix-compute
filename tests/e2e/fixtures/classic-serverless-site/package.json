@@ -23,16 +23,16 @@
   "dependencies": {
     "@netlify/functions": "^2.8.1",
     "@netlify/remix-adapter": "*",
-    "@remix-run/css-bundle": "^2.10.3-pre",
-    "@remix-run/node": "^2.10.3-pre",
-    "@remix-run/react": "^2.10.3-pre",
+    "@remix-run/css-bundle": "^2.11.2-pre",
+    "@remix-run/node": "^2.11.2-pre",
+    "@remix-run/react": "^2.11.2-pre",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.10.3-pre",
-    "@remix-run/eslint-config": "^2.10.3-pre",
-    "@remix-run/serve": "^2.10.3-pre",
+    "@remix-run/dev": "^2.11.2-pre",
+    "@remix-run/eslint-config": "^2.11.2-pre",
+    "@remix-run/serve": "^2.11.2-pre",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.32.0",
