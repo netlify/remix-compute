@@ -1,5 +1,5 @@
 import type { Plugin, ResolvedConfig } from 'vite'
-import { writeFile, mkdir, readdir } from 'node:fs/promises'
+import { writeFile, mkdir, readdir, access } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../../package.json'
@@ -44,6 +44,33 @@ function generateEdgeFunction(handlerPath: string, exclude: Array<string> = []) 
     };`
 }
 
+// Note: these are checked in order. The first match is used.
+const ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES = [
+  'server.ts',
+  'server.mts',
+  'server.cts',
+  'server.mjs',
+  'server.cjs',
+  'server.js',
+]
+const findUserEdgeFunctionHandlerFile = async (root: string) => {
+  for (const filename of ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES) {
+    try {
+      await access(join(root, filename))
+      return filename
+    } catch {}
+  }
+
+  throw new Error(
+    'Your Hydrogen site must include a `server.ts` (or js/mjs/cjs/mts/cts) file at the root to deploy to Netlify. See https://github.com/netlify/hydrogen-template.',
+  )
+}
+
+const getEdgeFunctionHandlerModuleId = async (root: string, isHydrogenSite: boolean) => {
+  if (!isHydrogenSite) return EDGE_FUNCTION_HANDLER_MODULE_ID
+  return findUserEdgeFunctionHandlerFile(root)
+}
+
 export function netlifyPlugin(): Plugin {
   let resolvedConfig: ResolvedConfig
   let currentCommand: string
@@ -63,6 +90,16 @@ export function netlifyPlugin(): Plugin {
             // Only externalize Node builtins
             noExternal: /^(?!node:).*$/,
           }
+        }
+      }
+    },
+    configResolved: {
+      order: 'pre',
+      async handler(config) {
+        resolvedConfig = config
+        const isHydrogenSite = resolvedConfig.plugins.find((plugin) => plugin.name === 'hydrogen:main') != null
+
+        if (currentCommand === 'build' && isSsr) {
           // We need to add an extra entrypoint, as we need to compile
           // the server entrypoint too. This is because it uses virtual
           // modules. It also avoids the faff of dealing with npm modules in Deno.
@@ -73,6 +110,11 @@ export function netlifyPlugin(): Plugin {
           // TODO(serhalp) Unless I'm misunderstanding something, we should only need to *replace*
           // the default Remix Vite SSR entrypoint, not add an additional one.
           if (typeof config.build?.rollupOptions?.input === 'string') {
+            const edgeFunctionHandlerModuleId = await getEdgeFunctionHandlerModuleId(
+              resolvedConfig.root,
+              isHydrogenSite,
+            )
+
             config.build.rollupOptions.input = {
               [EDGE_FUNCTION_HANDLER_CHUNK]: edgeFunctionHandlerModuleId,
               index: config.build.rollupOptions.input,
@@ -82,10 +124,7 @@ export function netlifyPlugin(): Plugin {
             }
           }
         }
-      }
-    },
-    async configResolved(config) {
-      resolvedConfig = config
+      },
     },
 
     resolveId: {

@@ -120,6 +120,26 @@ test.describe('User journeys', () => {
     })
   })
 
+  test.describe('Hydrogen Vite site', () => {
+    test('serves a response from the edge when using @netlify/remix-edge-adapter and a root `server.ts`', async ({
+      page,
+      hydrogenViteSite,
+    }) => {
+      const response = await page.goto(hydrogenViteSite.url)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByText('Mock.shop')).toBeVisible()
+      await expect(page.getByText('Recommended Products')).toBeVisible()
+      expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+    })
+
+    test('fails the build with an actionable message if the site is missing a root `server.ts` or similar', async ({
+      hydrogenViteSiteNoEntrypoint,
+    }) => {
+      expect(hydrogenViteSiteNoEntrypoint).toBeInstanceOf(Error)
+      expect(hydrogenViteSiteNoEntrypoint?.message).toMatch(/Your Hydrogen site must include a `server.ts`/)
+    })
+  })
+
   test('response has user-defined Cache-Control header when using origin SSR', async ({ page, serverlessSite }) => {
     const response = await page.goto(`${serverlessSite.url}/headers`)
     await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
