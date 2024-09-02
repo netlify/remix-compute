@@ -5,6 +5,10 @@ import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../../package.json'
 import { isBuiltin } from 'node:module'
 
+// FIXME: probably better to copy it and not rely on deep import of the Remix package
+// if we go with this approach
+import { toNodeRequest, fromNodeRequest } from '@remix-run/dev/dist/vite/node-adapter.js'
+
 const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/edge-functions'
 
 const EDGE_FUNCTION_FILENAME = 'remix-server.mjs'
@@ -75,6 +79,7 @@ export function netlifyPlugin(): Plugin {
   let resolvedConfig: ResolvedConfig
   let currentCommand: string
   let isSsr: boolean | undefined
+  let isHydrogenSite: boolean | undefined
 
   return {
     name: 'vite-plugin-remix-netlify-edge',
@@ -97,7 +102,7 @@ export function netlifyPlugin(): Plugin {
       order: 'pre',
       async handler(config) {
         resolvedConfig = config
-        const isHydrogenSite = resolvedConfig.plugins.find((plugin) => plugin.name === 'hydrogen:main') != null
+        isHydrogenSite = resolvedConfig.plugins.find((plugin) => plugin.name === 'hydrogen:main') != null
 
         if (currentCommand === 'build' && isSsr) {
           // We need to add an extra entrypoint, as we need to compile
@@ -122,6 +127,61 @@ export function netlifyPlugin(): Plugin {
             if (config.build.rollupOptions.output && !Array.isArray(config.build.rollupOptions.output)) {
               config.build.rollupOptions.output.entryFileNames = '[name].js'
             }
+          }
+        }
+        // FIXME: this is certainly not correct and now I'm not exactly sure what conditions to use here
+        else if (isHydrogenSite) {
+          config.build.ssr = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
+        }
+      },
+    },
+    configureServer: {
+      order: 'pre',
+      handler: (viteDevServer) => {
+        if (isHydrogenSite) {
+          // @ts-ignore common/server.ts uses Netlify global, would be good to get out of the need for it if possible
+          // or alternatively figure out proper way to generate it. We also are current running in Node, not Deno so quite a lot of questions here
+          globalThis.Netlify = {
+            // @ts-ignore FIXME env Object is not complete and only implements the only method we do use
+            env: {
+              toObject: () => process.env,
+            },
+          }
+
+          if (!viteDevServer.config.server.middlewareMode) {
+            viteDevServer.middlewares.use(async (req, res, next) => {
+              try {
+                let build = await viteDevServer.ssrLoadModule(
+                  await findUserEdgeFunctionHandlerFile(resolvedConfig.root),
+                )
+                let request = fromNodeRequest(req)
+                const response: Response = await build.default(
+                  request,
+                  // this is Netlify's Edge Function context object (well not really)
+                  {
+                    next: () => next(),
+                  },
+                )
+
+                if (
+                  response &&
+                  // FIXME: right now the 404 check here is needed to allow vite dev server to serve actual client modules
+                  // to the browser. This goes back to problem with figuring out proper condition to know when to set
+                  // user's `server.ts` as vite's build entrypoint as this dev middleware should only me used for "SSR" requests
+                  // not browser ones. The current problem with using this 404 check here is that if there is actual 404 case
+                  // (for example browser request favicon) that will also not be handled by vite's dev server it will eventually
+                  // be handled by Remix's dev middleware which will result in "Cannot read properties of undefined (reading 'query')"
+                  // error (due to that middleware not using custom "server.ts" and hence not setting up Storefront on the app context)
+                  response.status !== 404
+                ) {
+                  await toNodeRequest(response, res)
+                } else {
+                  next()
+                }
+              } catch (error) {
+                next(error)
+              }
+            })
           }
         }
       },
