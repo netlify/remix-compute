@@ -47,18 +47,16 @@ export function createRequestHandler({
       // A useful header for debugging
       response.headers.set('x-nf-runtime', 'Edge')
 
-      // FIXME: commented out here for dev, because dev middleware next() that is passed as `context.next` returns void
-      // so this all fall apart in this case - need to figure out if this should be done elsewhere or maybe use this conditionally
-      // for prod builds only
-      // if (response.status === 404) {
-      //   // Check if there is a matching static file
-      //   const originResponse = await context.next({
-      //     sendConditionalRequest: true,
-      //   })
-      //   if (originResponse.status !== 404) {
-      //     return originResponse
-      //   }
-      // }
+      if (response.status === 404) {
+        // Check if there is a matching static file. Context.next() might return void in Hydrogen dev server case.
+        const originResponse = (await context?.next?.({
+          sendConditionalRequest: true,
+        })) as Response | void
+
+        if (originResponse?.status !== 404) {
+          return originResponse
+        }
+      }
       return response
     } catch (error) {
       console.error(error)

@@ -4,6 +4,9 @@ import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../../package.json'
 import { isBuiltin } from 'node:module'
+import type { Context } from '@netlify/edge-functions'
+
+type NetlifyGlobal = typeof globalThis.Netlify
 
 // FIXME: probably better to copy it and not rely on deep import of the Remix package
 // if we go with this approach
@@ -128,9 +131,9 @@ export function netlifyPlugin(): Plugin {
               config.build.rollupOptions.output.entryFileNames = '[name].js'
             }
           }
-        }
-        // FIXME: this is certainly not correct and now I'm not exactly sure what conditions to use here
-        else if (isHydrogenSite) {
+        } else if (isHydrogenSite && currentCommand === 'serve') {
+          // handle dev server and use user's server.ts as entrypoint
+          // to later use it for handling requests within vite's dev server middleware
           config.build.ssr = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
         }
       },
@@ -139,35 +142,29 @@ export function netlifyPlugin(): Plugin {
       order: 'pre',
       handler: (viteDevServer) => {
         if (isHydrogenSite) {
-          // @ts-ignore common/server.ts uses Netlify global, would be good to get out of the need for it if possible
-          // or alternatively figure out proper way to generate it. We also are current running in Node, not Deno so quite a lot of questions here
-          globalThis.Netlify = {
-            // @ts-ignore FIXME env Object is not complete and only implements the only method we do use
-            env: {
-              toObject: () => process.env,
-            },
+          if (!global.Netlify) {
+            globalThis.Netlify = {
+              env: {
+                toObject: () => process.env,
+              },
+              context: {} as Context,
+            } as NetlifyGlobal
           }
 
           // returning a function here so the middleware is run after Vite's internal middleware
           // see https://vitejs.dev/guide/api-plugin#configureserver
           return () => {
             if (!viteDevServer.config.server.middlewareMode) {
-              viteDevServer.middlewares.use(async (req, res, next) => {
+              viteDevServer.middlewares.use(async (viteRequest, viteResponse, next) => {
                 try {
                   let build = await viteDevServer.ssrLoadModule(
                     await findUserEdgeFunctionHandlerFile(resolvedConfig.root),
                   )
-                  let request = fromNodeRequest(req)
-                  const response: Response = await build.default(
-                    request,
-                    // this is Netlify's Edge Function context object (well not really)
-                    {
-                      next: () => next(),
-                    },
-                  )
+                  let webAPIRequest = fromNodeRequest(viteRequest)
+                  const webAPIResponse: Response = await build.default(webAPIRequest, {} as Context)
 
-                  if (response) {
-                    await toNodeRequest(response, res)
+                  if (webAPIResponse) {
+                    await toNodeRequest(webAPIResponse, viteResponse)
                   } else {
                     next()
                   }
