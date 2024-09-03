@@ -53,7 +53,7 @@ export function createRequestHandler({
           sendConditionalRequest: true,
         })) as Response | void
 
-        if (originResponse?.status !== 404) {
+        if (originResponse && originResponse?.status !== 404) {
           return originResponse
         }
       }
