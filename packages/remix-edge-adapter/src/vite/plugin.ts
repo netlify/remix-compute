@@ -3,14 +3,11 @@ import { writeFile, mkdir, readdir, access } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../../package.json'
+import { toNodeRequest, fromNodeRequest } from './node-adapter'
 import { isBuiltin } from 'node:module'
 import type { Context } from '@netlify/edge-functions'
 
 type NetlifyGlobal = typeof globalThis.Netlify
-
-// FIXME: probably better to copy it and not rely on deep import of the Remix package
-// if we go with this approach
-import { toNodeRequest, fromNodeRequest } from '@remix-run/dev/dist/vite/node-adapter.js'
 
 const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/edge-functions'
 

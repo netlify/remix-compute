@@ -41,7 +41,8 @@
   "scripts": {
     "prepack": "pnpm run build",
     "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
-    "build:watch": "pnpm run build --watch"
+    "build:watch": "pnpm run build --watch",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -59,13 +60,15 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
     "@netlify/remix-runtime": "2.3.0",
-    "isbot": "^5.0.0"
+    "isbot": "^5.0.0",
+    "set-cookie-parser": "^2.7.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.9.2",
     "@remix-run/react": "^2.9.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/set-cookie-parser": "2.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^8.0.2",
