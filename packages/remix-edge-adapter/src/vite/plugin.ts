@@ -148,40 +148,34 @@ export function netlifyPlugin(): Plugin {
             },
           }
 
-          if (!viteDevServer.config.server.middlewareMode) {
-            viteDevServer.middlewares.use(async (req, res, next) => {
-              try {
-                let build = await viteDevServer.ssrLoadModule(
-                  await findUserEdgeFunctionHandlerFile(resolvedConfig.root),
-                )
-                let request = fromNodeRequest(req)
-                const response: Response = await build.default(
-                  request,
-                  // this is Netlify's Edge Function context object (well not really)
-                  {
-                    next: () => next(),
-                  },
-                )
+          // returning a function here so the middleware is run after Vite's internal middleware
+          // see https://vitejs.dev/guide/api-plugin#configureserver
+          return () => {
+            if (!viteDevServer.config.server.middlewareMode) {
+              viteDevServer.middlewares.use(async (req, res, next) => {
+                try {
+                  let build = await viteDevServer.ssrLoadModule(
+                    await findUserEdgeFunctionHandlerFile(resolvedConfig.root),
+                  )
+                  let request = fromNodeRequest(req)
+                  const response: Response = await build.default(
+                    request,
+                    // this is Netlify's Edge Function context object (well not really)
+                    {
+                      next: () => next(),
+                    },
+                  )
 
-                if (
-                  response &&
-                  // FIXME: right now the 404 check here is needed to allow vite dev server to serve actual client modules
-                  // to the browser. This goes back to problem with figuring out proper condition to know when to set
-                  // user's `server.ts` as vite's build entrypoint as this dev middleware should only me used for "SSR" requests
-                  // not browser ones. The current problem with using this 404 check here is that if there is actual 404 case
-                  // (for example browser request favicon) that will also not be handled by vite's dev server it will eventually
-                  // be handled by Remix's dev middleware which will result in "Cannot read properties of undefined (reading 'query')"
-                  // error (due to that middleware not using custom "server.ts" and hence not setting up Storefront on the app context)
-                  response.status !== 404
-                ) {
-                  await toNodeRequest(response, res)
-                } else {
-                  next()
+                  if (response) {
+                    await toNodeRequest(response, res)
+                  } else {
+                    next()
+                  }
+                } catch (error) {
+                  next(error)
                 }
-              } catch (error) {
-                next(error)
-              }
-            })
+              })
+            }
           }
         }
       },
