@@ -1,9 +1,11 @@
 import type { Plugin, ResolvedConfig } from 'vite'
+import { fromNodeRequest, toNodeRequest } from '@remix-run/dev/dist/vite/node-adapter.js'
+import type { EdgeFunction, Context as NetlifyContext } from '@netlify/edge-functions'
 import { writeFile, mkdir, readdir, access } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
-import { version, name } from '../../package.json'
 import { isBuiltin } from 'node:module'
+import { version, name } from '../../package.json'
 
 const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/edge-functions'
 
@@ -17,6 +19,57 @@ const EDGE_FUNCTION_HANDLER_MODULE_ID = 'virtual:netlify-server'
 const RESOLVED_EDGE_FUNCTION_HANDLER_MODULE_ID = `\0${EDGE_FUNCTION_HANDLER_MODULE_ID}`
 
 const toPosixPath = (path: string) => path.split(sep).join(posixSep)
+
+const notImplemented = () => {
+  throw new Error(`
+This is a fake Netlify context object for local dev. It is not supported here, but it will work with
+\`netlify serve\` and in a production build. To fix this, add it as custom context in your
+\`createAppLoadContext\` conditionally in dev.
+`)
+}
+const getFakeNetlifyContext = () =>
+  ({
+    requestId: 'fake-netlify-request-id-for-dev',
+    next: async () => new Response('', { status: 404 }),
+    geo: {
+      city: 'Mock City',
+      country: { code: 'MC', name: 'Mock Country' },
+      subdivision: { code: 'MS', name: 'Mock Subdivision' },
+      longitude: 0,
+      latitude: 0,
+      timezone: 'UTC',
+    },
+    get cookies() {
+      return notImplemented()
+    },
+    get deploy() {
+      return notImplemented()
+    },
+    get ip() {
+      return notImplemented()
+    },
+    get json() {
+      return notImplemented()
+    },
+    get log() {
+      return notImplemented()
+    },
+    get params() {
+      return notImplemented()
+    },
+    get rewrite() {
+      return notImplemented()
+    },
+    get site() {
+      return notImplemented()
+    },
+    get account() {
+      return notImplemented()
+    },
+    get server() {
+      return notImplemented()
+    },
+  }) as NetlifyContext
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Edge Function handler)
 const EDGE_FUNCTION_HANDLER = /* js */ `
@@ -75,6 +128,7 @@ export function netlifyPlugin(): Plugin {
   let resolvedConfig: ResolvedConfig
   let currentCommand: string
   let isSsr: boolean | undefined
+  let isHydrogenSite: boolean
 
   return {
     name: 'vite-plugin-remix-netlify-edge',
@@ -97,7 +151,7 @@ export function netlifyPlugin(): Plugin {
       order: 'pre',
       async handler(config) {
         resolvedConfig = config
-        const isHydrogenSite = resolvedConfig.plugins.find((plugin) => plugin.name === 'hydrogen:main') != null
+        isHydrogenSite = resolvedConfig.plugins.find((plugin) => plugin.name === 'hydrogen:main') != null
 
         if (currentCommand === 'build' && isSsr) {
           // We need to add an extra entrypoint, as we need to compile
@@ -123,6 +177,10 @@ export function netlifyPlugin(): Plugin {
               config.build.rollupOptions.output.entryFileNames = '[name].js'
             }
           }
+        } else if (isHydrogenSite && currentCommand === 'serve') {
+          // handle dev server and use user's server.ts as entrypoint
+          // to later use it for handling requests within vite's dev server middleware
+          config.build.ssr = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
         }
       },
     },
@@ -170,6 +228,36 @@ export function netlifyPlugin(): Plugin {
         return EDGE_FUNCTION_HANDLER
       }
     },
+
+    configureServer: {
+      order: 'pre',
+      handler(viteDevServer) {
+        return () => {
+          if (isHydrogenSite && !viteDevServer.config.server.middlewareMode) {
+            viteDevServer.middlewares.use(async (nodeReq, nodeRes, next) => {
+              try {
+                const edgeFunctionHandlerModuleId = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
+                let build = (await viteDevServer.ssrLoadModule(edgeFunctionHandlerModuleId)) as {
+                  default: EdgeFunction
+                }
+                const handleRequest = build.default
+                let req = fromNodeRequest(nodeReq)
+                const res = await handleRequest(req, getFakeNetlifyContext())
+                if (res instanceof Response) return await toNodeRequest(res, nodeRes)
+                if (res instanceof URL) {
+                  next(new Error('URLs are not supported in dev server middleware'))
+                  return
+                }
+                next()
+              } catch (error) {
+                next(error)
+              }
+            })
+          }
+        }
+      },
+    },
+
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
