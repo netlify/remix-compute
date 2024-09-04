@@ -61,7 +61,6 @@
   "dependencies": {
     "@netlify/remix-runtime": "2.3.0",
     "@remix-run/dev": "^2.9.2",
-    "@shopify/hydrogen": "^2024.7.4",
     "isbot": "^5.0.0"
   },
   "devDependencies": {
