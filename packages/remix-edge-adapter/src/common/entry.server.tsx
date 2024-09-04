@@ -19,10 +19,20 @@ export default async function handleRequest(
   remixContext: EntryContext,
   _loadContext: AppLoadContext,
 ) {
+  let isStreamClosing = false
+
+  const abortController = new AbortController()
+  request.signal.addEventListener('abort', () => {
+    if (!isStreamClosing) {
+      // only signal the abort if the stream is not already closing
+      abortController.abort(request.signal.reason)
+    }
+  })
+
   // The main difference between this and the default Node.js entrypoint is
   // this use of web streams as opposed to Node.js streams.
   const body = await ReactDOMServer.renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
-    signal: request.signal,
+    signal: abortController.signal,
     onError(error: unknown) {
       // Log streaming rendering errors from inside the shell
       console.error(error)
@@ -30,12 +40,21 @@ export default async function handleRequest(
     },
   })
 
+  // identity transform just to be able to listen for the flush event
+  const transformedBody = body.pipeThrough(
+    new TransformStream({
+      flush() {
+        isStreamClosing = true
+      },
+    }),
+  )
+
   if (isbot(request.headers.get('user-agent') || '')) {
     await body.allReady
   }
 
   responseHeaders.set('Content-Type', 'text/html')
-  return new Response(body, {
+  return new Response(transformedBody, {
     headers: responseHeaders,
     status: responseStatusCode,
   })
