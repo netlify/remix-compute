@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.4.0...remix-adapter-v2.5.0) (2024-09-05)
+
+
+### Features
+
+* **@netlify/remix-edge-adapter:** support Hydrogen Vite sites ([#441](https://github.com/netlify/remix-compute/issues/441)) ([81e9bfa](https://github.com/netlify/remix-compute/commit/81e9bfa00a0cb272ac7ae701e1a7540388407e77))
+
 ## [2.4.0](https://github.com/netlify/remix-compute/compare/remix-adapter-v2.3.2...remix-adapter-v2.4.0) (2024-05-23)
 
 

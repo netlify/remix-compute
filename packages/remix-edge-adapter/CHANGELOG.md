@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.4.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.3.0...remix-edge-adapter-v3.4.0) (2024-09-05)
+
+
+### Features
+
+* **@netlify/remix-edge-adapter:** support Hydrogen Vite sites ([#441](https://github.com/netlify/remix-compute/issues/441)) ([81e9bfa](https://github.com/netlify/remix-compute/commit/81e9bfa00a0cb272ac7ae701e1a7540388407e77))
+
+
+### Bug Fixes
+
+* **@netlify/remix-edge-adapter:** don't close the stream twice ([#444](https://github.com/netlify/remix-compute/issues/444)) ([07bef21](https://github.com/netlify/remix-compute/commit/07bef219a92ce57cb67dbf8da92cb455d6c0b0cf))
+
 ## [3.3.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.2.4...remix-edge-adapter-v3.3.0) (2024-05-23)
 
 
