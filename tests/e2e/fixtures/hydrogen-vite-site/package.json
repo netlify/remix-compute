@@ -12,7 +12,6 @@
     "preview": "netlify serve",
     "typecheck": "tsc"
   },
-  "prettier": "@shopify/prettier-config",
   "dependencies": {
     "@netlify/edge-functions": "^2.10.0",
     "@netlify/remix-edge-adapter": "^3.3.0",
