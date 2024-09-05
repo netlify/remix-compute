@@ -9,8 +9,7 @@ It is strongly advised to use [the Netlify Remix template](https://github.com/ne
 site for deployment to Netlify. See [Remix on Netlify](https://docs.netlify.com/frameworks/remix/) for more details and
 other options.
 
-However, if you are using **Remix Vite**, you can easily skip the template and deploy your site to Netlify by following
-these steps:
+However, if you are using **Remix Vite**, you can instead deploy your existing site to Netlify by following these steps:
 
 1. Add dependencies on `@netlify/remix-edge-adapter` and `@netlify/remix-runtime`
 2. Use the Netlify Remix edge Vite plugin in your Vite config:
