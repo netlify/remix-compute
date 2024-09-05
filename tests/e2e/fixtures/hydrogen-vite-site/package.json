@@ -1,17 +1,18 @@
 {
-  "name": "hydrogen-vite-site",
-  "version": "1.0.0",
+  "name": "hydrogen-storefront",
   "private": true,
   "sideEffects": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
     "codegen": "shopify hydrogen codegen",
     "dev": "shopify hydrogen dev --codegen",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
-    "preview": "shopify hydrogen preview --build",
+    "preview": "netlify serve",
     "typecheck": "tsc"
   },
+  "prettier": "@shopify/prettier-config",
   "dependencies": {
     "@netlify/edge-functions": "^2.10.0",
     "@netlify/remix-edge-adapter": "^3.3.0",
@@ -29,7 +30,6 @@
     "@remix-run/dev": "^2.11.2",
     "@remix-run/eslint-config": "^2.11.2",
     "@shopify/cli": "^3.66.1",
-    "@shopify/cli-hydrogen": "^8.4.1",
     "@shopify/hydrogen-codegen": "^0.3.1",
     "@shopify/prettier-config": "^1.1.2",
     "@total-typescript/ts-reset": "^0.4.2",
