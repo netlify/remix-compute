@@ -1,13 +1,9 @@
-import type {ProductVariantFragment} from 'storefrontapi.generated';
-import {Image} from '@shopify/hydrogen';
+import type { ProductVariantFragment } from 'storefrontapi.generated'
+import { Image } from '@shopify/hydrogen'
 
-export function ProductImage({
-  image,
-}: {
-  image: ProductVariantFragment['image'];
-}) {
+export function ProductImage({ image }: { image: ProductVariantFragment['image'] }) {
   if (!image) {
-    return <div className="product-image" />;
+    return <div className="product-image" />
   }
   return (
     <div className="product-image">
@@ -19,5 +15,5 @@ export function ProductImage({
         sizes="(min-width: 45em) 50vw, 100vw"
       />
     </div>
-  );
+  )
 }

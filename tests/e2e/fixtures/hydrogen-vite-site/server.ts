@@ -1,36 +1,26 @@
 // @ts-ignore -- virtual entry point for the app, resolved by Vite at build time
-import * as remixBuild from 'virtual:remix/server-build';
-import type {Context} from '@netlify/edge-functions';
-import {
-  createHydrogenAppLoadContext,
-  createRequestHandler,
-} from '@netlify/remix-edge-adapter';
-import {storefrontRedirect} from '@shopify/hydrogen';
-import {createAppLoadContext} from '~/lib/context';
+import * as remixBuild from 'virtual:remix/server-build'
+import type { Context } from '@netlify/edge-functions'
+import { createHydrogenAppLoadContext, createRequestHandler } from '@netlify/remix-edge-adapter'
+import { storefrontRedirect } from '@shopify/hydrogen'
+import { createAppLoadContext } from '~/lib/context'
 
-export default async function (
-  request: Request,
-  netlifyContext: Context,
-): Promise<Response | undefined> {
+export default async function (request: Request, netlifyContext: Context): Promise<Response | undefined> {
   try {
-    const appLoadContext = await createHydrogenAppLoadContext(
-      request,
-      netlifyContext,
-      createAppLoadContext,
-    );
+    const appLoadContext = await createHydrogenAppLoadContext(request, netlifyContext, createAppLoadContext)
     const handleRequest = createRequestHandler({
       build: remixBuild,
       mode: process.env.NODE_ENV,
-    });
+    })
 
-    const response = await handleRequest(request, appLoadContext);
+    const response = await handleRequest(request, appLoadContext)
 
     if (!response) {
-      return;
+      return
     }
 
     if (appLoadContext.session.isPending) {
-      response.headers.set('Set-Cookie', await appLoadContext.session.commit());
+      response.headers.set('Set-Cookie', await appLoadContext.session.commit())
     }
 
     if (response.status === 404) {
@@ -43,12 +33,12 @@ export default async function (
         request,
         response,
         storefront: appLoadContext.storefront,
-      });
+      })
     }
 
-    return response;
+    return response
   } catch (error) {
-    console.error(error);
-    return new Response('An unexpected error occurred', {status: 500});
+    console.error(error)
+    return new Response('An unexpected error occurred', { status: 500 })
   }
 }

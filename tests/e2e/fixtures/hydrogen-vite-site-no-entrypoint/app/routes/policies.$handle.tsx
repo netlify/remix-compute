@@ -1,25 +1,21 @@
-import {json, type LoaderFunctionArgs} from '@netlify/remix-runtime';
-import {Link, useLoaderData, type MetaFunction} from '@remix-run/react';
-import {type Shop} from '@shopify/hydrogen/storefront-api-types';
+import { json, type LoaderFunctionArgs } from '@netlify/remix-runtime'
+import { Link, useLoaderData, type MetaFunction } from '@remix-run/react'
+import { type Shop } from '@shopify/hydrogen/storefront-api-types'
 
-type SelectedPolicies = keyof Pick<
-  Shop,
-  'privacyPolicy' | 'shippingPolicy' | 'termsOfService' | 'refundPolicy'
->;
+type SelectedPolicies = keyof Pick<Shop, 'privacyPolicy' | 'shippingPolicy' | 'termsOfService' | 'refundPolicy'>
 
-export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.policy.title ?? ''}`}];
-};
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [{ title: `Hydrogen | ${data?.policy.title ?? ''}` }]
+}
 
-export async function loader({params, context}: LoaderFunctionArgs) {
+export async function loader({ params, context }: LoaderFunctionArgs) {
   if (!params.handle) {
-    throw new Response('No handle was passed in', {status: 404});
+    throw new Response('No handle was passed in', { status: 404 })
   }
 
-  const policyName = params.handle.replace(
-    /-([a-z])/g,
-    (_: unknown, m1: string) => m1.toUpperCase(),
-  ) as SelectedPolicies;
+  const policyName = params.handle.replace(/-([a-z])/g, (_: unknown, m1: string) =>
+    m1.toUpperCase(),
+  ) as SelectedPolicies
 
   const data = await context.storefront.query(POLICY_CONTENT_QUERY, {
     variables: {
@@ -30,19 +26,19 @@ export async function loader({params, context}: LoaderFunctionArgs) {
       [policyName]: true,
       language: context.storefront.i18n?.language,
     },
-  });
+  })
 
-  const policy = data.shop?.[policyName];
+  const policy = data.shop?.[policyName]
 
   if (!policy) {
-    throw new Response('Could not find the policy', {status: 404});
+    throw new Response('Could not find the policy', { status: 404 })
   }
 
-  return json({policy});
+  return json({ policy })
 }
 
 export default function Policy() {
-  const {policy} = useLoaderData<typeof loader>();
+  const { policy } = useLoaderData<typeof loader>()
 
   return (
     <div className="policy">
@@ -53,9 +49,9 @@ export default function Policy() {
       </div>
       <br />
       <h1>{policy.title}</h1>
-      <div dangerouslySetInnerHTML={{__html: policy.body}} />
+      <div dangerouslySetInnerHTML={{ __html: policy.body }} />
     </div>
-  );
+  )
 }
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/objects/Shop
@@ -90,4 +86,4 @@ const POLICY_CONTENT_QUERY = `#graphql
       }
     }
   }
-` as const;
+` as const

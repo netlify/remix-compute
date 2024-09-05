@@ -1,11 +1,11 @@
-import {createContext, type ReactNode, useContext, useState} from 'react';
+import { createContext, type ReactNode, useContext, useState } from 'react'
 
-type AsideType = 'search' | 'cart' | 'mobile' | 'closed';
+type AsideType = 'search' | 'cart' | 'mobile' | 'closed'
 type AsideContextValue = {
-  type: AsideType;
-  open: (mode: AsideType) => void;
-  close: () => void;
-};
+  type: AsideType
+  open: (mode: AsideType) => void
+  close: () => void
+}
 
 /**
  * A side bar component with Overlay
@@ -22,19 +22,15 @@ export function Aside({
   heading,
   type,
 }: {
-  children?: React.ReactNode;
-  type: AsideType;
-  heading: React.ReactNode;
+  children?: React.ReactNode
+  type: AsideType
+  heading: React.ReactNode
 }) {
-  const {type: activeType, close} = useAside();
-  const expanded = type === activeType;
+  const { type: activeType, close } = useAside()
+  const expanded = type === activeType
 
   return (
-    <div
-      aria-modal
-      className={`overlay ${expanded ? 'expanded' : ''}`}
-      role="dialog"
-    >
+    <div aria-modal className={`overlay ${expanded ? 'expanded' : ''}`} role="dialog">
       <button className="close-outside" onClick={close} />
       <aside>
         <header>
@@ -46,13 +42,13 @@ export function Aside({
         <main>{children}</main>
       </aside>
     </div>
-  );
+  )
 }
 
-const AsideContext = createContext<AsideContextValue | null>(null);
+const AsideContext = createContext<AsideContextValue | null>(null)
 
-Aside.Provider = function AsideProvider({children}: {children: ReactNode}) {
-  const [type, setType] = useState<AsideType>('closed');
+Aside.Provider = function AsideProvider({ children }: { children: ReactNode }) {
+  const [type, setType] = useState<AsideType>('closed')
 
   return (
     <AsideContext.Provider
@@ -64,13 +60,13 @@ Aside.Provider = function AsideProvider({children}: {children: ReactNode}) {
     >
       {children}
     </AsideContext.Provider>
-  );
-};
+  )
+}
 
 export function useAside() {
-  const aside = useContext(AsideContext);
+  const aside = useContext(AsideContext)
   if (!aside) {
-    throw new Error('useAside must be used within an AsideProvider');
+    throw new Error('useAside must be used within an AsideProvider')
   }
-  return aside;
+  return aside
 }

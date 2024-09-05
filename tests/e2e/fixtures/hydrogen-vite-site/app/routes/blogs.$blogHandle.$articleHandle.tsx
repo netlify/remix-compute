@@ -1,46 +1,46 @@
-import {defer, type LoaderFunctionArgs} from '@netlify/remix-runtime';
-import {useLoaderData, type MetaFunction} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen';
+import { defer, type LoaderFunctionArgs } from '@netlify/remix-runtime'
+import { useLoaderData, type MetaFunction } from '@remix-run/react'
+import { Image } from '@shopify/hydrogen'
 
-export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.article.title ?? ''} article`}];
-};
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [{ title: `Hydrogen | ${data?.article.title ?? ''} article` }]
+}
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
+  const deferredData = loadDeferredData(args)
 
   // Await the critical data required to render initial state of the page
-  const criticalData = await loadCriticalData(args);
+  const criticalData = await loadCriticalData(args)
 
-  return defer({...deferredData, ...criticalData});
+  return defer({ ...deferredData, ...criticalData })
 }
 
 /**
  * Load data necessary for rendering content above the fold. This is the critical data
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
-async function loadCriticalData({context, params}: LoaderFunctionArgs) {
-  const {blogHandle, articleHandle} = params;
+async function loadCriticalData({ context, params }: LoaderFunctionArgs) {
+  const { blogHandle, articleHandle } = params
 
   if (!articleHandle || !blogHandle) {
-    throw new Response('Not found', {status: 404});
+    throw new Response('Not found', { status: 404 })
   }
 
-  const [{blog}] = await Promise.all([
+  const [{ blog }] = await Promise.all([
     context.storefront.query(ARTICLE_QUERY, {
-      variables: {blogHandle, articleHandle},
+      variables: { blogHandle, articleHandle },
     }),
     // Add other queries here, so that they are loaded in parallel
-  ]);
+  ])
 
   if (!blog?.articleByHandle) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 })
   }
 
-  const article = blog.articleByHandle;
+  const article = blog.articleByHandle
 
-  return {article};
+  return { article }
 }
 
 /**
@@ -48,19 +48,19 @@ async function loadCriticalData({context, params}: LoaderFunctionArgs) {
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  * Make sure to not throw any errors here, as it will cause the page to 500.
  */
-function loadDeferredData({context}: LoaderFunctionArgs) {
-  return {};
+function loadDeferredData({ context }: LoaderFunctionArgs) {
+  return {}
 }
 
 export default function Article() {
-  const {article} = useLoaderData<typeof loader>();
-  const {title, image, contentHtml, author} = article;
+  const { article } = useLoaderData<typeof loader>()
+  const { title, image, contentHtml, author } = article
 
   const publishedDate = new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  }).format(new Date(article.publishedAt));
+  }).format(new Date(article.publishedAt))
 
   return (
     <div className="article">
@@ -72,12 +72,9 @@ export default function Article() {
       </h1>
 
       {image && <Image data={image} sizes="90vw" loading="eager" />}
-      <div
-        dangerouslySetInnerHTML={{__html: contentHtml}}
-        className="article"
-      />
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} className="article" />
     </div>
-  );
+  )
 }
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog#field-blog-articlebyhandle
@@ -110,4 +107,4 @@ const ARTICLE_QUERY = `#graphql
       }
     }
   }
-` as const;
+` as const

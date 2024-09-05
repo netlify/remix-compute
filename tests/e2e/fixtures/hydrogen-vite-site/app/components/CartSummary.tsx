@@ -1,36 +1,29 @@
-import type {CartApiQueryFragment} from 'storefrontapi.generated';
-import type {CartLayout} from '~/components/CartMain';
-import {CartForm, Money, type OptimisticCart} from '@shopify/hydrogen';
+import type { CartApiQueryFragment } from 'storefrontapi.generated'
+import type { CartLayout } from '~/components/CartMain'
+import { CartForm, Money, type OptimisticCart } from '@shopify/hydrogen'
 
 type CartSummaryProps = {
-  cart: OptimisticCart<CartApiQueryFragment | null>;
-  layout: CartLayout;
-};
+  cart: OptimisticCart<CartApiQueryFragment | null>
+  layout: CartLayout
+}
 
-export function CartSummary({cart, layout}: CartSummaryProps) {
-  const className =
-    layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside';
+export function CartSummary({ cart, layout }: CartSummaryProps) {
+  const className = layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside'
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
       <h4>Totals</h4>
       <dl className="cart-subtotal">
         <dt>Subtotal</dt>
-        <dd>
-          {cart.cost?.subtotalAmount?.amount ? (
-            <Money data={cart.cost?.subtotalAmount} />
-          ) : (
-            '-'
-          )}
-        </dd>
+        <dd>{cart.cost?.subtotalAmount?.amount ? <Money data={cart.cost?.subtotalAmount} /> : '-'}</dd>
       </dl>
       <CartDiscounts discountCodes={cart.discountCodes} />
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
-  );
+  )
 }
-function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
-  if (!checkoutUrl) return null;
+function CartCheckoutActions({ checkoutUrl }: { checkoutUrl?: string }) {
+  if (!checkoutUrl) return null
 
   return (
     <div>
@@ -39,18 +32,11 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
       </a>
       <br />
     </div>
-  );
+  )
 }
 
-function CartDiscounts({
-  discountCodes,
-}: {
-  discountCodes?: CartApiQueryFragment['discountCodes'];
-}) {
-  const codes: string[] =
-    discountCodes
-      ?.filter((discount) => discount.applicable)
-      ?.map(({code}) => code) || [];
+function CartDiscounts({ discountCodes }: { discountCodes?: CartApiQueryFragment['discountCodes'] }) {
+  const codes: string[] = discountCodes?.filter((discount) => discount.applicable)?.map(({ code }) => code) || []
 
   return (
     <div>
@@ -77,16 +63,10 @@ function CartDiscounts({
         </div>
       </UpdateDiscountForm>
     </div>
-  );
+  )
 }
 
-function UpdateDiscountForm({
-  discountCodes,
-  children,
-}: {
-  discountCodes?: string[];
-  children: React.ReactNode;
-}) {
+function UpdateDiscountForm({ discountCodes, children }: { discountCodes?: string[]; children: React.ReactNode }) {
   return (
     <CartForm
       route="/cart"
@@ -97,5 +77,5 @@ function UpdateDiscountForm({
     >
       {children}
     </CartForm>
-  );
+  )
 }

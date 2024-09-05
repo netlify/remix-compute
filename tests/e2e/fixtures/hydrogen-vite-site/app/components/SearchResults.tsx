@@ -1,41 +1,31 @@
-import {Link} from '@remix-run/react';
-import {Image, Money, Pagination} from '@shopify/hydrogen';
-import {urlWithTrackingParams, type RegularSearchReturn} from '~/lib/search';
+import { Link } from '@remix-run/react'
+import { Image, Money, Pagination } from '@shopify/hydrogen'
+import { urlWithTrackingParams, type RegularSearchReturn } from '~/lib/search'
 
-type SearchItems = RegularSearchReturn['result']['items'];
-type PartialSearchResult<ItemType extends keyof SearchItems> = Pick<
-  SearchItems,
-  ItemType
-> &
-  Pick<RegularSearchReturn, 'term'>;
+type SearchItems = RegularSearchReturn['result']['items']
+type PartialSearchResult<ItemType extends keyof SearchItems> = Pick<SearchItems, ItemType> &
+  Pick<RegularSearchReturn, 'term'>
 
 type SearchResultsProps = RegularSearchReturn & {
-  children: (args: SearchItems & {term: string}) => React.ReactNode;
-};
-
-export function SearchResults({
-  term,
-  result,
-  children,
-}: Omit<SearchResultsProps, 'error' | 'type'>) {
-  if (!result?.total) {
-    return null;
-  }
-
-  return children({...result.items, term});
+  children: (args: SearchItems & { term: string }) => React.ReactNode
 }
 
-SearchResults.Articles = SearchResultsArticles;
-SearchResults.Pages = SearchResultsPages;
-SearchResults.Products = SearchResultsProducts;
-SearchResults.Empty = SearchResultsEmpty;
+export function SearchResults({ term, result, children }: Omit<SearchResultsProps, 'error' | 'type'>) {
+  if (!result?.total) {
+    return null
+  }
 
-function SearchResultsArticles({
-  term,
-  articles,
-}: PartialSearchResult<'articles'>) {
+  return children({ ...result.items, term })
+}
+
+SearchResults.Articles = SearchResultsArticles
+SearchResults.Pages = SearchResultsPages
+SearchResults.Products = SearchResultsProducts
+SearchResults.Empty = SearchResultsEmpty
+
+function SearchResultsArticles({ term, articles }: PartialSearchResult<'articles'>) {
   if (!articles?.nodes.length) {
-    return null;
+    return null
   }
 
   return (
@@ -47,7 +37,7 @@ function SearchResultsArticles({
             baseUrl: `/blogs/${article.handle}`,
             trackingParams: article.trackingParameters,
             term,
-          });
+          })
 
           return (
             <div className="search-results-item" key={article.id}>
@@ -55,17 +45,17 @@ function SearchResultsArticles({
                 {article.title}
               </Link>
             </div>
-          );
+          )
         })}
       </div>
       <br />
     </div>
-  );
+  )
 }
 
-function SearchResultsPages({term, pages}: PartialSearchResult<'pages'>) {
+function SearchResultsPages({ term, pages }: PartialSearchResult<'pages'>) {
   if (!pages?.nodes.length) {
-    return null;
+    return null
   }
 
   return (
@@ -77,7 +67,7 @@ function SearchResultsPages({term, pages}: PartialSearchResult<'pages'>) {
             baseUrl: `/pages/${page.handle}`,
             trackingParams: page.trackingParameters,
             term,
-          });
+          })
 
           return (
             <div className="search-results-item" key={page.id}>
@@ -85,43 +75,36 @@ function SearchResultsPages({term, pages}: PartialSearchResult<'pages'>) {
                 {page.title}
               </Link>
             </div>
-          );
+          )
         })}
       </div>
       <br />
     </div>
-  );
+  )
 }
 
-function SearchResultsProducts({
-  term,
-  products,
-}: PartialSearchResult<'products'>) {
+function SearchResultsProducts({ term, products }: PartialSearchResult<'products'>) {
   if (!products?.nodes.length) {
-    return null;
+    return null
   }
 
   return (
     <div className="search-result">
       <h2>Products</h2>
       <Pagination connection={products}>
-        {({nodes, isLoading, NextLink, PreviousLink}) => {
+        {({ nodes, isLoading, NextLink, PreviousLink }) => {
           const ItemsMarkup = nodes.map((product) => {
             const productUrl = urlWithTrackingParams({
               baseUrl: `/products/${product.handle}`,
               trackingParams: product.trackingParameters,
               term,
-            });
+            })
 
             return (
               <div className="search-results-item" key={product.id}>
                 <Link prefetch="intent" to={productUrl}>
                   {product.variants.nodes[0].image && (
-                    <Image
-                      data={product.variants.nodes[0].image}
-                      alt={product.title}
-                      width={50}
-                    />
+                    <Image data={product.variants.nodes[0].image} alt={product.title} width={50} />
                   )}
                   <div>
                     <p>{product.title}</p>
@@ -131,34 +114,30 @@ function SearchResultsProducts({
                   </div>
                 </Link>
               </div>
-            );
-          });
+            )
+          })
 
           return (
             <div>
               <div>
-                <PreviousLink>
-                  {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
-                </PreviousLink>
+                <PreviousLink>{isLoading ? 'Loading...' : <span>↑ Load previous</span>}</PreviousLink>
               </div>
               <div>
                 {ItemsMarkup}
                 <br />
               </div>
               <div>
-                <NextLink>
-                  {isLoading ? 'Loading...' : <span>Load more ↓</span>}
-                </NextLink>
+                <NextLink>{isLoading ? 'Loading...' : <span>Load more ↓</span>}</NextLink>
               </div>
             </div>
-          );
+          )
         }}
       </Pagination>
       <br />
     </div>
-  );
+  )
 }
 
 function SearchResultsEmpty() {
-  return <p>No results, try a different search.</p>;
+  return <p>No results, try a different search.</p>
 }
