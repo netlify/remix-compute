@@ -174,7 +174,8 @@ export function netlifyPlugin(): Plugin {
               index: config.build.rollupOptions.input,
             }
             if (config.build.rollupOptions.output && !Array.isArray(config.build.rollupOptions.output)) {
-              config.build.rollupOptions.output.entryFileNames = '[name].js'
+              // NOTE: must use function syntax here to work around https://github.com/Shopify/hydrogen/issues/2496
+              config.build.rollupOptions.output.entryFileNames = () => '[name].js'
             }
           }
         } else if (isHydrogenSite && currentCommand === 'serve') {
