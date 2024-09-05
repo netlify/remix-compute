@@ -14,6 +14,11 @@ are three packages:
 - `@netlify/remix-edge-adapter` - The Remix adapter for Netlify Edge Functions
 - `@netlify/remix-runtime` - The Remix runtime for Netlify Edge Functions
 
+## Hydrogen
+
+Shopify Hydrogen sites are supported and automatically detected. However, only
+[the edge adapter](./packages/remix-edge-adapter/README.md) is supported, and only when using Remix Vite.
+
 ## Development
 
 ### Installation

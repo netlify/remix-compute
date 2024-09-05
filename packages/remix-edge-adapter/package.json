@@ -40,6 +40,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
+    "postinstall": "deno types > deno.d.ts",
     "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
     "build:watch": "pnpm run build --watch"
   },
@@ -59,10 +60,10 @@
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
     "@netlify/remix-runtime": "2.3.0",
+    "@remix-run/dev": "^2.9.2",
     "isbot": "^5.0.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.9.2",
     "@remix-run/react": "^2.9.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",

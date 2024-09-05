@@ -2,7 +2,7 @@ import type { AppLoadContext, ServerBuild } from '@netlify/remix-runtime'
 import { createRequestHandler as createRemixRequestHandler } from '@netlify/remix-runtime'
 import type { Context } from '@netlify/edge-functions'
 
-type LoadContext = AppLoadContext & Context
+export type LoadContext = AppLoadContext & Context
 
 /**
  * A function that returns the value to use as `context` in route `loader` and
@@ -49,10 +49,10 @@ export function createRequestHandler({
 
       if (response.status === 404) {
         // Check if there is a matching static file
-        const originResponse = await context.next({
+        const originResponse = await loadContext.next({
           sendConditionalRequest: true,
         })
-        if (originResponse.status !== 404) {
+        if (originResponse && originResponse?.status !== 404) {
           return originResponse
         }
       }

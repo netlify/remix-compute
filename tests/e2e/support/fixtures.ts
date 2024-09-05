@@ -21,6 +21,22 @@ interface WorkerFixtures {
    * A "classic" (non-Vite) Remix site using edge SSR
    */
   classicEdgeSite: Fixture
+  /**
+   * A Hydrogen v2 site using Vite Remix and edge SSR
+   *
+   * NOTE: `PUBLIC_STORE_DOMAIN` and `SESSION_SECRET` are populated for this fixture
+   */
+  hydrogenViteSite: Fixture
+  /**
+   * A Hydrogen v2 site using Vite Remix and edge SSR, but invalid for use with Netlify packages
+   * because it is missing a `server.ts` (or .js, etc.) SSR "entrypoint" file.
+   *
+   * As we intend for this to fail to build at all, the fixture resolves to an Error (or `null` if
+   * it didn't fail).
+   *
+   * NOTE: `PUBLIC_STORE_DOMAIN` and `SESSION_SECRET` are populated for this fixture
+   */
+  hydrogenViteSiteNoEntrypoint: Error | null
 }
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
@@ -49,6 +65,24 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     async ({}, use) => {
       const fixture = await deployFixture('classic-edge-site')
       await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  hydrogenViteSite: [
+    async ({}, use) => {
+      const fixture = await deployFixture('hydrogen-vite-site')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  hydrogenViteSiteNoEntrypoint: [
+    async ({}, use) => {
+      try {
+        await deployFixture('hydrogen-vite-site-no-entrypoint')
+        await use(null)
+      } catch (err: unknown) {
+        await use(err as Error)
+      }
     },
     { scope: 'worker' },
   ],
