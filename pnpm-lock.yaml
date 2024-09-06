@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.2.7
       netlify-cli:
-        specifier: ^17.34.3
-        version: 17.34.3(@types/node@20.16.3)
+        specifier: ^17.35.0
+        version: 17.35.0(@types/node@20.16.3)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.2
@@ -3738,11 +3738,6 @@ packages:
     resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
     dev: true
 
-  /@types/node@22.5.2:
-    resolution: {integrity: sha512-acJsPTEqYqulZS/Yp/S3GgeE6GZ0qYODUR8aVr/DkhHQ8l9nd4j5x1/ZJy9/gHrRlFMqkO6i0I3E27Alu4jjPg==}
-    dependencies:
-      undici-types: 6.19.8
-
   /@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
@@ -6895,14 +6890,14 @@ packages:
       eslint: '*'
       eslint-plugin-import: '*'
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6(supports-color@9.4.0)
       enhanced-resolve: 5.16.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
-      is-core-module: 2.13.1
+      is-core-module: 2.15.0
       is-glob: 4.0.3
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -6918,14 +6913,14 @@ packages:
       eslint: '*'
       eslint-plugin-import: '*'
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6(supports-color@9.4.0)
       enhanced-resolve: 5.16.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
-      is-core-module: 2.13.1
+      is-core-module: 2.15.0
       is-glob: 4.0.3
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -7734,7 +7729,7 @@ packages:
     resolution: {integrity: sha512-EzV94NYKoO09GLXGjXj9JIlXijVck4ONSr5wiCWDvhsvj5jxSrzTmRU/9C1DyB6uToszLs8aifA6NQ7lEQdvFw==}
     engines: {node: '>= 0.8'}
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 20.16.3
       require-like: 0.1.2
 
   /event-target-shim@5.0.1:
@@ -11136,8 +11131,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@17.34.3(@types/node@20.16.3):
-    resolution: {integrity: sha512-fm+s+X5uUxAjysQZmcmpcWibogDaAA4K/KvoB+ofoGrDE7lZfBMsW6UC/sHz9lP3qYbsGu7F2ue/91uG2X0OXw==}
+  /netlify-cli@17.35.0(@types/node@20.16.3):
+    resolution: {integrity: sha512-ftVu3mmGVDyfjtAXQeQ+IODmKmqRzAMZHQI2U1kNWXxipPIig2DUfK3ZhBR20o2vH6aO9l4x8XXAlqBQFruMdQ==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
