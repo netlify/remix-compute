@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.1](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.0...remix-edge-adapter-v3.4.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* **deps:** remove user dep on deno ([#452](https://github.com/netlify/remix-compute/issues/452)) ([2717e5a](https://github.com/netlify/remix-compute/commit/2717e5a32c62f70591795c8e057329bfc71ccc90))
+
 ## [3.4.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.3.0...remix-edge-adapter-v3.4.0) (2024-09-05)
 
 
