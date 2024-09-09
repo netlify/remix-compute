@@ -174,7 +174,7 @@ importers:
   demos/vite-edge:
     dependencies:
       '@netlify/remix-edge-adapter':
-        specifier: ^3.3.0
+        specifier: ^3.4.1
         version: link:../../packages/remix-edge-adapter
       '@netlify/remix-runtime':
         specifier: ^2.3.0
