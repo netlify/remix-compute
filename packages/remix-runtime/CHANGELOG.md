@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.3.0...remix-runtime-v2.3.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* stop re-exporting exports removed in remix@2.12.0 ([#459](https://github.com/netlify/remix-compute/issues/459)) ([db7be08](https://github.com/netlify/remix-compute/commit/db7be083af8b75da4f70d61c782fb5954d2c00a9))
+
 ## [2.3.0](https://github.com/netlify/remix-compute/compare/remix-runtime-v2.2.1...remix-runtime-v2.3.0) (2024-05-23)
 
 
