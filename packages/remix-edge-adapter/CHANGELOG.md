@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.4.2](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.1...remix-edge-adapter-v3.4.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* stop re-exporting exports removed in remix@2.12.0 ([#459](https://github.com/netlify/remix-compute/issues/459)) ([db7be08](https://github.com/netlify/remix-compute/commit/db7be083af8b75da4f70d61c782fb5954d2c00a9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.3.0 to 2.3.1
+
 ## [3.4.1](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.0...remix-edge-adapter-v3.4.1) (2024-09-09)
 
 
