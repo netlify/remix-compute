@@ -65,7 +65,7 @@
     "isbot": "^5.0.0"
   },
   "devDependencies": {
-    "@remix-run/react": "^2.9.2",
+    "@remix-run/react": "^2.12.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",

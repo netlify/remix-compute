@@ -26,12 +26,13 @@ export {
   unstable_composeUploadHandlers,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,
-  unstable_defineLoader,
-  unstable_defineAction,
   unstable_setDevServerHooks,
   UNSAFE_SingleFetchRedirectSymbol,
 } from '@remix-run/server-runtime'
 
+// TODO(serhalp) The docs say we should simply re-export all types from `/reexport`:
+// https://github.com/remix-run/remix/tree/main/packages/remix-server-runtime#readme.
+// Let's do that, but carefully verify whether this adds or removes any exports first.
 export type {
   ActionFunction,
   ActionFunctionArgs,
@@ -78,9 +79,6 @@ export type {
   UnsignFunction,
   UploadHandlerPart,
   UploadHandler,
-  unstable_Loader,
-  unstable_Action,
-  unstable_Serialize,
   UNSAFE_SingleFetchResults,
   UNSAFE_SingleFetchResult,
 } from '@remix-run/server-runtime'
