@@ -48,6 +48,7 @@ const packages = [
   { name: '@netlify/remix-adapter', dirName: 'remix-adapter' },
   { name: '@netlify/remix-edge-adapter', dirName: 'remix-edge-adapter' },
   { name: '@netlify/remix-runtime', dirName: 'remix-runtime' },
+  { name: '@netlify/vite-plugin-react-router', dirName: 'vite-plugin-react-router' },
 ]
 
 /**

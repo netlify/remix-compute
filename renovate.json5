@@ -29,5 +29,22 @@
       // difficult (or impossible) to implement so we just disable it entirely.
       automerge: false,
     },
+    {
+      description: 'Stable & unstable React Router bumps in test fixtures',
+      matchFileNames: ['tests/**/fixtures/**/package.json'],
+      // See https://docs.renovatebot.com/presets-monorepo/#monoreporeact-router.
+      matchSourceUrls: ['https://github.com/ReactTraining/react-router', 'https://github.com/remix-run/react-router'],
+      // Override the schedule to get immediate PRs.
+      schedule: null,
+      // Apply a unique label so we can trigger additional workflows for these PRs.
+      addLabels: ['bump-framework-in-fixtures'],
+      // Bump even if the release isn't tagged as `latest`.
+      respectLatest: false,
+      // Bump even if it's a pre-release (e.g. 1.2.3-beta.8).
+      ignoreUnstable: false,
+      // Ideally we'd like to disable automerge only for unstable bumps, but this is
+      // difficult (or impossible) to implement so we just disable it entirely.
+      automerge: false,
+    },
   ],
 }

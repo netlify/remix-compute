@@ -1,6 +1,6 @@
 import { expect, test } from './support/fixtures'
 
-test.describe('User journeys', () => {
+test.describe('Remix user journeys', () => {
   test('serves a response from the origin when using @netlify/remix-adapter', async ({ page, serverlessSite }) => {
     const response = await page.goto(serverlessSite.url)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
