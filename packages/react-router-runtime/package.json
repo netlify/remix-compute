@@ -1,0 +1,50 @@
+{
+  "name": "@netlify/react-router-runtime",
+  "version": "0.0.0",
+  "description": "React Router Runtime for Netlify Edge Functions",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "prepack": "pnpm run build",
+    "build": "tsup-node src/index.ts --format esm,cjs --dts --target node16 --clean",
+    "build:watch": "pnpm run build --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netlify/remix-compute.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/remix-compute/issues"
+  },
+  "homepage": "https://github.com/netlify/remix-compute#readme",
+  "devDependencies": {
+    "react-router": "^7.0.1"
+  },
+  "peerDependencies": {
+    "react-router": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@react-router/server-runtime": "0.0.0-experimental-c0856287f"
+  }
+}

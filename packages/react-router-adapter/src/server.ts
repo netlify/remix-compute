@@ -1,5 +1,5 @@
-import type { AppLoadContext, ServerBuild } from '@remix-run/node'
-import { createRequestHandler as createRemixRequestHandler } from '@remix-run/node'
+import type { AppLoadContext, ServerBuild } from 'react-router'
+import { createRequestHandler as createReactRouterRequestHandler } from 'react-router'
 import type { Context as NetlifyContext } from '@netlify/functions'
 
 type LoadContext = AppLoadContext & NetlifyContext
@@ -29,7 +29,7 @@ export function createRequestHandler({
   mode?: string
   getLoadContext?: GetLoadContextFunction
 }): RequestHandler {
-  const reactRouterHandler = createRemixRequestHandler(build, mode)
+  const reactRouterHandler = createReactRouterRequestHandler(build, mode)
 
   return async (request: Request, netlifyContext: NetlifyContext): Promise<Response | void> => {
     const start = Date.now()
