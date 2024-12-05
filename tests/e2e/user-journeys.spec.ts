@@ -100,6 +100,18 @@ test.describe('User journeys', () => {
     await expect(page.getByRole('img')).toHaveJSProperty('height', 300)
   })
 
+  test('can access Netlify Functions context in loader context', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/context`)
+    expect(response?.status()).toBe(200)
+    await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
+  })
+
+  test('can access Netlify Edge Functions context in loader context', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/context`)
+    expect(response?.status()).toBe(200)
+    await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
+  })
+
   test.describe('classic Remix compiler', () => {
     test('serves a response from the origin when using @netlify/remix-adapter', async ({
       page,
