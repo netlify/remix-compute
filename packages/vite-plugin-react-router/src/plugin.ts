@@ -4,7 +4,8 @@ import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { version, name } from '../package.json'
 
-const NETLIFY_FUNCTIONS_DIR = '.netlify/functions-internal'
+// https://docs.netlify.com/frameworks-api/#netlify-v1-functions
+const NETLIFY_FUNCTIONS_DIR = '.netlify/v1/functions'
 
 const FUNCTION_FILENAME = 'react-router-server.mjs'
 /**
