@@ -139,7 +139,7 @@ test.describe('React Router user journeys', () => {
     })
   })
 
-  // TODO(serhalp) Unskip once we've implemented edge support
+  // TODO(serhalp) Unskip once we've implemented edge support (FRB-1519)
   test.describe.skip('edge SSR', () => {
     test('serves a response from the edge', async ({ page, edgeSite }) => {
       const response = await page.goto(edgeSite.url)
