@@ -45,34 +45,27 @@ function generateNetlifyFunction(handlerPath: string) {
 
 export function netlifyPlugin(): Plugin {
   let resolvedConfig: ResolvedConfig
-  let currentCommand: string
-  let isSsr: boolean | undefined
+  let isProductionSsrBuild = false
   return {
-    name: 'vite-plugin-react-router-netlify-functions',
+    name: 'vite-plugin-netlify-react-router',
     config(config, { command, isSsrBuild }) {
-      currentCommand = command
-      isSsr = isSsrBuild
-      if (command === 'build') {
-        if (isSsrBuild) {
-          // We need to add an extra SSR entrypoint, as we need to compile
-          // the server entrypoint too. This is because it uses virtual
-          // modules.
-          // NOTE: the below is making various assumptions about the React Router Vite plugin's
-          // implementation details:
-          // https://github.com/remix-run/remix/blob/cc65962b1a96d1e134336aa9620ef1dad7c5efb1/packages/remix-dev/vite/plugin.ts#L1149-L1168
-          // TODO(serhalp) Stop making these assumptions or assert them explictly.
-          // TODO(serhalp) Unless I'm misunderstanding something, we should only need to *replace*
-          // the default React Router Vite SSR entrypoint, not add an additional one.
-          if (typeof config.build?.rollupOptions?.input === 'string') {
-            config.build.rollupOptions.input = {
-              [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
-              index: config.build.rollupOptions.input,
-            }
-            if (config.build.rollupOptions.output && !Array.isArray(config.build.rollupOptions.output)) {
-              config.build.rollupOptions.output.entryFileNames = '[name].js'
-            }
-          }
+      isProductionSsrBuild = isSsrBuild === true && command === 'build'
+      if (isProductionSsrBuild) {
+        // Replace the default SSR entrypoint with our own entrypoint (which is imported by our
+        // Netlify function handler via a virtual module)
+        config.build ??= {}
+        config.build.rollupOptions ??= {}
+        config.build.rollupOptions.input = {
+          [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
         }
+        config.build.rollupOptions.output ??= {}
+        if (Array.isArray(config.build.rollupOptions.output)) {
+          console.warn(
+            'Expected Vite config `build.rollupOptions.output` to be an object, but it is an array - overwriting it, but this may cause issues with your custom configuration',
+          )
+          config.build.rollupOptions.output = {}
+        }
+        config.build.rollupOptions.output.entryFileNames = '[name].js'
       }
     },
     async resolveId(source) {
@@ -92,7 +85,7 @@ export function netlifyPlugin(): Plugin {
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
-      if (currentCommand === 'build' && isSsr) {
+      if (isProductionSsrBuild) {
         const functionsDirectory = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
 
         await mkdir(functionsDirectory, { recursive: true })
