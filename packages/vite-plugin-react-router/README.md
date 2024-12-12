@@ -8,7 +8,7 @@ To deploy a React Router 7+ site to Netlify, install this package:
 ## How to use
 
 ```sh
-npm install @netlify/vite-plugin-react-router
+npm --save-dev install @netlify/vite-plugin-react-router
 ```
 
 and include the Netlify plugin in your `vite.config.ts`:
