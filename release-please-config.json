@@ -3,7 +3,7 @@
   "packages": {
     "packages/remix-edge-adapter": {},
     "packages/remix-runtime": {},
-    "packages/remix-adapter": {}m
+    "packages/remix-adapter": {},
     "packages/vite-plugin-react-router": {}
   },
   "plugins": ["node-workspace"]
