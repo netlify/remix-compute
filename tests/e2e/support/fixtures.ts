@@ -37,6 +37,10 @@ interface WorkerFixtures {
    * NOTE: `PUBLIC_STORE_DOMAIN` and `SESSION_SECRET` are populated for this fixture
    */
   hydrogenViteSiteNoEntrypoint: Error | null
+  /**
+   * A React Router 7 site using origin SSR
+   */
+  reactRouterServerlessSite: Fixture
 }
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
@@ -83,6 +87,13 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
       } catch (err: unknown) {
         await use(err as Error)
       }
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessSite: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-site')
+      await use(fixture)
     },
     { scope: 'worker' },
   ],

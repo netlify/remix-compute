@@ -1,6 +1,6 @@
 import { expect, test } from './support/fixtures'
 
-test.describe('User journeys', () => {
+test.describe('Remix user journeys', () => {
   test('serves a response from the origin when using @netlify/remix-adapter', async ({ page, serverlessSite }) => {
     const response = await page.goto(serverlessSite.url)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
@@ -98,6 +98,18 @@ test.describe('User journeys', () => {
     // We've dynamically requested these dimensions from the Image CDN, so this proves that it works
     await expect(page.getByRole('img')).toHaveJSProperty('width', 300)
     await expect(page.getByRole('img')).toHaveJSProperty('height', 300)
+  })
+
+  test('can access Netlify Functions context in loader context', async ({ page, serverlessSite }) => {
+    const response = await page.goto(`${serverlessSite.url}/context`)
+    expect(response?.status()).toBe(200)
+    await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
+  })
+
+  test('can access Netlify Edge Functions context in loader context', async ({ page, edgeSite }) => {
+    const response = await page.goto(`${edgeSite.url}/context`)
+    expect(response?.status()).toBe(200)
+    await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
   })
 
   test.describe('classic Remix compiler', () => {
