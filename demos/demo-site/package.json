@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@netlify/functions": "^2.8.1",
+    "@netlify/functions": "^2.8.2",
     "@netlify/remix-adapter": "workspace:*",
     "@remix-run/css-bundle": "^2.9.2",
     "@remix-run/node": "^2.9.2",
