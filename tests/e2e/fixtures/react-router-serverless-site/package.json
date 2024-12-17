@@ -18,7 +18,7 @@
     "react-router": "^7.0.2"
   },
   "devDependencies": {
-    "@netlify/functions": "^2.8.1",
+    "@netlify/functions": "^2.8.2",
     "@netlify/vite-plugin-react-router": "*",
     "@react-router/dev": "^7.0.2",
     "@types/node": "^20",
