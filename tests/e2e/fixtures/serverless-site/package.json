@@ -11,7 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.0.1",
+    "@netlify/blobs": "^8.1.0",
     "@netlify/remix-adapter": "*",
     "@remix-run/node": "^2.12.1-pre",
     "@remix-run/react": "^2.12.1-pre",
