@@ -1,3 +1,10 @@
+# Migration from the Remix Classic Compiler to Remix Vite
+
+Remix Vite has been stable since Remix 2.7.
+
+To migrate from the deprecated Remix Classic Compiler to Remix Vite, follow
+[this comprehensive guide](https://developers.netlify.com/guides/how-to-deploy-remix-vite-to-netlify/).
+
 # Upgrading from Remix 1 to Remix 2
 
 The Remix docs contain a comprehensive [guide to upgrading your Remix site](https://remix.run/docs/en/main/start/v2)
