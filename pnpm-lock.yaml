@@ -392,13 +392,13 @@ importers:
     dependencies:
       '@react-router/node':
         specifier: ^7.0.1
-        version: 7.0.1(react-router@7.0.1)(typescript@5.4.5)
+        version: 7.0.2(react-router@7.0.2)(typescript@5.4.5)
       isbot:
         specifier: ^5.0.0
         version: 5.1.12
       react-router:
         specifier: ^7.0.1
-        version: 7.0.1(react-dom@18.3.1)(react@18.3.1)
+        version: 7.0.2(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
       '@netlify/functions':
         specifier: ^2.8.2
@@ -3142,22 +3142,22 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@react-router/node@7.0.1(react-router@7.0.1)(typescript@5.4.5):
-    resolution: {integrity: sha512-09AkG1jobbMApTx4Wx8lf1u+nZeYG2ZOBAhxTLz7dgnr7sQpUVD3ewe9gizedXpJrCfP4Sx272aGywX1gEqoSQ==}
+  /@react-router/node@7.0.2(react-router@7.0.2)(typescript@5.4.5):
+    resolution: {integrity: sha512-6Of5M2wP9QgYlR+boR0ptPjh3UyfaNvPMKQihowTGjAjUZIoNqz4iBn8ClNsLFbT3KQewcnNTHi2p+Ou7S4ZyQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      react-router: 7.0.1
+      react-router: 7.0.2
       typescript: ^5.1.0
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
       '@mjackson/node-fetch-server': 0.2.0
-      react-router: 7.0.1(react-dom@18.3.1)(react@18.3.1)
+      react-router: 7.0.2(react-dom@18.3.1)(react@18.3.1)
       source-map-support: 0.5.21
       stream-slice: 0.1.2
       typescript: 5.4.5
-      undici: 6.19.8
+      undici: 6.21.0
     dev: false
 
   /@remix-run/css-bundle@2.12.0:
@@ -3418,7 +3418,7 @@ packages:
       source-map-support: 0.5.21
       stream-slice: 0.1.2
       typescript: 5.4.5
-      undici: 6.19.8
+      undici: 6.21.0
 
   /@remix-run/react@2.12.0(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5):
     resolution: {integrity: sha512-Y109tI37Icr0BSU8sWSo8jDPkXaErJ/e1h0fkPvq6LZ0DrlcmHWBxzWJKID431I/KJvhVvBgVCuDamZTRVOZ5Q==}
@@ -7185,14 +7185,14 @@ packages:
       eslint: '*'
       eslint-plugin-import: '*'
     dependencies:
-      debug: 4.4.0(supports-color@9.4.0)
+      debug: 4.3.4
       enhanced-resolve: 5.16.1
       eslint: 8.57.1
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.1)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.16.1)(eslint@8.57.1)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
-      is-core-module: 2.15.1
+      is-core-module: 2.13.1
       is-glob: 4.0.3
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -10385,7 +10385,7 @@ packages:
     dependencies:
       cookie: 0.6.0
       process-warning: 3.0.0
-      set-cookie-parser: 2.7.0
+      set-cookie-parser: 2.7.1
     dev: true
 
   /lilconfig@3.1.2:
@@ -13102,8 +13102,8 @@ packages:
       '@remix-run/router': 1.19.2
       react: 18.3.1
 
-  /react-router@7.0.1(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-WVAhv9oWCNsja5AkK6KLpXJDSJCQizOIyOd4vvB/+eHGbYx5vkhcmcmwWjQ9yqkRClogi+xjEg9fNEOd5EX/tw==}
+  /react-router@7.0.2(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-m5AcPfTRUcjwmhBzOJGEl6Y7+Crqyju0+TgTQxoS4SO+BkWbhOrcfZNq6wSWdl2BBbJbsAoBUb8ZacOFT+/JlA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -13116,7 +13116,7 @@ packages:
       cookie: 1.0.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      set-cookie-parser: 2.7.0
+      set-cookie-parser: 2.7.1
       turbo-stream: 2.4.0
     dev: false
 
@@ -13709,6 +13709,9 @@ packages:
 
   /set-cookie-parser@2.7.0:
     resolution: {integrity: sha512-lXLOiqpkUumhRdFF3k1osNXCy9akgx/dyPZ5p8qAg9seJzXr5ZrlqZuWIMuY6ejOsVLE6flJ5/h3lsn57fQ/PQ==}
+
+  /set-cookie-parser@2.7.1:
+    resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
 
   /set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
@@ -14916,8 +14919,8 @@ packages:
   /undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
-  /undici@6.19.8:
-    resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
+  /undici@6.21.0:
+    resolution: {integrity: sha512-BUgJXc752Kou3oOIuU1i+yZZypyZRqNPW0vqoMPl8VaoalSfeR0D8/t4iAS3yirs79SSMTxTag+ZC86uswv+Cw==}
     engines: {node: '>=18.17'}
 
   /unenv@1.9.0:

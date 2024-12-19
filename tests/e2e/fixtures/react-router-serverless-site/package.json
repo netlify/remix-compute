@@ -10,17 +10,17 @@
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",
-    "@react-router/node": "^7.0.2",
-    "@react-router/serve": "^7.0.2",
+    "@react-router/node": "^7.1.0-pre",
+    "@react-router/serve": "^7.1.0-pre",
     "isbot": "^5.1.17",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "^7.0.2"
+    "react-router": "^7.1.0-pre"
   },
   "devDependencies": {
     "@netlify/functions": "^2.8.2",
     "@netlify/vite-plugin-react-router": "*",
-    "@react-router/dev": "^7.0.2",
+    "@react-router/dev": "^7.1.0-pre",
     "@types/node": "^20",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
