@@ -79,8 +79,8 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^2.8.2
-        version: 2.8.2
+        specifier: ^3.0.0
+        version: 3.0.0
       '@netlify/remix-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-adapter
@@ -196,8 +196,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.8.2
-        version: 2.8.2
+        specifier: ^3.0.0
+        version: 3.0.0
       '@remix-run/dev':
         specifier: ^2.9.2
         version: 2.12.0(@remix-run/react@2.12.0)(@remix-run/serve@2.12.0)(@types/node@20.16.5)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.3.6)
@@ -318,8 +318,8 @@ importers:
         version: 5.1.12
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.8.2
-        version: 2.8.2
+        specifier: ^3.0.0
+        version: 3.0.0
       '@remix-run/dev':
         specifier: ^2.12.0
         version: 2.12.0(@remix-run/react@2.12.0)(@types/node@20.16.5)(ts-node@10.9.2)(typescript@5.4.5)(vite@5.4.11)
@@ -401,8 +401,8 @@ importers:
         version: 7.0.2(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^2.8.2
-        version: 2.8.2
+        specifier: ^3.0.0
+        version: 3.0.0
       '@types/react':
         specifier: ^18.0.27
         version: 18.3.3
@@ -2537,11 +2537,11 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/functions@2.8.2:
-    resolution: {integrity: sha512-DeoAQh8LuNPvBE4qsKlezjKj0PyXDryOFJfJKo3Z1qZLKzQ21sT314KQKPVjfvw6knqijj+IO+0kHXy/TJiqNA==}
-    engines: {node: '>=14.0.0'}
+  /@netlify/functions@3.0.0:
+    resolution: {integrity: sha512-XXf9mNw4+fkxUzukDpJtzc32bl1+YlXZwEhc5ZgMcTbJPLpgRLDs5WWSPJ4eY/Mv1ZFvtxmMwmfgoQYVt68Qog==}
+    engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/serverless-functions-api': 1.26.1
+      '@netlify/serverless-functions-api': 1.30.1
 
   /@netlify/git-utils@5.2.0:
     resolution: {integrity: sha512-maNQyhQ6zTS5Kwl03HXoUa7uTNjmCvZea5Jko2pyDWz0xW1cunnil+4s33wXrMZJNDvyv97O2vkC5N1sAS3fyQ==}
@@ -2732,8 +2732,8 @@ packages:
       execa: 6.1.0
     dev: true
 
-  /@netlify/serverless-functions-api@1.26.1:
-    resolution: {integrity: sha512-q3L9i3HoNfz0SGpTIS4zTcKBbRkxzCRpd169eyiTuk3IwcPC3/85mzLHranlKo2b+HYT0gu37YxGB45aD8A3Tw==}
+  /@netlify/serverless-functions-api@1.30.1:
+    resolution: {integrity: sha512-JkbaWFeydQdeDHz1mAy4rw+E3bl9YtbCgkntfTxq+IlNX/aIMv2/b1kZnQZcil4/sPoZGL831Dq6E374qRpU1A==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@netlify/node-cookies': 0.1.0
