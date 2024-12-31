@@ -392,13 +392,13 @@ importers:
     dependencies:
       '@react-router/node':
         specifier: ^7.0.1
-        version: 7.0.2(react-router@7.0.2)(typescript@5.4.5)
+        version: 7.1.0(react-router@7.1.0)(typescript@5.4.5)
       isbot:
         specifier: ^5.0.0
         version: 5.1.12
       react-router:
         specifier: ^7.0.1
-        version: 7.0.2(react-dom@18.3.1)(react@18.3.1)
+        version: 7.1.0(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
       '@netlify/functions':
         specifier: ^3.0.0
@@ -3149,18 +3149,18 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@react-router/node@7.0.2(react-router@7.0.2)(typescript@5.4.5):
-    resolution: {integrity: sha512-6Of5M2wP9QgYlR+boR0ptPjh3UyfaNvPMKQihowTGjAjUZIoNqz4iBn8ClNsLFbT3KQewcnNTHi2p+Ou7S4ZyQ==}
+  /@react-router/node@7.1.0(react-router@7.1.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-jVGZGU7Jg8+irv61fwExWKKrZpnoMWH2Mce7RwZriFZx4Kx4pOmvGKdniLRBmo3t5GWT63okBfBIhMLgxJBpyA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      react-router: 7.0.2
+      react-router: 7.1.0
       typescript: ^5.1.0
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
       '@mjackson/node-fetch-server': 0.2.0
-      react-router: 7.0.2(react-dom@18.3.1)(react@18.3.1)
+      react-router: 7.1.0(react-dom@18.3.1)(react@18.3.1)
       source-map-support: 0.5.21
       stream-slice: 0.1.2
       typescript: 5.4.5
@@ -13039,8 +13039,8 @@ packages:
       '@remix-run/router': 1.19.2
       react: 18.3.1
 
-  /react-router@7.0.2(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-m5AcPfTRUcjwmhBzOJGEl6Y7+Crqyju0+TgTQxoS4SO+BkWbhOrcfZNq6wSWdl2BBbJbsAoBUb8ZacOFT+/JlA==}
+  /react-router@7.1.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-VcFhWqkNIcojDRYaUO8qV0Jib52s9ULpCp3nkBbmrvtoCVFRp6tmk3tJ2w9BZauVctA1YRnJlFYDn9iJRuCpGA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
