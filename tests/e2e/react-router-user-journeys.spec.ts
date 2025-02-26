@@ -6,7 +6,7 @@ test.describe('React Router user journeys', () => {
       const response = await page.goto(reactRouterServerlessSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to React Router/i })).toBeVisible()
       expect(response?.status()).toBe(200)
-      expect(response?.headers()['x-nf-function-type']).toBe('request')
+      expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
     })
 
     test('serves a 404 for a request to a URL matching no routes', async ({ page, reactRouterServerlessSite }) => {
@@ -145,7 +145,7 @@ test.describe('React Router user journeys', () => {
       const response = await page.goto(edgeSite.url)
       expect(response?.status()).toBe(200)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
     })
 
     test('serves a response from a user-defined Netlify Function on a custom path', async ({ page, edgeSite }) => {

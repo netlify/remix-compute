@@ -5,14 +5,14 @@ test.describe('Remix user journeys', () => {
     const response = await page.goto(serverlessSite.url)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
     expect(response?.status()).toBe(200)
-    expect(response?.headers()['x-nf-function-type']).toBe('request')
+    expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
   })
 
   test('serves a response from the edge when using @netlify/remix-edge-adapter', async ({ page, edgeSite }) => {
     const response = await page.goto(edgeSite.url)
     expect(response?.status()).toBe(200)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-    expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+    expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
   })
 
   test('serves a 404 for a request to a URL matching no routes', async ({ page, serverlessSite }) => {
@@ -119,7 +119,7 @@ test.describe('Remix user journeys', () => {
     }) => {
       const response = await page.goto(classicServerlessSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-function-type']).toBe('request')
+      expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
     })
 
     test('serves a response from the edge when using @netlify/remix-edge-adapter', async ({
@@ -128,7 +128,7 @@ test.describe('Remix user journeys', () => {
     }) => {
       const response = await page.goto(classicEdgeSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('server')
     })
   })
 
@@ -141,7 +141,7 @@ test.describe('Remix user journeys', () => {
       expect(response?.status()).toBe(200)
       await expect(page.getByText('Mock.shop')).toBeVisible()
       await expect(page.getByText('Recommended Products')).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
     })
 
     test('fails the build with an actionable message if the site is missing a root `server.ts` or similar', async ({
