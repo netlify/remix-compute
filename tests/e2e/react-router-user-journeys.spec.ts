@@ -75,14 +75,16 @@ test.describe('React Router user journeys', () => {
     test('response has user-defined Cache-Control header', async ({ page, reactRouterServerlessSite }) => {
       const response = await page.goto(`${reactRouterServerlessSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-      expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+      expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
     })
 
     test('user can configure Stale-while-revalidate', async ({ page, reactRouterServerlessSite }) => {
+      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(MAX_AGE / 2)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -90,7 +92,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(6000)
+      await page.waitForTimeout(2000 + MAX_AGE / 2)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -98,7 +100,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(2000)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -182,14 +184,16 @@ test.describe('React Router user journeys', () => {
     test('response has user-defined Cache-Control header', async ({ page, edgeSite }) => {
       const response = await page.goto(`${edgeSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-      expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+      expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
     })
 
     test('user can configure Stale-while-revalidate', async ({ page, edgeSite }) => {
+      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(MAX_AGE / 2)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -197,7 +201,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(6000)
+      await page.waitForTimeout(2000 + MAX_AGE / 2)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -205,7 +209,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(2000)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
