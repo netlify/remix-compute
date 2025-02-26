@@ -3,7 +3,7 @@ import fg from 'fast-glob'
 import { writeFile, copyFile, mkdir, mkdtemp, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { URL, fileURLToPath } from 'node:url'
 import { cpus } from 'os'
 import pLimit from 'p-limit'
 
