@@ -1,5 +1,7 @@
 import { expect, test } from './support/fixtures'
 
+const PURGE_BUFFER_MS = 5000
+
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
     test('serves a response from the origin', async ({ page, reactRouterServerlessSite }) => {
@@ -124,7 +126,7 @@ test.describe('React Router user journeys', () => {
 
       await fetch(`${reactRouterServerlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(PURGE_BUFFER_MS)
 
       await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -232,7 +234,7 @@ test.describe('React Router user journeys', () => {
 
       await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(PURGE_BUFFER_MS)
 
       await page.goto(`${edgeSite.url}/cached-for-a-year`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()

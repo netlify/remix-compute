@@ -1,5 +1,7 @@
 import { expect, test } from './support/fixtures'
 
+const PURGE_BUFFER_MS = 5000
+
 test.describe('Remix user journeys', () => {
   test('serves a response from the origin when using @netlify/remix-adapter', async ({ page, serverlessSite }) => {
     const response = await page.goto(serverlessSite.url)
@@ -242,7 +244,7 @@ test.describe('Remix user journeys', () => {
 
     await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(PURGE_BUFFER_MS)
 
     await page.goto(`${serverlessSite.url}/cached-for-a-year`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -266,7 +268,7 @@ test.describe('Remix user journeys', () => {
 
     await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(PURGE_BUFFER_MS)
 
     await page.goto(`${edgeSite.url}/cached-for-a-year`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
