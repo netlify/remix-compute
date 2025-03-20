@@ -1,12 +1,14 @@
 import { expect, test } from './support/fixtures'
 
+const PURGE_BUFFER_MS = 5000
+
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
     test('serves a response from the origin', async ({ page, reactRouterServerlessSite }) => {
       const response = await page.goto(reactRouterServerlessSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to React Router/i })).toBeVisible()
       expect(response?.status()).toBe(200)
-      expect(response?.headers()['x-nf-function-type']).toBe('request')
+      expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
     })
 
     test('serves a 404 for a request to a URL matching no routes', async ({ page, reactRouterServerlessSite }) => {
@@ -75,14 +77,16 @@ test.describe('React Router user journeys', () => {
     test('response has user-defined Cache-Control header', async ({ page, reactRouterServerlessSite }) => {
       const response = await page.goto(`${reactRouterServerlessSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-      expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+      expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
     })
 
     test('user can configure Stale-while-revalidate', async ({ page, reactRouterServerlessSite }) => {
+      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(MAX_AGE / 2)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -90,7 +94,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(6000)
+      await page.waitForTimeout(2000 + MAX_AGE / 2)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -98,7 +102,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(2000)
 
       await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -122,7 +126,7 @@ test.describe('React Router user journeys', () => {
 
       await fetch(`${reactRouterServerlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(PURGE_BUFFER_MS)
 
       await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -145,7 +149,7 @@ test.describe('React Router user journeys', () => {
       const response = await page.goto(edgeSite.url)
       expect(response?.status()).toBe(200)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
     })
 
     test('serves a response from a user-defined Netlify Function on a custom path', async ({ page, edgeSite }) => {
@@ -182,14 +186,16 @@ test.describe('React Router user journeys', () => {
     test('response has user-defined Cache-Control header', async ({ page, edgeSite }) => {
       const response = await page.goto(`${edgeSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-      expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+      expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
     })
 
     test('user can configure Stale-while-revalidate', async ({ page, edgeSite }) => {
+      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(MAX_AGE / 2)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -197,7 +203,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(6000)
+      await page.waitForTimeout(2000 + MAX_AGE / 2)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -205,7 +211,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(2000)
 
       await page.goto(`${edgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -228,7 +234,7 @@ test.describe('React Router user journeys', () => {
 
       await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(PURGE_BUFFER_MS)
 
       await page.goto(`${edgeSite.url}/cached-for-a-year`)
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()

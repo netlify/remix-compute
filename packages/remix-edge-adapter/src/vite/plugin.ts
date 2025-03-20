@@ -27,8 +27,9 @@ This is a fake Netlify context object for local dev. It is not supported here, b
 \`createAppLoadContext\` conditionally in dev.
 `)
 }
-const getFakeNetlifyContext = () =>
+const getFakeNetlifyContext = (url: string) =>
   ({
+    url: new URL(url),
     requestId: 'fake-netlify-request-id-for-dev',
     next: async () => new Response('', { status: 404 }),
     geo: {
@@ -242,8 +243,8 @@ export function netlifyPlugin(): Plugin {
                   default: EdgeFunction
                 }
                 const handleRequest = build.default
-                let req = fromNodeRequest(nodeReq)
-                const res = await handleRequest(req, getFakeNetlifyContext())
+                let req = fromNodeRequest(nodeReq, nodeRes)
+                const res = await handleRequest(req, getFakeNetlifyContext(req.url))
                 if (res instanceof Response) return await toNodeRequest(res, nodeRes)
                 if (res instanceof URL) {
                   next(new Error('URLs are not supported in dev server middleware'))

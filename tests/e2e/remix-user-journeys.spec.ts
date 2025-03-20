@@ -1,18 +1,20 @@
 import { expect, test } from './support/fixtures'
 
+const PURGE_BUFFER_MS = 5000
+
 test.describe('Remix user journeys', () => {
   test('serves a response from the origin when using @netlify/remix-adapter', async ({ page, serverlessSite }) => {
     const response = await page.goto(serverlessSite.url)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
     expect(response?.status()).toBe(200)
-    expect(response?.headers()['x-nf-function-type']).toBe('request')
+    expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
   })
 
   test('serves a response from the edge when using @netlify/remix-edge-adapter', async ({ page, edgeSite }) => {
     const response = await page.goto(edgeSite.url)
     expect(response?.status()).toBe(200)
     await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-    expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+    expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
   })
 
   test('serves a 404 for a request to a URL matching no routes', async ({ page, serverlessSite }) => {
@@ -119,7 +121,7 @@ test.describe('Remix user journeys', () => {
     }) => {
       const response = await page.goto(classicServerlessSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-function-type']).toBe('request')
+      expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
     })
 
     test('serves a response from the edge when using @netlify/remix-edge-adapter', async ({
@@ -128,7 +130,7 @@ test.describe('Remix user journeys', () => {
     }) => {
       const response = await page.goto(classicEdgeSite.url)
       await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('server')
     })
   })
 
@@ -141,7 +143,7 @@ test.describe('Remix user journeys', () => {
       expect(response?.status()).toBe(200)
       await expect(page.getByText('Mock.shop')).toBeVisible()
       await expect(page.getByText('Recommended Products')).toBeVisible()
-      expect(response?.headers()['x-nf-edge-functions']).toBe('remix-server')
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
     })
 
     test('fails the build with an actionable message if the site is missing a root `server.ts` or similar', async ({
@@ -155,20 +157,22 @@ test.describe('Remix user journeys', () => {
   test('response has user-defined Cache-Control header when using origin SSR', async ({ page, serverlessSite }) => {
     const response = await page.goto(`${serverlessSite.url}/headers`)
     await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
   })
 
   test('response has user-defined Cache-Control header when using edge SSR', async ({ page, edgeSite }) => {
     const response = await page.goto(`${edgeSite.url}/headers`)
     await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
   })
 
   test('user can configure Stale-while-revalidate when using origin SSR', async ({ page, serverlessSite }) => {
+    const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
     await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(MAX_AGE / 2)
 
     await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -176,7 +180,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(2000 + MAX_AGE / 2)
 
     await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -184,7 +188,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -195,10 +199,12 @@ test.describe('Remix user journeys', () => {
   })
 
   test('user can configure Stale-while-revalidate when using edge SSR', async ({ page, edgeSite }) => {
+    const MAX_AGE = 60000 // Must match the max-age set in the fixture
+
     await page.goto(`${edgeSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(MAX_AGE / 2)
 
     await page.goto(`${edgeSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
@@ -206,7 +212,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(2000 + MAX_AGE / 2)
 
     await page.goto(`${edgeSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -214,7 +220,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     await page.goto(`${edgeSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -238,7 +244,7 @@ test.describe('Remix user journeys', () => {
 
     await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(PURGE_BUFFER_MS)
 
     await page.goto(`${serverlessSite.url}/cached-for-a-year`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
@@ -262,7 +268,7 @@ test.describe('Remix user journeys', () => {
 
     await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(PURGE_BUFFER_MS)
 
     await page.goto(`${edgeSite.url}/cached-for-a-year`)
     const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
