@@ -13,7 +13,7 @@ importers:
         version: 2.11.1
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.3.0
@@ -187,7 +187,7 @@ importers:
         version: 2.15.3(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -257,7 +257,7 @@ importers:
         version: 2.15.3(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -315,7 +315,7 @@ importers:
         version: 2.15.3(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
     devDependencies:
       '@netlify/functions':
         specifier: ^3.0.0
@@ -355,7 +355,7 @@ importers:
         version: 2.15.3(@remix-run/react@2.15.3)(@remix-run/serve@2.15.3)(@types/node@20.17.19)(ts-node@10.9.2)(typescript@5.7.3)(vite@5.4.14)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
     devDependencies:
       '@remix-run/react':
         specifier: ^2.12.0
@@ -395,7 +395,7 @@ importers:
         version: 7.4.1(react-router@7.4.1)(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.23
+        version: 5.1.25
       react-router:
         specifier: ^7.0.1
         version: 7.4.1(react-dom@18.3.1)(react@18.3.1)
@@ -9748,8 +9748,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@5.1.23:
-    resolution: {integrity: sha512-ie3ehy2iXdkuzaZx32SoKb9b8l9Cm8cqQ1lJjQXnq8GRTrk/Jx7IUDcB4mhlw6H3gWaMqGYoWeV0lPv1P/20Ig==}
+  /isbot@5.1.25:
+    resolution: {integrity: sha512-mqU76fmT7cpGG0JX1EzhCZIC+xovpH6TD2SAK18alonk0RG/RgChpGduJTYzRaq9a0COoFA99M9JVtEUOcScIw==}
     engines: {node: '>=18'}
     dev: false
 
