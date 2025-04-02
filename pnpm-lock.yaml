@@ -111,10 +111,10 @@ importers:
         version: 2.15.3(typescript@5.7.3)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       eslint:
         specifier: ^8.32.0
         version: 8.57.1
@@ -160,10 +160,10 @@ importers:
         version: 2.15.3(typescript@5.7.3)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       eslint:
         specifier: ^8.32.0
         version: 8.57.1
@@ -203,10 +203,10 @@ importers:
         version: 2.15.3(@remix-run/react@2.15.3)(@remix-run/serve@2.15.3)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@5.4.14)
       '@types/react':
         specifier: ^18.2.20
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.2.7
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0)(eslint@8.57.1)(typescript@5.7.3)
@@ -270,10 +270,10 @@ importers:
         version: 2.15.3(@remix-run/react@2.15.3)(@remix-run/serve@2.15.3)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@5.4.14)
       '@types/react':
         specifier: ^18.2.20
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.2.7
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0)(eslint@8.57.1)(typescript@5.7.3)
@@ -328,10 +328,10 @@ importers:
         version: 2.15.3(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -362,10 +362,10 @@ importers:
         version: 2.15.3(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
       '@types/react':
         specifier: ^18.0.27
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -405,10 +405,10 @@ importers:
         version: 3.0.0
       '@types/react':
         specifier: ^18.0.27
-        version: 18.3.18
+        version: 18.3.20
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.5(@types/react@18.3.18)
+        version: 18.3.6(@types/react@18.3.20)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -3959,16 +3959,16 @@ packages:
     resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
     dev: true
 
-  /@types/react-dom@18.3.5(@types/react@18.3.18):
-    resolution: {integrity: sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==}
+  /@types/react-dom@18.3.6(@types/react@18.3.20):
+    resolution: {integrity: sha512-nf22//wEbKXusP6E9pfOCDwFdHAX4u172eaJI4YkDRQEZiorm6KfYnSC2SWLDMVWUOWPERmJnN0ujeAfTBLvrw==}
     peerDependencies:
       '@types/react': ^18.0.0
     dependencies:
-      '@types/react': 18.3.18
+      '@types/react': 18.3.20
     dev: true
 
-  /@types/react@18.3.18:
-    resolution: {integrity: sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==}
+  /@types/react@18.3.20:
+    resolution: {integrity: sha512-IPaCZN7PShZK/3t6Q87pfTkRm6oLTd4vztyoj+cbHUF1g3FfVb2tFIL79uCRKEfv16AhqDMBywP2VW3KIZUvcg==}
     dependencies:
       '@types/prop-types': 15.7.14
       csstype: 3.1.3
