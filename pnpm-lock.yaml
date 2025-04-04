@@ -79,8 +79,8 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.4
+        version: 3.0.4
       '@netlify/remix-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-adapter
@@ -199,8 +199,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.4
+        version: 3.0.4
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.4(@remix-run/react@2.16.4)(@remix-run/serve@2.16.4)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.2.5)
@@ -321,8 +321,8 @@ importers:
         version: 5.1.25
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.4
+        version: 3.0.4
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.4(@remix-run/react@2.16.4)(@remix-run/serve@2.16.4)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.2.5)
@@ -407,8 +407,8 @@ importers:
         version: 7.4.1(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/react':
         specifier: ^18.0.27
         version: 18.3.20
@@ -2648,11 +2648,11 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/functions@3.0.0:
-    resolution: {integrity: sha512-XXf9mNw4+fkxUzukDpJtzc32bl1+YlXZwEhc5ZgMcTbJPLpgRLDs5WWSPJ4eY/Mv1ZFvtxmMwmfgoQYVt68Qog==}
+  /@netlify/functions@3.0.4:
+    resolution: {integrity: sha512-Ox8+ABI+nsLK+c4/oC5dpquXuEIjzfTlJrdQKgQijCsDQoje7inXFAtKDLvvaGvuvE+PVpMLwQcIUL6P9Ob1hQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/serverless-functions-api': 1.30.1
+      '@netlify/serverless-functions-api': 1.36.0
 
   /@netlify/git-utils@5.2.0:
     resolution: {integrity: sha512-maNQyhQ6zTS5Kwl03HXoUa7uTNjmCvZea5Jko2pyDWz0xW1cunnil+4s33wXrMZJNDvyv97O2vkC5N1sAS3fyQ==}
@@ -2802,10 +2802,6 @@ packages:
       '@netlify/local-functions-proxy-win32-x64': 1.1.1
     dev: true
 
-  /@netlify/node-cookies@0.1.0:
-    resolution: {integrity: sha512-OAs1xG+FfLX0LoRASpqzVntVV/RpYkgpI0VrUnw2u0Q1qiZUzcPffxRK8HF3gc4GjuhG5ahOEMJ9bswBiZPq0g==}
-    engines: {node: ^14.16.0 || >=16.0.0}
-
   /@netlify/open-api@2.36.0:
     resolution: {integrity: sha512-cxdjUkHh0/SLvPusCFOmIoKpXdfvom+cpBT/bUrP2oxxH1htWgJ59GGuu/pJGEU+xhKpPotr+TSJl00u7ktIhg==}
     engines: {node: '>=14.8.0'}
@@ -2843,17 +2839,14 @@ packages:
       execa: 6.1.0
     dev: true
 
-  /@netlify/serverless-functions-api@1.30.1:
-    resolution: {integrity: sha512-JkbaWFeydQdeDHz1mAy4rw+E3bl9YtbCgkntfTxq+IlNX/aIMv2/b1kZnQZcil4/sPoZGL831Dq6E374qRpU1A==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@netlify/node-cookies': 0.1.0
-      urlpattern-polyfill: 8.0.2
-
   /@netlify/serverless-functions-api@1.34.0:
     resolution: {integrity: sha512-jygLyd/kyaWPpyuHwGUoor6cUf2DXUOZbnU08Zk7nM8E0dNk4F5lCHQKeadgxOBLKL7Osx5NQ6qLtg5EKJf1zA==}
     engines: {node: '>=18.0.0'}
     dev: true
+
+  /@netlify/serverless-functions-api@1.36.0:
+    resolution: {integrity: sha512-z6okREyK8in0486a22Oro0k+YsuyEjDXJt46FpgeOgXqKJ9ElM8QPll0iuLBkpbH33ENiNbIPLd1cuClRQnhiw==}
+    engines: {node: '>=18.0.0'}
 
   /@netlify/zip-it-and-ship-it@9.42.1(supports-color@9.4.0):
     resolution: {integrity: sha512-ZCGM2OnLbiFOZO+kpODI6BKjH6X4a6vE/tJd0aqIvKWiygZgxhIw5APZUzgwLGv4BahIBG+tcfKgW7krpZYLwA==}
@@ -14788,6 +14781,7 @@ packages:
 
   /urlpattern-polyfill@8.0.2:
     resolution: {integrity: sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==}
+    dev: true
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
