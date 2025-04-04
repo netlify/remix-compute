@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.10.0
+        specifier: ^2.11.1
         version: 2.11.1
       isbot:
         specifier: ^5.0.0
@@ -125,7 +125,7 @@ importers:
   demos/edge-demo-site:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.10.0
+        specifier: ^2.11.1
         version: 2.11.1
       '@netlify/remix-edge-adapter':
         specifier: workspace:*
