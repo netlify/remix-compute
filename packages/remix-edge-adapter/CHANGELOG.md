@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.3](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.2...remix-edge-adapter-v3.4.3) (2025-04-04)
+
+
+### Bug Fixes
+
+* **deps:** support and test against Vite 6 ([#507](https://github.com/netlify/remix-compute/issues/507)) ([58c378a](https://github.com/netlify/remix-compute/commit/58c378ac6e1a723300f240756c1e26e577b00d44))
+
 ## [3.4.2](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.1...remix-edge-adapter-v3.4.2) (2024-09-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@netlify/remix-edge-adapter",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "Remix Adapter for Netlify Edge Functions",
   "type": "commonjs",
   "main": "./dist/index.js",
