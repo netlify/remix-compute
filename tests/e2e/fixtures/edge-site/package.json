@@ -13,16 +13,16 @@
   "dependencies": {
     "@netlify/remix-edge-adapter": "*",
     "@netlify/remix-runtime": "*",
-    "@remix-run/node": "^2.16.4",
-    "@remix-run/react": "^2.16.4",
-    "@remix-run/serve": "^2.16.4",
+    "@remix-run/node": "^2.16.5-pre",
+    "@remix-run/react": "^2.16.5-pre",
+    "@remix-run/serve": "^2.16.5-pre",
     "isbot": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@netlify/functions": "^3.0.4",
-    "@remix-run/dev": "^2.16.4",
+    "@remix-run/dev": "^2.16.5-pre",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
