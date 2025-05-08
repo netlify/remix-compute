@@ -398,13 +398,13 @@ importers:
     dependencies:
       '@react-router/node':
         specifier: ^7.0.1
-        version: 7.5.1(react-router@7.5.1)(typescript@5.8.3)
+        version: 7.5.1(react-router@7.5.2)(typescript@5.8.3)
       isbot:
         specifier: ^5.0.0
         version: 5.1.25
       react-router:
-        specifier: ^7.0.1
-        version: 7.5.1(react-dom@18.3.1)(react@18.3.1)
+        specifier: ^7.5.2
+        version: 7.5.2(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
       '@netlify/functions':
         specifier: ^3.1.4
@@ -3628,7 +3628,7 @@ packages:
       - supports-color
     dev: true
 
-  /@react-router/node@7.5.1(react-router@7.5.1)(typescript@5.8.3):
+  /@react-router/node@7.5.1(react-router@7.5.2)(typescript@5.8.3):
     resolution: {integrity: sha512-A7HoNAN3ic2fgbGu9jqVZGgk6Pnpwo6MVKvfpneyz5cLJrB3xZlUeNGJ5mZ4T+dVRMAL0yEjxXhDOWZO7P/vSg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -3639,7 +3639,7 @@ packages:
         optional: true
     dependencies:
       '@mjackson/node-fetch-server': 0.2.0
-      react-router: 7.5.1(react-dom@18.3.1)(react@18.3.1)
+      react-router: 7.5.2(react-dom@18.3.1)(react@18.3.1)
       source-map-support: 0.5.21
       stream-slice: 0.1.2
       typescript: 5.8.3
@@ -5175,7 +5175,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.27.1)
       '@vanilla-extract/babel-plugin-debug-ids': 1.2.0
       '@vanilla-extract/css': 1.17.1
-      esbuild: 0.17.6
+      esbuild: 0.19.11
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -13389,8 +13389,8 @@ packages:
       '@remix-run/router': 1.23.0
       react: 18.3.1
 
-  /react-router@7.5.1(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-/jjU3fcYNd2bwz9Q0xt5TwyiyoO8XjSEFXJY4O/lMAlkGTHWuHRAbR9Etik+lSDqMC7A7mz3UlXzgYT6Vl58sA==}
+  /react-router@7.5.2(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-9Rw8r199klMnlGZ8VAsV/I8WrIF6IyJ90JQUdboupx1cdkgYqwnrYjH+I/nY/7cA1X5zia4mDJqH36npP7sxGQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'

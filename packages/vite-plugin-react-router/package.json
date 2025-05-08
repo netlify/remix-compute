@@ -47,7 +47,7 @@
   "dependencies": {
     "@react-router/node": "^7.0.1",
     "isbot": "^5.0.0",
-    "react-router": "^7.0.1"
+    "react-router": "^7.5.2"
   },
   "devDependencies": {
     "@netlify/functions": "^3.1.4",
