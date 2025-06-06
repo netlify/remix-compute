@@ -9,7 +9,7 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.1.2",
+    "@netlify/blobs": "^9.1.6",
     "@react-router/node": "^7.4.1",
     "@react-router/serve": "^7.4.1",
     "isbot": "^5.1.17",
