@@ -74,6 +74,24 @@ test.describe('React Router user journeys', () => {
       await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
     })
 
+    test('can access Netlify Functions context in loader context when opted in to v8 middleware flag', async ({
+      page,
+      reactRouterWithV8Middleware,
+    }) => {
+      const response = await page.goto(`${reactRouterWithV8Middleware.url}/context`)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
+    })
+
+    test('can access Netlify Functions context in v8 middleware context', async ({
+      page,
+      reactRouterWithV8Middleware,
+    }) => {
+      const response = await page.goto(`${reactRouterWithV8Middleware.url}/middleware`)
+      expect(response?.status()).toBe(200)
+      expect(response?.headers()['x-test-site-name']).toBe('remix-compute-e2e-tests')
+    })
+
     test('response has user-defined Cache-Control header', async ({ page, reactRouterServerlessSite }) => {
       const response = await page.goto(`${reactRouterServerlessSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()

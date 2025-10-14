@@ -37,33 +37,69 @@ action context.
 If you're using TypeScript, `AppLoadContext` is automatically aware of these fields
 ([via module augmentation](https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext)).
 
+For example:
+
+```tsx
+import { useLoaderData } from 'react-router'
+import type { Route } from './+types/example'
+
+export async function loader({ context }: Route.LoaderArgs) {
+  return {
+    country: context.geo?.country?.name ?? 'an unknown country',
+  }
+}
+export default function Example() {
+  const { country } = useLoaderData<typeof loader>()
+  return <div>You are visiting from {country}</div>
+}
+```
+
+If you've [opted in to the `future.v8_middleware` flag](https://reactrouter.com/how-to/middleware), you can still use
+the above access pattern for backwards compatibility, but loader and action context will now be an instance of the
+type-safe `RouterContextProvider`. Note that this requires requires v2.0.0+ of `@netlify/vite-plugin-react-router`.
+
+For example:
+
+```tsx
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { useLoaderData } from 'react-router'
+import type { Route } from './+types/example'
+
+export async function loader({ context }: Route.LoaderArgs) {
+  return {
+    country: context.get(netlifyRouterContext).geo?.country?.name ?? 'an unknown country',
+  }
+}
+export default function Example() {
+  const { country } = useLoaderData<typeof loader>()
+  return <div>You are visiting from {country}</div>
+}
+```
+
 ### Middleware context
 
 React Router introduced a stable middleware feature in 7.9.0.
 
 To use middleware,
-[opt in to the feature via `future.v8_middleware` and follow the docs](https://reactrouter.com/how-to/middleware). This
-requires v1.1.0+ of `@netlify/vite-plugin-react-router`.
+[opt in to the feature via `future.v8_middleware` and follow the docs](https://reactrouter.com/how-to/middleware). Note
+that this requires requires v2.0.0+ of `@netlify/vite-plugin-react-router`.
 
 To access the [Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object)
 specifically, you must import our `RouterContextProvider` instance:
 
-```typescript
-import { netlifyContextProvider } from "@netlify/vite-plugin-react-router";
+```tsx
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
 
-import type { Route } from "./+types/home";
+import type { Route } from './+types/home'
 
-const logMiddleware: Route.MiddlewareFunction = async ({
-  request,
-  context,
-}) => {
-  const country = context.get(netlifyContextProvider).geo?.country?.name ?? "unknown";
+const logMiddleware: Route.MiddlewareFunction = async ({ request, context }) => {
+  const country = context.get(netlifyRouterContext).geo?.country?.name ?? 'unknown'
   console.log(`Handling ${request.method} request to ${request.url} from ${country}`)
-};
+}
 
-export const middleware: Route.MiddlewareFunction[] = [logMiddleware];
+export const middleware: Route.MiddlewareFunction[] = [logMiddleware]
 
 export default function Home() {
-  return <h1>Hello world</h1>;
+  return <h1>Hello world</h1>
 }
 ```

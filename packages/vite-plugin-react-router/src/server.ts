@@ -19,7 +19,9 @@ declare module 'react-router' {
  * values through to your loader/action.
  *
  * NOTE: v7.9.0 introduced a breaking change when the user opts in to `future.v8_middleware`. This
- * requires returning an instance of `RouterContextProvider` instead of a plain object.
+ * requires returning an instance of `RouterContextProvider` instead of a plain object. We have a
+ * peer dependency on >=7.9.0 so we can safely *import* these, but we cannot assume the user has
+ * opted in to the flag.
  */
 export type GetLoadContextFunction = GetLoadContextFunction_V7 | GetLoadContextFunction_V8
 export type GetLoadContextFunction_V7 = (
@@ -37,9 +39,9 @@ export type RequestHandler = (request: Request, context: NetlifyContext) => Prom
  * An instance of `ReactContextProvider` providing access to
  * [Netlify request context]{@link https://docs.netlify.com/build/functions/api/#netlify-specific-context-object}
  *
- * @example context.get(netlifyContextProvider).geo?.country?.name
+ * @example context.get(netlifyRouterContext).geo?.country?.name
  */
-export const netlifyContextProvider = createContext<NetlifyContext>()
+export const netlifyRouterContext = createContext<NetlifyContext>()
 
 /**
  * Given a build and a callback to get the base loader context, this returns
@@ -64,7 +66,12 @@ export function createRequestHandler({
     try {
       const getDefaultReactRouterContext = () => {
         const ctx = new RouterContextProvider()
-        ctx.set(netlifyContextProvider, netlifyContext)
+        ctx.set(netlifyRouterContext, netlifyContext)
+
+        // Provide backwards compatibility with previous plain object context
+        // See https://reactrouter.com/how-to/middleware#migration-from-apploadcontext.
+        Object.assign(ctx, netlifyContext)
+
         return ctx
       }
       const reactRouterContext = (await getLoadContext?.(request, netlifyContext)) ?? getDefaultReactRouterContext()
