@@ -36,3 +36,34 @@ action context.
 
 If you're using TypeScript, `AppLoadContext` is automatically aware of these fields
 ([via module augmentation](https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext)).
+
+### Middleware context
+
+React Router introduced a stable middleware feature in 7.9.0.
+
+To use middleware,
+[opt in to the feature via `future.v8_middleware` and follow the docs](https://reactrouter.com/how-to/middleware). This
+requires v1.1.0+ of `@netlify/vite-plugin-react-router`.
+
+To access the [Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object)
+specifically, you must import our `RouterContextProvider` instance:
+
+```typescript
+import { netlifyContextProvider } from "@netlify/vite-plugin-react-router";
+
+import type { Route } from "./+types/home";
+
+const logMiddleware: Route.MiddlewareFunction = async ({
+  request,
+  context,
+}) => {
+  const country = context.get(netlifyContextProvider).geo?.country?.name ?? "unknown";
+  console.log(`Handling ${request.method} request to ${request.url} from ${country}`)
+};
+
+export const middleware: Route.MiddlewareFunction[] = [logMiddleware];
+
+export default function Home() {
+  return <h1>Hello world</h1>;
+}
+```
