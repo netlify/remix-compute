@@ -2,7 +2,11 @@ import type { AppLoadContext, ServerBuild } from 'react-router'
 import { createRequestHandler as createReactRouterRequestHandler } from 'react-router'
 import type { Context as NetlifyContext } from '@netlify/functions'
 
-type LoadContext = AppLoadContext & NetlifyContext
+// Augment the user's `AppLoadContext` to include Netlify context fields
+// This is the recommended approach: https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext.
+declare module 'react-router' {
+  interface AppLoadContext extends NetlifyContext {}
+}
 
 /**
  * A function that returns the value to use as `context` in route `loader` and

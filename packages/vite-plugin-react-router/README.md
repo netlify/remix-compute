@@ -27,3 +27,12 @@ export default defineConfig({
   ],
 })
 ```
+
+### Load context
+
+This plugin automatically includes all
+[Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object) fields on loader and
+action context.
+
+If you're using TypeScript, `AppLoadContext` is automatically aware of these fields
+([via module augmentation](https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext)).
