@@ -17,7 +17,7 @@ declare module 'react-router' {
  */
 export type GetLoadContextFunction = (request: Request, context: NetlifyContext) => Promise<LoadContext> | LoadContext
 
-export type RequestHandler = (request: Request, context: LoadContext) => Promise<Response>
+export type RequestHandler = (request: Request, context: NetlifyContext) => Promise<Response>
 
 /**
  * Given a build and a callback to get the base loader context, this returns
