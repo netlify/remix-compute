@@ -1,5 +1,6 @@
 import { expect, test } from './support/fixtures'
 
+const REVALIDATE_BUFFER_MS = 5000
 const PURGE_BUFFER_MS = 5000
 
 test.describe('Remix user journeys', () => {
@@ -188,7 +189,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(REVALIDATE_BUFFER_MS)
 
     await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
@@ -220,7 +221,7 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(REVALIDATE_BUFFER_MS)
 
     await page.goto(`${edgeSite.url}/stale-while-revalidate`)
     const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
