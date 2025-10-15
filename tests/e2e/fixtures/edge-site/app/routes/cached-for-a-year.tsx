@@ -8,7 +8,7 @@ export const loader = () => {
     },
     {
       headers: {
-        "CDN-Cache-Control": "public, max-age=31536000, durable",
+        "CDN-Cache-Control": "public, max-age=31536000",
         "Cache-Tag": "cached-for-a-year-tag",
       },
     },
