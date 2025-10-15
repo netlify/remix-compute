@@ -9,7 +9,7 @@ export const loader = () => {
     {
       headers: {
         "CDN-Cache-Control":
-          "public, max-age=60, stale-while-revalidate=31536000, durable",
+          "public, max-age=60, stale-while-revalidate=31536000",
         "Cache-Tag": "stale-while-revalidate-tag",
       },
     },

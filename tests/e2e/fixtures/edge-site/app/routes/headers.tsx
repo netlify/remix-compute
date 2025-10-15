@@ -8,7 +8,7 @@ export const loader = () => {
     },
     {
       headers: {
-        "Cache-Control": "public, max-age=3600, durable",
+        "Cache-Control": "public, max-age=3600",
       },
     },
   );

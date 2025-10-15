@@ -163,7 +163,7 @@ test.describe('Remix user journeys', () => {
   test('response has user-defined Cache-Control header when using edge SSR', async ({ page, edgeSite }) => {
     const response = await page.goto(`${edgeSite.url}/headers`)
     await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
-    expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
+    expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
   })
 
   test('user can configure Stale-while-revalidate when using origin SSR', async ({ page, serverlessSite }) => {
