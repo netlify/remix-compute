@@ -396,9 +396,6 @@ importers:
 
   packages/vite-plugin-react-router:
     dependencies:
-      '@react-router/node':
-        specifier: ^7.9.4
-        version: 7.9.4(react-router@7.9.4)(typescript@5.8.3)
       isbot:
         specifier: ^5.0.0
         version: 5.1.25
@@ -2947,10 +2944,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@mjackson/node-fetch-server@0.2.0:
-    resolution: {integrity: sha512-EMlH1e30yzmTpGLQjlFmaDAjyOeZhng1/XCd7DExR8PNAnG/G1tyruZxEoUe11ClnwGhGrtsdnyyUx1frSzjng==}
-    dev: false
-
   /@napi-rs/wasm-runtime@0.2.11:
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
     requiresBuild: true
@@ -3934,21 +3927,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@react-router/node@7.9.4(react-router@7.9.4)(typescript@5.8.3):
-    resolution: {integrity: sha512-sdeDNRaqAB71BR2hPlhcQbPbrXh8uGJUjLVc+NpRiPsQbv6B8UvIucN4IX9YGVJkw3UxVQBn2vPSwxACAck32Q==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      react-router: 7.9.4
-      typescript: ^5.1.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@mjackson/node-fetch-server': 0.2.0
-      react-router: 7.9.4(react-dom@18.3.1)(react@18.3.1)
-      typescript: 5.8.3
-    dev: false
 
   /@remix-run/css-bundle@2.16.6:
     resolution: {integrity: sha512-NMFOWo5gE3AKn3SnQo4CQJOHzdJ00JHooFmPR5PfM1nNwbnkapyulDK0D3XlqKb3TQ28dNsqimSHifVeeYf5OA==}
@@ -7042,6 +7020,7 @@ packages:
   /cookie@1.0.2:
     resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
     engines: {node: '>=18'}
+    dev: true
 
   /copy-file@11.0.0:
     resolution: {integrity: sha512-mFsNh/DIANLqFt5VHZoGirdg7bK5+oTWlhnGu6tgRhzBlnEKWaPX2xrFaLltii/6rmhqFMJqffUgknuRdpYlHw==}
@@ -14004,6 +13983,7 @@ packages:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       set-cookie-parser: 2.7.1
+    dev: true
 
   /react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}

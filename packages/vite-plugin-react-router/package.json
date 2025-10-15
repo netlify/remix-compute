@@ -45,7 +45,6 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@react-router/node": "^7.9.4",
     "isbot": "^5.0.0"
   },
   "devDependencies": {
