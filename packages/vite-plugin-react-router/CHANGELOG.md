@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v1.0.1...vite-plugin-react-router-v2.0.0) (2025-10-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **@netlify/vite-plugin-react-router:** support React Router middleware ([#546](https://github.com/netlify/remix-compute/issues/546))
+
+### Features
+
+* **@netlify/vite-plugin-react-router:** support React Router middleware ([#546](https://github.com/netlify/remix-compute/issues/546)) ([435fa15](https://github.com/netlify/remix-compute/commit/435fa158d80d78e86b0259c3a668c774ef70c565))
+
 ## [1.0.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v1.0.0...vite-plugin-react-router-v1.0.1) (2025-04-04)
 
 
