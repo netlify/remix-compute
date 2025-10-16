@@ -1,4 +1,4 @@
-import type { AppLoadContext, ServerBuild } from 'react-router'
+import type { AppLoadContext, RouterContext, ServerBuild } from 'react-router'
 import {
   createContext,
   RouterContextProvider,
@@ -35,13 +35,20 @@ export type GetLoadContextFunction_V8 = (
 
 export type RequestHandler = (request: Request, context: NetlifyContext) => Promise<Response>
 
+let netlifyRouterContext: RouterContext<Partial<NetlifyContext>>
 /**
  * An instance of `ReactContextProvider` providing access to
  * [Netlify request context]{@link https://docs.netlify.com/build/functions/api/#netlify-specific-context-object}
  *
- * @example context.get(netlifyRouterContext).geo?.country?.name
+ * @example context.get(getNetlifyRouterContext()).geo?.country?.name
  */
-export const netlifyRouterContext = createContext<NetlifyContext>()
+export const getNetlifyRouterContext = () => {
+  // We must use a singleton because Remix contexts rely on referential equality
+  // We defer initialization until first use so that we can initialize it with a default value
+  // within a request lifecycle, where the `Netlify` global will be set. This is just for dev.
+  netlifyRouterContext ??= createContext<Partial<NetlifyContext>>(Netlify.context ?? {})
+  return netlifyRouterContext
+}
 
 /**
  * Given a build and a callback to get the base loader context, this returns
@@ -66,7 +73,7 @@ export function createRequestHandler({
     try {
       const getDefaultReactRouterContext = () => {
         const ctx = new RouterContextProvider()
-        ctx.set(netlifyRouterContext, netlifyContext)
+        ctx.set(getNetlifyRouterContext(), netlifyContext)
 
         // Provide backwards compatibility with previous plain object context
         // See https://reactrouter.com/how-to/middleware#migration-from-apploadcontext.

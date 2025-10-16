@@ -1,11 +1,11 @@
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
 import { useLoaderData } from 'react-router'
 
 import type { Route } from './+types/context'
 
 export async function loader({ context }: Route.LoaderArgs) {
   return {
-    siteName: context.get(netlifyRouterContext).site.name,
+    siteName: context.get(getNetlifyRouterContext()).site.name,
   }
 }
 export default function About() {

@@ -3,12 +3,20 @@
 The React Router Adapter for Netlify allows you to deploy your [React Router](https://reactrouter.com) app to
 [Netlify Functions](https://docs.netlify.com/functions/overview/).
 
-To deploy a React Router 7+ site to Netlify, install this package:
-
 ## How to use
+
+To deploy a React Router 7+ site to Netlify, install this package:
 
 ```sh
 npm install --save-dev @netlify/vite-plugin-react-router
+```
+
+It's also recommended (but not required) to use the
+[Netlify Vite plugin](https://www.npmjs.com/package/@netlify/vite-plugin), which provides full Netlify platform
+emulation directly in your local dev server:
+
+```sh
+npm install --save-dev @netlify/vite-plugin
 ```
 
 and include the Netlify plugin in your `vite.config.ts`:
@@ -17,13 +25,15 @@ and include the Netlify plugin in your `vite.config.ts`:
 import { reactRouter } from '@react-router/dev/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import netlifyPlugin from '@netlify/vite-plugin-react-router' // <- add this
+import netlifyReactRouter from '@netlify/vite-plugin-react-router' // <- add this
+import netlify from '@netlify/vite-plugin' // <- add this (optional)
 
 export default defineConfig({
   plugins: [
     reactRouter(),
     tsconfigPaths(),
-    netlifyPlugin(), // <- add this
+    netlifyReactRouter(), // <- add this
+    netlify(), // <- add this (optional)
   ],
 })
 ```
@@ -61,13 +71,13 @@ type-safe `RouterContextProvider`. Note that this requires requires v2.0.0+ of `
 For example:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
 import { useLoaderData } from 'react-router'
 import type { Route } from './+types/example'
 
 export async function loader({ context }: Route.LoaderArgs) {
   return {
-    country: context.get(netlifyRouterContext).geo?.country?.name ?? 'an unknown country',
+    country: context.get(getNetlifyRouterContext()).geo?.country?.name ?? 'an unknown country',
   }
 }
 export default function Example() {
@@ -75,6 +85,10 @@ export default function Example() {
   return <div>You are visiting from {country}</div>
 }
 ```
+
+> [!IMPORTANT] Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is
+> provided seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI -
+> up to you).
 
 ### Middleware context
 
@@ -88,12 +102,12 @@ To access the [Netlify context](https://docs.netlify.com/build/functions/api/#ne
 specifically, you must import our `RouterContextProvider` instance:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
 
 import type { Route } from './+types/home'
 
 const logMiddleware: Route.MiddlewareFunction = async ({ request, context }) => {
-  const country = context.get(netlifyRouterContext).geo?.country?.name ?? 'unknown'
+  const country = context.get(getNetlifyRouterContext()).geo?.country?.name ?? 'unknown'
   console.log(`Handling ${request.method} request to ${request.url} from ${country}`)
 }
 
@@ -103,3 +117,7 @@ export default function Home() {
   return <h1>Hello world</h1>
 }
 ```
+
+> [!IMPORTANT] Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is
+> provided seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI -
+> up to you).
