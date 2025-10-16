@@ -24,7 +24,6 @@ import { createRequestHandler } from "@netlify/vite-plugin-react-router";
 import * as build from "virtual:react-router/server-build";
 export default createRequestHandler({
   build,
-  getLoadContext: async (_req, ctx) => ctx,
 });
 `
 

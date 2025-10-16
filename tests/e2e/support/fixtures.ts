@@ -41,6 +41,10 @@ interface WorkerFixtures {
    * A React Router 7 site using origin SSR
    */
   reactRouterServerlessSite: Fixture
+  /**
+   * A React Router 7 site using origin SSR and opted in to the `future.v8_middleware` flag
+   */
+  reactRouterWithV8Middleware: Fixture
 }
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
@@ -93,6 +97,13 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   reactRouterServerlessSite: [
     async ({}, use) => {
       const fixture = await deployFixture('react-router-serverless-site')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterWithV8Middleware: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-v8-middleware')
       await use(fixture)
     },
     { scope: 'worker' },
