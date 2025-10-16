@@ -86,9 +86,11 @@ export default function Example() {
 }
 ```
 
-> [!IMPORTANT] Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is
-> provided seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI -
-> up to you).
+> [!IMPORTANT]
+>
+> Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is provided
+> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
+> you).
 
 ### Middleware context
 
@@ -118,6 +120,8 @@ export default function Home() {
 }
 ```
 
-> [!IMPORTANT] Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is
-> provided seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI -
-> up to you).
+> [!IMPORTANT]
+>
+> Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is provided
+> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
+> you).
