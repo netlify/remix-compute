@@ -4,7 +4,7 @@ export const headers: HeadersFunction = () => {
   return {
     // This is an example of how to set caching headers for a route
     // For more info on headers in Remix, see: https://remix.run/route/headers
-    'Cache-Control': 'public, max-age=60, s-maxage=60, durable',
+    'Cache-Control': 'public, max-age=60, s-maxage=60',
   }
 }
 
