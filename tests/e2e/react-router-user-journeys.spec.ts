@@ -1,5 +1,6 @@
 import { expect, test } from './support/fixtures'
 
+const REVALIDATE_BUFFER_MS = 5000
 const PURGE_BUFFER_MS = 5000
 
 test.describe('React Router user journeys', () => {
@@ -106,7 +107,7 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(MAX_AGE / 2)
 
-      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
         responseGeneratedAtText1,
@@ -114,15 +115,15 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(2000 + MAX_AGE / 2)
 
-      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(2000)
+      await page.waitForTimeout(REVALIDATE_BUFFER_MS)
 
-      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
       expect(
         responseGeneratedAtText4,
@@ -136,7 +137,7 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(5000)
 
-      await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
+      await page.reload()
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
         responseGeneratedAtText1,
@@ -146,7 +147,7 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(PURGE_BUFFER_MS)
 
-      await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
+      await page.reload()
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
       expect(
         responseGeneratedAtText3,
@@ -215,7 +216,7 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(MAX_AGE / 2)
 
-      await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
         responseGeneratedAtText1,
@@ -223,28 +224,29 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(2000 + MAX_AGE / 2)
 
-      await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
         responseGeneratedAtText1,
       )
 
-      await page.waitForTimeout(2000)
+      await page.waitForTimeout(REVALIDATE_BUFFER_MS)
 
-      await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+      await page.reload()
       const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
       expect(
         responseGeneratedAtText4,
         'Fourth response should not have matching date and time with previous responses',
       ).not.toEqual(responseGeneratedAtText1)
     })
+
     test('user can on-demand purge response cached on CDN', async ({ page, edgeSite }) => {
       await page.goto(`${edgeSite.url}/cached-for-a-year`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(5000)
 
-      await page.goto(`${edgeSite.url}/cached-for-a-year`)
+      await page.reload()
       const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
       expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
         responseGeneratedAtText1,
@@ -254,7 +256,7 @@ test.describe('React Router user journeys', () => {
 
       await page.waitForTimeout(PURGE_BUFFER_MS)
 
-      await page.goto(`${edgeSite.url}/cached-for-a-year`)
+      await page.reload()
       const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
       expect(
         responseGeneratedAtText3,
