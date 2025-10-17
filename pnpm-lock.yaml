@@ -79,8 +79,8 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^3.1.9
-        version: 3.1.9
+        specifier: ^3.1.10
+        version: 3.1.10
       '@netlify/remix-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-adapter
@@ -199,8 +199,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.1.9
-        version: 3.1.9
+        specifier: ^3.1.10
+        version: 3.1.10
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.2.7)
@@ -321,8 +321,8 @@ importers:
         version: 5.1.25
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.1.9
-        version: 3.1.9
+        specifier: ^3.1.10
+        version: 3.1.10
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.6(@remix-run/react@2.16.6)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.8.3)(vite@6.2.7)
@@ -401,8 +401,8 @@ importers:
         version: 5.1.25
     devDependencies:
       '@netlify/functions':
-        specifier: ^3.1.9
-        version: 3.1.9
+        specifier: ^3.1.10
+        version: 3.1.10
       '@types/react':
         specifier: ^18.0.27
         version: 18.3.20
@@ -3234,8 +3234,8 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/functions@3.1.9:
-    resolution: {integrity: sha512-mbmQIylPzOTDicMFbJF839W3bywJVR0Fm77uvjS6AkDl000VlLwQb+4eO3p0BV7j8+l5IgN/3ltQ/Byi/esTEQ==}
+  /@netlify/functions@3.1.10:
+    resolution: {integrity: sha512-sI93kcJ2cUoMgDRPnrEm0lZhuiDVDqM6ngS/UbHTApIH3+eg3yZM5p/0SDFQQq9Bad0/srFmgBmTdXushzY5kg==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@netlify/blobs': 9.1.2
