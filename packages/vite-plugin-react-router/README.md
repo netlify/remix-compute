@@ -71,13 +71,13 @@ type-safe `RouterContextProvider`. Note that this requires requires v2.0.0+ of `
 For example:
 
 ```tsx
-import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
 import { useLoaderData } from 'react-router'
 import type { Route } from './+types/example'
 
 export async function loader({ context }: Route.LoaderArgs) {
   return {
-    country: context.get(getNetlifyRouterContext()).geo?.country?.name ?? 'an unknown country',
+    country: context.get(netlifyRouterContext).geo?.country?.name ?? 'an unknown country',
   }
 }
 export default function Example() {
@@ -88,7 +88,7 @@ export default function Example() {
 
 > [!IMPORTANT]
 >
-> Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is provided
+> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
 > seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
 > you).
 
@@ -104,12 +104,12 @@ To access the [Netlify context](https://docs.netlify.com/build/functions/api/#ne
 specifically, you must import our `RouterContextProvider` instance:
 
 ```tsx
-import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
 
 import type { Route } from './+types/home'
 
 const logMiddleware: Route.MiddlewareFunction = async ({ request, context }) => {
-  const country = context.get(getNetlifyRouterContext()).geo?.country?.name ?? 'unknown'
+  const country = context.get(netlifyRouterContext).geo?.country?.name ?? 'unknown'
   console.log(`Handling ${request.method} request to ${request.url} from ${country}`)
 }
 
@@ -122,6 +122,6 @@ export default function Home() {
 
 > [!IMPORTANT]
 >
-> Note that in local development, `getNetlifyRouterContext` requires Netlify platform emulation, which is provided
+> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
 > seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
 > you).

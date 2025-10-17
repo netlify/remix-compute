@@ -1,9 +1,9 @@
-import { getNetlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
 
 import type { Route } from './+types/middleware'
 
 const logMiddleware: Route.MiddlewareFunction = async ({ request, context }, next) => {
-  const siteName = context.get(getNetlifyRouterContext()).site.name
+  const siteName = context.get(netlifyRouterContext).site.name
   console.log(`Handling ${request.method} request to ${request.url} on ${siteName}`)
   const response = await next()
   response.headers.set('x-test-site-name', siteName)
