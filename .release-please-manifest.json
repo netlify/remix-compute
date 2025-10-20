@@ -2,5 +2,5 @@
   "packages/remix-edge-adapter": "3.4.3",
   "packages/remix-runtime": "2.3.1",
   "packages/remix-adapter": "2.6.1",
-  "packages/vite-plugin-react-router": "2.0.0"
+  "packages/vite-plugin-react-router": "2.0.1"
 }

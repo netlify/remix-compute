@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.0...vite-plugin-react-router-v2.0.1) (2025-10-20)
+
+
+### Bug Fixes
+
+* populate value for Netlify React Router context in dev ([#550](https://github.com/netlify/remix-compute/issues/550)) ([8d2c9fd](https://github.com/netlify/remix-compute/commit/8d2c9fd21090ca063d99a9e7094393932d870801))
+
 ## [2.0.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v1.0.1...vite-plugin-react-router-v2.0.0) (2025-10-16)
 
 ### ⚠ BREAKING CHANGES
