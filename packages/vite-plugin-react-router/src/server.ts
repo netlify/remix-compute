@@ -41,7 +41,36 @@ export type RequestHandler = (request: Request, context: NetlifyContext) => Prom
  *
  * @example context.get(netlifyRouterContext).geo?.country?.name
  */
-export const netlifyRouterContext = createContext<NetlifyContext>()
+export const netlifyRouterContext =
+  // We must use a singleton because Remix contexts rely on referential equality.
+  // We can't hook into the request lifecycle in dev mode, so we use a Proxy to always read from the
+  // current `Netlify.context` value, which is always contextual to the in-flight request.
+  createContext<Partial<NetlifyContext>>(
+    new Proxy(
+      // Can't reference `Netlify.context` here because it isn't set outside of a request lifecycle
+      {},
+      {
+        get(_target, prop, receiver) {
+          return Reflect.get(Netlify.context ?? {}, prop, receiver)
+        },
+        set(_target, prop, value, receiver) {
+          return Reflect.set(Netlify.context ?? {}, prop, value, receiver)
+        },
+        has(_target, prop) {
+          return Reflect.has(Netlify.context ?? {}, prop)
+        },
+        deleteProperty(_target, prop) {
+          return Reflect.deleteProperty(Netlify.context ?? {}, prop)
+        },
+        ownKeys(_target) {
+          return Reflect.ownKeys(Netlify.context ?? {})
+        },
+        getOwnPropertyDescriptor(_target, prop) {
+          return Reflect.getOwnPropertyDescriptor(Netlify.context ?? {}, prop)
+        },
+      },
+    ),
+  )
 
 /**
  * Given a build and a callback to get the base loader context, this returns

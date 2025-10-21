@@ -3,12 +3,20 @@
 The React Router Adapter for Netlify allows you to deploy your [React Router](https://reactrouter.com) app to
 [Netlify Functions](https://docs.netlify.com/functions/overview/).
 
-To deploy a React Router 7+ site to Netlify, install this package:
-
 ## How to use
+
+To deploy a React Router 7+ site to Netlify, install this package:
 
 ```sh
 npm install --save-dev @netlify/vite-plugin-react-router
+```
+
+It's also recommended (but not required) to use the
+[Netlify Vite plugin](https://www.npmjs.com/package/@netlify/vite-plugin), which provides full Netlify platform
+emulation directly in your local dev server:
+
+```sh
+npm install --save-dev @netlify/vite-plugin
 ```
 
 and include the Netlify plugin in your `vite.config.ts`:
@@ -17,13 +25,15 @@ and include the Netlify plugin in your `vite.config.ts`:
 import { reactRouter } from '@react-router/dev/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import netlifyPlugin from '@netlify/vite-plugin-react-router' // <- add this
+import netlifyReactRouter from '@netlify/vite-plugin-react-router' // <- add this
+import netlify from '@netlify/vite-plugin' // <- add this (optional)
 
 export default defineConfig({
   plugins: [
     reactRouter(),
     tsconfigPaths(),
-    netlifyPlugin(), // <- add this
+    netlifyReactRouter(), // <- add this
+    netlify(), // <- add this (optional)
   ],
 })
 ```
@@ -76,6 +86,12 @@ export default function Example() {
 }
 ```
 
+> [!IMPORTANT]
+>
+> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
+> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
+> you).
+
 ### Middleware context
 
 React Router introduced a stable middleware feature in 7.9.0.
@@ -103,3 +119,9 @@ export default function Home() {
   return <h1>Hello world</h1>
 }
 ```
+
+> [!IMPORTANT]
+>
+> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
+> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
+> you).
