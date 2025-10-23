@@ -1,0 +1,30 @@
+// Estructura base de la aplicación Rincón del Aroma usando React + PWA // Esto incluye: Home, Catálogo vacío, Carrito de compras y panel de administración simple
+
+// index.html const html = `
+
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rincón del Aroma</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="app.js"></script>
+</body>
+</html>
+`;// manifest.json const manifest = { "name": "Rincón del Aroma", "short_name": "Rincón Aroma", "start_url": ".", "display": "standalone", "background_color": "#ffffff", "theme_color": "#f6e0dc", "icons": [ { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }, { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" } ] };
+
+// app.js (React básico) const { useState } = React;
+
+function App() { const [cart, setCart] = useState([]);
+
+return ( <div> <header> <h1>Rincón del Aroma</h1> <button>Carrito ({cart.length})</button> </header> <main> <section> <h2>Catálogo de Productos</h2> <p>Aquí podrás agregar tus productos más tarde desde el panel de administración.</p> <div id="product-list"></div> </section> </main> <footer> <p>© 2025 Rincón del Aroma</p> </footer> </div> ); }
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// styles.css const css = body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff8f0; color: #333; } header { background: #f6e0dc; padding: 20px; display: flex; justify-content: space-between; align-items: center; } main { padding: 20px; } footer { text-align: center; padding: 10px; background: #f6e0dc; } button { background: #d49c8c; border: none; padding: 10px 20px; color: white; cursor: pointer; border-radius: 5px; };
+
+// service-worker.js (para PWA) const sw = ` self.addEventListener('install', function(event) { console.log('Service Worker instalado'); });
