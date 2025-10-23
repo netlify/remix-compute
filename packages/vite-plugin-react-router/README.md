@@ -101,7 +101,7 @@ To use middleware,
 that this requires requires v2.0.0+ of `@netlify/vite-plugin-react-router`.
 
 To access the [Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object)
-specifically, you must import our `RouterContextProvider` instance:
+specifically, you must import our `RouterContext` instance:
 
 ```tsx
 import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
