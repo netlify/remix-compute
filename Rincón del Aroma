@@ -1,0 +1,8 @@
+VITE_FIREBASE_API_KEY=tu_api_key
+VITE_FIREBASE_AUTH_DOMAIN=tu_auth_domain
+VITE_FIREBASE_PROJECT_ID=tu_project_id
+VITE_FIREBASE_STORAGE_BUCKET=tu_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=tu_messaging_sender_id
+VITE_FIREBASE_APP_ID=tu_app_id
+MERCADOPAGO_ACCESS_TOKEN=tu_access_token_sandbox
+VITE_MERCADOPAGO_FUNCTION_URL=https://<tu-sitio>.netlify.app/.netlify/functions/mercadopago-pay
