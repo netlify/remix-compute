@@ -18,6 +18,9 @@ test.describe('React Router user journeys', () => {
       await expect(page.getByRole('heading', { name: /404/ })).toBeVisible()
     })
 
+    // TODO(serhalp): do it
+    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', () => {})
+
     test('serves a response from a user-defined Netlify Function on a custom path', async ({
       page,
       reactRouterServerlessSite,
@@ -77,18 +80,18 @@ test.describe('React Router user journeys', () => {
 
     test('can access Netlify Functions context in loader context when opted in to v8 middleware flag', async ({
       page,
-      reactRouterWithV8Middleware,
+      reactRouterServerlessWithV8Middleware,
     }) => {
-      const response = await page.goto(`${reactRouterWithV8Middleware.url}/context`)
+      const response = await page.goto(`${reactRouterServerlessWithV8Middleware.url}/context`)
       expect(response?.status()).toBe(200)
       await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
     })
 
     test('can access Netlify Functions context in v8 middleware context', async ({
       page,
-      reactRouterWithV8Middleware,
+      reactRouterServerlessWithV8Middleware,
     }) => {
-      const response = await page.goto(`${reactRouterWithV8Middleware.url}/middleware`)
+      const response = await page.goto(`${reactRouterServerlessWithV8Middleware.url}/middleware`)
       expect(response?.status()).toBe(200)
       expect(response?.headers()['x-test-site-name']).toBe('remix-compute-e2e-tests')
     })
@@ -162,32 +165,51 @@ test.describe('React Router user journeys', () => {
     })
   })
 
-  // TODO(serhalp) Unskip once we've implemented edge support (FRB-1519)
-  test.describe.skip('edge SSR', () => {
-    test('serves a response from the edge', async ({ page, edgeSite }) => {
-      const response = await page.goto(edgeSite.url)
+  test.describe('edge SSR', () => {
+    test('serves a response from the edge', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(reactRouterEdgeSite.url)
       expect(response?.status()).toBe(200)
-      await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('remix-server')
+      await expect(page.getByRole('heading', { name: /Welcome to React Router/i })).toBeVisible()
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('react-router-server')
     })
 
-    test('serves a response from a user-defined Netlify Function on a custom path', async ({ page, edgeSite }) => {
-      const response = await page.goto(`${edgeSite.url}/please-blorble`)
+    test('serves a 404 for a request to a URL matching no routes', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/not-a-real-path`)
+      expect(response?.status()).toBe(404)
+      // NOT the Netlify default 404 page - actually served by React Router
+      await expect(page.getByRole('heading', { name: /404/ })).toBeVisible()
+    })
+
+    // TODO(serhalp): do it
+    test.skip('serves a response from the CDN (without compute) for a client asset', () => {})
+
+    // TODO(serhalp): do it
+    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', () => {})
+
+    // FIXME(serhalp) ah yes, hrm.
+    test.skip('serves a response from a user-defined Netlify Function on a custom path', async ({
+      page,
+      reactRouterEdgeSite,
+    }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/please-blorble`)
       expect(response?.status()).toBe(200)
       await expect(page.getByText('gurble')).toBeVisible()
     })
 
-    test('serves a response from a user-defined Netlify Edge Function on a custom path', async ({ page, edgeSite }) => {
-      const response = await page.goto(`${edgeSite.url}/ping`)
+    test('serves a response from a user-defined Netlify Edge Function on a custom path', async ({
+      page,
+      reactRouterEdgeSite,
+    }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/ping`)
       expect(response?.status()).toBe(200)
       await expect(page.getByText('Pong!')).toBeVisible()
     })
 
     test('streams a response from the edge as it is rendered and renders postponed nodes afterward', async ({
       page,
-      edgeSite,
+      reactRouterEdgeSite,
     }) => {
-      const response = await page.goto(`${edgeSite.url}/about`)
+      const response = await page.goto(`${reactRouterEdgeSite.url}/about`)
       expect(response?.status()).toBe(200)
       await expect(page.getByRole('heading', { name: /About/i })).toBeVisible()
       // This page has an artificial 2s delay on the server
@@ -196,22 +218,57 @@ test.describe('React Router user journeys', () => {
       })
     })
 
-    test('can access Netlify Edge Functions context in loader context', async ({ page, edgeSite }) => {
-      const response = await page.goto(`${edgeSite.url}/context`)
+    test('can use Netlify Blobs in Remix loaders', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/blobs`)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByRole('heading', { name: /Netlify Blobs/i })).toBeVisible()
+      await expect(page.getByText('My favorite breakfast cereal is Raisin Bran')).toBeVisible()
+    })
+
+    test('can use the Netlify Image CDN with manually constructed URLs', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/images`)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByRole('heading', { name: /Netlify Image CDN/i })).toBeVisible()
+      await expect(page.getByRole('img')).toBeVisible()
+      // We've dynamically requested these dimensions from the Image CDN, so this proves that it works
+      await expect(page.getByRole('img')).toHaveJSProperty('width', 300)
+      await expect(page.getByRole('img')).toHaveJSProperty('height', 300)
+    })
+
+    test('can access Netlify Edge Functions context in loader context', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/context`)
       expect(response?.status()).toBe(200)
       await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
     })
 
-    test('response has user-defined Cache-Control header', async ({ page, edgeSite }) => {
-      const response = await page.goto(`${edgeSite.url}/headers`)
+    test('can access Netlify Functions context in loader context when opted in to v8 middleware flag', async ({
+      page,
+      reactRouterEdgeWithV8Middleware,
+    }) => {
+      const response = await page.goto(`${reactRouterEdgeWithV8Middleware.url}/context`)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
+    })
+
+    test('can access Netlify Functions context in v8 middleware context', async ({
+      page,
+      reactRouterEdgeWithV8Middleware,
+    }) => {
+      const response = await page.goto(`${reactRouterEdgeWithV8Middleware.url}/middleware`)
+      expect(response?.status()).toBe(200)
+      expect(response?.headers()['x-test-site-name']).toBe('remix-compute-e2e-tests')
+    })
+
+    test('response has user-defined Cache-Control header', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/headers`)
       await expect(page.getByRole('heading', { name: /Headers/i })).toBeVisible()
       expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
     })
 
-    test('user can configure Stale-while-revalidate', async ({ page, edgeSite }) => {
+    test('user can configure Stale-while-revalidate', async ({ page, reactRouterEdgeSite }) => {
       const MAX_AGE = 60000 // Must match the max-age set in the fixture
 
-      await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+      await page.goto(`${reactRouterEdgeSite.url}/stale-while-revalidate`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(MAX_AGE / 2)
@@ -240,8 +297,8 @@ test.describe('React Router user journeys', () => {
       ).not.toEqual(responseGeneratedAtText1)
     })
 
-    test('user can on-demand purge response cached on CDN', async ({ page, edgeSite }) => {
-      await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    test('user can on-demand purge response cached on CDN', async ({ page, reactRouterEdgeSite }) => {
+      await page.goto(`${reactRouterEdgeSite.url}/cached-for-a-year`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(5000)
@@ -252,7 +309,7 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+      await fetch(`${reactRouterEdgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
 
       await page.waitForTimeout(PURGE_BUFFER_MS)
 
@@ -264,8 +321,8 @@ test.describe('React Router user journeys', () => {
       ).not.toEqual(responseGeneratedAtText1)
     })
 
-    test('Netlify Edge Middleware can add response headers', async ({ page, edgeSite }) => {
-      const response = await page.goto(`${edgeSite.url}/middleware-header`)
+    test('Netlify Edge Middleware can add response headers', async ({ page, reactRouterEdgeSite }) => {
+      const response = await page.goto(`${reactRouterEdgeSite.url}/middleware-header`)
       expect(response?.status()).toBe(200)
       expect(response?.headers()['foo']).toBe('bar')
     })

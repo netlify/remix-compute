@@ -16,6 +16,14 @@
         "types": "./dist/index.d.mts",
         "default": "./dist/index.mjs"
       }
+    },
+    "./function-handler": {
+      "types": "./dist/function-handler.d.mts",
+      "default": "./dist/function-handler.mjs"
+    },
+    "./edge-function-handler": {
+      "types": "./dist/edge-function-handler.d.mts",
+      "default": "./dist/edge-function-handler.mjs"
     }
   },
   "files": [
@@ -26,7 +34,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "tsup-node src/index.ts --format esm,cjs --dts --target node18 --clean",
+    "build": "tsup-node",
     "build:watch": "pnpm run build --watch"
   },
   "repository": {
@@ -48,6 +56,7 @@
     "isbot": "^5.0.0"
   },
   "devDependencies": {
+    "@netlify/edge-functions": "^2.11.0",
     "@netlify/functions": "^3.1.9",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
