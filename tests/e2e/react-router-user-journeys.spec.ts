@@ -2,6 +2,7 @@ import { expect, test } from './support/fixtures'
 
 const REVALIDATE_BUFFER_MS = 5000
 const PURGE_BUFFER_MS = 5000
+const CACHE_STATUS_SERVED_FROM_EDGE = /^"Netlify Edge"; (hit|miss)$/
 
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
@@ -18,8 +19,32 @@ test.describe('React Router user journeys', () => {
       await expect(page.getByRole('heading', { name: /404/ })).toBeVisible()
     })
 
-    // TODO(serhalp): do it
-    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', () => {})
+    test('serves a response from the CDN (without compute) for a client asset', async ({
+      page,
+      reactRouterServerlessSite,
+    }) => {
+      await page.goto(reactRouterServerlessSite.url)
+      const logoImg = page.locator('img[src*="logo-dark"]').first()
+      const src = await logoImg.getAttribute('src')
+      expect(src).toBeTruthy()
+
+      const logoUrl = new URL(src!, reactRouterServerlessSite.url).toString()
+      const response = await page.goto(logoUrl)
+      expect(response?.status()).toBe(200)
+      expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
+    })
+
+    // TODO(serhalp) Revisit this if RR team changes their minds:
+    // https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
+    test.fail(
+      'serves a response from the CDN (without compute) for a pre-rendered route',
+      async ({ page, reactRouterServerlessSite }) => {
+        const response = await page.goto(`${reactRouterServerlessSite.url}/prerendered`)
+        expect(response?.status()).toBe(200)
+        await expect(page.getByRole('heading', { name: /Prerendered Page/i })).toBeVisible()
+        expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
+      },
+    )
 
     test('serves a response from a user-defined Netlify Function on a custom path', async ({
       page,
@@ -180,11 +205,32 @@ test.describe('React Router user journeys', () => {
       await expect(page.getByRole('heading', { name: /404/ })).toBeVisible()
     })
 
-    // TODO(serhalp): do it
-    test.skip('serves a response from the CDN (without compute) for a client asset', () => {})
+    test('serves a response from the CDN (without compute) for a client asset', async ({
+      page,
+      reactRouterEdgeSite,
+    }) => {
+      await page.goto(reactRouterEdgeSite.url)
+      const logoImg = page.locator('img[src*="logo-dark"]').first()
+      const src = await logoImg.getAttribute('src')
+      expect(src).toBeTruthy()
 
-    // TODO(serhalp): do it
-    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', () => {})
+      const logoUrl = new URL(src!, reactRouterEdgeSite.url).toString()
+      const response = await page.goto(logoUrl)
+      expect(response?.status()).toBe(200)
+      expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
+    })
+
+    // TODO(serhalp) Revisit this if RR team changes their minds:
+    // https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
+    test.fail(
+      'serves a response from the CDN (without compute) for a pre-rendered route',
+      async ({ page, reactRouterEdgeSite }) => {
+        const response = await page.goto(`${reactRouterEdgeSite.url}/prerendered`)
+        expect(response?.status()).toBe(200)
+        await expect(page.getByRole('heading', { name: /Prerendered Page/i })).toBeVisible()
+        expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
+      },
+    )
 
     // FIXME(serhalp) ah yes, hrm.
     test.skip('serves a response from a user-defined Netlify Function on a custom path', async ({
