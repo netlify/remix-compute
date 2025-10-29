@@ -11,5 +11,5 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
-  plugins: [reactRouter(), netlifyPlugin({ edge: true }), tsconfigPaths()],
+  plugins: [reactRouter(), netlifyPlugin({ edge: true, excludedPaths: ['/please-blorble'] }), tsconfigPaths()],
 })

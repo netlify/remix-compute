@@ -61,6 +61,12 @@ export default defineConfig({
 Second, you **must** provide an `app/entry.server.tsx` (or `.jsx`) file that uses web-standard APIs compatible with the
 Deno runtime. Create a file with the following content:
 
+> [!IMPORTANT]
+>
+> This file uses `renderToReadableStream` (Web Streams API) instead of `renderToPipeableStream` (Node.js API), which is
+> required for the Deno runtime. You may customize your server entry file, but see below for important edge runtime
+> constraints.
+
 ```tsx
 import type { AppLoadContext, EntryContext } from 'react-router'
 import { ServerRouter } from 'react-router'
@@ -106,10 +112,22 @@ export default async function handleRequest(
 
 You may need to `npm install isbot` if you do not have this dependency.
 
-> [!IMPORTANT]
->
-> This file uses `renderToReadableStream` (Web Streams API) instead of `renderToPipeableStream` (Node.js API), which is
-> required for the Deno runtime. You may customize your server entry file, but see below for
+Finally, if you have your own Netlify Functions (typically in `netlify/functions`) for which you've configured a `path`,
+you must exclude those paths to avoid conflicts with the generated React Router SSR handler:
+
+```typescript
+export default defineConfig({
+  plugins: [
+    reactRouter(),
+    tsconfigPaths(),
+    netlifyReactRouter({
+      edge: true,
+      excludedPaths: ['/ping', '/api/*', '/webhooks/*'],
+    }),
+    netlify(),
+  ],
+})
+```
 
 #### Moving back from Edge Functions to Functions
 

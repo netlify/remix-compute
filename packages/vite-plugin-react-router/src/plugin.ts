@@ -10,6 +10,16 @@ export interface NetlifyPluginOptions {
    * @default false
    */
   edge?: boolean
+  /**
+   * Paths to exclude from being handled by the React Router handler.
+   *
+   * @IMPORTANT If you have opted in to edge rendering with `edge: true` and you have your own Netlify
+   * Functions running on custom `path`s, you must exclude those paths here to avoid conflicts.
+   *
+   * @type {URLPattern[]}
+   * @default []
+   */
+  excludedPaths?: string[]
 }
 
 // https://docs.netlify.com/frameworks-api/#netlify-v1-functions
@@ -48,7 +58,7 @@ export default createRequestHandler({
 
 // This is written to the functions directory. It just re-exports
 // the compiled entrypoint, along with Netlify function config.
-function generateNetlifyFunction(handlerPath: string) {
+function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string>) {
   return /* js */ `
     export { default } from "${handlerPath}";
 
@@ -56,6 +66,7 @@ function generateNetlifyFunction(handlerPath: string) {
       name: "React Router server handler",
       generator: "${name}@${version}",
       path: "/*",
+      excludedPath: ${JSON.stringify(excludedPath)},
       preferStatic: true,
     };
     `
@@ -63,7 +74,7 @@ function generateNetlifyFunction(handlerPath: string) {
 
 // This is written to the edge functions directory. It just re-exports
 // the compiled entrypoint, along with Netlify edge function config.
-function generateEdgeFunction(handlerPath: string, excludePath: Array<string> = []) {
+function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>) {
   return /* js */ `
     export { default } from "${handlerPath}";
 
@@ -72,13 +83,14 @@ function generateEdgeFunction(handlerPath: string, excludePath: Array<string> = 
       generator: "${name}@${version}",
       cache: "manual",
       path: "/*",
-      excludedPath: ${JSON.stringify(excludePath)},
+      excludedPath: ${JSON.stringify(excludedPath)},
     };
     `
 }
 
 export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
-  const { edge = false } = options
+  const edge = options.edge ?? false
+  const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
   return {
@@ -147,9 +159,10 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           // not configurable, so the client out dir is always at ../client from the server out dir.
           const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
           const entries = await readdir(clientDir, { withFileTypes: true })
-          const excludePath = [
+          const excludedPath = [
             '/.netlify/*',
             ...entries.map((entry) => (entry.isDirectory() ? `/${entry.name}/*` : `/${entry.name}`)),
+            ...additionalExcludedPaths,
           ]
 
           // Write the server entry point to the Netlify Edge Functions directory
@@ -158,14 +171,18 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           const relativeHandlerPath = toPosixPath(relative(edgeFunctionsDir, handlerPath))
           await writeFile(
             join(edgeFunctionsDir, FUNCTION_FILENAME),
-            generateEdgeFunction(relativeHandlerPath, excludePath),
+            generateEdgeFunction(relativeHandlerPath, excludedPath),
           )
         } else {
           // Write the server entry point to the Netlify Functions directory
           const functionsDir = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
           await mkdir(functionsDir, { recursive: true })
           const relativeHandlerPath = toPosixPath(relative(functionsDir, handlerPath))
-          await writeFile(join(functionsDir, FUNCTION_FILENAME), generateNetlifyFunction(relativeHandlerPath))
+          const excludedPath = ['/.netlify/*', ...additionalExcludedPaths]
+          await writeFile(
+            join(functionsDir, FUNCTION_FILENAME),
+            generateNetlifyFunction(relativeHandlerPath, excludedPath),
+          )
         }
       }
     },

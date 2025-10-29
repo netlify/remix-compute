@@ -232,8 +232,7 @@ test.describe('React Router user journeys', () => {
       },
     )
 
-    // FIXME(serhalp) ah yes, hrm.
-    test.skip('serves a response from a user-defined Netlify Function on a custom path', async ({
+    test('serves a response from a user-defined Netlify Function on a custom path', async ({
       page,
       reactRouterEdgeSite,
     }) => {
