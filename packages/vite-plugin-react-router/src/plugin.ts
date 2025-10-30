@@ -119,16 +119,13 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           config.ssr = {
             ...config.ssr,
             target: 'webworker',
-            // Only externalize Node builtins
+            // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
+            // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
             noExternal: /^(?!node:).*$/,
             resolve: {
+              ...config.resolve,
               conditions: ['worker', 'deno', 'browser'],
-              externalConditions: ['worker', 'deno'],
             },
-          }
-          config.resolve = {
-            ...config.resolve,
-            conditions: ['worker', 'deno', ...(config.resolve?.conditions || [])],
           }
         }
       }
