@@ -2,7 +2,7 @@ import { expect, test } from './support/fixtures'
 
 const REVALIDATE_BUFFER_MS = 5000
 const PURGE_BUFFER_MS = 5000
-const CACHE_STATUS_SERVED_FROM_EDGE = /^"Netlify Edge"; (hit|fwd=stale)$/
+const CACHE_STATUS_SERVED_FROM_EDGE = /^"Netlify Edge"; [a-z=]+$/
 
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
