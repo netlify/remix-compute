@@ -1,5 +1,5 @@
 {
-  "name": "react-router-v8-middleware",
+  "name": "react-router-serverless-v8-middleware",
   "private": true,
   "type": "module",
   "scripts": {

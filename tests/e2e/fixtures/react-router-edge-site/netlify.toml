@@ -1,4 +1,3 @@
-# TODO(serhalp) Remove entire file when we've added RR7 framework detection
 [build]
 command = "react-router build"
 publish = "build/client"
