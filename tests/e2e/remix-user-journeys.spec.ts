@@ -169,8 +169,9 @@ test.describe('Remix user journeys', () => {
 
   test('user can configure Stale-while-revalidate when using origin SSR', async ({ page, serverlessSite }) => {
     const MAX_AGE = 60000 // Must match the max-age set in the fixture
+    const testCacheKey = `?_t=${Date.now()}`
 
-    await page.goto(`${serverlessSite.url}/stale-while-revalidate`)
+    await page.goto(`${serverlessSite.url}/stale-while-revalidate${testCacheKey}`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
     await page.waitForTimeout(MAX_AGE / 2)
@@ -201,8 +202,9 @@ test.describe('Remix user journeys', () => {
 
   test('user can configure Stale-while-revalidate when using edge SSR', async ({ page, edgeSite }) => {
     const MAX_AGE = 60000 // Must match the max-age set in the fixture
+    const testCacheKey = `?_t=${Date.now()}`
 
-    await page.goto(`${edgeSite.url}/stale-while-revalidate`)
+    await page.goto(`${edgeSite.url}/stale-while-revalidate${testCacheKey}`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
     await page.waitForTimeout(MAX_AGE / 2)
@@ -232,7 +234,8 @@ test.describe('Remix user journeys', () => {
   })
 
   test('user can on-demand purge response cached on CDN when using origin SSR', async ({ page, serverlessSite }) => {
-    await page.goto(`${serverlessSite.url}/cached-for-a-year`)
+    const testCacheKey = `?_t=${Date.now()}`
+    await page.goto(`${serverlessSite.url}/cached-for-a-year${testCacheKey}`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
     await page.waitForTimeout(5000)
@@ -256,7 +259,8 @@ test.describe('Remix user journeys', () => {
   })
 
   test('user can on-demand purge response cached on CDN when using edge SSR', async ({ page, edgeSite }) => {
-    await page.goto(`${edgeSite.url}/cached-for-a-year`)
+    const testCacheKey = `?_t=${Date.now()}`
+    await page.goto(`${edgeSite.url}/cached-for-a-year${testCacheKey}`)
     const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
     await page.waitForTimeout(5000)

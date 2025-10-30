@@ -129,8 +129,9 @@ test.describe('React Router user journeys', () => {
 
     test('user can configure Stale-while-revalidate', async ({ page, reactRouterServerlessSite }) => {
       const MAX_AGE = 60000 // Must match the max-age set in the fixture
+      const testCacheKey = `?_t=${Date.now()}`
 
-      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
+      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate${testCacheKey}`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(MAX_AGE / 2)
@@ -160,7 +161,8 @@ test.describe('React Router user journeys', () => {
     })
 
     test('user can on-demand purge response cached on CDN', async ({ page, reactRouterServerlessSite }) => {
-      await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
+      const testCacheKey = `?_t=${Date.now()}`
+      await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year${testCacheKey}`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(5000)
@@ -312,8 +314,9 @@ test.describe('React Router user journeys', () => {
 
     test('user can configure Stale-while-revalidate', async ({ page, reactRouterEdgeSite }) => {
       const MAX_AGE = 60000 // Must match the max-age set in the fixture
+      const testCacheKey = `?_t=${Date.now()}`
 
-      await page.goto(`${reactRouterEdgeSite.url}/stale-while-revalidate`)
+      await page.goto(`${reactRouterEdgeSite.url}/stale-while-revalidate${testCacheKey}`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(MAX_AGE / 2)
@@ -343,7 +346,8 @@ test.describe('React Router user journeys', () => {
     })
 
     test('user can on-demand purge response cached on CDN', async ({ page, reactRouterEdgeSite }) => {
-      await page.goto(`${reactRouterEdgeSite.url}/cached-for-a-year`)
+      const testCacheKey = `?_t=${Date.now()}`
+      await page.goto(`${reactRouterEdgeSite.url}/cached-for-a-year${testCacheKey}`)
       const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
 
       await page.waitForTimeout(5000)
