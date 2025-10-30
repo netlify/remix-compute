@@ -1,6 +1,9 @@
-import { type Config, purgeCache } from "@netlify/functions";
+import { type Config, type Context, purgeCache } from "@netlify/functions";
 
-const handler = async (request: Request): Promise<Response> => {
+const handler = async (
+  request: Request,
+  context: Context,
+): Promise<Response> => {
   const url = new URL(request.url);
   const tagToPurge = url.searchParams.get("tag");
 
@@ -14,8 +17,17 @@ const handler = async (request: Request): Promise<Response> => {
     );
   }
 
-  console.log("Purging", tagToPurge);
-  await purgeCache({ tags: [tagToPurge] });
+  // e2e tests exclusively create manual deploys, so this assumption is safe
+  if (!context.url.hostname.includes("--")) {
+    return Response.json(
+      { error: "No deploy alias found in hostname (missing --)" },
+      { status: 400 },
+    );
+  }
+  await purgeCache({
+    tags: [tagToPurge],
+    deployAlias: context.url.hostname.split("--")[0],
+  });
 
   return new Response(null, { status: 204 });
 };
