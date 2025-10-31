@@ -1,17 +1,17 @@
+/**
+ * This file contains code intended to be used *at runtime* in Netlify Edge Functions.
+ */
 import type { ServerBuild } from 'react-router'
 import type { Context as NetlifyEdgeContext } from '@netlify/edge-functions'
 
-import { createNetlifyRequestHandler, type RequestHandler as RequestHandlerType } from './lib/handler'
-import { createNetlifyRouterContext, type GetLoadContextFunction as GetLoadContextFunctionType } from './lib/context'
+import { createNetlifyRequestHandler, type RequestHandler } from '../lib/handler'
+import { createNetlifyRouterContext, type GetLoadContextFunction } from '../lib/context'
 
 // Augment the user's `AppLoadContext` to include Netlify context fields
 // This is the recommended approach: https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext.
 declare module 'react-router' {
   interface AppLoadContext extends NetlifyEdgeContext {}
 }
-
-export type GetLoadContextFunction = GetLoadContextFunctionType<NetlifyEdgeContext>
-export type RequestHandler = RequestHandlerType<NetlifyEdgeContext>
 
 /**
  * An instance of `RouterContext` providing access to
@@ -34,8 +34,8 @@ export function createRequestHandler({
 }: {
   build: ServerBuild
   mode?: string
-  getLoadContext?: GetLoadContextFunction
-}): RequestHandler {
+  getLoadContext?: GetLoadContextFunction<NetlifyEdgeContext>
+}): RequestHandler<NetlifyEdgeContext> {
   return createNetlifyRequestHandler({
     build,
     mode,

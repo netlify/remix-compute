@@ -1,4 +1,4 @@
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/edge'
 
 import type { Route } from './+types/middleware'
 

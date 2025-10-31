@@ -17,13 +17,13 @@
         "default": "./dist/index.mjs"
       }
     },
-    "./function-handler": {
-      "types": "./dist/function-handler.d.mts",
-      "default": "./dist/function-handler.mjs"
+    "./serverless": {
+      "types": "./dist/serverless.d.mts",
+      "default": "./dist/serverless.mjs"
     },
-    "./edge-function-handler": {
-      "types": "./dist/edge-function-handler.d.mts",
-      "default": "./dist/edge-function-handler.mjs"
+    "./edge": {
+      "types": "./dist/edge.d.mts",
+      "default": "./dist/edge.mjs"
     }
   },
   "files": [

@@ -1,8 +1,11 @@
+/**
+ * This file contains code intended to be used *at runtime* in Netlify Functions.
+ */
 import type { ServerBuild } from 'react-router'
 import type { Context as NetlifyContext } from '@netlify/functions'
 
-import { createNetlifyRequestHandler, type RequestHandler as RequestHandlerType } from './lib/handler'
-import { createNetlifyRouterContext, type GetLoadContextFunction as GetLoadContextFunctionType } from './lib/context'
+import { createNetlifyRequestHandler, type RequestHandler as RequestHandlerType } from '../lib/handler'
+import { createNetlifyRouterContext, type GetLoadContextFunction as GetLoadContextFunctionType } from '../lib/context'
 
 // Augment the user's `AppLoadContext` to include Netlify context fields
 // This is the recommended approach: https://reactrouter.com/upgrading/remix#9-update-types-for-apploadcontext.

@@ -179,7 +179,8 @@ type-safe `RouterContextProvider`. Note that this requires requires v2.0.0+ of `
 For example:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/serverless'
+//                    NOTE: if setting `edge: true`, import from /edge ^ instead here
 import { useLoaderData } from 'react-router'
 import type { Route } from './+types/example'
 
@@ -209,10 +210,11 @@ To use middleware,
 that this requires requires v2.0.0+ of `@netlify/vite-plugin-react-router`.
 
 To access the [Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object)
-specifically, you must import our `RouterContextProvider` instance:
+specifically, you must import our `RouterContext` instance:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/serverless'
+//                    NOTE: if setting `edge: true`, import from /edge ^ instead here
 
 import type { Route } from './+types/home'
 

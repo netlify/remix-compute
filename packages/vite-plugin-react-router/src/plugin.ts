@@ -1,7 +1,9 @@
-import type { Plugin, ResolvedConfig } from 'vite'
 import { mkdir, writeFile, readdir } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
+
+import type { Plugin, ResolvedConfig } from 'vite'
+
 import { version, name } from '../package.json'
 
 export interface NetlifyPluginOptions {
@@ -40,7 +42,7 @@ const toPosixPath = (path: string) => path.split(sep).join(posixSep)
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
 const FUNCTION_HANDLER = /* js */ `
-import { createRequestHandler } from "@netlify/vite-plugin-react-router/function-handler";
+import { createRequestHandler } from "@netlify/vite-plugin-react-router/serverless";
 import * as build from "virtual:react-router/server-build";
 export default createRequestHandler({
   build,
@@ -49,7 +51,7 @@ export default createRequestHandler({
 
 // The virtual module for Edge Functions
 const EDGE_FUNCTION_HANDLER = /* js */ `
-import { createRequestHandler } from "@netlify/vite-plugin-react-router/edge-function-handler";
+import { createRequestHandler } from "@netlify/vite-plugin-react-router/edge";
 import * as build from "virtual:react-router/server-build";
 export default createRequestHandler({
   build,

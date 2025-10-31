@@ -9,13 +9,7 @@ export default defineConfig([
     clean: true,
   },
   {
-    entry: ['src/function-handler.ts'],
-    format: ['esm'],
-    dts: true,
-    target: 'node18',
-  },
-  {
-    entry: ['src/edge-function-handler.ts'],
+    entry: { serverless: 'src/runtimes/netlify-functions.ts', edge: 'src/runtimes/netlify-edge-functions.ts' },
     format: ['esm'],
     dts: true,
     target: 'node18',

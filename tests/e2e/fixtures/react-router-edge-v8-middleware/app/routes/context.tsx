@@ -1,4 +1,4 @@
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/edge'
 import { useLoaderData } from 'react-router'
 
 import type { Route } from './+types/context'
