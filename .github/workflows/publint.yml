@@ -1,0 +1,30 @@
+name: Publint
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - '**'
+      - '!release-please--**'
+  merge_group:
+jobs:
+  publint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: git config --global core.symlinks true
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - run: corepack enable pnpm
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run build:packages
+      - name: Publint
+        run: pnpm run --filter '@netlify/*' publint
