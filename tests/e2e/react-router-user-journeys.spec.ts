@@ -173,7 +173,8 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await fetch(`${reactRouterServerlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+      const purgeResponse = await fetch(`${reactRouterServerlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+      expect(purgeResponse.status).toBe(204)
 
       await page.waitForTimeout(PURGE_BUFFER_MS)
 
@@ -358,7 +359,8 @@ test.describe('React Router user journeys', () => {
         responseGeneratedAtText1,
       )
 
-      await fetch(`${reactRouterEdgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+      const purgeResponse = await fetch(`${reactRouterEdgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+      expect(purgeResponse.status).toBe(204)
 
       await page.waitForTimeout(PURGE_BUFFER_MS)
 

@@ -246,7 +246,8 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+    const purgeResponse = await fetch(`${serverlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+    expect(purgeResponse.status).toBe(204)
 
     await page.waitForTimeout(PURGE_BUFFER_MS)
 
@@ -271,7 +272,8 @@ test.describe('Remix user journeys', () => {
       responseGeneratedAtText1,
     )
 
-    await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+    const purgeResponse = await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
+    expect(purgeResponse.status).toBe(204)
 
     await page.waitForTimeout(PURGE_BUFFER_MS)
 
