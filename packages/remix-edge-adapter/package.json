@@ -43,7 +43,8 @@
     "build": "pnpm run build:src && pnpm run build:types",
     "build:src": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
     "build:types": "deno types > deno.d.ts",
-    "build:watch": "pnpm run build:src --watch"
+    "build:watch": "pnpm run build:src --watch",
+    "publint": "publint --strict"
   },
   "repository": {
     "type": "git",

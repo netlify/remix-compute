@@ -41,7 +41,8 @@
   "scripts": {
     "prepack": "pnpm run build",
     "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
-    "build:watch": "pnpm run build --watch"
+    "build:watch": "pnpm run build --watch",
+    "publint": "publint --strict"
   },
   "repository": {
     "type": "git",
