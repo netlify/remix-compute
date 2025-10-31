@@ -65,7 +65,7 @@ function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string
     export { default } from "${handlerPath}";
 
     export const config = {
-      name: "React Router server handler",
+      displayName: "React Router server handler",
       generator: "${name}@${version}",
       path: "/*",
       excludedPath: ${JSON.stringify(excludedPath)},
