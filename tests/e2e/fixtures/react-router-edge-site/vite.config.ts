@@ -11,5 +11,12 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
-  plugins: [reactRouter(), netlifyPlugin({ edge: true, excludedPaths: ['/please-blorble'] }), tsconfigPaths()],
+  plugins: [
+    reactRouter(),
+    netlifyPlugin({
+      edge: true,
+      excludedPaths: ['/please-blorble', '/purge-cdn'],
+    }),
+    tsconfigPaths(),
+  ],
 })
