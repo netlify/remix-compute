@@ -4,5 +4,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { netlifyPlugin } from "@netlify/remix-edge-adapter/plugin";
 
 export default defineConfig({
-  plugins: [remix(), netlifyPlugin(), tsconfigPaths()],
+  plugins: [
+    remix(),
+    netlifyPlugin({ excludedPaths: ["/please-blorble", "/purge-cdn"] }),
+    tsconfigPaths(),
+  ],
 });
