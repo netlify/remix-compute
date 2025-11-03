@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "tsup-node",
+    "build": "rm -rf dist && tsup-node",
     "build:watch": "pnpm run build --watch",
     "publint": "publint --strict"
   },
