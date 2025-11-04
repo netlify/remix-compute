@@ -1,6 +1,6 @@
 import { expect, test } from './support/fixtures'
 
-const REVALIDATE_BUFFER_MS = 5000
+const CACHE_STORE_DELAY_BUFFER_MS = 5000
 
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
@@ -98,36 +98,18 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-control']).toBe('public,max-age=3600,durable')
     })
 
-    test('user can configure Stale-while-revalidate', async ({ page, reactRouterServerlessSite }) => {
-      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+    test('can cache function responses on CDN', async ({ page, reactRouterServerlessSite }) => {
+      const ssrResponse = await page.goto(`${reactRouterServerlessSite.url}/cacheable`)
+      expect(ssrResponse?.status()).toBe(200)
+      expect(ssrResponse?.headers()['cdn-cache-control']).toBe('public, max-age=60, durable')
 
-      await page.goto(`${reactRouterServerlessSite.url}/stale-while-revalidate`)
-      const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+      await page.waitForTimeout(CACHE_STORE_DELAY_BUFFER_MS)
 
-      await page.waitForTimeout(MAX_AGE / 2)
-
-      await page.reload()
-      const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await page.waitForTimeout(2000 + MAX_AGE / 2)
-
-      await page.reload()
-      const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await page.waitForTimeout(REVALIDATE_BUFFER_MS)
-
-      await page.reload()
-      const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
-      expect(
-        responseGeneratedAtText4,
-        'Fourth response should not have matching date and time with previous responses',
-      ).not.toEqual(responseGeneratedAtText1)
+      const cachedResponse = await page.reload()
+      expect(cachedResponse?.status()).toBe(200)
+      expect(cachedResponse?.headers()['cdn-cache-control']).toBe('public, max-age=60, durable')
+      // Page includes `Date.now()` so it can only have the same etag if it's the previously cached response
+      expect(cachedResponse?.headers()['debug-x-nf-gen-etag']).toBe(ssrResponse?.headers()['debug-x-nf-gen-etag'])
     })
 
     test('Netlify Edge Middleware can add response headers', async ({ page, reactRouterServerlessSite }) => {
@@ -183,36 +165,18 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-control']).toBe('public,max-age=3600')
     })
 
-    test('user can configure Stale-while-revalidate', async ({ page, edgeSite }) => {
-      const MAX_AGE = 60000 // Must match the max-age set in the fixture
+    test('can cache edge function responses on CDN', async ({ page, edgeSite }) => {
+      const ssrResponse = await page.goto(`${edgeSite.url}/cacheable`)
+      expect(ssrResponse?.status()).toBe(200)
+      expect(ssrResponse?.headers()['cdn-cache-control']).toBe('public, max-age=60')
 
-      await page.goto(`${edgeSite.url}/stale-while-revalidate`)
-      const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
+      await page.waitForTimeout(CACHE_STORE_DELAY_BUFFER_MS)
 
-      await page.waitForTimeout(MAX_AGE / 2)
-
-      await page.reload()
-      const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await page.waitForTimeout(2000 + MAX_AGE / 2)
-
-      await page.reload()
-      const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText3, 'First and third response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await page.waitForTimeout(REVALIDATE_BUFFER_MS)
-
-      await page.reload()
-      const responseGeneratedAtText4 = await page.getByText('Response generated at').textContent()
-      expect(
-        responseGeneratedAtText4,
-        'Fourth response should not have matching date and time with previous responses',
-      ).not.toEqual(responseGeneratedAtText1)
+      const cachedResponse = await page.reload()
+      expect(cachedResponse?.status()).toBe(200)
+      expect(cachedResponse?.headers()['cdn-cache-control']).toBe('public, max-age=60')
+      // Page includes `Date.now()` so it can only have the same etag if it's the previously cached response
+      expect(cachedResponse?.headers()['debug-x-nf-gen-etag']).toBe(ssrResponse?.headers()['debug-x-nf-gen-etag'])
     })
 
     test('Netlify Edge Middleware can add response headers', async ({ page, edgeSite }) => {

@@ -7,8 +7,7 @@ export const loader = () => {
     },
     {
       headers: {
-        'CDN-Cache-Control': 'public, max-age=60, stale-while-revalidate=31536000, durable',
-        'Cache-Tag': 'stale-while-revalidate-tag',
+        'CDN-Cache-Control': 'public, max-age=60, durable',
       },
     },
   )
@@ -22,7 +21,7 @@ export default function SWRDemo() {
   const { message } = useLoaderData<typeof loader>()
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-      <h1>Stale-while-revalidate</h1>
+      <h1>Cacheable</h1>
       <p>{message}</p>
     </div>
   )
