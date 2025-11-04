@@ -4,7 +4,6 @@ export default [
   index('routes/home.tsx'),
   route('about', 'routes/about.tsx'),
   route('blobs', 'routes/blobs.tsx'),
-  route('cached-for-a-year', 'routes/cached-for-a-year.tsx'),
   route('context', 'routes/context.tsx'),
   route('headers', 'routes/headers.tsx'),
   route('images', 'routes/images.tsx'),

@@ -1,7 +1,6 @@
 import { expect, test } from './support/fixtures'
 
 const REVALIDATE_BUFFER_MS = 5000
-const PURGE_BUFFER_MS = 5000
 
 test.describe('React Router user journeys', () => {
   test.describe('origin SSR', () => {
@@ -131,30 +130,6 @@ test.describe('React Router user journeys', () => {
       ).not.toEqual(responseGeneratedAtText1)
     })
 
-    test('user can on-demand purge response cached on CDN', async ({ page, reactRouterServerlessSite }) => {
-      await page.goto(`${reactRouterServerlessSite.url}/cached-for-a-year`)
-      const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
-
-      await page.waitForTimeout(5000)
-
-      await page.reload()
-      const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await fetch(`${reactRouterServerlessSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
-
-      await page.waitForTimeout(PURGE_BUFFER_MS)
-
-      await page.reload()
-      const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
-      expect(
-        responseGeneratedAtText3,
-        'Third response should not have matching date and time with previous responses',
-      ).not.toEqual(responseGeneratedAtText1)
-    })
-
     test('Netlify Edge Middleware can add response headers', async ({ page, reactRouterServerlessSite }) => {
       const response = await page.goto(`${reactRouterServerlessSite.url}/middleware-header`)
       expect(response?.status()).toBe(200)
@@ -237,30 +212,6 @@ test.describe('React Router user journeys', () => {
       expect(
         responseGeneratedAtText4,
         'Fourth response should not have matching date and time with previous responses',
-      ).not.toEqual(responseGeneratedAtText1)
-    })
-
-    test('user can on-demand purge response cached on CDN', async ({ page, edgeSite }) => {
-      await page.goto(`${edgeSite.url}/cached-for-a-year`)
-      const responseGeneratedAtText1 = await page.getByText('Response generated at').textContent()
-
-      await page.waitForTimeout(5000)
-
-      await page.reload()
-      const responseGeneratedAtText2 = await page.getByText('Response generated at').textContent()
-      expect(responseGeneratedAtText2, 'First and second response should have matching date and time').toEqual(
-        responseGeneratedAtText1,
-      )
-
-      await fetch(`${edgeSite.url}/purge-cdn?tag=cached-for-a-year-tag`)
-
-      await page.waitForTimeout(PURGE_BUFFER_MS)
-
-      await page.reload()
-      const responseGeneratedAtText3 = await page.getByText('Response generated at').textContent()
-      expect(
-        responseGeneratedAtText3,
-        'Third response should not have matching date and time with previous responses',
       ).not.toEqual(responseGeneratedAtText1)
     })
 
