@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.5.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.3...remix-edge-adapter-v3.5.0) (2025-11-05)
+
+
+### Features
+
+* **@netlify/vite-plugin-react-router:** add edge support ([#562](https://github.com/netlify/remix-compute/issues/562)) ([bbcb41e](https://github.com/netlify/remix-compute/commit/bbcb41e9d6ffdb5483759fbb94fb5258092adf87))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.3.1 to 2.4.0
+
 ## [3.4.3](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.2...remix-edge-adapter-v3.4.3) (2025-04-04)
 
 
