@@ -82,8 +82,8 @@ importers:
   demos/demo-site:
     dependencies:
       '@netlify/functions':
-        specifier: ^5.0.1
-        version: 5.0.1
+        specifier: ^5.1.0
+        version: 5.1.0
       '@netlify/remix-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-adapter
@@ -202,8 +202,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.0.1
-        version: 5.0.1
+        specifier: ^5.1.0
+        version: 5.1.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.4.1)
@@ -324,8 +324,8 @@ importers:
         version: 5.1.32
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.0.1
-        version: 5.0.1
+        specifier: ^5.1.0
+        version: 5.1.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.17.30)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.4.1)
@@ -407,8 +407,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       '@netlify/functions':
-        specifier: ^5.0.1
-        version: 5.0.1
+        specifier: ^5.1.0
+        version: 5.1.0
       '@types/react':
         specifier: ^18.0.27
         version: 18.3.20
@@ -3062,11 +3062,11 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/functions@5.0.1:
-    resolution: {integrity: sha512-olCwsnp0GDpjSYPfWrtUIvOsZcrRta6lxwZWfl3XxucXOw5AcGDKSqKGRElzyyZoRA8OXVh5B5NHj5Jd4PRx+A==}
+  /@netlify/functions@5.1.0:
+    resolution: {integrity: sha512-LZtiQtf/QzPHIeNDZuIBxx04kmU7lCipWqZ26ejX7mYSB3yj2wvpZfF49kD8B8FoKTydSvgFmBpIcCO5FvpEXA==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/types': 2.1.0
+      '@netlify/types': 2.2.0
 
   /@netlify/git-utils@6.0.2:
     resolution: {integrity: sha512-ASp8T6ZAxL5OE0xvTTn5+tIBua5F8ruLH7oYtI/m2W/8rYb9V3qvNeenf9SnKlGj1xv6mPv8l7Tc93kmBLLofw==}
@@ -3285,6 +3285,7 @@ packages:
   /@netlify/types@2.1.0:
     resolution: {integrity: sha512-ktUb5d58pt1lQGXO5E9S0F1ljM0g+CoQuGTVII0IxBc0apmPq5RI0o3OWLY7U3ZERRiYTg5UfjiMihBEzuZsuw==}
     engines: {node: ^18.14.0 || >=20}
+    dev: true
 
   /@netlify/types@2.2.0:
     resolution: {integrity: sha512-XOWlZ2wPpdRKkAOcQbjIf/Qz7L4RjcSVINVNQ9p3F6U8V6KSEOsB3fPrc6Ly8EOeJioHUepRPuzHzJE/7V5EsA==}
