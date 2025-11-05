@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.1...vite-plugin-react-router-v2.1.0) (2025-11-05)
+
+
+### Features
+
+* **@netlify/vite-plugin-react-router:** add edge support ([#562](https://github.com/netlify/remix-compute/issues/562)) ([bbcb41e](https://github.com/netlify/remix-compute/commit/bbcb41e9d6ffdb5483759fbb94fb5258092adf87))
+
 ## [2.0.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.0...vite-plugin-react-router-v2.0.1) (2025-10-20)
 
 
