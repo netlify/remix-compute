@@ -24,6 +24,10 @@
     "./edge": {
       "types": "./dist/edge.d.mts",
       "default": "./dist/edge.mjs"
+    },
+    "./entry.server.edge": {
+      "types": "./dist/entry.server.edge.d.mts",
+      "default": "./dist/entry.server.edge.mjs"
     }
   },
   "files": [
