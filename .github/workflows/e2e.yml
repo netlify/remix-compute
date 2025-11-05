@@ -7,6 +7,9 @@ on:
 jobs:
   e2e:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['18.0.0', 'lts/*']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,7 +24,7 @@ jobs:
       - name: Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ matrix.node-version }}
 
       - run: corepack enable
       - name: Install Deno
@@ -42,6 +45,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report
+          name: blob-report-${{ matrix.node-version }}
           path: blob-report/
           retention-days: 30
