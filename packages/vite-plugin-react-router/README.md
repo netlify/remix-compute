@@ -1,14 +1,13 @@
 # React Router Adapter for Netlify
 
-The React Router Adapter for Netlify allows you to deploy your [React Router](https://reactrouter.com) app to
-[Netlify Functions](https://docs.netlify.com/functions/overview/).
+The React Router Adapter for Netlify allows you to deploy your [React Router](https://reactrouter.com) app to Netlify.
 
 ## How to use
 
 To deploy a React Router 7+ site to Netlify, install this package:
 
 ```sh
-npm install --save-dev @netlify/vite-plugin-react-router
+npm install @netlify/vite-plugin-react-router
 ```
 
 It's also recommended (but not required) to use the
@@ -37,6 +36,115 @@ export default defineConfig({
   ],
 })
 ```
+
+Your app is ready to [deploy to Netlify](https://docs.netlify.com/deploy/create-deploys/).
+
+### Deploying to Edge Functions
+
+By default, this plugin deploys your React Router app to
+[Netlify Functions](https://docs.netlify.com/functions/overview/) (Node.js runtime). You can optionally deploy to
+[Netlify Edge Functions](https://docs.netlify.com/edge-functions/overview/) (Deno runtime) instead.
+
+First, toggle the `edge` option:
+
+```typescript
+export default defineConfig({
+  plugins: [
+    reactRouter(),
+    tsconfigPaths(),
+    netlifyReactRouter({ edge: true }), // <- deploy to Edge Functions
+    netlify(),
+  ],
+})
+```
+
+Second, you **must** provide an `app/entry.server.tsx` (or `.jsx`) file that uses web-standard APIs compatible with the
+Deno runtime. Create a file with the following content:
+
+> [!IMPORTANT]
+>
+> This file uses `renderToReadableStream` (Web Streams API) instead of `renderToPipeableStream` (Node.js API), which is
+> required for the Deno runtime. You may customize your server entry file, but see below for important edge runtime
+> constraints.
+
+```tsx
+import type { AppLoadContext, EntryContext } from 'react-router'
+import { ServerRouter } from 'react-router'
+import { isbot } from 'isbot'
+import { renderToReadableStream } from 'react-dom/server'
+
+export default async function handleRequest(
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  routerContext: EntryContext,
+  _loadContext: AppLoadContext,
+) {
+  let shellRendered = false
+  const userAgent = request.headers.get('user-agent')
+
+  const body = await renderToReadableStream(<ServerRouter context={routerContext} url={request.url} />, {
+    onError(error: unknown) {
+      responseStatusCode = 500
+      // Log streaming rendering errors from inside the shell.  Don't log
+      // errors encountered during initial shell rendering since they'll
+      // reject and get logged in handleDocumentRequest.
+      if (shellRendered) {
+        console.error(error)
+      }
+    },
+  })
+  shellRendered = true
+
+  // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
+  // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
+  if ((userAgent && isbot(userAgent)) || routerContext.isSpaMode) {
+    await body.allReady
+  }
+
+  responseHeaders.set('Content-Type', 'text/html')
+  return new Response(body, {
+    headers: responseHeaders,
+    status: responseStatusCode,
+  })
+}
+```
+
+You may need to `npm install isbot` if you do not have this dependency.
+
+Finally, if you have your own Netlify Functions (typically in `netlify/functions`) for which you've configured a `path`,
+you must exclude those paths to avoid conflicts with the generated React Router SSR handler:
+
+```typescript
+export default defineConfig({
+  plugins: [
+    reactRouter(),
+    tsconfigPaths(),
+    netlifyReactRouter({
+      edge: true,
+      excludedPaths: ['/ping', '/api/*', '/webhooks/*'],
+    }),
+    netlify(),
+  ],
+})
+```
+
+#### Moving back from Edge Functions to Functions
+
+To switch from Edge Functions back to Functions, you must:
+
+1. Remove the `edge: true` option from your `vite.config.ts`
+2. **Delete the `app/entry.server.tsx` file** (React Router will use its default Node.js-compatible entry)
+
+#### Edge runtime
+
+Before deploying to Edge Functions, review the Netlify Edge Functions documentation for important details:
+
+- [Runtime environment](https://docs.netlify.com/build/edge-functions/api/#runtime-environment) - Understand the Deno
+  runtime
+- [Supported Web APIs](https://docs.netlify.com/build/edge-functions/api/#supported-web-apis) - Check which APIs are
+  available
+- [Limitations](https://docs.netlify.com/build/edge-functions/limits/) - Be aware of resource limits and constraints
 
 ### Load context
 
@@ -71,7 +179,8 @@ type-safe `RouterContextProvider`. Note that this requires requires v2.0.0+ of `
 For example:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/serverless'
+//                    NOTE: if setting `edge: true`, import from /edge ^ instead here
 import { useLoaderData } from 'react-router'
 import type { Route } from './+types/example'
 
@@ -101,10 +210,11 @@ To use middleware,
 that this requires requires v2.0.0+ of `@netlify/vite-plugin-react-router`.
 
 To access the [Netlify context](https://docs.netlify.com/build/functions/api/#netlify-specific-context-object)
-specifically, you must import our `RouterContextProvider` instance:
+specifically, you must import our `RouterContext` instance:
 
 ```tsx
-import { netlifyRouterContext } from '@netlify/vite-plugin-react-router'
+import { netlifyRouterContext } from '@netlify/vite-plugin-react-router/serverless'
+//                    NOTE: if setting `edge: true`, import from /edge ^ instead here
 
 import type { Route } from './+types/home'
 

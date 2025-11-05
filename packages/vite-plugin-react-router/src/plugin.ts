@@ -1,11 +1,33 @@
-import type { Plugin, ResolvedConfig } from 'vite'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile, readdir } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
+
+import type { Plugin, ResolvedConfig } from 'vite'
+
 import { version, name } from '../package.json'
+
+export interface NetlifyPluginOptions {
+  /**
+   * Deploy to Netlify Edge Functions instead of Netlify Functions.
+   * @default false
+   */
+  edge?: boolean
+  /**
+   * Paths to exclude from being handled by the React Router handler.
+   *
+   * @IMPORTANT If you have opted in to edge rendering with `edge: true` and you have your own Netlify
+   * Functions running on custom `path`s, you must exclude those paths here to avoid conflicts.
+   *
+   * @type {URLPattern[]}
+   * @default []
+   */
+  excludedPaths?: string[]
+}
 
 // https://docs.netlify.com/frameworks-api/#netlify-v1-functions
 const NETLIFY_FUNCTIONS_DIR = '.netlify/v1/functions'
+// https://docs.netlify.com/frameworks-api/#netlify-v1-edge-functions
+const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/v1/edge-functions'
 
 const FUNCTION_FILENAME = 'react-router-server.mjs'
 /**
@@ -20,7 +42,16 @@ const toPosixPath = (path: string) => path.split(sep).join(posixSep)
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
 const FUNCTION_HANDLER = /* js */ `
-import { createRequestHandler } from "@netlify/vite-plugin-react-router";
+import { createRequestHandler } from "@netlify/vite-plugin-react-router/serverless";
+import * as build from "virtual:react-router/server-build";
+export default createRequestHandler({
+  build,
+});
+`
+
+// The virtual module for Edge Functions
+const EDGE_FUNCTION_HANDLER = /* js */ `
+import { createRequestHandler } from "@netlify/vite-plugin-react-router/edge";
 import * as build from "virtual:react-router/server-build";
 export default createRequestHandler({
   build,
@@ -29,7 +60,7 @@ export default createRequestHandler({
 
 // This is written to the functions directory. It just re-exports
 // the compiled entrypoint, along with Netlify function config.
-function generateNetlifyFunction(handlerPath: string) {
+function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string>) {
   return /* js */ `
     export { default } from "${handlerPath}";
 
@@ -37,12 +68,31 @@ function generateNetlifyFunction(handlerPath: string) {
       name: "React Router server handler",
       generator: "${name}@${version}",
       path: "/*",
+      excludedPath: ${JSON.stringify(excludedPath)},
       preferStatic: true,
     };
     `
 }
 
-export function netlifyPlugin(): Plugin {
+// This is written to the edge functions directory. It just re-exports
+// the compiled entrypoint, along with Netlify edge function config.
+function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>) {
+  return /* js */ `
+    export { default } from "${handlerPath}";
+
+    export const config = {
+      name: "React Router server handler",
+      generator: "${name}@${version}",
+      cache: "manual",
+      path: "/*",
+      excludedPath: ${JSON.stringify(excludedPath)},
+    };
+    `
+}
+
+export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
+  const edge = options.edge ?? false
+  const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
   return {
@@ -65,6 +115,21 @@ export function netlifyPlugin(): Plugin {
           config.build.rollupOptions.output = {}
         }
         config.build.rollupOptions.output.entryFileNames = '[name].js'
+
+        // Configure for Edge Functions if enabled
+        if (edge) {
+          config.ssr = {
+            ...config.ssr,
+            target: 'webworker',
+            // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
+            // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+            noExternal: /^(?!node:).*$/,
+            resolve: {
+              ...config.resolve,
+              conditions: ['worker', 'deno', 'browser'],
+            },
+          }
+        }
       }
     },
     async resolveId(source) {
@@ -75,7 +140,7 @@ export function netlifyPlugin(): Plugin {
     // See https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
     load(id) {
       if (id === RESOLVED_FUNCTION_HANDLER_MODULE_ID) {
-        return FUNCTION_HANDLER
+        return edge ? EDGE_FUNCTION_HANDLER : FUNCTION_HANDLER
       }
     },
     async configResolved(config) {
@@ -83,16 +148,41 @@ export function netlifyPlugin(): Plugin {
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
-      // Write the server entrypoint to the Netlify functions directory
       if (isProductionSsrBuild) {
-        const functionsDirectory = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
-
-        await mkdir(functionsDirectory, { recursive: true })
-
         const handlerPath = join(resolvedConfig.build.outDir, `${FUNCTION_HANDLER_CHUNK}.js`)
-        const relativeHandlerPath = toPosixPath(relative(functionsDirectory, handlerPath))
 
-        await writeFile(join(functionsDirectory, FUNCTION_FILENAME), generateNetlifyFunction(relativeHandlerPath))
+        if (edge) {
+          // Edge Functions do not have a `preferStatic` option, so we must exhaustively exclude
+          // static files to serve them from the CDN without compute.
+          // RR7's build out dir contains /server and /client subdirectories. This is documented and
+          // not configurable, so the client out dir is always at ../client from the server out dir.
+          const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
+          const entries = await readdir(clientDir, { withFileTypes: true })
+          const excludedPath = [
+            '/.netlify/*',
+            ...entries.map((entry) => (entry.isDirectory() ? `/${entry.name}/*` : `/${entry.name}`)),
+            ...additionalExcludedPaths,
+          ]
+
+          // Write the server entry point to the Netlify Edge Functions directory
+          const edgeFunctionsDir = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)
+          await mkdir(edgeFunctionsDir, { recursive: true })
+          const relativeHandlerPath = toPosixPath(relative(edgeFunctionsDir, handlerPath))
+          await writeFile(
+            join(edgeFunctionsDir, FUNCTION_FILENAME),
+            generateEdgeFunction(relativeHandlerPath, excludedPath),
+          )
+        } else {
+          // Write the server entry point to the Netlify Functions directory
+          const functionsDir = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
+          await mkdir(functionsDir, { recursive: true })
+          const relativeHandlerPath = toPosixPath(relative(functionsDir, handlerPath))
+          const excludedPath = ['/.netlify/*', ...additionalExcludedPaths]
+          await writeFile(
+            join(functionsDir, FUNCTION_FILENAME),
+            generateNetlifyFunction(relativeHandlerPath, excludedPath),
+          )
+        }
       }
     },
   }
