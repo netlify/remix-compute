@@ -399,16 +399,16 @@ importers:
 
   packages/vite-plugin-react-router:
     dependencies:
-      isbot:
-        specifier: ^5.1.25
-        version: 5.1.32
-    devDependencies:
       '@netlify/edge-functions':
         specifier: ^3.0.2
         version: 3.0.2
       '@netlify/functions':
         specifier: ^5.1.0
         version: 5.1.0
+      isbot:
+        specifier: ^5.1.25
+        version: 5.1.32
+    devDependencies:
       '@types/react':
         specifier: ^18.0.27
         version: 18.3.20
@@ -3002,6 +3002,7 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       '@netlify/types': 2.2.0
+    dev: false
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.7.3):
     resolution: {integrity: sha512-4xAE0lM3BaVOZu1Oil5Yy1FsiYjZwNS/uwE+4fY61Buuyv3An16mC9LbNCxQ5EFzo3g7U2SRyZdGBHM6ACRLpw==}
