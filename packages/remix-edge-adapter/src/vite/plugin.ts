@@ -27,50 +27,50 @@ This is a fake Netlify context object for local dev. It is not supported here, b
 \`createAppLoadContext\` conditionally in dev.
 `)
 }
-const getFakeNetlifyContext = (url: string) =>
-  ({
-    url: new URL(url),
-    requestId: 'fake-netlify-request-id-for-dev',
-    next: async () => new Response('', { status: 404 }),
-    geo: {
-      city: 'Mock City',
-      country: { code: 'MC', name: 'Mock Country' },
-      subdivision: { code: 'MS', name: 'Mock Subdivision' },
-      longitude: 0,
-      latitude: 0,
-      timezone: 'UTC',
-    },
-    get cookies() {
-      return notImplemented()
-    },
-    get deploy() {
-      return notImplemented()
-    },
-    get ip() {
-      return notImplemented()
-    },
-    get json() {
-      return notImplemented()
-    },
-    get log() {
-      return notImplemented()
-    },
-    get params() {
-      return notImplemented()
-    },
-    get rewrite() {
-      return notImplemented()
-    },
-    get site() {
-      return notImplemented()
-    },
-    get account() {
-      return notImplemented()
-    },
-    get server() {
-      return notImplemented()
-    },
-  }) as NetlifyContext
+const getFakeNetlifyContext = (url: string): NetlifyContext => ({
+  url: new URL(url),
+  requestId: 'fake-netlify-request-id-for-dev',
+  next: async () => new Response('', { status: 404 }),
+  geo: {
+    city: 'Mock City',
+    country: { code: 'MC', name: 'Mock Country' },
+    subdivision: { code: 'MS', name: 'Mock Subdivision' },
+    longitude: 0,
+    latitude: 0,
+    timezone: 'UTC',
+  },
+  waitUntil: async (_p: Promise<unknown>) => {},
+  get cookies() {
+    return notImplemented()
+  },
+  get deploy() {
+    return notImplemented()
+  },
+  get ip() {
+    return notImplemented()
+  },
+  get json() {
+    return notImplemented()
+  },
+  get log() {
+    return notImplemented()
+  },
+  get params() {
+    return notImplemented()
+  },
+  get rewrite() {
+    return notImplemented()
+  },
+  get site() {
+    return notImplemented()
+  },
+  get account() {
+    return notImplemented()
+  },
+  get server() {
+    return notImplemented()
+  },
+})
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Edge Function handler)
 const EDGE_FUNCTION_HANDLER = /* js */ `
