@@ -6,7 +6,7 @@ import { netlifyPlugin } from "@netlify/remix-edge-adapter/plugin";
 export default defineConfig({
   plugins: [
     remix(),
-    netlifyPlugin({ excludedPaths: ["/please-blorble", "/purge-cdn"] }),
+    netlifyPlugin({ excludedPaths: ["/please-blorble"] }),
     tsconfigPaths(),
   ],
 });
