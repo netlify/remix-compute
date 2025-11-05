@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.12.0
-        version: 2.12.0
+        specifier: ^3.0.1
+        version: 3.0.1
       isbot:
         specifier: ^5.0.0
         version: 5.1.25
@@ -128,8 +128,8 @@ importers:
   demos/edge-demo-site:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^2.12.0
-        version: 2.12.0
+        specifier: ^3.0.1
+        version: 3.0.1
       '@netlify/remix-edge-adapter':
         specifier: workspace:*
         version: link:../../packages/remix-edge-adapter
@@ -404,8 +404,8 @@ importers:
         version: 5.1.25
     devDependencies:
       '@netlify/edge-functions':
-        specifier: ^2.11.0
-        version: 2.12.0
+        specifier: ^3.0.1
+        version: 3.0.1
       '@netlify/functions':
         specifier: ^5.0.1
         version: 5.0.1
@@ -2990,15 +2990,11 @@ packages:
     resolution: {integrity: sha512-KyNJbDhK1rC5wEeI7bXPgfl8QvADMHqNy2nwNJG60EHVRXTF0zxFnOpt/p0m2C512gcMXRrKZxaOZQ032RHVbw==}
     dev: true
 
-  /@netlify/edge-functions@2.12.0:
-    resolution: {integrity: sha512-6EWKqCQvOWyM6CHOofvDglX8qkBL2xcMF2T0h7kzZRrdBvHMRgxTk6BmPlBGt8z4LubSQo6vDAb46MYNJ7ZyaA==}
-
   /@netlify/edge-functions@3.0.1:
     resolution: {integrity: sha512-5Rd+gd2uD/iHReiY2p0KhVpgYnWKJsFyey2CN8WwGLQTq0GA7CEWkEMyks1azuAkChlqS4YJbpa//lMBmyrjSA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@netlify/types': 2.1.0
-    dev: true
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.7.3):
     resolution: {integrity: sha512-4xAE0lM3BaVOZu1Oil5Yy1FsiYjZwNS/uwE+4fY61Buuyv3An16mC9LbNCxQ5EFzo3g7U2SRyZdGBHM6ACRLpw==}
