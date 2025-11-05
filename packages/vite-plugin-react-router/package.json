@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@netlify/edge-functions": "^2.11.0",
-    "@netlify/functions": "^3.1.10",
+    "@netlify/functions": "^5.0.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",

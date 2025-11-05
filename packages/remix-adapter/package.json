@@ -63,7 +63,7 @@
     "isbot": "^5.0.0"
   },
   "devDependencies": {
-    "@netlify/functions": "^3.1.10",
+    "@netlify/functions": "^5.0.1",
     "@remix-run/dev": "^2.16.4",
     "@remix-run/react": "^2.16.4",
     "@types/react": "^18.0.27",
