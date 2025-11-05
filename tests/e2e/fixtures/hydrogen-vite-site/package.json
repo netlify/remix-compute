@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@netlify/edge-functions": "^3.0.2",
-    "@netlify/remix-edge-adapter": "^3.4.3",
+    "@netlify/remix-edge-adapter": "^3.5.0",
     "@netlify/remix-runtime": "^2.4.0",
     "@remix-run/react": "^2.16.5-pre",
     "@shopify/hydrogen": "^2024.7.4",
