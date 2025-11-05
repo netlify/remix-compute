@@ -42,9 +42,17 @@ interface WorkerFixtures {
    */
   reactRouterServerlessSite: Fixture
   /**
+   * A React Router 7 site using edge SSR
+   */
+  reactRouterEdgeSite: Fixture
+  /**
    * A React Router 7 site using origin SSR and opted in to the `future.v8_middleware` flag
    */
-  reactRouterWithV8Middleware: Fixture
+  reactRouterServerlessWithV8Middleware: Fixture
+  /**
+   * A React Router 7 site using edge SSR and opted in to the `future.v8_middleware` flag
+   */
+  reactRouterEdgeWithV8Middleware: Fixture
 }
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
@@ -101,9 +109,23 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     },
     { scope: 'worker' },
   ],
-  reactRouterWithV8Middleware: [
+  reactRouterEdgeSite: [
     async ({}, use) => {
-      const fixture = await deployFixture('react-router-v8-middleware')
+      const fixture = await deployFixture('react-router-edge-site')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessWithV8Middleware: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-v8-middleware')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeWithV8Middleware: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-v8-middleware')
       await use(fixture)
     },
     { scope: 'worker' },

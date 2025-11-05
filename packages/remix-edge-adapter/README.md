@@ -16,12 +16,31 @@ However, if you are using **Remix Vite**, you can instead deploy your existing s
 
 ```js
 // vite.config.js
-import { vitePlugin as remix } from "@remix-run/dev";
-import { netlifyPlugin } from "@netlify/remix-edge-adapter/plugin";
+import { vitePlugin as remix } from '@remix-run/dev'
+import { netlifyPlugin } from '@netlify/remix-edge-adapter/plugin'
 
 export default defineConfig({
-  plugins: [remix(), netlifyPlugin(),
-});
+  plugins: [remix(), netlifyPlugin()],
+})
+```
+
+If you have your own Netlify Functions (typically in `netlify/functions`) for which you've configured a `path`, you must
+exclude those paths to avoid conflicts with the generated Remix SSR handler, which would otherwise run on all dynamic
+paths:
+
+```js
+// vite.config.js
+import { vitePlugin as remix } from '@remix-run/dev'
+import { netlifyPlugin } from '@netlify/remix-edge-adapter/plugin'
+
+export default defineConfig({
+  plugins: [
+    remix(),
+    netlifyPlugin({
+      excludedPaths: ['/ping', '/api/*', '/webhooks/*'],
+    }),
+  ],
+})
 ```
 
 3. Add an `app/entry.jsx` (.tsx if using TypeScript) with these contents:

@@ -85,7 +85,7 @@ export default createRequestHandler({
 
 // This is written to the edge functions directory. It just re-exports
 // the compiled entrypoint, along with the Netlify function config.
-function generateEdgeFunction(handlerPath: string, exclude: Array<string> = []) {
+function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>) {
   return /* js */ `
     export { default } from "${handlerPath}";
 
@@ -94,7 +94,7 @@ function generateEdgeFunction(handlerPath: string, exclude: Array<string> = []) 
       generator: "${name}@${version}",
       cache: "manual",
       path: "/*",
-      excludedPath: ${JSON.stringify(exclude)},
+      excludedPath: ${JSON.stringify(excludedPath)},
     };`
 }
 
@@ -125,7 +125,21 @@ const getEdgeFunctionHandlerModuleId = async (root: string, isHydrogenSite: bool
   return findUserEdgeFunctionHandlerFile(root)
 }
 
-export function netlifyPlugin(): Plugin {
+export interface NetlifyPluginOptions {
+  /**
+   * Paths to exclude from being handled by the Remix handler.
+   *
+   * @IMPORTANT If you have your own Netlify Functions running on custom `path`s, you
+   * must exclude those paths here to avoid conflicts.
+   *
+   * @type {string[]}
+   * @default []
+   */
+  excludedPaths?: string[]
+}
+
+export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
+  const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
   let currentCommand: string
   let isSsr: boolean | undefined
@@ -264,7 +278,7 @@ export function netlifyPlugin(): Plugin {
     async writeBundle() {
       // Write the server entrypoint to the Netlify functions directory
       if (currentCommand === 'build' && isSsr) {
-        const exclude: Array<string> = ['/.netlify/*']
+        const excludedPath: Array<string> = ['/.netlify/*']
         try {
           // Get the client files so we can skip them in the edge function
           const clientDirectory = join(resolvedConfig.build.outDir, '..', 'client')
@@ -272,14 +286,16 @@ export function netlifyPlugin(): Plugin {
           for (const entry of entries) {
             // With directories we don't bother to recurse into it and just skip the whole thing.
             if (entry.isDirectory()) {
-              exclude.push(`/${entry.name}/*`)
+              excludedPath.push(`/${entry.name}/*`)
             } else if (entry.isFile()) {
-              exclude.push(`/${entry.name}`)
+              excludedPath.push(`/${entry.name}`)
             }
           }
         } catch {
           // Ignore if it doesn't exist
         }
+
+        excludedPath.push(...additionalExcludedPaths)
 
         const edgeFunctionsDirectory = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)
 
@@ -290,7 +306,7 @@ export function netlifyPlugin(): Plugin {
 
         await writeFile(
           join(edgeFunctionsDirectory, EDGE_FUNCTION_FILENAME),
-          generateEdgeFunction(relativeHandlerPath, exclude),
+          generateEdgeFunction(relativeHandlerPath, excludedPath),
         )
       }
     },

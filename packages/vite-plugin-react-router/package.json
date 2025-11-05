@@ -16,6 +16,14 @@
         "types": "./dist/index.d.mts",
         "default": "./dist/index.mjs"
       }
+    },
+    "./serverless": {
+      "types": "./dist/serverless.d.mts",
+      "default": "./dist/serverless.mjs"
+    },
+    "./edge": {
+      "types": "./dist/edge.d.mts",
+      "default": "./dist/edge.mjs"
     }
   },
   "files": [
@@ -26,8 +34,9 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "tsup-node src/index.ts --format esm,cjs --dts --target node18 --clean",
-    "build:watch": "pnpm run build --watch"
+    "build": "rm -rf dist && tsup-node",
+    "build:watch": "pnpm run build --watch",
+    "publint": "publint --strict"
   },
   "repository": {
     "type": "git",
@@ -48,6 +57,7 @@
     "isbot": "^5.0.0"
   },
   "devDependencies": {
+    "@netlify/edge-functions": "^2.11.0",
     "@netlify/functions": "^3.1.9",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
