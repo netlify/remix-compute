@@ -15,7 +15,7 @@ export default defineConfig({
     reactRouter(),
     netlifyPlugin({
       edge: true,
-      excludedPaths: ['/please-blorble', '/purge-cdn'],
+      excludedPaths: ['/please-blorble'],
     }),
     tsconfigPaths(),
   ],
