@@ -53,7 +53,7 @@
     "prettier": "^3.0.0",
     "publint": "^0.3.15",
     "typescript": "^5.0.0",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "dependencies": {
     "@netlify/edge-functions": "^3.0.2",
