@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.0...vite-plugin-react-router-v2.1.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* **@netlify/vite-plugin-react-router:** fix local dev with `edge: true` ([#572](https://github.com/netlify/remix-compute/issues/572)) ([dfb27c1](https://github.com/netlify/remix-compute/commit/dfb27c1cb52d253063b2c19dd52b05fb5ec8f4ce))
+
 ## [2.1.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.1...vite-plugin-react-router-v2.1.0) (2025-11-05)
 
 
