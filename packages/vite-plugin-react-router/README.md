@@ -58,59 +58,23 @@ export default defineConfig({
 })
 ```
 
-Second, you **must** provide an `app/entry.server.tsx` (or `.jsx`) file that uses web-standard APIs compatible with the
-Deno runtime. Create a file with the following content:
-
-> [!IMPORTANT]
->
-> This file uses `renderToReadableStream` (Web Streams API) instead of `renderToPipeableStream` (Node.js API), which is
-> required for the Deno runtime. You may customize your server entry file, but see below for important edge runtime
-> constraints.
+Second, you **must** provide an `app/entry.server.tsx` (or `.jsx`) file. Create a file with the following content:
 
 ```tsx
-import type { AppLoadContext, EntryContext } from 'react-router'
-import { ServerRouter } from 'react-router'
-import { isbot } from 'isbot'
-import { renderToReadableStream } from 'react-dom/server'
-
-export default async function handleRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  routerContext: EntryContext,
-  _loadContext: AppLoadContext,
-) {
-  let shellRendered = false
-  const userAgent = request.headers.get('user-agent')
-
-  const body = await renderToReadableStream(<ServerRouter context={routerContext} url={request.url} />, {
-    onError(error: unknown) {
-      responseStatusCode = 500
-      // Log streaming rendering errors from inside the shell.  Don't log
-      // errors encountered during initial shell rendering since they'll
-      // reject and get logged in handleDocumentRequest.
-      if (shellRendered) {
-        console.error(error)
-      }
-    },
-  })
-  shellRendered = true
-
-  // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
-  // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
-  if ((userAgent && isbot(userAgent)) || routerContext.isSpaMode) {
-    await body.allReady
-  }
-
-  responseHeaders.set('Content-Type', 'text/html')
-  return new Response(body, {
-    headers: responseHeaders,
-    status: responseStatusCode,
-  })
-}
+export { default } from 'virtual:netlify-server-entry'
 ```
 
-You may need to `npm install isbot` if you do not have this dependency.
+> [!TIP]
+>
+> If you prefer to avoid a `@ts-ignore` here, add this to `vite-env.d.ts` in your project root (or anywhere you prefer):
+>
+> ```typescript
+> declare module 'virtual:netlify-server-entry' {
+>   import type { ServerEntryModule } from 'react-router'
+>   const entry: ServerEntryModule
+>   export default entry
+> }
+> ```
 
 Finally, if you have your own Netlify Functions (typically in `netlify/functions`) for which you've configured a `path`,
 you must exclude those paths to avoid conflicts with the generated React Router SSR handler:

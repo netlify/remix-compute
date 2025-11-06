@@ -6,6 +6,7 @@ export default defineConfig([
       index: 'src/index.ts',
       serverless: 'src/runtimes/netlify-functions.ts',
       edge: 'src/runtimes/netlify-edge-functions.ts',
+      'entry.server.edge': 'src/entry.server.edge.tsx',
     },
     format: ['esm'],
     dts: true,
