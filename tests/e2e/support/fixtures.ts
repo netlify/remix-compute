@@ -53,6 +53,10 @@ interface WorkerFixtures {
    * A React Router 7 site using edge SSR and opted in to the `future.v8_middleware` flag
    */
   reactRouterEdgeWithV8Middleware: Fixture
+  /**
+   * A React Router 7 site using edge SSR with a custom basename (/fr)
+   */
+  reactRouterEdgeWithBasepath: Fixture
 }
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
@@ -126,6 +130,13 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   reactRouterEdgeWithV8Middleware: [
     async ({}, use) => {
       const fixture = await deployFixture('react-router-edge-v8-middleware')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeWithBasepath: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-basepath')
       await use(fixture)
     },
     { scope: 'worker' },

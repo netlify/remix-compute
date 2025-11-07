@@ -1,8 +1,9 @@
-import { mkdir, writeFile, readdir } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
 import type { Plugin, ResolvedConfig } from 'vite'
+import { glob } from 'tinyglobby'
 
 import { version, name } from '../package.json'
 
@@ -177,12 +178,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           // RR7's build out dir contains /server and /client subdirectories. This is documented and
           // not configurable, so the client out dir is always at ../client from the server out dir.
           const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
-          const entries = await readdir(clientDir, { withFileTypes: true })
-          const excludedPath = [
-            '/.netlify/*',
-            ...entries.map((entry) => (entry.isDirectory() ? `/${entry.name}/*` : `/${entry.name}`)),
-            ...additionalExcludedPaths,
-          ]
+          const clientFiles = await glob('**/*', {
+            cwd: clientDir,
+            // We can't exclude entire directories because there could be `foo/bar.baz` in the
+            // client dir and a `/foo` route handled by the server function.
+            onlyFiles: true,
+            dot: true,
+          })
+          const excludedPath = ['/.netlify/*', ...clientFiles.map((file) => `/${file}`), ...additionalExcludedPaths]
 
           // Write the server entry point to the Netlify Edge Functions directory
           const edgeFunctionsDir = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)
