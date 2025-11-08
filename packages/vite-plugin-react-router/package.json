@@ -1,6 +1,6 @@
 {
   "name": "@netlify/vite-plugin-react-router",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "React Router 7+ Vite plugin for Netlify",
   "type": "commonjs",
   "main": "./dist/index.js",
