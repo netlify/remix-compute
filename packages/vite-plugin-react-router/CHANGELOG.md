@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.1...vite-plugin-react-router-v2.1.2) (2025-11-08)
+
+
+### Bug Fixes
+
+* **vite-plugin-react-router:** fix custom `build.assetsDir` edge case ([#578](https://github.com/netlify/remix-compute/issues/578)) ([7316d95](https://github.com/netlify/remix-compute/commit/7316d95ea087e19dffe9414749c891642096c4cd))
+
 ## [2.1.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.0...vite-plugin-react-router-v2.1.1) (2025-11-06)
 
 
