@@ -60,7 +60,8 @@
   "dependencies": {
     "@netlify/edge-functions": "^3.0.2",
     "@netlify/functions": "^5.1.0",
-    "isbot": "^5.1.25"
+    "isbot": "^5.1.25",
+    "tinyglobby": "^0.2.10"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
