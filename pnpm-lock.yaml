@@ -426,7 +426,7 @@ importers:
         version: 18.3.1(react@18.3.1)
       react-router:
         specifier: ^7.9.4
-        version: 7.9.6(react-dom@18.3.1)(react@18.3.1)
+        version: 7.10.0(react-dom@18.3.1)(react@18.3.1)
       tsup:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
@@ -6808,6 +6808,11 @@ packages:
 
   /cookie@1.0.2:
     resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+    engines: {node: '>=18'}
+    dev: true
+
+  /cookie@1.1.1:
+    resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
     engines: {node: '>=18'}
     dev: true
 
@@ -13481,8 +13486,8 @@ packages:
       '@remix-run/router': 1.23.0
       react: 18.3.1
 
-  /react-router@7.9.6(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-Y1tUp8clYRXpfPITyuifmSoE2vncSME18uVLgaqyxh9H35JWpIfzHo+9y3Fzh5odk/jxPW29IgLgzcdwxGqyNA==}
+  /react-router@7.10.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-FVyCOH4IZ0eDDRycODfUqoN8ZSR2LbTvtx6RPsBgzvJ8xAXlMZNCrOFpu+jb8QbtZnpAd/cEki2pwE848pNGxw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -13491,7 +13496,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      cookie: 1.0.2
+      cookie: 1.1.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       set-cookie-parser: 2.7.2
