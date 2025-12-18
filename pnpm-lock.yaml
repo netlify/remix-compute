@@ -58,8 +58,8 @@ importers:
         specifier: ^15.0.0
         version: 15.4.3
       netlify-cli:
-        specifier: ^23.12.3
-        version: 23.12.3(@types/node@20.19.25)
+        specifier: ^23.13.0
+        version: 23.13.0(@types/node@20.19.25)
       npm-run-all2:
         specifier: ^6.0.0
         version: 6.2.6
@@ -11982,8 +11982,8 @@ packages:
     resolution: {integrity: sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w==}
     engines: {node: '>= 0.6'}
 
-  /netlify-cli@23.12.3(@types/node@20.19.25):
-    resolution: {integrity: sha512-8TnlmK6HKeo4BzUYiP9SYakyEoNQuG2iMc7/GYLHaNjUhG6uXPmnW3O5a5gicxulpFYSoSvssVz9XDKUZpGPlw==}
+  /netlify-cli@23.13.0(@types/node@20.19.25):
+    resolution: {integrity: sha512-X2weZIIbHQlsqrhOhG+A3a7cGGwxttO1nc5MHHWGrt1yXN1IzMPc/wRv6aQOY0IfnUDX3YlBykD8IJ6Te/RkGA==}
     engines: {node: '>=20.12.2'}
     hasBin: true
     requiresBuild: true
@@ -15870,7 +15870,7 @@ packages:
     dependencies:
       '@types/node': 20.19.25
       esbuild: 0.21.5
-      postcss: 8.5.3
+      postcss: 8.5.6
       rollup: 4.53.3
     optionalDependencies:
       fsevents: 2.3.3
