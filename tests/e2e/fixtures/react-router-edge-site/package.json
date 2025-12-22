@@ -9,18 +9,18 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.2.0",
-    "@react-router/node": "^7.9.4",
-    "@react-router/serve": "^7.9.4",
+    "@netlify/blobs": "^10.5.0",
+    "@react-router/node": "^7.11.0-pre",
+    "@react-router/serve": "^7.11.0-pre",
     "isbot": "^5.1.17",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "^7.9.4"
+    "react-router": "^7.11.0-pre"
   },
   "devDependencies": {
-    "@netlify/functions": "^3.1.9",
+    "@netlify/functions": "^5.1.1",
     "@netlify/vite-plugin-react-router": "*",
-    "@react-router/dev": "^7.9.4",
+    "@react-router/dev": "^7.11.0-pre",
     "@types/node": "^20",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

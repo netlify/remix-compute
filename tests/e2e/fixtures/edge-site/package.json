@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@netlify/functions": "^3.1.9",
+    "@netlify/functions": "^5.1.1",
     "@remix-run/dev": "^2.16.5-pre",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",

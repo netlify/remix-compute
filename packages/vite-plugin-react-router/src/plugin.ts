@@ -1,8 +1,9 @@
-import { mkdir, writeFile, readdir } from 'node:fs/promises'
-import { join, relative, sep } from 'node:path'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
 import type { Plugin, ResolvedConfig } from 'vite'
+import { glob } from 'tinyglobby'
 
 import { version, name } from '../package.json'
 
@@ -37,6 +38,8 @@ const FUNCTION_HANDLER_CHUNK = 'server'
 
 const FUNCTION_HANDLER_MODULE_ID = 'virtual:netlify-server'
 const RESOLVED_FUNCTION_HANDLER_MODULE_ID = `\0${FUNCTION_HANDLER_MODULE_ID}`
+
+const SERVER_ENTRY_MODULE_ID = 'virtual:netlify-server-entry'
 
 const toPosixPath = (path: string) => path.split(sep).join(posixSep)
 
@@ -95,9 +98,11 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
+  let currentCommand: 'build' | 'serve' | undefined
   return {
     name: 'vite-plugin-netlify-react-router',
     config(config, { command, isSsrBuild }) {
+      currentCommand = command
       isProductionSsrBuild = isSsrBuild === true && command === 'build'
       if (isProductionSsrBuild) {
         // Replace the default SSR entrypoint with our own entrypoint (which is imported by our
@@ -132,9 +137,25 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         }
       }
     },
-    async resolveId(source) {
+    async resolveId(source, importer, options) {
       if (source === FUNCTION_HANDLER_MODULE_ID) {
         return RESOLVED_FUNCTION_HANDLER_MODULE_ID
+      }
+
+      // Conditionally resolve the server entry based on the command and runtime.
+      // Users will export from 'virtual:netlify-server-entry' in their `app/entry.server.tsx`
+      //
+      if (source === SERVER_ENTRY_MODULE_ID && edge) {
+        if (currentCommand === 'serve') {
+          // Dev mode with edge runtime: use the default Node.js-compatible entry
+          const reactRouterDev = await this.resolve('@react-router/dev/config', importer, options)
+          if (!reactRouterDev) {
+            throw new Error('The @react-router/dev package is required for local development. Please install it.')
+          }
+          return resolve(dirname(reactRouterDev.id), 'config/defaults/entry.server.node.tsx')
+        }
+        // Production build with edge runtime: use our edge-compatible entry
+        return this.resolve('@netlify/vite-plugin-react-router/entry.server.edge', importer, options)
       }
     },
     // See https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
@@ -157,12 +178,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           // RR7's build out dir contains /server and /client subdirectories. This is documented and
           // not configurable, so the client out dir is always at ../client from the server out dir.
           const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
-          const entries = await readdir(clientDir, { withFileTypes: true })
-          const excludedPath = [
-            '/.netlify/*',
-            ...entries.map((entry) => (entry.isDirectory() ? `/${entry.name}/*` : `/${entry.name}`)),
-            ...additionalExcludedPaths,
-          ]
+          const clientFiles = await glob('**/*', {
+            cwd: clientDir,
+            // We can't exclude entire directories because there could be `foo/bar.baz` in the
+            // client dir and a `/foo` route handled by the server function.
+            onlyFiles: true,
+            dot: true,
+          })
+          const excludedPath = ['/.netlify/*', ...clientFiles.map((file) => `/${file}`), ...additionalExcludedPaths]
 
           // Write the server entry point to the Netlify Edge Functions directory
           const edgeFunctionsDir = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)

@@ -1,6 +1,6 @@
 {
   "name": "@netlify/vite-plugin-react-router",
-  "version": "2.0.1",
+  "version": "2.1.2",
   "description": "React Router 7+ Vite plugin for Netlify",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -24,6 +24,10 @@
     "./edge": {
       "types": "./dist/edge.d.mts",
       "default": "./dist/edge.mjs"
+    },
+    "./entry.server.edge": {
+      "types": "./dist/entry.server.edge.d.mts",
+      "default": "./dist/entry.server.edge.mjs"
     }
   },
   "files": [
@@ -54,11 +58,12 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "isbot": "^5.0.0"
+    "@netlify/edge-functions": "^3.0.3",
+    "@netlify/functions": "^5.1.1",
+    "isbot": "^5.1.25",
+    "tinyglobby": "^0.2.10"
   },
   "devDependencies": {
-    "@netlify/edge-functions": "^2.11.0",
-    "@netlify/functions": "^3.1.9",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "react": "^18.2.0",

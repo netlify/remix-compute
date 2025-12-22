@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.1.2](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.1...vite-plugin-react-router-v2.1.2) (2025-11-08)
+
+
+### Bug Fixes
+
+* **vite-plugin-react-router:** fix custom `build.assetsDir` edge case ([#578](https://github.com/netlify/remix-compute/issues/578)) ([7316d95](https://github.com/netlify/remix-compute/commit/7316d95ea087e19dffe9414749c891642096c4cd))
+
+## [2.1.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.0...vite-plugin-react-router-v2.1.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* **@netlify/vite-plugin-react-router:** fix local dev with `edge: true` ([#572](https://github.com/netlify/remix-compute/issues/572)) ([dfb27c1](https://github.com/netlify/remix-compute/commit/dfb27c1cb52d253063b2c19dd52b05fb5ec8f4ce))
+
+## [2.1.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.1...vite-plugin-react-router-v2.1.0) (2025-11-05)
+
+
+### Features
+
+* **@netlify/vite-plugin-react-router:** add edge support ([#562](https://github.com/netlify/remix-compute/issues/562)) ([bbcb41e](https://github.com/netlify/remix-compute/commit/bbcb41e9d6ffdb5483759fbb94fb5258092adf87))
+
 ## [2.0.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.0.0...vite-plugin-react-router-v2.0.1) (2025-10-20)
 
 

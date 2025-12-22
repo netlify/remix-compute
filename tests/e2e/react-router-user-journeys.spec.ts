@@ -286,5 +286,21 @@ test.describe('React Router user journeys', () => {
       expect(response?.status()).toBe(200)
       expect(response?.headers()['foo']).toBe('bar')
     })
+
+    // If the user configures Vite's `build.assetsDir` to `foo`, ensure that requests to `/foo/*`
+    // are not mistaken for static assets. There's also a variant of this where `basename` in
+    // the RR config is *also* set to `foo`, making *every* request start with `/foo`.
+    test('serves a response for a route incidentally prefixed with the Vite `build.assetsDir`', async ({
+      page,
+      reactRouterEdgeWithBasepath,
+    }) => {
+      const homeResponse = await page.goto(`${reactRouterEdgeWithBasepath.url}/fr`)
+      expect(homeResponse?.status()).toBe(200)
+      await expect(page.getByRole('heading', { name: /Bienvenue à React Router/i })).toBeVisible()
+
+      const animalsResponse = await page.goto(`${reactRouterEdgeWithBasepath.url}/fr/animals`)
+      expect(animalsResponse?.status()).toBe(200)
+      await expect(page.getByRole('heading', { name: /Animaux/i })).toBeVisible()
+    })
   })
 })
