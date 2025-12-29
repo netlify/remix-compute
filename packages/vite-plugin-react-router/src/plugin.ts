@@ -109,7 +109,23 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         // Netlify function handler via a virtual module)
         config.build ??= {}
         config.build.rollupOptions ??= {}
+        // Preserve any existing rollup input entries (e.g., from react-router's prerender)
+        // and merge them with our Netlify function handler entry
+        const existingInput = config.build.rollupOptions.input
+        let mergedInput: Record<string, string> = {}
+
+        if (typeof existingInput === 'string') {
+          mergedInput['default'] = existingInput
+        } else if (Array.isArray(existingInput)) {
+          existingInput.forEach((entry, i) => {
+            mergedInput[`entry-${i}`] = entry
+          })
+        } else if (existingInput && typeof existingInput === 'object') {
+          mergedInput = { ...existingInput }
+        }
+
         config.build.rollupOptions.input = {
+          ...mergedInput,
           [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
         }
         config.build.rollupOptions.output ??= {}
