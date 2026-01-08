@@ -426,7 +426,7 @@ importers:
         version: 18.3.1(react@18.3.1)
       react-router:
         specifier: ^7.9.4
-        version: 7.10.1(react-dom@18.3.1)(react@18.3.1)
+        version: 7.12.0(react-dom@18.3.1)(react@18.3.1)
       tsup:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
@@ -13809,8 +13809,8 @@ packages:
       '@remix-run/router': 1.23.0
       react: 18.3.1
 
-  /react-router@7.10.1(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-gHL89dRa3kwlUYtRQ+m8NmxGI6CgqN+k4XyGjwcFoQwwCWF6xXpOCUlDovkXClS0d0XJN/5q7kc5W3kiFEd0Yw==}
+  /react-router@7.12.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-kTPDYPFzDVGIIGNLS5VJykK0HfHLY5MF3b+xj0/tTyNYL1gF1qs7u67Z9jEhQk2sQ98SUaHxlG31g1JtF7IfVw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
