@@ -30,8 +30,8 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
-          # Should satisfy the `DENO_VERSION_RANGE` from https://github.com/netlify/edge-bundler/blob/main/node/bridge.ts#L17
-          deno-version: v2.2.4
+          # Should match the `DENO_VERSION_RANGE` from https://github.com/netlify/build/blob/8ff162649f76a9586dd7593198c0fa798dac3629/packages/edge-bundler/node/bridge.ts#L22
+          deno-version: v2.4.2
         if: ${{ steps.release.outputs.releases_created }}
       - run: corepack enable
       - name: Install dependencies
