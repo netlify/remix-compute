@@ -1,4 +1,4 @@
-import type { InputOption } from 'rollup'
+import type { Rollup } from 'vite'
 
 /**
  * Normalizes Rollup's `input` option to an object format.
@@ -9,7 +9,7 @@ import type { InputOption } from 'rollup'
  *
  * @see https://rollupjs.org/configuration-options/#input
  */
-export function normalizeRollupInput(input: InputOption | undefined): Record<string, string> {
+export function normalizeRollupInput(input: Rollup.InputOption | undefined): Record<string, string> {
   if (input == null) {
     return {}
   }
@@ -39,7 +39,7 @@ export function normalizeRollupInput(input: InputOption | undefined): Record<str
  * control the existing `input` and need to add new entries without clobbering.
  */
 export function mergeRollupInput(
-  existing: InputOption | undefined,
+  existing: Rollup.InputOption | undefined,
   newEntries: Record<string, string>,
 ): Record<string, string> {
   return {
