@@ -6,6 +6,7 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import { glob } from 'tinyglobby'
 
 import { version, name } from '../package.json'
+import { mergeRollupInput } from './lib/rollup'
 
 export interface NetlifyPluginOptions {
   /**
@@ -99,42 +100,49 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
   let currentCommand: 'build' | 'serve' | undefined
+
   return {
     name: 'vite-plugin-netlify-react-router',
-    config(config, { command, isSsrBuild }) {
+    config(_config, { command, isSsrBuild }) {
       currentCommand = command
       isProductionSsrBuild = isSsrBuild === true && command === 'build'
       if (isProductionSsrBuild) {
-        // Replace the default SSR entrypoint with our own entrypoint (which is imported by our
-        // Netlify function handler via a virtual module)
-        config.build ??= {}
-        config.build.rollupOptions ??= {}
-        config.build.rollupOptions.input = {
+        // Server bundle entry for our own server entry point (which is imported by our Netlify
+        // function handler via a virtual module), while preserving any existing rollup input
+        // entries (e.g., from react-router's prerender).
+        const functionHandlerInput = {
           [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
         }
-        config.build.rollupOptions.output ??= {}
-        if (Array.isArray(config.build.rollupOptions.output)) {
-          console.warn(
-            'Expected Vite config `build.rollupOptions.output` to be an object, but it is an array - overwriting it, but this may cause issues with your custom configuration',
-          )
-          config.build.rollupOptions.output = {}
-        }
-        config.build.rollupOptions.output.entryFileNames = '[name].js'
+        // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
+        // cross-type merging for `rollupOptions.input` (string/array/object).
+        const mergedInput = mergeRollupInput(_config.build?.rollupOptions?.input, functionHandlerInput)
 
-        // Configure for Edge Functions if enabled
-        if (edge) {
-          config.ssr = {
-            ...config.ssr,
-            target: 'webworker',
-            // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
-            // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
-            noExternal: /^(?!node:).*$/,
-            resolve: {
-              ...config.resolve,
-              conditions: ['worker', 'deno', 'browser'],
+        const configChanges = {
+          build: {
+            rollupOptions: {
+              input: mergedInput,
+              output: {
+                entryFileNames: '[name].js',
+              },
             },
-          }
+          },
+          // Additional config needed for Edge Functions if enabled
+          ...(edge
+            ? {
+                ssr: {
+                  target: 'webworker' as const,
+                  // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
+                  // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+                  noExternal: /^(?!node:).*$/,
+                  resolve: {
+                    conditions: ['worker', 'deno', 'browser'],
+                  },
+                },
+              }
+            : {}),
         }
+
+        return configChanges
       }
     },
     async resolveId(source, importer, options) {

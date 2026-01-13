@@ -33,8 +33,6 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
     })
 
-    // Previously skipped due to https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
-    // Now enabled after fixing rollupOptions.input merge in plugin.ts to preserve existing entries.
     test('serves a response from the CDN (without compute) for a pre-rendered route', async ({
       page,
       reactRouterServerlessSite,
@@ -177,8 +175,6 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
     })
 
-    // Previously skipped due to https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
-    // Now enabled after fixing rollupOptions.input merge in plugin.ts to preserve existing entries.
     test('serves a response from the CDN (without compute) for a pre-rendered route', async ({
       page,
       reactRouterEdgeSite,
