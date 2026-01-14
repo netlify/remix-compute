@@ -1,4 +1,17 @@
+import { basename, extname } from 'node:path'
+
 import type { Rollup } from 'vite'
+
+/**
+ * Derives the default entry name from a module ID, matching Rollup's internal behavior.
+ * Unfortunately this logic isn't exposed publicly, but it's fairly simple (foo/bar/baz.ts -> baz)
+ * so we replicate it here.
+ * @see https://github.com/rollup/rollup/blob/fed6c1d/src/utils/relativeId.ts#L4-L7
+ */
+const getAliasName = (id: string): string => {
+  const base = basename(id)
+  return base.slice(0, Math.max(0, base.length - extname(id).length))
+}
 
 /**
  * Normalizes Rollup's `input` option to an object format.
@@ -9,7 +22,7 @@ import type { Rollup } from 'vite'
  *
  * @see https://rollupjs.org/configuration-options/#input
  */
-export function normalizeRollupInput(input: Rollup.InputOption | undefined): Record<string, string> {
+export const normalizeRollupInput = (input: Rollup.InputOption | undefined): Record<string, string> => {
   if (input == null) {
     return {}
   }
@@ -22,12 +35,7 @@ export function normalizeRollupInput(input: Rollup.InputOption | undefined): Rec
   if (Array.isArray(input)) {
     // Rollup uses the file name (without extension) as the entry name for array inputs
     // e.g., 'src/main.ts' -> 'main', 'virtual:react-router/server-build' -> 'server-build'
-    return Object.fromEntries(
-      input.map((entry) => {
-        const name = entry.split('/').pop()?.replace(/\.[^.]+$/, '') ?? entry
-        return [name, entry]
-      }),
-    )
+    return Object.fromEntries(input.map((entry) => [getAliasName(entry), entry]))
   }
 
   // Already an object
@@ -38,10 +46,10 @@ export function normalizeRollupInput(input: Rollup.InputOption | undefined): Rec
  * Merges new entries into an existing Rollup `input` option. Use this when you don't
  * control the existing `input` and need to add new entries without clobbering.
  */
-export function mergeRollupInput(
+export const mergeRollupInput = (
   existing: Rollup.InputOption | undefined,
   newEntries: Record<string, string>,
-): Record<string, string> {
+): Record<string, string> => {
   return {
     ...normalizeRollupInput(existing),
     ...newEntries,
