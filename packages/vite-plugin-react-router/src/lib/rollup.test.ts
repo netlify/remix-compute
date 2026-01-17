@@ -7,12 +7,16 @@ describe('normalizeRollupInput', () => {
     expect(normalizeRollupInput(undefined)).toEqual({})
   })
 
-  it('uses "index" as the default entry name', () => {
+  it('uses filename (without extension) as the entry name for string input', () => {
     expect(normalizeRollupInput('src/main.ts')).toEqual({
-      index: 'src/main.ts',
+      main: 'src/main.ts',
     })
+  })
+
+  it('uses full string as entry name when there is no path separator', () => {
+    // basename('virtual:some-module') returns 'virtual:some-module' since there's no /
     expect(normalizeRollupInput('virtual:some-module')).toEqual({
-      index: 'virtual:some-module',
+      'virtual:some-module': 'virtual:some-module',
     })
   })
 
@@ -56,7 +60,7 @@ describe('mergeRollupInput', () => {
 
   it('merges with string existing input', () => {
     expect(mergeRollupInput('src/main.ts', { server: 'virtual:netlify-server' })).toEqual({
-      index: 'src/main.ts',
+      main: 'src/main.ts',
       server: 'virtual:netlify-server',
     })
   })

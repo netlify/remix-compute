@@ -28,13 +28,10 @@ export const normalizeRollupInput = (input: Rollup.InputOption | undefined): Rec
   }
 
   if (typeof input === 'string') {
-    // For a single string input, the default entry name is 'index'
-    return { index: input }
+    return { [getAliasName(input)]: input }
   }
 
   if (Array.isArray(input)) {
-    // Rollup uses the file name (without extension) as the entry name for array inputs
-    // e.g., 'src/main.ts' -> 'main', 'virtual:react-router/server-build' -> 'server-build'
     return Object.fromEntries(input.map((entry) => [getAliasName(entry), entry]))
   }
 
