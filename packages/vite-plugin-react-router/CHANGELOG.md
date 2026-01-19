@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.2...vite-plugin-react-router-v2.1.3) (2026-01-19)
+
+
+### Bug Fixes
+
+* **vite-plugin-react-router:** fix prerendering by not clobbering SSR bundle entries ([#620](https://github.com/netlify/remix-compute/issues/620)) ([54851a9](https://github.com/netlify/remix-compute/commit/54851a92c4361c9987dc1cb34186bf73ddb1a38e))
+
 ## [2.1.2](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.1...vite-plugin-react-router-v2.1.2) (2025-11-08)
 
 
