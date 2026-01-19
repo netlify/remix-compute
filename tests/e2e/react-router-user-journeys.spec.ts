@@ -33,9 +33,7 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
     })
 
-    // TODO(serhalp) Revisit this if RR team changes their minds:
-    // https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
-    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', async ({
+    test('serves a response from the CDN (without compute) for a pre-rendered route', async ({
       page,
       reactRouterServerlessSite,
     }) => {
@@ -177,9 +175,7 @@ test.describe('React Router user journeys', () => {
       expect(response?.headers()['cache-status']).toMatch(CACHE_STATUS_SERVED_FROM_EDGE)
     })
 
-    // TODO(serhalp) Revisit this if RR team changes their minds:
-    // https://github.com/remix-run/react-router/issues/13226#issuecomment-2776672461.
-    test.skip('serves a response from the CDN (without compute) for a pre-rendered route', async ({
+    test('serves a response from the CDN (without compute) for a pre-rendered route', async ({
       page,
       reactRouterEdgeSite,
     }) => {
