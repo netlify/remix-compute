@@ -59,7 +59,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "dependencies": {
-    "@remix-run/node": "^2.16.4",
+    "@remix-run/node": "^2.17.2",
     "isbot": "^5.0.0"
   },
   "devDependencies": {
