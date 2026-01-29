@@ -63,7 +63,7 @@
   "dependencies": {
     "@netlify/remix-runtime": "2.4.0",
     "@remix-run/dev": "^2.16.4",
-    "@remix-run/node": "^2.16.4",
+    "@remix-run/node": "^2.17.2",
     "isbot": "^5.0.0"
   },
   "devDependencies": {
