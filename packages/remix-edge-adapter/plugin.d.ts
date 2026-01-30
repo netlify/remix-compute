@@ -1,1 +1,1 @@
-export * from './dist/vite/plugin'
+export * from './dist/plugin'
