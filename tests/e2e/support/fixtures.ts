@@ -14,14 +14,6 @@ interface WorkerFixtures {
    */
   edgeSite: Fixture
   /**
-   * A "classic" (non-Vite) Remix site using origin SSR
-   */
-  classicServerlessSite: Fixture
-  /**
-   * A "classic" (non-Vite) Remix site using edge SSR
-   */
-  classicEdgeSite: Fixture
-  /**
    * A Hydrogen v2 site using Vite Remix and edge SSR
    *
    * NOTE: `PUBLIC_STORE_DOMAIN` and `SESSION_SECRET` are populated for this fixture
@@ -70,20 +62,6 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   edgeSite: [
     async ({}, use) => {
       const fixture = await deployFixture('edge-site')
-      await use(fixture)
-    },
-    { scope: 'worker' },
-  ],
-  classicServerlessSite: [
-    async ({}, use) => {
-      const fixture = await deployFixture('classic-serverless-site')
-      await use(fixture)
-    },
-    { scope: 'worker' },
-  ],
-  classicEdgeSite: [
-    async ({}, use) => {
-      const fixture = await deployFixture('classic-edge-site')
       await use(fixture)
     },
     { scope: 'worker' },
