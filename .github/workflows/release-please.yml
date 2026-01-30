@@ -24,7 +24,7 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
       - uses: actions/setup-node@v4
         with:
-          check-latest: true
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.releases_created }}
       - name: Install Deno
