@@ -5,7 +5,7 @@ import { writeFile, mkdir, readdir, access } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 import { isBuiltin } from 'node:module'
-import { version, name } from '../../package.json'
+import { version, name } from '../package.json'
 
 const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/edge-functions'
 
