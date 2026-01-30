@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node16 --clean",
+    "build": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node20 --clean",
     "build:watch": "pnpm run build --watch",
     "publint": "publint --strict"
   },
@@ -82,7 +82,7 @@
     }
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20.6.1"
   },
   "publishConfig": {
     "access": "public"
