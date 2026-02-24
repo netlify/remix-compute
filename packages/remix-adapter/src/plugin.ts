@@ -2,7 +2,7 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
-import { version, name } from '../../package.json'
+import { version, name } from '../package.json'
 
 const NETLIFY_FUNCTIONS_DIR = '.netlify/functions-internal'
 

@@ -79,101 +79,6 @@ importers:
         specifier: ^4.0.0
         version: 4.0.16(@opentelemetry/api@1.8.0)(@types/node@20.19.27)
 
-  demos/demo-site:
-    dependencies:
-      '@netlify/functions':
-        specifier: ^5.1.2
-        version: 5.1.2
-      '@netlify/remix-adapter':
-        specifier: workspace:*
-        version: link:../../packages/remix-adapter
-      '@remix-run/css-bundle':
-        specifier: ^2.9.2
-        version: 2.16.6
-      '@remix-run/node':
-        specifier: ^2.9.2
-        version: 2.16.6(typescript@5.7.3)
-      '@remix-run/react':
-        specifier: ^2.9.2
-        version: 2.16.6(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
-    devDependencies:
-      '@remix-run/dev':
-        specifier: ^2.9.2
-        version: 2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.19.27)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.4.1)
-      '@remix-run/eslint-config':
-        specifier: ^2.9.2
-        version: 2.16.6(eslint@8.57.1)(react@18.3.1)(typescript@5.7.3)
-      '@remix-run/serve':
-        specifier: ^2.9.2
-        version: 2.16.6(typescript@5.7.3)
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.3.7(@types/react@18.3.27)
-      eslint:
-        specifier: ^8.32.0
-        version: 8.57.1
-      typescript:
-        specifier: ^5.2.2
-        version: 5.7.3
-
-  demos/edge-demo-site:
-    dependencies:
-      '@netlify/edge-functions':
-        specifier: ^3.0.3
-        version: 3.0.3
-      '@netlify/remix-edge-adapter':
-        specifier: workspace:*
-        version: link:../../packages/remix-edge-adapter
-      '@netlify/remix-runtime':
-        specifier: workspace:*
-        version: link:../../packages/remix-runtime
-      '@remix-run/css-bundle':
-        specifier: ^2.9.2
-        version: 2.16.6
-      '@remix-run/react':
-        specifier: ^2.9.2
-        version: 2.16.6(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
-      cross-env:
-        specifier: ^7.0.3
-        version: 7.0.3
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
-    devDependencies:
-      '@remix-run/dev':
-        specifier: ^2.9.2
-        version: 2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.19.27)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.4.1)
-      '@remix-run/eslint-config':
-        specifier: ^2.9.2
-        version: 2.16.6(eslint@8.57.1)(react@18.3.1)(typescript@5.7.3)
-      '@remix-run/serve':
-        specifier: ^2.9.2
-        version: 2.16.6(typescript@5.7.3)
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.3.7(@types/react@18.3.27)
-      eslint:
-        specifier: ^8.32.0
-        version: 8.57.1
-      typescript:
-        specifier: ^5.0.0
-        version: 5.7.3
-
   demos/vite-edge:
     dependencies:
       '@netlify/remix-edge-adapter':
@@ -3922,11 +3827,6 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@remix-run/css-bundle@2.16.6:
-    resolution: {integrity: sha512-NMFOWo5gE3AKn3SnQo4CQJOHzdJ00JHooFmPR5PfM1nNwbnkapyulDK0D3XlqKb3TQ28dNsqimSHifVeeYf5OA==}
-    engines: {node: '>=18.0.0'}
-    dev: false
-
   /@remix-run/dev@2.16.6(@remix-run/react@2.16.6)(@remix-run/serve@2.16.6)(@types/node@20.19.27)(ts-node@10.9.2)(typescript@5.7.3)(vite@6.4.1):
     resolution: {integrity: sha512-vddzv6IY+4KFDNhTj7yvMi5BmBpEVSe6meq9Z7/yM5mjv03F5Ywsci41Sdri2RU5Nitplrj2o9iXOtQOnTBS3g==}
     engines: {node: '>=18.0.0'}
@@ -6995,6 +6895,7 @@ packages:
     hasBin: true
     dependencies:
       cross-spawn: 7.0.6
+    dev: true
 
   /cross-spawn@6.0.6:
     resolution: {integrity: sha512-VqCUuhcd1iB+dsv8gxPttb5iZh/D0iubSP21g36KXdEuf6I5JiioesUVjpCdHV9MZRUfVFlvwtIUyPfxo5trtw==}
@@ -8073,36 +7974,6 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils@2.12.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
-    resolution: {integrity: sha512-wALZ0HFoytlyh/1+4wuZ9FJCD/leWHQzzrxJ8+rebyReSLk7LApMyd3WJaLVoN+D5+WIdJyDK1c6JnE65V4Zyg==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      '@typescript-eslint/parser': '*'
-      eslint: '*'
-      eslint-import-resolver-node: '*'
-      eslint-import-resolver-typescript: '*'
-      eslint-import-resolver-webpack: '*'
-    peerDependenciesMeta:
-      '@typescript-eslint/parser':
-        optional: true
-      eslint:
-        optional: true
-      eslint-import-resolver-node:
-        optional: true
-      eslint-import-resolver-typescript:
-        optional: true
-      eslint-import-resolver-webpack:
-        optional: true
-    dependencies:
-      '@typescript-eslint/parser': 5.62.0(eslint@8.57.1)(typescript@5.7.3)
-      debug: 3.2.7
-      eslint: 8.57.1
-      eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /eslint-module-utils@2.12.0(@typescript-eslint/parser@7.18.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
     resolution: {integrity: sha512-wALZ0HFoytlyh/1+4wuZ9FJCD/leWHQzzrxJ8+rebyReSLk7LApMyd3WJaLVoN+D5+WIdJyDK1c6JnE65V4Zyg==}
     engines: {node: '>=4'}
@@ -8231,7 +8102,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.18.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
