@@ -115,26 +115,6 @@ test.describe('Remix user journeys', () => {
     await expect(page.getByText('This site name is remix-compute-e2e-tests')).toBeVisible()
   })
 
-  test.describe('classic Remix compiler', () => {
-    test('serves a response from the origin when using @netlify/remix-adapter', async ({
-      page,
-      classicServerlessSite,
-    }) => {
-      const response = await page.goto(classicServerlessSite.url)
-      await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['debug-x-nf-function-type']).toBe('request')
-    })
-
-    test('serves a response from the edge when using @netlify/remix-edge-adapter', async ({
-      page,
-      classicEdgeSite,
-    }) => {
-      const response = await page.goto(classicEdgeSite.url)
-      await expect(page.getByRole('heading', { name: /Welcome to Remix/i })).toBeVisible()
-      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('server')
-    })
-  })
-
   test.describe('Hydrogen Vite site', () => {
     test('serves a response from the edge when using @netlify/remix-edge-adapter and a root `server.ts`', async ({
       page,

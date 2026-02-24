@@ -19,15 +19,15 @@
     },
     "./plugin": {
       "require": {
-        "types": "./dist/vite/plugin.d.ts",
-        "default": "./dist/vite/plugin.js"
+        "types": "./dist/plugin.d.ts",
+        "default": "./dist/plugin.js"
       },
       "import": {
-        "types": "./dist/vite/plugin.d.mts",
-        "default": "./dist/vite/plugin.mjs"
+        "types": "./dist/plugin.d.mts",
+        "default": "./dist/plugin.mjs"
       }
     },
-    "./entry.server": "./src/common/entry.server.tsx"
+    "./entry.server": "./src/entry.server.tsx"
   },
   "files": [
     "dist/**/*",
@@ -35,13 +35,13 @@
     "README.md",
     "plugin.js",
     "plugin.d.ts",
-    "src/common/entry.server.tsx",
-    "src/common/server.ts"
+    "src/entry.server.tsx",
+    "src/server.ts"
   ],
   "scripts": {
     "prepack": "pnpm run build",
     "build": "pnpm run build:src && pnpm run build:types",
-    "build:src": "tsup-node src/index.ts src/vite/plugin.ts --format esm,cjs --dts --target node20 --clean",
+    "build:src": "tsup-node src/index.ts src/plugin.ts --format esm,cjs --dts --target node20 --clean",
     "build:types": "deno types > deno.d.ts",
     "build:watch": "pnpm run build:src --watch",
     "publint": "publint --strict"
@@ -77,11 +77,6 @@
   },
   "peerDependencies": {
     "vite": ">=5.0.0"
-  },
-  "peerDependenciesMeta": {
-    "vite": {
-      "optional": true
-    }
   },
   "engines": {
     "node": ">=20.6.1"
