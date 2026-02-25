@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,7 @@ jobs:
       - name: Installing Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          check-latest: true
+          node-version: 24
       - run: corepack enable
       - name: Install Deno
         uses: denoland/setup-deno@v2
@@ -34,7 +33,30 @@ jobs:
         run: pnpm run format:check
       - name: Typecheck
         run: pnpm run typecheck
-        if: always()
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20.6.1', '24']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installing Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: corepack enable
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          # Should match the `DENO_VERSION_RANGE` from https://github.com/netlify/build/blob/8ff162649f76a9586dd7593198c0fa798dac3629/packages/edge-bundler/node/bridge.ts#L22
+          deno-version: v2.4.2
+      - name: Install
+        run: pnpm install
+      - name: Build
+        run: pnpm run build:packages
       - name: Unit Tests
         run: pnpm run test:unit
-        if: always()
