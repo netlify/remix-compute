@@ -259,7 +259,7 @@ importers:
   packages/remix-edge-adapter:
     dependencies:
       '@netlify/remix-runtime':
-        specifier: 2.4.0
+        specifier: 3.0.0
         version: link:../remix-runtime
       '@remix-run/dev':
         specifier: ^2.16.4

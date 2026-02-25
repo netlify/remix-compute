@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.3...vite-plugin-react-router-v3.0.0) (2026-02-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Node.js 18 reached EOL in April 2024 and is no longer supported. The minimum required version is now Node.js 20.
+
+### Features
+
+* drop Node.js 18 support, require &gt;=20 ([#623](https://github.com/netlify/remix-compute/issues/623)) ([dc9c499](https://github.com/netlify/remix-compute/commit/dc9c4998e1909aa1a79116f7925249b0fb44b9f1))
+
 ## [2.1.3](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.2...vite-plugin-react-router-v2.1.3) (2026-01-19)
 
 

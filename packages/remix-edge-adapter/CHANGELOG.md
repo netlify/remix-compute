@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.0.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.5.0...remix-edge-adapter-v4.0.0) (2026-02-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Node.js 18 reached EOL in April 2024 and is no longer supported. The minimum required version is now Node.js 20.
+* drop support for Remix Classic Compiler ([#624](https://github.com/netlify/remix-compute/issues/624))
+
+### Features
+
+* drop Node.js 18 support, require &gt;=20 ([#623](https://github.com/netlify/remix-compute/issues/623)) ([dc9c499](https://github.com/netlify/remix-compute/commit/dc9c4998e1909aa1a79116f7925249b0fb44b9f1))
+* drop support for Remix Classic Compiler ([#624](https://github.com/netlify/remix-compute/issues/624)) ([655e55b](https://github.com/netlify/remix-compute/commit/655e55b247c86619e2ccb701a5de00d113108196))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @netlify/remix-runtime bumped from 2.4.0 to 3.0.0
+
 ## [3.5.0](https://github.com/netlify/remix-compute/compare/remix-edge-adapter-v3.4.3...remix-edge-adapter-v3.5.0) (2025-11-05)
 
 
