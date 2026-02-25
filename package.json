@@ -47,7 +47,7 @@
     "fast-glob": "^3.3.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.0.0",
-    "netlify-cli": "^23.14.0",
+    "netlify-cli": "^23.15.1",
     "npm-run-all2": "^6.0.0",
     "p-limit": "^5.0.0",
     "prettier": "^3.0.0",
@@ -60,7 +60,7 @@
     "isbot": "^5.0.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20.6.1"
   },
   "packageManager": "pnpm@8.15.9+sha256.daa27a0b541bc635323ff96c2ded995467ff9fe6d69ff67021558aa9ad9dcc36"
 }

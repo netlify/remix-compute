@@ -7,6 +7,12 @@ on:
 jobs:
   e2e:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20.6.1', '24']
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,10 +24,10 @@ jobs:
           private-key: ${{ secrets.TOKENS_PRIVATE_KEY }}
           app-id: ${{ secrets.TOKENS_APP_ID }}
 
-      - name: Node
+      - name: Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ matrix.node-version }}
 
       - run: corepack enable
       - name: Install Deno
@@ -42,6 +48,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: blob-report
+          name: blob-report-${{ matrix.node-version }}
           path: blob-report/
           retention-days: 30
