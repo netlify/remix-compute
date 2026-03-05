@@ -40,8 +40,8 @@ importers:
         specifier: ^8.33.0
         version: 8.57.1
       eslint-plugin-playwright:
-        specifier: ^1.6.0
-        version: 1.8.3(eslint@8.57.1)
+        specifier: ^2.0.0
+        version: 2.9.0(eslint@8.57.1)
       eslint-prettier-config:
         specifier: ^1.0.1
         version: 1.0.1
@@ -8871,18 +8871,14 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-playwright@1.8.3(eslint@8.57.1):
-    resolution: {integrity: sha512-h87JPFHkz8a6oPhn8GRGGhSQoAJjx0AkOv1jME6NoMk2FpEsfvfJJNaQDxLSqSALkCr0IJXPGTnp6SIRVu5Nqg==}
-    engines: {node: '>=16.6.0'}
+  /eslint-plugin-playwright@2.9.0(eslint@8.57.1):
+    resolution: {integrity: sha512-k3xrG6YzrallWNFMoGUjMNeu3SFFKXN79KJQBD2PkM4PasJegqV2Up+mPY5od2UmPKQGT+MeIhCmWH8r5eYuQQ==}
+    engines: {node: '>=16.9.0'}
     peerDependencies:
       eslint: '>=8.40.0'
-      eslint-plugin-jest: '>=25'
-    peerDependenciesMeta:
-      eslint-plugin-jest:
-        optional: true
     dependencies:
       eslint: 8.57.1
-      globals: 13.24.0
+      globals: 17.4.0
     dev: true
 
   /eslint-plugin-promise@6.6.0(eslint@8.57.1):
@@ -10148,6 +10144,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
+    dev: true
+
+  /globals@17.4.0:
+    resolution: {integrity: sha512-hjrNztw/VajQwOLsMNT1cbJiH2muO3OROCHnbehc8eY5JyD2gqz4AcMHPqgaOR59DjgUjYAYLeH699g/eWi2jw==}
+    engines: {node: '>=18'}
     dev: true
 
   /globalthis@1.0.4:
