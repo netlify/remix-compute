@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^20.0.0",
     "@netlify/eslint-config-node": "^7.0.1",
     "@playwright/test": "^1.44.0",
     "@remix-run/eslint-config": "^2.9.2",
