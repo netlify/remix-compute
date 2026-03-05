@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/netlify/remix-compute#readme",
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^20.0.0",
     "@netlify/eslint-config-node": "^7.0.1",
     "@playwright/test": "^1.44.0",
     "@remix-run/eslint-config": "^2.9.2",
@@ -41,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.33.0",
-    "eslint-plugin-playwright": "^1.6.0",
+    "eslint-plugin-playwright": "^2.0.0",
     "eslint-prettier-config": "^1.0.1",
     "execa": "^8.0.1",
     "fast-glob": "^3.3.2",
