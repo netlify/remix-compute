@@ -14,7 +14,7 @@
     "@netlify/remix-edge-adapter": "workspace:*",
     "@netlify/remix-runtime": "workspace:*",
     "@remix-run/node": "^2.16.4",
-    "@remix-run/react": "^2.16.4",
+    "@remix-run/react": "^2.17.3",
     "@remix-run/serve": "^2.16.4",
     "isbot": "^5.0.0",
     "react": "^18.2.0",
