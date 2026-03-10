@@ -299,4 +299,17 @@ test.describe('React Router user journeys', () => {
       await expect(page.getByRole('heading', { name: /Animaux/i })).toBeVisible()
     })
   })
+
+  test.describe('Hydrogen React Router site', () => {
+    test('serves a response from the edge when using @netlify/vite-plugin-react-router and a root `server.ts`', async ({
+      page,
+      hydrogenReactRouterSite,
+    }) => {
+      const response = await page.goto(hydrogenReactRouterSite.url)
+      expect(response?.status()).toBe(200)
+      await expect(page.getByText('Mock.shop')).toBeVisible()
+      await expect(page.getByText('Recommended Products')).toBeVisible()
+      expect(response?.headers()['debug-x-nf-edge-functions']).toBe('react-router-server')
+    })
+  })
 })
