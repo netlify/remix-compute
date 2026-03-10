@@ -1,7 +1,11 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { access, mkdir, writeFile } from 'node:fs/promises'
+import { once } from 'node:events'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
+import { Readable } from 'node:stream'
+import type { IncomingMessage, ServerResponse } from 'node:http'
 
+import type { Context as NetlifyContext } from '@netlify/edge-functions'
 import type { Plugin, ResolvedConfig } from 'vite'
 import { glob } from 'tinyglobby'
 
@@ -43,6 +47,131 @@ const RESOLVED_FUNCTION_HANDLER_MODULE_ID = `\0${FUNCTION_HANDLER_MODULE_ID}`
 const SERVER_ENTRY_MODULE_ID = 'virtual:netlify-server-entry'
 
 const toPosixPath = (path: string) => path.split(sep).join(posixSep)
+
+// Note: these are checked in order. The first match is used.
+const ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES = [
+  'server.ts',
+  'server.mts',
+  'server.cts',
+  'server.mjs',
+  'server.cjs',
+  'server.js',
+]
+
+const findUserEdgeFunctionHandlerFile = async (root: string) => {
+  for (const filename of ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES) {
+    try {
+      await access(join(root, filename))
+      return filename
+    } catch {}
+  }
+
+  throw new Error(
+    'Your Hydrogen site must include a `server.ts` (or js/mjs/cjs/mts/cts) file at the root to deploy to Netlify. See https://github.com/netlify/hydrogen-template.',
+  )
+}
+
+const notImplemented = () => {
+  throw new Error(
+    `This is a fake Netlify context object for local dev. It is not supported here, but it will work with \`netlify serve\` and in a production build.`,
+  )
+}
+
+const getFakeNetlifyContext = (url: string): NetlifyContext => ({
+  url: new URL(url),
+  requestId: 'fake-netlify-request-id-for-dev',
+  next: async () => new Response('', { status: 404 }),
+  geo: {
+    city: 'Mock City',
+    country: { code: 'MC', name: 'Mock Country' },
+    subdivision: { code: 'MS', name: 'Mock Subdivision' },
+    longitude: 0,
+    latitude: 0,
+    timezone: 'UTC',
+  },
+  waitUntil: async (_p: Promise<unknown>) => {},
+  get cookies() {
+    return notImplemented()
+  },
+  get deploy() {
+    return notImplemented()
+  },
+  get ip() {
+    return notImplemented()
+  },
+  get json() {
+    return notImplemented()
+  },
+  get log() {
+    return notImplemented()
+  },
+  get params() {
+    return notImplemented()
+  },
+  get rewrite() {
+    return notImplemented()
+  },
+  get site() {
+    return notImplemented()
+  },
+  get account() {
+    return notImplemented()
+  },
+  get server() {
+    return notImplemented()
+  },
+})
+
+/**
+ * Convert a Node.js IncomingMessage to a Web API Request.
+ */
+function fromNodeRequest(nodeReq: IncomingMessage): Request {
+  const origin = `http://${nodeReq.headers.host ?? 'localhost'}`
+  // In Connect/Express middleware, `originalUrl` preserves the full URL
+  const url = new URL((nodeReq as IncomingMessage & { originalUrl?: string }).originalUrl ?? nodeReq.url ?? '/', origin)
+
+  const headers = new Headers()
+  const rawHeaders = nodeReq.rawHeaders
+  for (let i = 0; i < rawHeaders.length; i += 2) {
+    headers.append(rawHeaders[i], rawHeaders[i + 1])
+  }
+
+  const init: RequestInit & { duplex?: string } = {
+    method: nodeReq.method,
+    headers,
+  }
+
+  if (nodeReq.method !== 'GET' && nodeReq.method !== 'HEAD') {
+    init.body = Readable.toWeb(nodeReq as Readable) as ReadableStream
+    init.duplex = 'half'
+  }
+
+  return new Request(url.href, init)
+}
+
+/**
+ * Write a Web API Response to a Node.js ServerResponse.
+ */
+async function sendResponse(response: Response, nodeRes: ServerResponse): Promise<void> {
+  nodeRes.statusCode = response.status
+  nodeRes.statusMessage = response.statusText
+
+  response.headers.forEach((value, header) => {
+    if (header === 'set-cookie') {
+      nodeRes.setHeader(header, response.headers.getSetCookie())
+    } else {
+      nodeRes.setHeader(header, value)
+    }
+  })
+
+  if (response.body) {
+    const readable = Readable.fromWeb(response.body as Parameters<typeof Readable.fromWeb>[0])
+    readable.pipe(nodeRes)
+    await once(readable, 'end')
+  } else {
+    nodeRes.end()
+  }
+}
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
 const FUNCTION_HANDLER = /* js */ `
@@ -100,6 +229,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
   let currentCommand: 'build' | 'serve' | undefined
+  let isHydrogenSite = false
 
   return {
     name: 'vite-plugin-netlify-react-router',
@@ -122,7 +252,9 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
             rollupOptions: {
               input: mergedInput,
               output: {
-                entryFileNames: '[name].js',
+                // NOTE: must use function syntax here to work around Shopify CLI reading
+                // the config value literally (i.e. trying to stat `[name].js` as a filename).
+                entryFileNames: () => '[name].js',
               },
             },
           },
@@ -146,6 +278,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       }
     },
     async resolveId(source, importer, options) {
+      // Hydrogen sites provide their own server entry (server.ts) and entry.server.tsx,
+      // so we skip resolution of our virtual modules.
+      if (isHydrogenSite && edge) {
+        if (source === FUNCTION_HANDLER_MODULE_ID || source === SERVER_ENTRY_MODULE_ID) {
+          return
+        }
+      }
+
       if (source === FUNCTION_HANDLER_MODULE_ID) {
         return RESOLVED_FUNCTION_HANDLER_MODULE_ID
       }
@@ -172,8 +312,54 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         return edge ? EDGE_FUNCTION_HANDLER : FUNCTION_HANDLER
       }
     },
-    async configResolved(config) {
-      resolvedConfig = config
+    configResolved: {
+      order: 'pre',
+      async handler(config) {
+        resolvedConfig = config
+        isHydrogenSite = config.plugins.some((plugin) => plugin.name === 'hydrogen:main')
+
+        if (isHydrogenSite && edge && isProductionSsrBuild) {
+          // Hydrogen sites use their own server.ts as the SSR entry instead of our virtual module.
+          const userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
+
+          if (
+            config.build?.rollupOptions?.input &&
+            typeof config.build.rollupOptions.input === 'object' &&
+            !Array.isArray(config.build.rollupOptions.input)
+          ) {
+            config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
+          }
+        }
+      },
+    },
+    configureServer: {
+      order: 'pre',
+      handler(viteDevServer) {
+        return () => {
+          if (isHydrogenSite && edge && !viteDevServer.config.server.middlewareMode) {
+            viteDevServer.middlewares.use(
+              async (nodeReq: IncomingMessage, nodeRes: ServerResponse, next: (err?: unknown) => void) => {
+                try {
+                  const userServerFile = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
+                  const build = (await viteDevServer.ssrLoadModule(userServerFile)) as {
+                    default: (request: Request, context: NetlifyContext) => Promise<Response | undefined>
+                  }
+                  const handleRequest = build.default
+                  const req = fromNodeRequest(nodeReq)
+                  const res = await handleRequest(req, getFakeNetlifyContext(req.url))
+                  if (res instanceof Response) {
+                    await sendResponse(res, nodeRes)
+                    return
+                  }
+                  next()
+                } catch (error) {
+                  next(error)
+                }
+              },
+            )
+          }
+        }
+      },
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
