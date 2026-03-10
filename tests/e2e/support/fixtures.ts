@@ -68,7 +68,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   ],
   hydrogenViteSite: [
     async ({}, use) => {
-      const fixture = await deployFixture('hydrogen-vite-site')
+      const fixture = await deployFixture('hydrogen-remix-vite-site')
       await use(fixture)
     },
     { scope: 'worker' },
@@ -76,7 +76,7 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   hydrogenViteSiteNoEntrypoint: [
     async ({}, use) => {
       try {
-        await deployFixture('hydrogen-vite-site-no-entrypoint')
+        await deployFixture('hydrogen-remix-vite-site-no-entrypoint')
         await use(null)
       } catch (err: unknown) {
         await use(err as Error)
