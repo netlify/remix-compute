@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v3.0.0...vite-plugin-react-router-v3.1.0) (2026-03-13)
+
+
+### Features
+
+* **vite-plugin-react-router:** support Hydrogen sites ([#641](https://github.com/netlify/remix-compute/issues/641)) ([923d9dc](https://github.com/netlify/remix-compute/commit/923d9dcba02ff6027d85bba697bd6cf1f1d09329))
+
+
+### Bug Fixes
+
+* actually use Hydrogen entry in dev ([#651](https://github.com/netlify/remix-compute/issues/651)) ([c8f93a2](https://github.com/netlify/remix-compute/commit/c8f93a2d2aeeb95f68d9cc5e2c9b876f8d875aff))
+
 ## [3.0.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v2.1.3...vite-plugin-react-router-v3.0.0) (2026-02-25)
 
 
