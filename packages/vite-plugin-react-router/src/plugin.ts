@@ -2,6 +2,7 @@ import { access, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
+import { createRequest, sendResponse } from '@remix-run/node-fetch-server'
 import type { Plugin, ResolvedConfig } from 'vite'
 import { glob } from 'tinyglobby'
 
@@ -124,6 +125,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   let isProductionSsrBuild = false
   let currentCommand: 'build' | 'serve' | undefined
   let isHydrogenSite = false
+  let userServerFile: string | undefined
 
   return {
     name: 'vite-plugin-netlify-react-router',
@@ -213,17 +215,69 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         resolvedConfig = config
         isHydrogenSite = config.plugins.some((plugin) => plugin.name === 'hydrogen:main')
 
-        if (isHydrogenSite && edge && isProductionSsrBuild) {
-          // Hydrogen sites use their own server.ts as the SSR entry instead of our virtual module.
-          const userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
+        if (isHydrogenSite && edge) {
+          // Hydrogen sites use their own server.ts as the SSR entry.
+          userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
 
-          if (
-            config.build?.rollupOptions?.input &&
-            typeof config.build.rollupOptions.input === 'object' &&
-            !Array.isArray(config.build.rollupOptions.input)
-          ) {
-            config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
+          if (isProductionSsrBuild) {
+            if (
+              config.build?.rollupOptions?.input &&
+              typeof config.build.rollupOptions.input === 'object' &&
+              !Array.isArray(config.build.rollupOptions.input)
+            ) {
+              config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
+            }
           }
+        }
+      },
+    },
+    // In dev, Hydrogen sites need their server.ts to be loaded and called for each request so that
+    // it can provide `getLoadContext` (storefront, cart, session, etc.) to React Router's request
+    // handler. Without this, React Router's dev middleware would handle SSR with no load context.
+    configureServer: {
+      order: 'pre',
+      handler(viteDevServer) {
+        if (!isHydrogenSite || !edge) return
+
+        if (!userServerFile) {
+          viteDevServer.config.logger.warn(
+            'Hydrogen site detected but no server.ts found. Dev SSR will fall through to React Router defaults.',
+          )
+          return
+        }
+
+        const serverEntryFile = userServerFile
+
+        // Return a function to register as a post-middleware (runs after static file serving).
+        // Using `order: 'pre'` ensures this runs before React Router's own SSR post-middleware.
+        return () => {
+          viteDevServer.middlewares.use(async (req, res, next) => {
+            try {
+              const serverModule = await viteDevServer.ssrLoadModule(join(viteDevServer.config.root, serverEntryFile))
+              const handler = serverModule.default
+
+              // Match what React Router's own dev middleware does
+              req.url = req.originalUrl ?? req.url
+              const request = createRequest(req, res)
+
+              // `@netlify/vite-plugin` sets `globalThis.Netlify` in dev, including `.context`
+              // (geo, ip, cookies, etc.) and `.env`. Pass it to the user's server handler so it
+              // matches the edge function contract. The `netlifyRouterContext` Proxy from context.ts
+              // also reads from this global, giving loaders access to `context.geo`, etc.
+              // `waitUntil` is only available in the real edge function runtime, so we provide a
+              // no-op fallback for dev.
+              const netlifyContext = { waitUntil: () => {}, ...globalThis.Netlify?.context }
+              const response = await handler(request, netlifyContext)
+
+              if (response) {
+                await sendResponse(res, response)
+              } else {
+                next()
+              }
+            } catch (error) {
+              next(error)
+            }
+          })
         }
       },
     },
