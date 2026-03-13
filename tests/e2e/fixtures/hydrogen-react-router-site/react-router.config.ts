@@ -7,6 +7,8 @@ import { hydrogenPreset } from '@shopify/hydrogen/react-router-preset'
  * This configuration uses the official Hydrogen preset to provide optimal
  * React Router settings for Shopify Oxygen deployment. The preset enables
  * validated performance optimizations while ensuring compatibility.
+ *
+ * This has been validated to be compatible with Netlify's plugins and runtime.
  */
 export default {
   presets: [hydrogenPreset()],

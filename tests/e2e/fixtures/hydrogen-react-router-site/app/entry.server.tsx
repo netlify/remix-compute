@@ -1,6 +1,8 @@
 import { ServerRouter } from 'react-router'
 import { isbot } from 'isbot'
-import { renderToReadableStream } from 'react-dom/server'
+// `server.browser` sounds funny, but it is the correct entry point to use when
+// rendering in a non-Node.js edge environment
+import { renderToReadableStream } from 'react-dom/server.browser'
 import { createContentSecurityPolicy, type HydrogenRouterContextProvider } from '@shopify/hydrogen'
 import type { EntryContext } from 'react-router'
 
