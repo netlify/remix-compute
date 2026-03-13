@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { access, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
@@ -43,6 +43,29 @@ const RESOLVED_FUNCTION_HANDLER_MODULE_ID = `\0${FUNCTION_HANDLER_MODULE_ID}`
 const SERVER_ENTRY_MODULE_ID = 'virtual:netlify-server-entry'
 
 const toPosixPath = (path: string) => path.split(sep).join(posixSep)
+
+// Note: these are checked in order. The first match is used.
+const ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES = [
+  'server.ts',
+  'server.mts',
+  'server.cts',
+  'server.mjs',
+  'server.cjs',
+  'server.js',
+]
+
+const findUserEdgeFunctionHandlerFile = async (root: string) => {
+  for (const filename of ALLOWED_USER_EDGE_FUNCTION_HANDLER_FILENAMES) {
+    try {
+      await access(join(root, filename))
+      return filename
+    } catch {}
+  }
+
+  throw new Error(
+    'Your Hydrogen site must include a `server.ts` (or js/mjs/cjs/mts/cts) file at the root to deploy to Netlify. See https://github.com/netlify/hydrogen-template.',
+  )
+}
 
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
 const FUNCTION_HANDLER = /* js */ `
@@ -100,12 +123,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   let resolvedConfig: ResolvedConfig
   let isProductionSsrBuild = false
   let currentCommand: 'build' | 'serve' | undefined
+  let isHydrogenSite = false
 
   return {
     name: 'vite-plugin-netlify-react-router',
     config(_config, { command, isSsrBuild }) {
       currentCommand = command
       isProductionSsrBuild = isSsrBuild === true && command === 'build'
+
       if (isProductionSsrBuild) {
         // Server bundle entry for our own server entry point (which is imported by our Netlify
         // function handler via a virtual module), while preserving any existing rollup input
@@ -122,7 +147,9 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
             rollupOptions: {
               input: mergedInput,
               output: {
-                entryFileNames: '[name].js',
+                // NOTE: must use function syntax here to work around Shopify CLI reading
+                // the config value literally (i.e. trying to stat `[name].js` as a filename).
+                entryFileNames: () => '[name].js',
               },
             },
           },
@@ -146,6 +173,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       }
     },
     async resolveId(source, importer, options) {
+      // Hydrogen sites provide their own server entry (server.ts) and entry.server.tsx,
+      // so we skip resolution of our virtual modules.
+      if (isHydrogenSite && edge) {
+        if (source === FUNCTION_HANDLER_MODULE_ID || source === SERVER_ENTRY_MODULE_ID) {
+          return
+        }
+      }
+
       if (source === FUNCTION_HANDLER_MODULE_ID) {
         return RESOLVED_FUNCTION_HANDLER_MODULE_ID
       }
@@ -172,8 +207,25 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         return edge ? EDGE_FUNCTION_HANDLER : FUNCTION_HANDLER
       }
     },
-    async configResolved(config) {
-      resolvedConfig = config
+    configResolved: {
+      order: 'pre',
+      async handler(config) {
+        resolvedConfig = config
+        isHydrogenSite = config.plugins.some((plugin) => plugin.name === 'hydrogen:main')
+
+        if (isHydrogenSite && edge && isProductionSsrBuild) {
+          // Hydrogen sites use their own server.ts as the SSR entry instead of our virtual module.
+          const userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
+
+          if (
+            config.build?.rollupOptions?.input &&
+            typeof config.build.rollupOptions.input === 'object' &&
+            !Array.isArray(config.build.rollupOptions.input)
+          ) {
+            config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
+          }
+        }
+      },
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
