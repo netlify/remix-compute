@@ -2,6 +2,7 @@ import { access, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
+import netlifyVitePlugin from '@netlify/vite-plugin'
 import { createRequest, sendResponse } from '@remix-run/node-fetch-server'
 import type { Plugin, ResolvedConfig } from 'vite'
 import { glob } from 'tinyglobby'
@@ -118,7 +119,7 @@ function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>) 
     `
 }
 
-export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
+export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin[] {
   const edge = options.edge ?? false
   const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
@@ -127,7 +128,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   let isHydrogenSite = false
   let userServerFile: string | undefined
 
-  return {
+  const reactRouterPlugin: Plugin = {
     name: 'vite-plugin-netlify-react-router',
     config(_config, { command, isSsrBuild }) {
       currentCommand = command
@@ -323,4 +324,6 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       }
     },
   }
+
+  return [reactRouterPlugin, ...netlifyVitePlugin()]
 }
