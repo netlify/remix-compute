@@ -10,32 +10,27 @@ To deploy a React Router 7+ site to Netlify, install this package:
 npm install @netlify/vite-plugin-react-router
 ```
 
-It's also recommended (but not required) to use the
-[Netlify Vite plugin](https://www.npmjs.com/package/@netlify/vite-plugin), which provides full Netlify platform
-emulation directly in your local dev server:
-
-```sh
-npm install --save-dev @netlify/vite-plugin
-```
-
-and include the Netlify plugin in your `vite.config.ts`:
+Then include the Netlify plugin in your `vite.config.ts`:
 
 ```typescript
 import { reactRouter } from '@react-router/dev/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import netlifyReactRouter from '@netlify/vite-plugin-react-router' // <- add this
-import netlify from '@netlify/vite-plugin' // <- add this (optional)
 
 export default defineConfig({
   plugins: [
     reactRouter(),
     tsconfigPaths(),
     netlifyReactRouter(), // <- add this
-    netlify(), // <- add this (optional)
   ],
 })
 ```
+
+> [!NOTE]
+>
+> This plugin automatically includes [`@netlify/vite-plugin`](https://npmx.dev/@netlify/vite-plugin), which provides
+> full Netlify platform emulation directly in your local dev server.
 
 Your app is ready to [deploy to Netlify](https://docs.netlify.com/deploy/create-deploys/).
 
@@ -53,7 +48,6 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
     netlifyReactRouter({ edge: true }), // <- deploy to Edge Functions
-    netlify(),
   ],
 })
 ```
@@ -88,7 +82,6 @@ export default defineConfig({
       edge: true,
       excludedPaths: ['/ping', '/api/*', '/webhooks/*'],
     }),
-    netlify(),
   ],
 })
 ```
@@ -159,12 +152,6 @@ export default function Example() {
 }
 ```
 
-> [!IMPORTANT]
->
-> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
-> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
-> you).
-
 ### Middleware context
 
 React Router introduced a stable middleware feature in 7.9.0.
@@ -193,9 +180,3 @@ export default function Home() {
   return <h1>Hello world</h1>
 }
 ```
-
-> [!IMPORTANT]
->
-> Note that in local development, `netlifyRouterContext` requires Netlify platform emulation, which is provided
-> seamlessly by [`@netlify/vite-plugin`](https://www.npmjs.com/package/@netlify/vite-plugin) (or Netlify CLI - up to
-> you).
