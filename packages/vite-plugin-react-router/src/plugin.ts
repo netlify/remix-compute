@@ -1,11 +1,7 @@
 import { access, mkdir, writeFile } from 'node:fs/promises'
-import { once } from 'node:events'
 import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
-import { Readable } from 'node:stream'
-import type { IncomingMessage, ServerResponse } from 'node:http'
 
-import type { Context as NetlifyContext } from '@netlify/edge-functions'
 import type { Plugin, ResolvedConfig } from 'vite'
 import { glob } from 'tinyglobby'
 
@@ -71,108 +67,6 @@ const findUserEdgeFunctionHandlerFile = async (root: string) => {
   )
 }
 
-const notImplemented = () => {
-  throw new Error(
-    `This is a fake Netlify context object for local dev. It is not supported here, but it will work with \`netlify serve\` and in a production build.`,
-  )
-}
-
-const getFakeNetlifyContext = (url: string): NetlifyContext => ({
-  url: new URL(url),
-  requestId: 'fake-netlify-request-id-for-dev',
-  next: async () => new Response('', { status: 404 }),
-  geo: {
-    city: 'Mock City',
-    country: { code: 'MC', name: 'Mock Country' },
-    subdivision: { code: 'MS', name: 'Mock Subdivision' },
-    longitude: 0,
-    latitude: 0,
-    timezone: 'UTC',
-  },
-  waitUntil: async (_p: Promise<unknown>) => {},
-  get cookies() {
-    return notImplemented()
-  },
-  get deploy() {
-    return notImplemented()
-  },
-  get ip() {
-    return notImplemented()
-  },
-  get json() {
-    return notImplemented()
-  },
-  get log() {
-    return notImplemented()
-  },
-  get params() {
-    return notImplemented()
-  },
-  get rewrite() {
-    return notImplemented()
-  },
-  get site() {
-    return notImplemented()
-  },
-  get account() {
-    return notImplemented()
-  },
-  get server() {
-    return notImplemented()
-  },
-})
-
-/**
- * Convert a Node.js IncomingMessage to a Web API Request.
- */
-function fromNodeRequest(nodeReq: IncomingMessage): Request {
-  const origin = `http://${nodeReq.headers.host ?? 'localhost'}`
-  // In Connect/Express middleware, `originalUrl` preserves the full URL
-  const url = new URL((nodeReq as IncomingMessage & { originalUrl?: string }).originalUrl ?? nodeReq.url ?? '/', origin)
-
-  const headers = new Headers()
-  const rawHeaders = nodeReq.rawHeaders
-  for (let i = 0; i < rawHeaders.length; i += 2) {
-    headers.append(rawHeaders[i], rawHeaders[i + 1])
-  }
-
-  const init: RequestInit & { duplex?: string } = {
-    method: nodeReq.method,
-    headers,
-  }
-
-  if (nodeReq.method !== 'GET' && nodeReq.method !== 'HEAD') {
-    init.body = Readable.toWeb(nodeReq as Readable) as ReadableStream
-    init.duplex = 'half'
-  }
-
-  return new Request(url.href, init)
-}
-
-/**
- * Write a Web API Response to a Node.js ServerResponse.
- */
-async function sendResponse(response: Response, nodeRes: ServerResponse): Promise<void> {
-  nodeRes.statusCode = response.status
-  nodeRes.statusMessage = response.statusText
-
-  response.headers.forEach((value, header) => {
-    if (header === 'set-cookie') {
-      nodeRes.setHeader(header, response.headers.getSetCookie())
-    } else {
-      nodeRes.setHeader(header, value)
-    }
-  })
-
-  if (response.body) {
-    const readable = Readable.fromWeb(response.body as Parameters<typeof Readable.fromWeb>[0])
-    readable.pipe(nodeRes)
-    await once(readable, 'end')
-  } else {
-    nodeRes.end()
-  }
-}
-
 // The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
 const FUNCTION_HANDLER = /* js */ `
 import { createRequestHandler } from "@netlify/vite-plugin-react-router/serverless";
@@ -236,6 +130,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
     config(_config, { command, isSsrBuild }) {
       currentCommand = command
       isProductionSsrBuild = isSsrBuild === true && command === 'build'
+
       if (isProductionSsrBuild) {
         // Server bundle entry for our own server entry point (which is imported by our Netlify
         // function handler via a virtual module), while preserving any existing rollup input
@@ -328,35 +223,6 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
             !Array.isArray(config.build.rollupOptions.input)
           ) {
             config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
-          }
-        }
-      },
-    },
-    configureServer: {
-      order: 'pre',
-      handler(viteDevServer) {
-        return () => {
-          if (isHydrogenSite && edge && !viteDevServer.config.server.middlewareMode) {
-            viteDevServer.middlewares.use(
-              async (nodeReq: IncomingMessage, nodeRes: ServerResponse, next: (err?: unknown) => void) => {
-                try {
-                  const userServerFile = await findUserEdgeFunctionHandlerFile(resolvedConfig.root)
-                  const build = (await viteDevServer.ssrLoadModule(userServerFile)) as {
-                    default: (request: Request, context: NetlifyContext) => Promise<Response | undefined>
-                  }
-                  const handleRequest = build.default
-                  const req = fromNodeRequest(nodeReq)
-                  const res = await handleRequest(req, getFakeNetlifyContext(req.url))
-                  if (res instanceof Response) {
-                    await sendResponse(res, nodeRes)
-                    return
-                  }
-                  next()
-                } catch (error) {
-                  next(error)
-                }
-              },
-            )
           }
         }
       },
