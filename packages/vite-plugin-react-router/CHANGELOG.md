@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v3.1.0...vite-plugin-react-router-v3.1.1) (2026-03-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @remix-run/node-fetch-server to ^0.13.0 ([#654](https://github.com/netlify/remix-compute/issues/654)) ([7738224](https://github.com/netlify/remix-compute/commit/773822488bd9a7a3b2a3564614b56c03996784e4))
+
 ## [3.1.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v3.0.0...vite-plugin-react-router-v3.1.0) (2026-03-13)
 
 
