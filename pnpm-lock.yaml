@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       isbot:
         specifier: ^5.0.0
         version: 5.1.32
@@ -305,8 +305,8 @@ importers:
   packages/vite-plugin-react-router:
     dependencies:
       '@netlify/edge-functions':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       '@netlify/functions':
         specifier: ^5.1.4
         version: 5.1.4
@@ -3145,11 +3145,11 @@ packages:
       '@netlify/types': 2.4.0
     dev: true
 
-  /@netlify/edge-functions@3.0.5:
-    resolution: {integrity: sha512-VNG9blkcb4EIu2J22RvBD5zs6K2bibmQF2A+c6uglrPnrzQe7X8utvhBVWBeEK7lQuU1NMX5C3Tm+womjf1i9Q==}
+  /@netlify/edge-functions@3.0.6:
+    resolution: {integrity: sha512-xkVcTcpAuQKAY5GXKOjPTIct5Mz53NPHXOasggA+LTAxDDV4ohqSM8BIaXh1SgbcniHZyFhBqhc5hxZ+fFz5bQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/types': 2.5.0
+      '@netlify/types': 2.6.0
     dev: false
 
   /@netlify/eslint-config-node@7.0.1(typescript@5.7.3):
@@ -3569,6 +3569,11 @@ packages:
   /@netlify/types@2.5.0:
     resolution: {integrity: sha512-KwUO3eAPrFMgzwWc2ACVBoLFZepNMoWekJPYpk/7MhuaHc1LF4wjrB+h6b18Pt3xDj3vZSx+nzA5mb/gHqB9iw==}
     engines: {node: ^18.14.0 || >=20}
+
+  /@netlify/types@2.6.0:
+    resolution: {integrity: sha512-yD20EizHJDQxajJ66Vo8RTwLwR2jMNVxufPG8MHd2AScX8jW4z0VPnnJHArq2GYPFTFZRHmiAhDrXr5m8zof6w==}
+    engines: {node: ^18.14.0 || >=20}
+    dev: false
 
   /@netlify/zip-it-and-ship-it@14.5.0(supports-color@10.2.2):
     resolution: {integrity: sha512-xw+I3T43Ulg9TTqvxzAGOJw4U0KS7RgQBnqvvheLSbb+P+6bu8KTbFK96aK2ouYl3ooM+oyeGWl9BGJxJnMy7g==}
