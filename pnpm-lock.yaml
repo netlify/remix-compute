@@ -107,8 +107,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.1.4
-        version: 5.1.4
+        specifier: ^5.1.5
+        version: 5.1.5
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.37)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.0)
@@ -229,8 +229,8 @@ importers:
         version: 5.1.32
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.1.4
-        version: 5.1.4
+        specifier: ^5.1.5
+        version: 5.1.5
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.37)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.0)
@@ -308,8 +308,8 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6
       '@netlify/functions':
-        specifier: ^5.1.4
-        version: 5.1.4
+        specifier: ^5.1.5
+        version: 5.1.5
       '@remix-run/node-fetch-server':
         specifier: ^0.13.0
         version: 0.13.0
@@ -3242,11 +3242,11 @@ packages:
       '@netlify/types': 2.4.0
     dev: true
 
-  /@netlify/functions@5.1.4:
-    resolution: {integrity: sha512-oTaxVzJdscykdiiWM1Xyk59l+17qOLJj5QQVCzVZ6jKD5Qi+uduw2WS3e4TTqngUhJjHiy/yeS76jT7izP2UPQ==}
+  /@netlify/functions@5.1.5:
+    resolution: {integrity: sha512-mhTl6x3TWoRwNgz8HZ9zvSR9OHB/hDEA6VinBmWY5ubgycKNCerf6XyFaFnujH2Ygx3c32yg6QOOr1v9y8euug==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/types': 2.5.0
+      '@netlify/types': 2.6.0
 
   /@netlify/git-utils@6.0.4:
     resolution: {integrity: sha512-yp5WucNt1PGV+qG9Bq/qXPHZyl375s2AfB7bdoCFi7VeHZzCJ4bZJB9OpWf8lwNKqzkc2njYygNo5kwKavzY/w==}
@@ -3551,7 +3551,7 @@ packages:
     resolution: {integrity: sha512-kpYVPy0Y9TiLbjMnsmZo/DwgEOaUkayx65sZgdELPxJ9zZV/ke9XZAkfzbJVVuFa7cA2bmhB1jPZGjm6Mur6Kw==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/types': 2.5.0
+      '@netlify/types': 2.6.0
     dev: true
 
   /@netlify/static@3.1.5:
@@ -3566,14 +3566,9 @@ packages:
     engines: {node: ^18.14.0 || >=20}
     dev: true
 
-  /@netlify/types@2.5.0:
-    resolution: {integrity: sha512-KwUO3eAPrFMgzwWc2ACVBoLFZepNMoWekJPYpk/7MhuaHc1LF4wjrB+h6b18Pt3xDj3vZSx+nzA5mb/gHqB9iw==}
-    engines: {node: ^18.14.0 || >=20}
-
   /@netlify/types@2.6.0:
     resolution: {integrity: sha512-yD20EizHJDQxajJ66Vo8RTwLwR2jMNVxufPG8MHd2AScX8jW4z0VPnnJHArq2GYPFTFZRHmiAhDrXr5m8zof6w==}
     engines: {node: ^18.14.0 || >=20}
-    dev: false
 
   /@netlify/zip-it-and-ship-it@14.5.0(supports-color@10.2.2):
     resolution: {integrity: sha512-xw+I3T43Ulg9TTqvxzAGOJw4U0KS7RgQBnqvvheLSbb+P+6bu8KTbFK96aK2ouYl3ooM+oyeGWl9BGJxJnMy7g==}
