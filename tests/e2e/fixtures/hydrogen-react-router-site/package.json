@@ -27,7 +27,7 @@
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@graphql-codegen/cli": "5.0.2",
-    "@netlify/edge-functions": "^3.0.0",
+    "@netlify/edge-functions": "^3.0.5",
     "@netlify/vite-plugin": "*",
     "@netlify/vite-plugin-react-router": "*",
     "@react-router/dev": "7.12.0",
