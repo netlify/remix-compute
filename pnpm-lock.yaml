@@ -58,8 +58,8 @@ importers:
         specifier: ^16.0.0
         version: 16.3.2
       netlify-cli:
-        specifier: ^24.8.1
-        version: 24.8.1(@types/node@20.19.37)
+        specifier: ^24.9.0
+        version: 24.9.0(@types/node@20.19.37)
       npm-run-all2:
         specifier: ^8.0.0
         version: 8.0.4
@@ -2894,7 +2894,7 @@ packages:
       ansis: 4.2.0
       clean-stack: 5.2.0
       execa: 8.0.1
-      fdir: 6.5.0(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.3)
       figures: 6.1.0
       filter-obj: 6.1.0
       hot-shots: 11.4.0
@@ -6193,7 +6193,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 2.3.1
+      picomatch: 2.3.2
 
   /archiver-utils@5.0.2:
     resolution: {integrity: sha512-wuLJMmIBQYCsGZgYLTy5FIB2pF6Lfb6cXMSF8Qywwk3t20zWnAi7zLcQFdKQmIB8wyZpY5ER38x08GbwtR2cLA==}
@@ -9546,7 +9546,6 @@ packages:
         optional: true
     dependencies:
       picomatch: 4.0.4
-    dev: true
 
   /fecha@4.2.3:
     resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
@@ -12684,8 +12683,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /netlify-cli@24.8.1(@types/node@20.19.37):
-    resolution: {integrity: sha512-YOp4s7YCT4yfVLEXkHj+9u8FtrmCPjePyRT6axvVM8W4vIaO5tJX3PlU52d4hguGLOL6rCWBro2gimKePzhlhQ==}
+  /netlify-cli@24.9.0(@types/node@20.19.37):
+    resolution: {integrity: sha512-99bGdxVrNH8vz3kJ5zuRd/qlG4KC0wuxTBZ+HE8NFoMdq4pXM2/DKokGcWoIt/Xudma3t+x8dEVkqS4vdftWJA==}
     engines: {node: '>=20.12.2'}
     hasBin: true
     requiresBuild: true
@@ -13700,7 +13699,6 @@ packages:
   /picomatch@2.3.2:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
-    dev: true
 
   /picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
@@ -14444,7 +14442,7 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
     dependencies:
-      picomatch: 2.3.1
+      picomatch: 2.3.2
 
   /readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
@@ -16824,7 +16822,7 @@ packages:
     dependencies:
       '@types/node': 20.19.37
       esbuild: 0.21.5
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.59.0
     optionalDependencies:
       fsevents: 2.3.3
@@ -16871,8 +16869,8 @@ packages:
     dependencies:
       '@types/node': 20.19.37
       esbuild: 0.27.4
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
       postcss: 8.5.8
       rollup: 4.52.5
       tinyglobby: 0.2.15
