@@ -111,7 +111,7 @@ importers:
         version: 5.1.5
       '@remix-run/dev':
         specifier: ^2.16.4
-        version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3)
+        version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
       '@types/react':
         specifier: ^18.2.20
         version: 18.3.28
@@ -146,11 +146,11 @@ importers:
         specifier: ^5.1.6
         version: 5.7.3
       vite:
-        specifier: ^8.0.0
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
+        specifier: ^8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.7.3)(vite@8.0.3)
+        version: 5.1.4(typescript@5.7.3)(vite@8.0.5)
 
   demos/vite-functions:
     dependencies:
@@ -178,7 +178,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.16.4
-        version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3)
+        version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
       '@types/react':
         specifier: ^18.2.20
         version: 18.3.28
@@ -213,11 +213,11 @@ importers:
         specifier: ^5.1.6
         version: 5.7.3
       vite:
-        specifier: ^8.0.0
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
+        specifier: ^8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.7.3)(vite@8.0.3)
+        version: 5.1.4(typescript@5.7.3)(vite@8.0.5)
 
   packages/remix-adapter:
     dependencies:
@@ -233,7 +233,7 @@ importers:
         version: 5.1.5
       '@remix-run/dev':
         specifier: ^2.16.4
-        version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3)
+        version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
       '@remix-run/react':
         specifier: ^2.16.4
         version: 2.16.6(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
@@ -253,8 +253,8 @@ importers:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
       vite:
-        specifier: ^8.0.0
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
+        specifier: ^8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
 
   packages/remix-edge-adapter:
     dependencies:
@@ -263,7 +263,7 @@ importers:
         version: link:../remix-runtime
       '@remix-run/dev':
         specifier: ^2.16.4
-        version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3)
+        version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
       '@remix-run/node':
         specifier: ^2.16.4
         version: 2.17.4(typescript@5.7.3)
@@ -290,8 +290,8 @@ importers:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
       vite:
-        specifier: ^8.0.0
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
+        specifier: ^8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
 
   packages/remix-runtime:
     devDependencies:
@@ -339,8 +339,8 @@ importers:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.8)(typescript@5.7.3)
       vite:
-        specifier: ^8.0.0
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
+        specifier: ^8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
 
 packages:
 
@@ -4073,7 +4073,7 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@remix-run/dev@2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3):
+  /@remix-run/dev@2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5):
     resolution: {integrity: sha512-El7r5W6ErX9KIy27+urbc4SIZnIlVDgTOUqzA7Zbv7caKYrsvgj/Z3i/LPy4VNfv0G1EdawPOrygJgIKT4r2FA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -4150,7 +4150,7 @@ packages:
       tsconfig-paths: 4.2.0
       typescript: 5.7.3
       valibot: 1.2.0(typescript@5.7.3)
-      vite: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
+      vite: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-node: 3.2.4(@types/node@20.19.39)
       ws: 7.5.10
     transitivePeerDependencies:
@@ -4173,7 +4173,7 @@ packages:
       - yaml
     dev: true
 
-  /@remix-run/dev@2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.3):
+  /@remix-run/dev@2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5):
     resolution: {integrity: sha512-El7r5W6ErX9KIy27+urbc4SIZnIlVDgTOUqzA7Zbv7caKYrsvgj/Z3i/LPy4VNfv0G1EdawPOrygJgIKT4r2FA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -4249,7 +4249,7 @@ packages:
       tsconfig-paths: 4.2.0
       typescript: 5.7.3
       valibot: 1.2.0(typescript@5.7.3)
-      vite: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
+      vite: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0)
       vite-node: 3.2.4(@types/node@20.19.39)
       ws: 7.5.10
     transitivePeerDependencies:
@@ -5836,7 +5836,7 @@ packages:
       tinyrainbow: 3.0.3
     dev: true
 
-  /@vitest/mocker@4.0.16(vite@7.3.1):
+  /@vitest/mocker@4.0.16(vite@7.3.2):
     resolution: {integrity: sha512-yb6k4AZxJTB+q9ycAvsoxGn+j/po0UaPgajllBgt1PzoMAAmJGYFdDk0uCcRcxb3BrME34I6u8gHZTQlkqSZpg==}
     peerDependencies:
       msw: ^2.4.9
@@ -5850,7 +5850,7 @@ packages:
       '@vitest/spy': 4.0.16
       estree-walker: 3.0.3
       magic-string: 0.30.21
-      vite: 7.3.1(@types/node@20.19.39)
+      vite: 7.3.2(@types/node@20.19.39)
     dev: true
 
   /@vitest/pretty-format@4.0.16:
@@ -16757,7 +16757,7 @@ packages:
       debug: 4.4.3(supports-color@10.2.2)
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 7.3.1(@types/node@20.19.39)
+      vite: 7.3.2(@types/node@20.19.39)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -16772,7 +16772,7 @@ packages:
       - tsx
       - yaml
 
-  /vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@8.0.3):
+  /vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@8.0.5):
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
     peerDependencies:
       vite: '*'
@@ -16783,7 +16783,7 @@ packages:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.7.3)
-      vite: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
+      vite: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -16827,8 +16827,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vite@7.3.1(@types/node@20.19.39):
-    resolution: {integrity: sha512-w+N7Hifpc3gRjZ63vYBXA56dvvRlNWRczTdmCBBa+CotUzAPf5b7YMdMR/8CQoeYE5LX3W4wj6RYTgonm1b9DA==}
+  /vite@7.3.2(@types/node@20.19.39):
+    resolution: {integrity: sha512-Bby3NOsna2jsjfLVOHKes8sGwgl4TT0E6vvpYgnAYDIF/tie7MRaFthmKuHx1NSXjiTueXH3do80FMQgvEktRg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -16877,14 +16877,14 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6):
-    resolution: {integrity: sha512-B9ifbFudT1TFhfltfaIPgjo9Z3mDynBTJSUYxTjOQruf/zHH+ezCQKcoqO+h7a9Pw9Nm/OtlXAiGT1axBgwqrQ==}
+  /vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.17.6):
+    resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
       '@vitejs/devtools': ^0.1.0
-      esbuild: ^0.27.0
+      esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
       sass: ^1.70.0
@@ -16934,14 +16934,14 @@ packages:
       - '@emnapi/runtime'
     dev: true
 
-  /vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0):
-    resolution: {integrity: sha512-B9ifbFudT1TFhfltfaIPgjo9Z3mDynBTJSUYxTjOQruf/zHH+ezCQKcoqO+h7a9Pw9Nm/OtlXAiGT1axBgwqrQ==}
+  /vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(esbuild@0.25.0):
+    resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
       '@vitejs/devtools': ^0.1.0
-      esbuild: ^0.27.0
+      esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
       sass: ^1.70.0
@@ -17027,7 +17027,7 @@ packages:
       '@opentelemetry/api': 1.8.0
       '@types/node': 20.19.39
       '@vitest/expect': 4.0.16
-      '@vitest/mocker': 4.0.16(vite@7.3.1)
+      '@vitest/mocker': 4.0.16(vite@7.3.2)
       '@vitest/pretty-format': 4.0.16
       '@vitest/runner': 4.0.16
       '@vitest/snapshot': 4.0.16
@@ -17044,7 +17044,7 @@ packages:
       tinyexec: 1.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.3.1(@types/node@20.19.39)
+      vite: 7.3.2(@types/node@20.19.39)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - jiti
