@@ -58,8 +58,8 @@ importers:
         specifier: ^16.0.0
         version: 16.3.2
       netlify-cli:
-        specifier: ^24.10.0
-        version: 24.10.0(@types/node@20.19.39)
+        specifier: ^24.11.0
+        version: 24.11.0(@types/node@20.19.39)
       npm-run-all2:
         specifier: ^8.0.0
         version: 8.0.4
@@ -12684,8 +12684,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /netlify-cli@24.10.0(@types/node@20.19.39):
-    resolution: {integrity: sha512-bW04BXG9P77NrSmdCa6TeundyLTG+vERfwqbWuRmslf6dM5rmPvWt9hoiueHjFAxroKmQEzYEAfjo3QDTy2R9w==}
+  /netlify-cli@24.11.0(@types/node@20.19.39):
+    resolution: {integrity: sha512-SL52YCfNQSBPHxg1rKvTiRm+tkWPl6aT+k7nr5+ODFTr7awB4bqC30Z4lmUlQrL7z1OhIoL35b2DnRPuMh9vjA==}
     engines: {node: '>=20.12.2'}
     hasBin: true
     requiresBuild: true
