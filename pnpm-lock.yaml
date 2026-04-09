@@ -107,8 +107,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.2.0
+        version: 5.2.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
@@ -229,8 +229,8 @@ importers:
         version: 5.1.36
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.2.0
+        version: 5.2.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
@@ -308,8 +308,8 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6
       '@netlify/functions':
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.2.0
+        version: 5.2.0
       '@remix-run/node-fetch-server':
         specifier: ^0.13.0
         version: 0.13.0
@@ -3222,6 +3222,13 @@ packages:
 
   /@netlify/functions@5.1.5:
     resolution: {integrity: sha512-mhTl6x3TWoRwNgz8HZ9zvSR9OHB/hDEA6VinBmWY5ubgycKNCerf6XyFaFnujH2Ygx3c32yg6QOOr1v9y8euug==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@netlify/types': 2.6.0
+    dev: true
+
+  /@netlify/functions@5.2.0:
+    resolution: {integrity: sha512-Pj93qeQd1tkQ5xm9gWJZmBf/1riLYqYHc0OzFukrJomrj82Ott53Rr/Q88H1ms5cF+P5QXRKWmA2JSxSybKfjA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@netlify/types': 2.6.0
