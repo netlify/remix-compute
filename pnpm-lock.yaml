@@ -58,8 +58,8 @@ importers:
         specifier: ^16.0.0
         version: 16.3.2
       netlify-cli:
-        specifier: ^24.11.0
-        version: 24.11.0(@types/node@20.19.39)
+        specifier: ^24.11.1
+        version: 24.11.1(@types/node@20.19.39)
       npm-run-all2:
         specifier: ^8.0.0
         version: 8.0.4
@@ -2850,8 +2850,8 @@ packages:
       - supports-color
     dev: true
 
-  /@netlify/build-info@10.4.0:
-    resolution: {integrity: sha512-PZ5PurdaZgZdmg969QBiPb56JKQu6EBu2d/2h5ppq7riYOCL2PfgoZQPqTu6g1JCF5my/SRY0+AJIX1YSEzqHg==}
+  /@netlify/build-info@10.5.0:
+    resolution: {integrity: sha512-2h4aXB6tNiT7M3IbPW94Kbx7ujVaXoBnhoJ/S53FCbTg44F1Y4Wr0gnpkSlZCihePlwTaC5vlz1qKp4bw4sAqQ==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     dependencies:
@@ -2866,8 +2866,8 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@35.11.2(@opentelemetry/api@1.8.0)(@types/node@20.19.39):
-    resolution: {integrity: sha512-y+Dl2HqNs/5r3z8GBCGRDgjEVaKxJCSIjwQBG9QP/BMOIe18stjhDqECCtFvRvZDqVRF4YjgHZ8Q5VWQ5pFvfA==}
+  /@netlify/build@35.12.0(@opentelemetry/api@1.8.0)(@types/node@20.19.39):
+    resolution: {integrity: sha512-3rOq5cbD+QSB9H5YUW5vMSeYRFG6fyHw3MUwrhpc5pHgprSvIU+ravMEdXvHZTHRyUfqvM4rVjyW11qef3Lwcw==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     peerDependencies:
@@ -2894,10 +2894,11 @@ packages:
       ansis: 4.2.0
       clean-stack: 5.2.0
       execa: 8.0.1
-      fdir: 6.5.0(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.3)
       figures: 6.1.0
       filter-obj: 6.1.0
       hot-shots: 11.4.0
+      ignore: 7.0.5
       indent-string: 5.0.0
       is-plain-obj: 4.1.0
       keep-func-props: 6.0.0
@@ -6193,7 +6194,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 2.3.1
+      picomatch: 2.3.2
 
   /archiver-utils@5.0.2:
     resolution: {integrity: sha512-wuLJMmIBQYCsGZgYLTy5FIB2pF6Lfb6cXMSF8Qywwk3t20zWnAi7zLcQFdKQmIB8wyZpY5ER38x08GbwtR2cLA==}
@@ -9546,7 +9547,6 @@ packages:
         optional: true
     dependencies:
       picomatch: 4.0.4
-    dev: true
 
   /fecha@4.2.3:
     resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
@@ -12684,8 +12684,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /netlify-cli@24.11.0(@types/node@20.19.39):
-    resolution: {integrity: sha512-SL52YCfNQSBPHxg1rKvTiRm+tkWPl6aT+k7nr5+ODFTr7awB4bqC30Z4lmUlQrL7z1OhIoL35b2DnRPuMh9vjA==}
+  /netlify-cli@24.11.1(@types/node@20.19.39):
+    resolution: {integrity: sha512-UuoA10MAWP4hl/Y5vRWRmhZpcTUlUHq0wPaXGFsXMtfoLInq+blWoTWYSCV5CS4B66TlMGoKpJhskjyn/ujLhw==}
     engines: {node: '>=20.12.2'}
     hasBin: true
     requiresBuild: true
@@ -12694,8 +12694,8 @@ packages:
       '@netlify/ai': 0.4.1
       '@netlify/api': 14.0.18
       '@netlify/blobs': 10.7.0
-      '@netlify/build': 35.11.2(@opentelemetry/api@1.8.0)(@types/node@20.19.39)
-      '@netlify/build-info': 10.4.0
+      '@netlify/build': 35.12.0(@opentelemetry/api@1.8.0)(@types/node@20.19.39)
+      '@netlify/build-info': 10.5.0
       '@netlify/config': 24.4.4
       '@netlify/dev': 4.16.4
       '@netlify/dev-utils': 4.4.3
@@ -13700,7 +13700,6 @@ packages:
   /picomatch@2.3.2:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
-    dev: true
 
   /picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
@@ -14444,7 +14443,7 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
     dependencies:
-      picomatch: 2.3.1
+      picomatch: 2.3.2
 
   /readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
@@ -16824,7 +16823,7 @@ packages:
     dependencies:
       '@types/node': 20.19.39
       esbuild: 0.21.5
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.59.0
     optionalDependencies:
       fsevents: 2.3.3
@@ -16871,8 +16870,8 @@ packages:
     dependencies:
       '@types/node': 20.19.39
       esbuild: 0.27.7
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
       postcss: 8.5.8
       rollup: 4.52.5
       tinyglobby: 0.2.15
