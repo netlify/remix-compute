@@ -13,7 +13,7 @@ importers:
         version: 3.0.6
       isbot:
         specifier: ^5.0.0
-        version: 5.1.36
+        version: 5.1.37
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.0.0
@@ -98,7 +98,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.36
+        version: 5.1.37
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -168,7 +168,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.36
+        version: 5.1.37
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -226,7 +226,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.36
+        version: 5.1.37
     devDependencies:
       '@netlify/functions':
         specifier: ^5.1.5
@@ -269,7 +269,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.36
+        version: 5.1.37
     devDependencies:
       '@remix-run/react':
         specifier: ^2.16.4
@@ -315,7 +315,7 @@ importers:
         version: 0.13.0
       isbot:
         specifier: ^5.1.25
-        version: 5.1.36
+        version: 5.1.37
       tinyglobby:
         specifier: ^0.2.10
         version: 0.2.15
@@ -2795,8 +2795,8 @@ packages:
     dev: true
     optional: true
 
-  /@napi-rs/wasm-runtime@1.1.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2):
-    resolution: {integrity: sha512-sNXv5oLJ7ob93xkZ1XnxisYhGYXfaG9f65/ZgYuAu3qt7b3NadcOEhLvx28hv31PgX8SZJRYrAIPQilQmFpLVw==}
+  /@napi-rs/wasm-runtime@1.1.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2):
+    resolution: {integrity: sha512-xK9sGVbJWYb08+mTJt3/YV24WxvxpXcXtP6B172paPZ+Ts69Re9dAr7lKwJoeIx8OoeuimEiRZ7umkiUVClmmQ==}
     requiresBuild: true
     peerDependencies:
       '@emnapi/core': ^1.7.1
@@ -4562,7 +4562,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@napi-rs/wasm-runtime': 1.1.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)
+      '@napi-rs/wasm-runtime': 1.1.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -11134,8 +11134,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@5.1.36:
-    resolution: {integrity: sha512-C/ZtXyJqDPZ7G7JPr06ApWyYoHjYexQbS6hPYD4WYCzpv2Qes6Z+CCEfTX4Owzf+1EJ933PoI2p+B9v7wpGZBQ==}
+  /isbot@5.1.37:
+    resolution: {integrity: sha512-5bcicX81xf6NlTEV8rWdg7Pk01LFizDetuYGHx6d/f6y3lR2/oo8IfxjzJqn1UdDEyCcwT9e7NRloj8DwCYujQ==}
     engines: {node: '>=18'}
     dev: false
 
