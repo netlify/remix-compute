@@ -13,7 +13,7 @@ importers:
         version: 3.0.6
       isbot:
         specifier: ^5.0.0
-        version: 5.1.37
+        version: 5.1.40
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.0.0
@@ -98,7 +98,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.37
+        version: 5.1.40
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -168,7 +168,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.37
+        version: 5.1.40
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -226,7 +226,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.37
+        version: 5.1.40
     devDependencies:
       '@netlify/functions':
         specifier: ^5.2.0
@@ -269,7 +269,7 @@ importers:
         version: 2.17.4(typescript@5.7.3)
       isbot:
         specifier: ^5.0.0
-        version: 5.1.37
+        version: 5.1.40
     devDependencies:
       '@remix-run/react':
         specifier: ^2.16.4
@@ -315,7 +315,7 @@ importers:
         version: 0.13.0
       isbot:
         specifier: ^5.1.25
-        version: 5.1.37
+        version: 5.1.40
       tinyglobby:
         specifier: ^0.2.10
         version: 0.2.15
@@ -2787,7 +2787,7 @@ packages:
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
-      '@tybys/wasm-util': 0.10.1
+      '@tybys/wasm-util': 0.10.2
     dev: true
     optional: true
 
@@ -2800,7 +2800,7 @@ packages:
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
-      '@tybys/wasm-util': 0.10.1
+      '@tybys/wasm-util': 0.10.2
     optional: true
 
   /@netlify/ai@0.4.1:
@@ -5167,8 +5167,8 @@ packages:
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  /@tybys/wasm-util@0.10.1:
-    resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
+  /@tybys/wasm-util@0.10.2:
+    resolution: {integrity: sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
@@ -11162,8 +11162,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@5.1.37:
-    resolution: {integrity: sha512-5bcicX81xf6NlTEV8rWdg7Pk01LFizDetuYGHx6d/f6y3lR2/oo8IfxjzJqn1UdDEyCcwT9e7NRloj8DwCYujQ==}
+  /isbot@5.1.40:
+    resolution: {integrity: sha512-yNeeynhhtIVRBk12tBV4eHNxwB42HzR4Q3Ea7vCOiJhImGaAIdIMrbJtacQlBizGLjUPw+akkFI5Dn9T70XoVQ==}
     engines: {node: '>=18'}
     dev: false
 
