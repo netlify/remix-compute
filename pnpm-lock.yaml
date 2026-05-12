@@ -318,7 +318,7 @@ importers:
         version: 5.1.40
       tinyglobby:
         specifier: ^0.2.10
-        version: 0.2.15
+        version: 0.2.16
     devDependencies:
       '@types/react':
         specifier: ^18.0.27
@@ -6206,7 +6206,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       normalize-path: 3.0.0
-      picomatch: 2.3.2
+      picomatch: 2.3.1
 
   /archiver-utils@5.0.2:
     resolution: {integrity: sha512-wuLJMmIBQYCsGZgYLTy5FIB2pF6Lfb6cXMSF8Qywwk3t20zWnAi7zLcQFdKQmIB8wyZpY5ER38x08GbwtR2cLA==}
@@ -8538,7 +8538,7 @@ packages:
       get-tsconfig: 4.13.0
       is-bun-module: 2.0.0
       stable-hash: 0.0.5
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
       unrs-resolver: 1.11.1
     transitivePeerDependencies:
       - supports-color
@@ -13732,6 +13732,7 @@ packages:
   /picomatch@2.3.2:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
+    dev: true
 
   /picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
@@ -14475,7 +14476,7 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
     dependencies:
-      picomatch: 2.3.2
+      picomatch: 2.3.1
 
   /readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
@@ -15853,6 +15854,14 @@ packages:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
+    dev: true
+
+  /tinyglobby@0.2.16:
+    resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
 
   /tinyrainbow@3.0.3:
     resolution: {integrity: sha512-PSkbLUoxOFRzJYjjxHJt9xro7D+iilgMX/C9lawzVuYiIdcihh9DXmVibBe8lmcFrRi/VzlPjBxbN7rH24q8/Q==}
@@ -16129,7 +16138,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tinyexec: 0.3.2
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.16
       tree-kill: 1.2.2
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -16902,11 +16911,11 @@ packages:
     dependencies:
       '@types/node': 20.19.39
       esbuild: 0.27.7
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.3)
+      picomatch: 4.0.3
       postcss: 8.5.8
       rollup: 4.52.5
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -17016,7 +17025,7 @@ packages:
       picomatch: 4.0.4
       postcss: 8.5.8
       rolldown: 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
     optionalDependencies:
       fsevents: 2.3.3
     transitivePeerDependencies:
@@ -17075,7 +17084,7 @@ packages:
       std-env: 3.10.0
       tinybench: 2.9.0
       tinyexec: 1.0.2
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
       tinyrainbow: 3.0.3
       vite: 7.3.2(@types/node@20.19.39)
       why-is-node-running: 2.3.0
