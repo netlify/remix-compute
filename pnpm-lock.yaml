@@ -312,7 +312,7 @@ importers:
         version: 5.2.0
       '@remix-run/node-fetch-server':
         specifier: ^0.13.0
-        version: 0.13.0
+        version: 0.13.1
       isbot:
         specifier: ^5.1.25
         version: 5.1.40
@@ -4326,8 +4326,8 @@ packages:
       express: 4.22.1
       typescript: 5.7.3
 
-  /@remix-run/node-fetch-server@0.13.0:
-    resolution: {integrity: sha512-1EsNo0ZpgXu/90AWoRZf/oE3RVTUS80tiTUpt+hv5pjtAkw7icN4WskDwz/KdAw5ARbJLMhZBrO1NqThmy/McA==}
+  /@remix-run/node-fetch-server@0.13.1:
+    resolution: {integrity: sha512-dOL+A/C84EA47gO/ps52KGrVSiYy96512rwtbXmJfWKYFm1FbrbjA3jao1hcIfao+jwVNEaZ1kTMwFjiino+HQ==}
     dev: false
 
   /@remix-run/node@2.17.4(typescript@5.7.3):
