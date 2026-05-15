@@ -19,6 +19,7 @@
       matchSourceUrls: ['https://github.com/remix-run/remix'],
       // Override the schedule to get immediate PRs.
       schedule: null,
+      minimumReleaseAge: null,
       // Apply a unique label so we can trigger additional workflows for these PRs.
       addLabels: ['bump-framework-in-fixtures'],
       // Bump even if the release isn't tagged as `latest`.
@@ -36,6 +37,7 @@
       matchSourceUrls: ['https://github.com/ReactTraining/react-router', 'https://github.com/remix-run/react-router'],
       // Override the schedule to get immediate PRs.
       schedule: null,
+      minimumReleaseAge: null,
       // Apply a unique label so we can trigger additional workflows for these PRs.
       addLabels: ['bump-framework-in-fixtures'],
       // Bump even if the release isn't tagged as `latest`.
