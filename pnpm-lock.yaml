@@ -107,8 +107,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.3.0
+        version: 5.3.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@remix-run/serve@2.17.4)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
@@ -229,8 +229,8 @@ importers:
         version: 5.1.40
     devDependencies:
       '@netlify/functions':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.3.0
+        version: 5.3.0
       '@remix-run/dev':
         specifier: ^2.16.4
         version: 2.17.4(@remix-run/react@2.16.6)(@types/node@20.19.39)(ts-node@10.9.2)(typescript@5.7.3)(vite@8.0.5)
@@ -308,8 +308,8 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6
       '@netlify/functions':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.3.0
+        version: 5.3.0
       '@remix-run/node-fetch-server':
         specifier: ^0.13.0
         version: 0.13.0
@@ -3224,11 +3224,11 @@ packages:
       '@netlify/types': 2.6.0
     dev: true
 
-  /@netlify/functions@5.2.0:
-    resolution: {integrity: sha512-Pj93qeQd1tkQ5xm9gWJZmBf/1riLYqYHc0OzFukrJomrj82Ott53Rr/Q88H1ms5cF+P5QXRKWmA2JSxSybKfjA==}
+  /@netlify/functions@5.3.0:
+    resolution: {integrity: sha512-FP+xCoZMkMOUsKa4UdG/oiK/2md1/TxuXvqqieaMVMgDbFFMaHI8h0oHCViUY73kPbKV6HyzayaSXGYXKpBSoQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@netlify/types': 2.6.0
+      '@netlify/types': 2.8.0
 
   /@netlify/git-utils@6.0.4:
     resolution: {integrity: sha512-yp5WucNt1PGV+qG9Bq/qXPHZyl375s2AfB7bdoCFi7VeHZzCJ4bZJB9OpWf8lwNKqzkc2njYygNo5kwKavzY/w==}
@@ -3532,6 +3532,10 @@ packages:
 
   /@netlify/types@2.6.0:
     resolution: {integrity: sha512-yD20EizHJDQxajJ66Vo8RTwLwR2jMNVxufPG8MHd2AScX8jW4z0VPnnJHArq2GYPFTFZRHmiAhDrXr5m8zof6w==}
+    engines: {node: ^18.14.0 || >=20}
+
+  /@netlify/types@2.8.0:
+    resolution: {integrity: sha512-8/g0Pt6y6wXj5Ia5eeYLiXhRfWeqZXGXpGFeCiiQdUOem+FPtXdA4+YdGxqzWc7D0AvptKSO01KGeeVWHSu8Kg==}
     engines: {node: ^18.14.0 || >=20}
 
   /@netlify/zip-it-and-ship-it@14.5.3(supports-color@10.2.2):
