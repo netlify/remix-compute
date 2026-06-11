@@ -147,7 +147,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^8.0.0
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6)
+        version: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.7.3)(vite@8.0.5)
@@ -214,7 +214,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^8.0.0
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6)
+        version: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.7.3)(vite@8.0.5)
@@ -254,7 +254,7 @@ importers:
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
       vite:
         specifier: ^8.0.0
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.25.0)
+        version: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.25.0)
 
   packages/remix-edge-adapter:
     dependencies:
@@ -291,13 +291,13 @@ importers:
         version: 8.4.0(postcss@8.5.6)(typescript@5.7.3)
       vite:
         specifier: ^8.0.0
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6)
+        version: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6)
 
   packages/remix-runtime:
     devDependencies:
       '@remix-run/server-runtime':
         specifier: ^2.12.0
-        version: 2.16.6(typescript@5.7.3)
+        version: 2.17.5(typescript@5.7.3)
       tsup:
         specifier: ^8.0.2
         version: 8.4.0(postcss@8.5.8)(typescript@5.7.3)
@@ -340,7 +340,7 @@ importers:
         version: 8.4.0(postcss@8.5.8)(typescript@5.7.3)
       vite:
         specifier: ^8.0.0
-        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.25.0)
+        version: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.25.0)
 
 packages:
 
@@ -1252,23 +1252,23 @@ packages:
     resolution: {integrity: sha512-mZkZfOd9OqTMHsK+1cje8OSzfAQcpD7JmILXTl5ahdempjUDdmg4euf1biDex5/LfQIDJ3gvCu6qDgdnDxfJmA==}
     dev: true
 
-  /@emnapi/core@1.10.0:
-    resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
+  /@emnapi/core@1.11.0:
+    resolution: {integrity: sha512-l9Oo58x0HOP5znGzVhYW9U3e5wVuA4LAZU2AGezTmkhO1CgQRFDhDg4nneHsu/t3WniXg9QrG2nIXL/ZS8ln8Q==}
     requiresBuild: true
     dependencies:
-      '@emnapi/wasi-threads': 1.2.1
+      '@emnapi/wasi-threads': 1.2.2
       tslib: 2.8.1
     optional: true
 
-  /@emnapi/runtime@1.10.0:
-    resolution: {integrity: sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==}
+  /@emnapi/runtime@1.11.0:
+    resolution: {integrity: sha512-55coeOFKHv1ywEcUXJtWU5f+Jr/W5tZDvZig8DLKSwUN1JpROQ4rk/SNOQiFWmaR/VKF4zuFyW1B8JduOSv6Pg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
     optional: true
 
-  /@emnapi/wasi-threads@1.2.1:
-    resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
+  /@emnapi/wasi-threads@1.2.2:
+    resolution: {integrity: sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
@@ -2621,7 +2621,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/runtime': 1.11.0
     dev: true
     optional: true
 
@@ -2785,21 +2785,21 @@ packages:
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
     requiresBuild: true
     dependencies:
-      '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/core': 1.11.0
+      '@emnapi/runtime': 1.11.0
       '@tybys/wasm-util': 0.10.2
     dev: true
     optional: true
 
-  /@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
-    resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
+  /@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0):
+    resolution: {integrity: sha512-AWPoBRJ9tsnVhor4sjO7rkni+7p+2IAEFj6cx06UgP10jkQHqay/36uRV/bFkgrh18D9vb4cr8Q0Pthskgzy+Q==}
     requiresBuild: true
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
     dependencies:
-      '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/core': 1.11.0
+      '@emnapi/runtime': 1.11.0
       '@tybys/wasm-util': 0.10.2
     optional: true
 
@@ -4154,7 +4154,7 @@ packages:
       tsconfig-paths: 4.2.0
       typescript: 5.7.3
       valibot: 1.2.0(typescript@5.7.3)
-      vite: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6)
+      vite: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6)
       vite-node: 3.2.4(@types/node@20.19.39)
       ws: 7.5.10
     transitivePeerDependencies:
@@ -4253,7 +4253,7 @@ packages:
       tsconfig-paths: 4.2.0
       typescript: 5.7.3
       valibot: 1.2.0(typescript@5.7.3)
-      vite: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.25.0)
+      vite: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.25.0)
       vite-node: 3.2.4(@types/node@20.19.39)
       ws: 7.5.10
     transitivePeerDependencies:
@@ -4376,6 +4376,11 @@ packages:
     resolution: {integrity: sha512-Ic6m2U/rMjTkhERIa/0ZtXJP17QUi2CbWE7cqx4J58M8aA3QTfW+2UlQ4psvTX9IO1RfNVhK3pcpdjej7L+t2w==}
     engines: {node: '>=14.0.0'}
 
+  /@remix-run/router@1.23.3:
+    resolution: {integrity: sha512-4An71tdz9X8+3sI4Qqqd2LWd9vS39J7sqd9EU4Scw7TJE/qB10Flv/UuqbPVgfQV9XoK8Np6jNquZitnZq5i+Q==}
+    engines: {node: '>=14.0.0'}
+    dev: true
+
   /@remix-run/serve@2.17.4(typescript@5.7.3):
     resolution: {integrity: sha512-c632agTDib70cytmxMVqSbBMlhFKawcg5048yZZK/qeP2AmUweM7OY6Ivgcmv/pgjLXYOu17UBKhtGU8T5y8cQ==}
     engines: {node: '>=18.0.0'}
@@ -4428,6 +4433,25 @@ packages:
       source-map: 0.7.6
       turbo-stream: 2.4.1
       typescript: 5.7.3
+
+  /@remix-run/server-runtime@2.17.5(typescript@5.7.3):
+    resolution: {integrity: sha512-SyJ5n2pQyo4ERGvjjLvL2PpRWBzlC2qzO5KkkOE2ygOiNcgOu9WQnnom9GI8KgsTRCO8JnIeLHFRcmxZnVBjfw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      typescript: ^5.1.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@remix-run/router': 1.23.3
+      '@types/cookie': 0.6.0
+      '@web3-storage/multipart-parser': 1.0.0
+      cookie: 0.7.2
+      set-cookie-parser: 2.7.2
+      source-map: 0.7.6
+      turbo-stream: 2.4.1
+      typescript: 5.7.3
+    dev: true
 
   /@remix-run/web-blob@3.1.0:
     resolution: {integrity: sha512-owGzFLbqPH9PlKb8KvpNJ0NO74HWE2euAn61eEiyCXX/oteoVzTVSN8mpLgDjaxBf2btj5/nUllSUgpyd6IH6g==}
@@ -4559,13 +4583,13 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@rolldown/binding-wasm32-wasi@1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
+  /@rolldown/binding-wasm32-wasi@1.0.0-rc.12(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0):
     resolution: {integrity: sha512-ykGiLr/6kkiHc0XnBfmFJuCjr5ZYKKofkx+chJWDjitX+KsJuAmrzWhwyOMSHzPhzOHOy7u9HlFoa5MoAOJ/Zg==}
     engines: {node: '>=14.0.0'}
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@napi-rs/wasm-runtime': 1.1.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -6495,8 +6519,8 @@ packages:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
 
-  /bare-events@2.8.2:
-    resolution: {integrity: sha512-riJjyv1/mHLIPX4RwiK+oW9/4c3TEUeORHKefKAKnZ5kyslbN+HXowtbaVEqt4IMUB7OXlfixcs6gsFeo/jhiQ==}
+  /bare-events@2.9.1:
+    resolution: {integrity: sha512-Z0oHEHAFDZkffN8Qc39zNZjQlMDkPJRyyyZieU1VH7u8c5S+qHZ2S8ixdKIAxEjfHO7FJxXmJWgteOghVanIsg==}
     requiresBuild: true
     peerDependencies:
       bare-abort-controller: '*'
@@ -13656,8 +13680,8 @@ packages:
       estree-walker: 3.0.3
       is-reference: 3.0.3
 
-  /pg-cloudflare@1.3.0:
-    resolution: {integrity: sha512-6lswVVSztmHiRtD6I8hw4qP/nDm1EJbKMRhf3HCYaqud7frGysPv7FYJ5noZQdhQtN2xJnimfMtvQq21pdbzyQ==}
+  /pg-cloudflare@1.4.0:
+    resolution: {integrity: sha512-Vo7z/6rrQYxpNRylp4Tlob2elzbh+N/MOQbxFVWCxS7oEx6jF53GTJFxK2WWpKuBRkmiin4Mt+xofFDjx09R0A==}
     requiresBuild: true
     dev: true
     optional: true
@@ -13713,7 +13737,7 @@ packages:
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
-      pg-cloudflare: 1.3.0
+      pg-cloudflare: 1.4.0
     dev: true
 
   /pgpass@1.0.5:
@@ -14736,7 +14760,7 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rolldown@1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
+  /rolldown@1.0.0-rc.12(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0):
     resolution: {integrity: sha512-yP4USLIMYrwpPHEFB5JGH1uxhcslv6/hL0OyvTuY+3qlOSJvZ7ntYnoWpehBxufkgN0cvXxppuTu5hHa/zPh+A==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -14756,7 +14780,7 @@ packages:
       '@rolldown/binding-linux-x64-gnu': 1.0.0-rc.12
       '@rolldown/binding-linux-x64-musl': 1.0.0-rc.12
       '@rolldown/binding-openharmony-arm64': 1.0.0-rc.12
-      '@rolldown/binding-wasm32-wasi': 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@rolldown/binding-wasm32-wasi': 1.0.0-rc.12(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)
       '@rolldown/binding-win32-arm64-msvc': 1.0.0-rc.12
       '@rolldown/binding-win32-x64-msvc': 1.0.0-rc.12
     transitivePeerDependencies:
@@ -15406,7 +15430,7 @@ packages:
       fast-fifo: 1.3.2
       text-decoder: 1.2.3
     optionalDependencies:
-      bare-events: 2.8.2
+      bare-events: 2.9.1
     transitivePeerDependencies:
       - bare-abort-controller
     dev: true
@@ -16816,7 +16840,7 @@ packages:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.7.3)
-      vite: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6)
+      vite: 8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -16910,7 +16934,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.17.6):
+  /vite@8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.17.6):
     resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -16958,7 +16982,7 @@ packages:
       lightningcss: 1.32.0
       picomatch: 4.0.4
       postcss: 8.5.8
-      rolldown: 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      rolldown: 1.0.0-rc.12(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)
       tinyglobby: 0.2.15
     optionalDependencies:
       fsevents: 2.3.3
@@ -16967,7 +16991,7 @@ packages:
       - '@emnapi/runtime'
     dev: true
 
-  /vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@20.19.39)(esbuild@0.25.0):
+  /vite@8.0.5(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@types/node@20.19.39)(esbuild@0.25.0):
     resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -17015,7 +17039,7 @@ packages:
       lightningcss: 1.32.0
       picomatch: 4.0.4
       postcss: 8.5.8
-      rolldown: 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      rolldown: 1.0.0-rc.12(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)
       tinyglobby: 0.2.15
     optionalDependencies:
       fsevents: 2.3.3
