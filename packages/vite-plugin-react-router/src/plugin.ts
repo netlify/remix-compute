@@ -43,6 +43,15 @@ const RESOLVED_FUNCTION_HANDLER_MODULE_ID = `\0${FUNCTION_HANDLER_MODULE_ID}`
 
 const SERVER_ENTRY_MODULE_ID = 'virtual:netlify-server-entry'
 
+// React Router names its server environments `ssr`, or `ssrBundle_*` when the
+// `serverBundles` option is configured.
+// See https://github.com/remix-run/react-router/blob/main/packages/react-router-dev/vite/plugin.ts
+const SSR_ENVIRONMENT_NAME = 'ssr'
+const SSR_BUNDLE_ENVIRONMENT_PREFIX = 'ssrBundle_'
+
+const isServerEnvironmentName = (name: string) =>
+  name === SSR_ENVIRONMENT_NAME || name.startsWith(SSR_BUNDLE_ENVIRONMENT_PREFIX)
+
 const toPosixPath = (path: string) => path.split(sep).join(posixSep)
 
 // Note: these are checked in order. The first match is used.
@@ -174,6 +183,46 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         return configChanges
       }
     },
+    // React Router builds with the Vite Environment API (the default in React Router 8,
+    // opt-in via the `future.unstable_viteEnvironmentApi`/`future.v8_viteEnvironmentApi`
+    // flags in React Router 7) never set the legacy `isSsrBuild` flag handled in `config`
+    // above, so we configure each server environment here instead. In legacy SSR builds on
+    // Vite 6+ this hook also runs, but the merges below are idempotent with the `config`
+    // hook's changes.
+    configEnvironment(name, environmentConfig, env) {
+      if (env.command !== 'build' || !isServerEnvironmentName(name)) {
+        return
+      }
+
+      return {
+        build: {
+          rollupOptions: {
+            // Add our function handler entry, preserving any existing input entries (e.g.
+            // React Router's virtual server build module).
+            input: mergeRollupInput(environmentConfig.build?.rollupOptions?.input, {
+              [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
+            }),
+            output: {
+              // NOTE: must use function syntax here to work around Shopify CLI reading
+              // the config value literally (i.e. trying to stat `[name].js` as a filename).
+              entryFileNames: () => '[name].js',
+            },
+          },
+        },
+        // Additional config needed for Edge Functions if enabled. This mirrors the legacy
+        // top-level `ssr` config returned from the `config` hook above.
+        ...(edge
+          ? {
+              resolve: {
+                // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
+                // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+                noExternal: /^(?!node:).*$/,
+                conditions: ['worker', 'deno', 'browser'],
+              },
+            }
+          : {}),
+      }
+    },
     async resolveId(source, importer, options) {
       // Hydrogen sites provide their own server entry (server.ts) and entry.server.tsx,
       // so we skip resolution of our virtual modules.
@@ -283,15 +332,28 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
-      if (isProductionSsrBuild) {
-        const handlerPath = join(resolvedConfig.build.outDir, `${FUNCTION_HANDLER_CHUNK}.js`)
+      // In Environment API builds, `isProductionSsrBuild` is never set (see
+      // `configEnvironment`), so we detect server builds via the environment name instead.
+      // In legacy SSR builds, `this.environment` is the `ssr` environment on Vite 6+, and
+      // on older Vite versions (which don't define `this.environment`) we fall back to the
+      // legacy flag.
+      const isServerBuild =
+        currentCommand === 'build' &&
+        (this.environment ? isServerEnvironmentName(this.environment.name) : isProductionSsrBuild)
+
+      if (isServerBuild) {
+        const outDir = resolve(
+          resolvedConfig.root,
+          this.environment?.config.build.outDir ?? resolvedConfig.build.outDir,
+        )
+        const handlerPath = join(outDir, `${FUNCTION_HANDLER_CHUNK}.js`)
 
         if (edge) {
           // Edge Functions do not have a `preferStatic` option, so we must exhaustively exclude
           // static files to serve them from the CDN without compute.
           // RR7's build out dir contains /server and /client subdirectories. This is documented and
           // not configurable, so the client out dir is always at ../client from the server out dir.
-          const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
+          const clientDir = join(outDir, '..', 'client')
           const clientFiles = await glob('**/*', {
             cwd: clientDir,
             // We can't exclude entire directories because there could be `foo/bar.baz` in the
