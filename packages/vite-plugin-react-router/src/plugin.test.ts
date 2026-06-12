@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -100,7 +101,7 @@ describe('writeBundle', () => {
     await plugin.writeBundle.call({
       environment: { name: 'client', config: { build: { outDir: join(root, 'build', 'client') } } },
     })
-    await expect(readFile(join(root, '.netlify/v1/functions/react-router-server.mjs'), 'utf8')).rejects.toThrow()
+    expect(existsSync(join(root, '.netlify/v1/functions/react-router-server.mjs'))).toBe(false)
   })
 
   it('falls back to the legacy isSsrBuild flag when there is no environment', async () => {

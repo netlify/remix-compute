@@ -344,7 +344,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       if (isServerBuild) {
         const outDir = resolve(
           resolvedConfig.root,
-          this.environment?.config.build.outDir ?? resolvedConfig.build.outDir,
+          this.environment?.config?.build?.outDir ?? resolvedConfig.build.outDir,
         )
         const handlerPath = join(outDir, `${FUNCTION_HANDLER_CHUNK}.js`)
 
