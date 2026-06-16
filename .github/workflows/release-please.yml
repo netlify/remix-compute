@@ -39,12 +39,5 @@ jobs:
         run: pnpm install
       - run: pnpm build:packages
         if: ${{ steps.release.outputs.releases_created }}
-      - name: Authenticate pnpm
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
-        if: ${{ steps.release.outputs.releases_created }}
-        env:
-          NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: pnpm -r publish --filter "@netlify/*"
-        env:
-          NPM_CONFIG_PROVENANCE: true
+      - run: pnpm -r publish --filter "@netlify/*" --provenance
         if: ${{ steps.release.outputs.releases_created }}
