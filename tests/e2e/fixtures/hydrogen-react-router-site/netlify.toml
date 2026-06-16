@@ -4,6 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "24"
+  # react-router's `module-sync` export makes Node resolve it to ESM under require(), which our
+  # vite plugins do mid-load — tripping a require(esm) cycle bug (ERR_REQUIRE_CYCLE_MODULE) on
+  # Node before 22.22/24. Opt out of require(esm) so react-router resolves to CJS instead. See
+  # https://github.com/nodejs/node/issues/57869
+  NODE_OPTIONS = "--no-experimental-require-module"
 
 [dev]
   command = "npm run dev"
