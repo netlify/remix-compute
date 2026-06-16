@@ -1,3 +1,14 @@
 packages:
   - packages/*
   - demos/*
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: true
+  netlify-cli: true
+  sharp: false
+  unix-dgram: true
+  unrs-resolver: true
+blockExoticSubdeps: true
+minimumReleaseAge: 720 # npm breaches are almost always resolved within 12 hours
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 720

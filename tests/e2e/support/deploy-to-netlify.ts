@@ -59,8 +59,8 @@ const packages = [
  */
 const prepareDeps = async (cwd: string, packagesAbsoluteDir: string): Promise<void> => {
   const packageJson = JSON.parse(await readFile(`${cwd}/package.json`, 'utf-8'))
-  packageJson.pnpm ??= { overrides: {} }
   const { dependencies = {}, devDependencies = {} } = packageJson
+  const overrides: Record<string, string> = {}
   for (const pkg of packages) {
     if (pkg.name in dependencies || pkg.name in devDependencies) {
       const isDevDep = pkg.name in devDependencies
@@ -70,11 +70,24 @@ const prepareDeps = async (cwd: string, packagesAbsoluteDir: string): Promise<vo
       })
       const [{ filename }] = JSON.parse(stdout)
       // Ensure that even a transitive dependency on this package is overridden.
-      packageJson.pnpm.overrides[pkg.name] = `file:${filename}`
+      overrides[pkg.name] = `file:${filename}`
     }
   }
-  await writeFile(`${cwd}/package.json`, JSON.stringify(packageJson, null, 2))
-  await execaCommand('pnpm install', { cwd })
+  // As of pnpm 11, `overrides` in `package.json` is silently ignored; it must live in
+  // `pnpm-workspace.yaml`.
+  await writeFile(join(cwd, 'pnpm-workspace.yaml'), buildWorkspaceYaml(overrides))
+  // pnpm 10+ blocks dependency build scripts by default. Using this flag isn't ideal, but
+  // the blast radius is small-ish and I can't come up with a better solution.
+  await execaCommand('pnpm install --dangerously-allow-all-builds', { cwd })
+}
+
+/** Build a `pnpm-workspace.yaml` pinning the injected local packages to the freshly packed builds. */
+const buildWorkspaceYaml = (overrides: Record<string, string>): string => {
+  const lines = ['overrides:']
+  for (const [name, value] of Object.entries(overrides)) {
+    lines.push(`  '${name}': '${value}'`)
+  }
+  return `${lines.join('\n')}\n`
 }
 
 const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
