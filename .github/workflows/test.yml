@@ -15,11 +15,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
       - name: Installing Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: corepack enable
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
@@ -44,11 +45,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
       - name: Installing Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: corepack enable
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:

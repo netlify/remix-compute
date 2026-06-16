@@ -33,7 +33,8 @@ jobs:
           # Should match the `DENO_VERSION_RANGE` from https://github.com/netlify/build/blob/8ff162649f76a9586dd7593198c0fa798dac3629/packages/edge-bundler/node/bridge.ts#L22
           deno-version: v2.4.2
         if: ${{ steps.release.outputs.releases_created }}
-      - run: corepack enable
+      - name: Install pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
       - name: Install dependencies
         run: pnpm install
       - run: pnpm build:packages
