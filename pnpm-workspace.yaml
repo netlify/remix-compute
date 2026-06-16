@@ -9,6 +9,5 @@ allowBuilds:
   unix-dgram: true
   unrs-resolver: true
 blockExoticSubdeps: true
-minimumReleaseAge: 720 # npm breaches are almost always resolved within 12 hours
 trustPolicy: no-downgrade
-trustPolicyIgnoreAfter: 720
+trustPolicyIgnoreAfter: 720 # npm breaches are almost always resolved within 12 hours
