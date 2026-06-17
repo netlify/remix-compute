@@ -35,14 +35,47 @@ interface WorkerFixtures {
    * NOTE: `PUBLIC_STORE_DOMAIN` and `SESSION_SECRET` are populated for this fixture
    */
   hydrogenReactRouterSite: Fixture
+
   /**
-   * A React Router 7 site using origin SSR
+   * A React Router 7 site using origin SSR, Vite 6
    */
   reactRouterServerlessSite: Fixture
   /**
-   * A React Router 7 site using edge SSR
+   * A React Router 7 site using edge SSR, Vite 6
    */
   reactRouterEdgeSite: Fixture
+  /**
+   * A React Router 7 site using origin SSR, Vite 7
+   */
+  reactRouterServerlessSiteRR7Vite7: Fixture
+  /**
+   * A React Router 7 site using edge SSR, Vite 7
+   */
+  reactRouterEdgeSiteRR7Vite7: Fixture
+  /**
+   * A React Router 7 site using origin SSR, Vite 8
+   */
+  reactRouterServerlessSiteRR7Vite8: Fixture
+  /**
+   * A React Router 7 site using edge SSR, Vite 8
+   */
+  reactRouterEdgeSiteRR7Vite8: Fixture
+  /**
+   * A React Router 8 site using origin SSR, Vite 7
+   */
+  reactRouterServerlessSiteV8: Fixture
+  /**
+   * A React Router 8 site using edge SSR, Vite 7
+   */
+  reactRouterEdgeSiteV8: Fixture
+  /**
+   * A React Router 8 site using origin SSR, Vite 8
+   */
+  reactRouterServerlessSiteV8Vite8: Fixture
+  /**
+   * A React Router 8 site using edge SSR, Vite 8
+   */
+  reactRouterEdgeSiteV8Vite8: Fixture
   /**
    * A React Router 7 site using origin SSR and opted in to the `future.v8_middleware` flag
    */
@@ -107,6 +140,62 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   reactRouterEdgeSite: [
     async ({}, use) => {
       const fixture = await deployFixture('react-router-edge-site')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessSiteRR7Vite7: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-site', { overrides: { vite: '^7.0.0' } })
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeSiteRR7Vite8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-site', { overrides: { vite: '^8.0.0' } })
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessSiteRR7Vite8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-site', { overrides: { vite: '^8.0.0' } })
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeSiteRR7Vite7: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-site', { overrides: { vite: '^7.0.0' } })
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessSiteV8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-site-v8')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeSiteV8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-site-v8')
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterServerlessSiteV8Vite8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-serverless-site-v8', { overrides: { vite: '^8.0.0' } })
+      await use(fixture)
+    },
+    { scope: 'worker' },
+  ],
+  reactRouterEdgeSiteV8Vite8: [
+    async ({}, use) => {
+      const fixture = await deployFixture('react-router-edge-site-v8', { overrides: { vite: '^8.0.0' } })
       await use(fixture)
     },
     { scope: 'worker' },
