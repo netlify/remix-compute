@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ['20.6.1', '24']
+        node-version: ['22.13.0', '24']
 
     steps:
       - name: Checkout
@@ -24,12 +24,14 @@ jobs:
           private-key: ${{ secrets.TOKENS_PRIVATE_KEY }}
           app-id: ${{ secrets.TOKENS_APP_ID }}
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
       - name: Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: corepack enable
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
