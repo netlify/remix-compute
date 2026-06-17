@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "rm -rf dist && tsup-node",
+    "build": "rm -rf dist && tsdown",
     "build:watch": "pnpm run build --watch",
     "publint": "publint --strict"
   },
@@ -63,7 +63,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^7.9.4",
-    "tsup": "^8.0.2",
+    "tsdown": "^0.22.2",
     "vite": "^8.0.0"
   },
   "peerDependencies": {
