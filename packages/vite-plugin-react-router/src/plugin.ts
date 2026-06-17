@@ -122,57 +122,62 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   const edge = options.edge ?? false
   const additionalExcludedPaths = options.excludedPaths ?? []
   let resolvedConfig: ResolvedConfig
-  let isProductionSsrBuild = false
   let currentCommand: 'build' | 'serve' | undefined
   let isHydrogenSite = false
   let userServerFile: string | undefined
 
   return {
     name: 'vite-plugin-netlify-react-router',
-    config(_config, { command, isSsrBuild }) {
+    applyToEnvironment: (environment) => environment.config.consumer === 'server',
+    config(config, { command }) {
       currentCommand = command
-      isProductionSsrBuild = isSsrBuild === true && command === 'build'
+      if (command !== 'build') return
 
-      if (isProductionSsrBuild) {
-        // Server bundle entry for our own server entry point (which is imported by our Netlify
-        // function handler via a virtual module), while preserving any existing rollup input
-        // entries (e.g., from react-router's prerender).
-        const functionHandlerInput = {
-          [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
-        }
-        // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
-        // cross-type merging for `rollupOptions.input` (string/array/object).
-        const mergedInput = mergeRollupInput(_config.build?.rollupOptions?.input, functionHandlerInput)
+      // Server bundle entry for our own server entry point (which is imported by our Netlify
+      // function handler via a virtual module), while preserving any existing rollup input
+      // entries (e.g., from react-router's prerender / its own server build).
+      const functionHandlerInput = {
+        [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
+      }
+      // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
+      // cross-type merging for `rolldownOptions.input` (string/array/object).
+      const buildOpts = config.environments?.ssr?.build
+      const mergedInput = mergeRollupInput(
+        (buildOpts?.rolldownOptions ?? buildOpts?.rollupOptions)?.input,
+        functionHandlerInput,
+      )
 
-        const configChanges = {
-          build: {
-            rollupOptions: {
-              input: mergedInput,
-              output: {
-                // NOTE: must use function syntax here to work around Shopify CLI reading
-                // the config value literally (i.e. trying to stat `[name].js` as a filename).
-                entryFileNames: () => '[name].js',
+      const configChanges = {
+        environments: {
+          ssr: {
+            build: {
+              // TODO(serhalp): Change to `rolldownOptions` when we no longer support Vite <8
+              rollupOptions: {
+                input: mergedInput,
+                output: {
+                  // NOTE: must use function syntax here to work around Shopify CLI reading
+                  // the config value literally (i.e. trying to stat `[name].js` as a filename).
+                  entryFileNames: () => '[name].js',
+                },
               },
             },
-          },
-          // Additional config needed for Edge Functions if enabled
-          ...(edge
-            ? {
-                ssr: {
-                  target: 'webworker' as const,
-                  // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
-                  // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
-                  noExternal: /^(?!node:).*$/,
+            // Additional config needed for Edge Functions if enabled
+            ...(edge
+              ? {
                   resolve: {
+                    // Bundle everything except Node.js built-ins (which are supported but must use
+                    // the `node:` prefix):
+                    // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+                    noExternal: /^(?!node:).*$/,
                     conditions: ['worker', 'deno', 'browser'],
                   },
-                },
-              }
-            : {}),
-        }
-
-        return configChanges
+                }
+              : {}),
+          },
+        },
       }
+
+      return configChanges
     },
     async resolveId(source, importer, options) {
       // Hydrogen sites provide their own server entry (server.ts) and entry.server.tsx,
@@ -219,14 +224,10 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           // Hydrogen sites use their own server.ts as the SSR entry.
           userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
 
-          if (isProductionSsrBuild) {
-            if (
-              config.build?.rollupOptions?.input &&
-              typeof config.build.rollupOptions.input === 'object' &&
-              !Array.isArray(config.build.rollupOptions.input)
-            ) {
-              config.build.rollupOptions.input[FUNCTION_HANDLER_CHUNK] = userServerFile
-            }
+          const buildOpts = config.environments?.ssr?.build
+          const ssrInput = (buildOpts.rolldownOptions ?? buildOpts.rollupOptions)?.input
+          if (ssrInput && typeof ssrInput === 'object' && !Array.isArray(ssrInput)) {
+            ssrInput[FUNCTION_HANDLER_CHUNK] = userServerFile
           }
         }
       },
@@ -283,43 +284,42 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
-      if (isProductionSsrBuild) {
-        const handlerPath = join(resolvedConfig.build.outDir, `${FUNCTION_HANDLER_CHUNK}.js`)
+      const ssrOutDir = this.environment.config.build.outDir
+      const handlerPath = join(ssrOutDir, `${FUNCTION_HANDLER_CHUNK}.js`)
 
-        if (edge) {
-          // Edge Functions do not have a `preferStatic` option, so we must exhaustively exclude
-          // static files to serve them from the CDN without compute.
-          // RR7's build out dir contains /server and /client subdirectories. This is documented and
-          // not configurable, so the client out dir is always at ../client from the server out dir.
-          const clientDir = join(resolvedConfig.build.outDir, '..', 'client')
-          const clientFiles = await glob('**/*', {
-            cwd: clientDir,
-            // We can't exclude entire directories because there could be `foo/bar.baz` in the
-            // client dir and a `/foo` route handled by the server function.
-            onlyFiles: true,
-            dot: true,
-          })
-          const excludedPath = ['/.netlify/*', ...clientFiles.map((file) => `/${file}`), ...additionalExcludedPaths]
+      if (edge) {
+        // Edge Functions do not have a `preferStatic` option, so we must exhaustively exclude
+        // static files to serve them from the CDN without compute.
+        // RR's build out dir contains /server and /client subdirectories. This is documented and
+        // not configurable, so the client out dir is always at ../client from the server out dir.
+        const clientDir = join(ssrOutDir, '..', 'client')
+        const clientFiles = await glob('**/*', {
+          cwd: clientDir,
+          // We can't exclude entire directories because there could be `foo/bar.baz` in the
+          // client dir and a `/foo` route handled by the server function.
+          onlyFiles: true,
+          dot: true,
+        })
+        const excludedPath = ['/.netlify/*', ...clientFiles.map((file) => `/${file}`), ...additionalExcludedPaths]
 
-          // Write the server entry point to the Netlify Edge Functions directory
-          const edgeFunctionsDir = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)
-          await mkdir(edgeFunctionsDir, { recursive: true })
-          const relativeHandlerPath = toPosixPath(relative(edgeFunctionsDir, handlerPath))
-          await writeFile(
-            join(edgeFunctionsDir, FUNCTION_FILENAME),
-            generateEdgeFunction(relativeHandlerPath, excludedPath),
-          )
-        } else {
-          // Write the server entry point to the Netlify Functions directory
-          const functionsDir = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
-          await mkdir(functionsDir, { recursive: true })
-          const relativeHandlerPath = toPosixPath(relative(functionsDir, handlerPath))
-          const excludedPath = ['/.netlify/*', ...additionalExcludedPaths]
-          await writeFile(
-            join(functionsDir, FUNCTION_FILENAME),
-            generateNetlifyFunction(relativeHandlerPath, excludedPath),
-          )
-        }
+        // Write the server entry point to the Netlify Edge Functions directory
+        const edgeFunctionsDir = join(resolvedConfig.root, NETLIFY_EDGE_FUNCTIONS_DIR)
+        await mkdir(edgeFunctionsDir, { recursive: true })
+        const relativeHandlerPath = toPosixPath(relative(edgeFunctionsDir, handlerPath))
+        await writeFile(
+          join(edgeFunctionsDir, FUNCTION_FILENAME),
+          generateEdgeFunction(relativeHandlerPath, excludedPath),
+        )
+      } else {
+        // Write the server entry point to the Netlify Functions directory
+        const functionsDir = join(resolvedConfig.root, NETLIFY_FUNCTIONS_DIR)
+        await mkdir(functionsDir, { recursive: true })
+        const relativeHandlerPath = toPosixPath(relative(functionsDir, handlerPath))
+        const excludedPath = ['/.netlify/*', ...additionalExcludedPaths]
+        await writeFile(
+          join(functionsDir, FUNCTION_FILENAME),
+          generateNetlifyFunction(relativeHandlerPath, excludedPath),
+        )
       }
     },
   }
