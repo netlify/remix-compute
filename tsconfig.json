@@ -95,5 +95,13 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["node_modules", "demos", "tests/e2e/fixtures"]
+  "exclude": [
+    "node_modules",
+    "demos",
+    "tests/e2e/fixtures",
+    // Exclude code that will run in a Deno env. See `tsconfig.deno.json` for those.
+    "packages/remix-runtime",
+    "packages/vite-plugin-react-router/src/runtimes/netlify-edge-functions.ts",
+    "packages/vite-plugin-react-router/src/entry.server.edge.tsx"
+  ]
 }

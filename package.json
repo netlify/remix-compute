@@ -17,7 +17,9 @@
     "test": "pnpm run typecheck && pnpm run format:check && pnpm run test:unit && pnpm run test:e2e",
     "test:e2e": "pnpm run build:packages && pnpm exec playwright test",
     "test:unit": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "run-s typecheck:node typecheck:deno",
+    "typecheck:node": "tsc --noEmit -p tsconfig.json",
+    "typecheck:deno": "tsc --noEmit -p tsconfig.deno.json"
   },
   "repository": {
     "type": "git",

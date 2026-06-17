@@ -35,7 +35,7 @@ async function createKey(secret: string, usages: CryptoKey['usages']): Promise<C
   return key
 }
 
-function byteStringToUint8Array(byteString: string): Uint8Array {
+function byteStringToUint8Array(byteString: string): Uint8Array<ArrayBuffer> {
   const array = new Uint8Array(byteString.length)
 
   for (let i = 0; i < byteString.length; i++) {

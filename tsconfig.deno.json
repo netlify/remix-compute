@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": []
+  },
+  "include": [
+    "packages/remix-runtime/src",
+    "packages/vite-plugin-react-router/src/runtimes/netlify-edge-functions.ts",
+    "packages/vite-plugin-react-router/src/entry.server.edge.tsx"
+  ],
+  // Override the base config's `exclude`
+  "exclude": ["node_modules"]
+}
