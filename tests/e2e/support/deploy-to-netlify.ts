@@ -16,12 +16,19 @@ export interface Fixture {
   logs: string
 }
 
+/** Options controlling how a fixture is prepared before deploy. */
+export interface DeployFixtureOptions {
+  /** Extra pnpm `overrides` to inject into the fixture before install */
+  overrides?: Record<string, string>
+}
+
 /**
  * Prepare an instance of the given fixture site and deploy it to Netlify.
  * @param fixtureName name of the folder inside the fixtures folder
+ * @param options see {@link DeployFixtureOptions}
  */
-export const deployFixture = async (fixtureName: string): Promise<Fixture> => {
-  const isolatedFixtureRoot = await prepareFixture(fixtureName)
+export const deployFixture = async (fixtureName: string, options: DeployFixtureOptions = {}): Promise<Fixture> => {
+  const isolatedFixtureRoot = await prepareFixture(fixtureName, options)
   const result = await deploySite(isolatedFixtureRoot)
   return result
 }
@@ -30,14 +37,14 @@ export const deployFixture = async (fixtureName: string): Promise<Fixture> => {
  * Copy a fixture site to an isolated temp directory, prepare its dependencies, link it against any
  * applicable local packages, and make it deployable to Netlify.
  */
-const prepareFixture = async (fixtureName: string): Promise<string> => {
+const prepareFixture = async (fixtureName: string, options: DeployFixtureOptions): Promise<string> => {
   const isolatedFixtureRoot = await mkdtemp(join(tmpdir(), 'netlify-remix-compute-e2e-'))
   console.log(`📂 Copying fixture '${fixtureName}' to '${isolatedFixtureRoot}'...`)
 
   const src = fileURLToPath(new URL(`../fixtures/${fixtureName}`, import.meta.url))
   await copyFixture(src, isolatedFixtureRoot)
 
-  await prepareDeps(isolatedFixtureRoot, resolve('.', 'packages'))
+  await prepareDeps(isolatedFixtureRoot, resolve('.', 'packages'), options.overrides ?? {})
 
   await execaCommand('git init', { cwd: isolatedFixtureRoot })
 
@@ -57,10 +64,16 @@ const packages = [
  * We can't use a simpler approach like a monorepo workspace or `npm link` because the fixture site
  * needs to be self-contained to be deployable to Netlify (i.e. it can't have symlinks).
  */
-const prepareDeps = async (cwd: string, packagesAbsoluteDir: string): Promise<void> => {
+const prepareDeps = async (
+  cwd: string,
+  packagesAbsoluteDir: string,
+  extraOverrides: Record<string, string>,
+): Promise<void> => {
   const packageJson = JSON.parse(await readFile(`${cwd}/package.json`, 'utf-8'))
   const { dependencies = {}, devDependencies = {} } = packageJson
-  const overrides: Record<string, string> = {}
+  // Caller-supplied overrides (e.g. pinning a Vite major) seed the map; local-package links are
+  // added below. Links take precedence to ensure we always test the local build.
+  const overrides: Record<string, string> = { ...extraOverrides }
   for (const pkg of packages) {
     if (pkg.name in dependencies || pkg.name in devDependencies) {
       const isDevDep = pkg.name in devDependencies
