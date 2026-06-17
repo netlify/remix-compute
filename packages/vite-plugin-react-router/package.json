@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "prepack": "pnpm run build",
-    "build": "rm -rf dist && tsdown",
+    "build": "tsdown",
     "build:watch": "pnpm run build --watch",
     "publint": "publint --strict"
   },
