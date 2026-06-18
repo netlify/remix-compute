@@ -131,6 +131,9 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
     applyToEnvironment: (environment) => environment.config.consumer === 'server',
     config(_config, { command }) {
       currentCommand = command
+      if (edge && command === 'build') {
+        return { ssr: { target: 'webworker' } }
+      }
     },
     // Must use `configEnvironment` hook to ensure React Router has already configured its own entry
     configEnvironment(name, environmentConfig, env) {
