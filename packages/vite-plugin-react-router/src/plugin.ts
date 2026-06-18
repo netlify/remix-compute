@@ -171,6 +171,16 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
           // Hydrogen sites use their own server.ts as the SSR entry; fail early (with an actionable
           // message) if it's missing. It's also used by the dev middleware below.
           userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
+
+          // Make `server.ts` the SSR build's entry, replacing React Router's default server build
+          // (which `server.ts` imports and wraps).
+          const buildOpts = config.environments?.ssr?.build
+          if (buildOpts?.rolldownOptions) {
+            config.environments.ssr.build.rolldownOptions.input = join(config.root, userServerFile)
+            // TODO(serhalp): Remove once Vite 7(?) no longer supported.
+          } else if (buildOpts?.rollupOptions) {
+            config.environments.ssr.build.rollupOptions.input = join(config.root, userServerFile)
+          }
         }
       },
     },
