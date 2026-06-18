@@ -284,7 +284,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
     async writeBundle() {
-      const ssrOutDir = this.environment.config.build.outDir
+      const ssrOutDir = resolve(resolvedConfig.root, this.environment.config.build.outDir)
       const handlerPath = join(ssrOutDir, `${FUNCTION_HANDLER_CHUNK}.js`)
 
       if (edge) {
