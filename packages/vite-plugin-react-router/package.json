@@ -2,32 +2,25 @@
   "name": "@netlify/vite-plugin-react-router",
   "version": "3.1.1",
   "description": "React Router 7+ Vite plugin for Netlify",
-  "type": "commonjs",
+  "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./serverless": {
-      "types": "./dist/serverless.d.mts",
-      "default": "./dist/serverless.mjs"
+      "types": "./dist/serverless.d.ts",
+      "default": "./dist/serverless.js"
     },
     "./edge": {
-      "types": "./dist/edge.d.mts",
-      "default": "./dist/edge.mjs"
+      "types": "./dist/edge.d.ts",
+      "default": "./dist/edge.js"
     },
     "./entry.server.edge": {
-      "types": "./dist/entry.server.edge.d.mts",
-      "default": "./dist/entry.server.edge.mjs"
+      "types": "./dist/entry.server.edge.d.ts",
+      "default": "./dist/entry.server.edge.js"
     }
   },
   "files": [
