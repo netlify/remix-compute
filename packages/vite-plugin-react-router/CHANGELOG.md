@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.0.0](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v3.1.1...vite-plugin-react-router-v4.0.0) (2026-06-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* publish ESM only, remove CJS build ([#713](https://github.com/netlify/remix-compute/issues/713))
+* require vite 6+, node.js 22.22+ ([#712](https://github.com/netlify/remix-compute/issues/712))
+
+### Features
+
+* publish ESM only, remove CJS build ([#713](https://github.com/netlify/remix-compute/issues/713)) ([1dece2c](https://github.com/netlify/remix-compute/commit/1dece2c82ff3011e20dfb953149f932cdf42e6ce))
+* require vite 6+, node.js 22.22+ ([#712](https://github.com/netlify/remix-compute/issues/712)) ([a99b5c4](https://github.com/netlify/remix-compute/commit/a99b5c48be7cfb9ac4f1b87856c97bfdecb3f53f))
+* support Vite Env API and React Router 8 ([#714](https://github.com/netlify/remix-compute/issues/714)) ([eeb3a82](https://github.com/netlify/remix-compute/commit/eeb3a82695d56ac5c98b1a9b0df77f44a76d90c9))
+
 ## [3.1.1](https://github.com/netlify/remix-compute/compare/vite-plugin-react-router-v3.1.0...vite-plugin-react-router-v3.1.1) (2026-03-16)
 
 
