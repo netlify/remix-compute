@@ -141,7 +141,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       }
       // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
       // cross-type merging for `rolldownOptions.input` (string/array/object).
-      const buildOpts = config.environments?.ssr?.build
+      const buildOpts = config.environments?.ssr?.build ?? config?.build
       const mergedInput = mergeRollupInput(
         (buildOpts?.rolldownOptions ?? buildOpts?.rollupOptions)?.input,
         functionHandlerInput,
