@@ -129,9 +129,14 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
   return {
     name: 'vite-plugin-netlify-react-router',
     applyToEnvironment: (environment) => environment.config.consumer === 'server',
-    config(config, { command }) {
+    config(_config, { command }) {
       currentCommand = command
-      if (command !== 'build') return
+    },
+    // Must use `configEnvironment` hook to ensure React Router has already configured its own entry
+    configEnvironment(name, environmentConfig, env) {
+      if (env.command !== 'build') return
+      // Ideally we would never match on env name, but `consumer` is not available here? :/
+      if (name !== 'ssr') return
 
       // Server bundle entry for our own server entry point (which is imported by our Netlify
       // function handler via a virtual module), while preserving any existing rollup input
@@ -141,40 +146,35 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       }
       // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
       // cross-type merging for `rolldownOptions.input` (string/array/object).
-      const buildOpts = config.environments?.ssr?.build
+      const buildOpts = environmentConfig.build
       const mergedInput = mergeRollupInput(
         (buildOpts?.rolldownOptions ?? buildOpts?.rollupOptions)?.input,
         functionHandlerInput,
       )
 
       const configChanges = {
-        environments: {
-          ssr: {
-            build: {
-              // TODO(serhalp): Change to `rolldownOptions` when we no longer support Vite <8
-              rollupOptions: {
-                input: mergedInput,
-                output: {
-                  // NOTE: must use function syntax here to work around Shopify CLI reading
-                  // the config value literally (i.e. trying to stat `[name].js` as a filename).
-                  entryFileNames: () => '[name].js',
-                },
-              },
+        build: {
+          // TODO(serhalp): Change to `rolldownOptions` when we no longer support Vite <8.
+          rollupOptions: {
+            input: mergedInput,
+            output: {
+              // NOTE: must use function syntax here to work around Shopify CLI reading
+              // the config value literally (i.e. trying to stat `[name].js` as a filename).
+              entryFileNames: () => '[name].js',
             },
-            // Additional config needed for Edge Functions if enabled
-            ...(edge
-              ? {
-                  resolve: {
-                    // Bundle everything except Node.js built-ins (which are supported but must use
-                    // the `node:` prefix):
-                    // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
-                    noExternal: /^(?!node:).*$/,
-                    conditions: ['worker', 'deno', 'browser'],
-                  },
-                }
-              : {}),
           },
         },
+        // Additional config needed for Edge Functions if enabled
+        ...(edge
+          ? {
+              resolve: {
+                // Bundle everything except Node.js built-ins (which are supported but must use the
+                // `node:` prefix): https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+                noExternal: /^(?!node:).*$/,
+                conditions: ['worker', 'deno', 'browser'],
+              },
+            }
+          : {}),
       }
 
       return configChanges
