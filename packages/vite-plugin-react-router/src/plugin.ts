@@ -3,11 +3,10 @@ import { dirname, join, relative, resolve, sep } from 'node:path'
 import { sep as posixSep } from 'node:path/posix'
 
 import { createRequest, sendResponse } from '@remix-run/node-fetch-server'
-import type { Plugin, ResolvedConfig } from 'vite'
+import type { Plugin, ResolvedConfig, Rollup } from 'vite'
 import { glob } from 'tinyglobby'
 
 import { version, name } from '../package.json'
-import { mergeRollupInput } from './lib/rollup'
 
 export interface NetlifyPluginOptions {
   /**
@@ -33,13 +32,6 @@ const NETLIFY_FUNCTIONS_DIR = '.netlify/v1/functions'
 const NETLIFY_EDGE_FUNCTIONS_DIR = '.netlify/v1/edge-functions'
 
 const FUNCTION_FILENAME = 'react-router-server.mjs'
-/**
- * The chunk filename without an extension, i.e. in the Rollup config `input` format
- */
-const FUNCTION_HANDLER_CHUNK = 'server'
-
-const FUNCTION_HANDLER_MODULE_ID = 'virtual:netlify-server'
-const RESOLVED_FUNCTION_HANDLER_MODULE_ID = `\0${FUNCTION_HANDLER_MODULE_ID}`
 
 const SERVER_ENTRY_MODULE_ID = 'virtual:netlify-server-entry'
 
@@ -68,29 +60,36 @@ const findUserEdgeFunctionHandlerFile = async (root: string) => {
   )
 }
 
-// The virtual module that is the compiled Vite SSR entrypoint (a Netlify Function handler)
-const FUNCTION_HANDLER = /* js */ `
-import { createRequestHandler } from "@netlify/vite-plugin-react-router/serverless";
-import * as build from "virtual:react-router/server-build";
-export default createRequestHandler({
-  build,
-});
-`
+/**
+ * Find React Router's single built server entry chunk and return its on-disk path.
+ * This assumes that there is exactly one, which we happen to know to be true... except
+ * when the user uses the `serverBundles` feature, which we do not support.
+ * (See https://github.com/vitejs/vite/discussions/22507.)
+ */
+const findServerEntryFile = (bundle: Rollup.OutputBundle, outDir: string): string => {
+  const entryChunks = Object.values(bundle).filter(
+    (chunk): chunk is Rollup.OutputChunk => chunk.type === 'chunk' && chunk.isEntry,
+  )
+  if (entryChunks.length !== 1) {
+    throw new Error(`Expected exactly one entry chunk in the React Router server build, found ${entryChunks.length}.`)
+  }
+  return join(outDir, entryChunks[0].fileName)
+}
 
-// The virtual module for Edge Functions
-const EDGE_FUNCTION_HANDLER = /* js */ `
-import { createRequestHandler } from "@netlify/vite-plugin-react-router/edge";
-import * as build from "virtual:react-router/server-build";
-export default createRequestHandler({
-  build,
-});
-`
+// The handler body: Hydrogen sites build their own `server.ts` whose default export is already a
+// request handler, so we re-export it; otherwise we wrap React Router's server build.
+function generateHandler(handlerPath: string, { edge, isHydrogen }: { edge: boolean; isHydrogen: boolean }) {
+  return isHydrogen
+    ? /* js */ `export { default } from "${handlerPath}";`
+    : /* js */ `import { createRequestHandler } from "@netlify/vite-plugin-react-router/${edge ? 'edge' : 'serverless'}";
+    import * as build from "${handlerPath}";
+    export default createRequestHandler({ build });`
+}
 
-// This is written to the functions directory. It just re-exports
-// the compiled entrypoint, along with Netlify function config.
-function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string>) {
+// This is written to the functions directory: the server handler, along with Netlify function config.
+function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string>, isHydrogen: boolean) {
   return /* js */ `
-    export { default } from "${handlerPath}";
+    ${generateHandler(handlerPath, { edge: false, isHydrogen })}
 
     export const config = {
       name: "React Router server handler",
@@ -102,11 +101,10 @@ function generateNetlifyFunction(handlerPath: string, excludedPath: Array<string
     `
 }
 
-// This is written to the edge functions directory. It just re-exports
-// the compiled entrypoint, along with Netlify edge function config.
-function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>) {
+// This is written to the edge functions directory: the server handler, along with Netlify edge function config.
+function generateEdgeFunction(handlerPath: string, excludedPath: Array<string>, isHydrogen: boolean) {
   return /* js */ `
-    export { default } from "${handlerPath}";
+    ${generateHandler(handlerPath, { edge: true, isHydrogen })}
 
     export const config = {
       name: "React Router server handler",
@@ -128,77 +126,29 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
 
   return {
     name: 'vite-plugin-netlify-react-router',
-    applyToEnvironment: (environment) => environment.config.consumer === 'server',
+    applyToEnvironment: (environment) => environment.name === 'ssr',
     config(_config, { command }) {
       currentCommand = command
+
       if (edge && command === 'build') {
-        return { ssr: { target: 'webworker' } }
-      }
-    },
-    // Must use `configEnvironment` hook to ensure React Router has already configured its own entry
-    configEnvironment(name, environmentConfig, env) {
-      if (env.command !== 'build') return
-      // Ideally we would never match on env name, but `consumer` is not available here? :/
-      if (name !== 'ssr') return
-
-      // Server bundle entry for our own server entry point (which is imported by our Netlify
-      // function handler via a virtual module), while preserving any existing rollup input
-      // entries (e.g., from react-router's prerender / its own server build).
-      const functionHandlerInput = {
-        [FUNCTION_HANDLER_CHUNK]: FUNCTION_HANDLER_MODULE_ID,
-      }
-      // We use `mergeRollupInput` because Vite (even with `mergeConfig`) doesn't handle
-      // cross-type merging for `rolldownOptions.input` (string/array/object).
-      const buildOpts = environmentConfig.build
-      const mergedInput = mergeRollupInput(
-        (buildOpts?.rolldownOptions ?? buildOpts?.rollupOptions)?.input,
-        functionHandlerInput,
-      )
-
-      const configChanges = {
-        build: {
-          // TODO(serhalp): Change to `rolldownOptions` when we no longer support Vite <8.
-          rollupOptions: {
-            input: mergedInput,
-            output: {
-              // NOTE: must use function syntax here to work around Shopify CLI reading
-              // the config value literally (i.e. trying to stat `[name].js` as a filename).
-              entryFileNames: () => '[name].js',
+        return {
+          ssr: {
+            target: 'webworker' as const,
+            // Bundle everything except Node.js built-ins (which are supported but must use the `node:` prefix):
+            // https://docs.netlify.com/build/edge-functions/api/#runtime-environment
+            noExternal: /^(?!node:).*$/,
+            resolve: {
+              conditions: ['worker', 'deno', 'browser'],
             },
           },
-        },
-        // Additional config needed for Edge Functions if enabled
-        ...(edge
-          ? {
-              resolve: {
-                // Bundle everything except Node.js built-ins (which are supported but must use the
-                // `node:` prefix): https://docs.netlify.com/build/edge-functions/api/#runtime-environment
-                noExternal: /^(?!node:).*$/,
-                conditions: ['worker', 'deno', 'browser'],
-              },
-            }
-          : {}),
-      }
-
-      return configChanges
-    },
-    async resolveId(source, importer, options) {
-      // Hydrogen sites provide their own server entry (server.ts) and entry.server.tsx,
-      // so we skip resolution of our virtual modules.
-      if (isHydrogenSite && edge) {
-        if (source === FUNCTION_HANDLER_MODULE_ID || source === SERVER_ENTRY_MODULE_ID) {
-          return
         }
       }
-
-      if (source === FUNCTION_HANDLER_MODULE_ID) {
-        return RESOLVED_FUNCTION_HANDLER_MODULE_ID
-      }
-
+    },
+    async resolveId(source, importer, options) {
       // Conditionally resolve the server entry based on the command and runtime.
-      // Users will export from 'virtual:netlify-server-entry' in their `app/entry.server.tsx`
-      //
-      if (source === SERVER_ENTRY_MODULE_ID && edge) {
+      // Users will export from 'virtual:netlify-server-entry' in their `app/entry.server.tsx`.
+      // Hydrogen sites provide their own server entry, so we skip this swap for them.
+      if (source === SERVER_ENTRY_MODULE_ID && edge && !isHydrogenSite) {
         if (currentCommand === 'serve') {
           // Dev mode with edge runtime: use the default Node.js-compatible entry
           const reactRouterDev = await this.resolve('@react-router/dev/config', importer, options)
@@ -211,12 +161,6 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         return this.resolve('@netlify/vite-plugin-react-router/entry.server.edge', importer, options)
       }
     },
-    // See https://vitejs.dev/guide/api-plugin#virtual-modules-convention.
-    load(id) {
-      if (id === RESOLVED_FUNCTION_HANDLER_MODULE_ID) {
-        return edge ? EDGE_FUNCTION_HANDLER : FUNCTION_HANDLER
-      }
-    },
     configResolved: {
       order: 'pre',
       async handler(config) {
@@ -224,14 +168,9 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         isHydrogenSite = config.plugins.some((plugin) => plugin.name === 'hydrogen:main')
 
         if (isHydrogenSite && edge) {
-          // Hydrogen sites use their own server.ts as the SSR entry.
+          // Hydrogen sites use their own server.ts as the SSR entry; fail early (with an actionable
+          // message) if it's missing. It's also used by the dev middleware below.
           userServerFile = await findUserEdgeFunctionHandlerFile(config.root)
-
-          const buildOpts = config.environments?.ssr?.build
-          const ssrInput = (buildOpts.rolldownOptions ?? buildOpts.rollupOptions)?.input
-          if (ssrInput && typeof ssrInput === 'object' && !Array.isArray(ssrInput)) {
-            ssrInput[FUNCTION_HANDLER_CHUNK] = userServerFile
-          }
         }
       },
     },
@@ -286,9 +225,10 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
       },
     },
     // See https://rollupjs.org/plugin-development/#writebundle.
-    async writeBundle() {
+    // `applyToEnvironment` scopes this to the (production) SSR build.
+    async writeBundle(_options, bundle) {
       const ssrOutDir = resolve(resolvedConfig.root, this.environment.config.build.outDir)
-      const handlerPath = join(ssrOutDir, `${FUNCTION_HANDLER_CHUNK}.js`)
+      const handlerPath = findServerEntryFile(bundle, ssrOutDir)
 
       if (edge) {
         // Edge Functions do not have a `preferStatic` option, so we must exhaustively exclude
@@ -311,7 +251,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         const relativeHandlerPath = toPosixPath(relative(edgeFunctionsDir, handlerPath))
         await writeFile(
           join(edgeFunctionsDir, FUNCTION_FILENAME),
-          generateEdgeFunction(relativeHandlerPath, excludedPath),
+          generateEdgeFunction(relativeHandlerPath, excludedPath, isHydrogenSite),
         )
       } else {
         // Write the server entry point to the Netlify Functions directory
@@ -321,7 +261,7 @@ export function netlifyPlugin(options: NetlifyPluginOptions = {}): Plugin {
         const excludedPath = ['/.netlify/*', ...additionalExcludedPaths]
         await writeFile(
           join(functionsDir, FUNCTION_FILENAME),
-          generateNetlifyFunction(relativeHandlerPath, excludedPath),
+          generateNetlifyFunction(relativeHandlerPath, excludedPath, isHydrogenSite),
         )
       }
     },
