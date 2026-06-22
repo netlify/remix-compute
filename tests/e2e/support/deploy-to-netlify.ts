@@ -1,11 +1,20 @@
-import { execaCommand } from 'execa'
-import fg from 'fast-glob'
+import { execFile } from 'node:child_process'
 import { writeFile, copyFile, mkdir, mkdtemp, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { URL, fileURLToPath } from 'node:url'
+import { promisify } from 'node:util'
 import { cpus } from 'os'
+import { glob } from 'tinyglobby'
 import pLimit from 'p-limit'
+
+const execFileAsync = promisify(execFile)
+
+// Build/install/deploy commands can emit far more than the default 1 MB stdout cap.
+const MAX_BUFFER = 100 * 1024 * 1024
+
+/** Run a command (without a shell) in `cwd`, returning its captured stdout/stderr. */
+const run = (file: string, args: string[], cwd: string) => execFileAsync(file, args, { cwd, maxBuffer: MAX_BUFFER })
 
 // https://app.netlify.com/sites/remix-compute-e2e-tests
 const SITE_ID = process.env.NETLIFY_SITE_ID ?? 'b1858b58-d401-4aef-9b3b-80b8ae9247c0'
@@ -46,7 +55,7 @@ const prepareFixture = async (fixtureName: string, options: DeployFixtureOptions
 
   await prepareDeps(isolatedFixtureRoot, resolve('.', 'packages'), options.overrides ?? {})
 
-  await execaCommand('git init', { cwd: isolatedFixtureRoot })
+  await run('git', ['init'], isolatedFixtureRoot)
 
   return isolatedFixtureRoot
 }
@@ -78,9 +87,11 @@ const prepareDeps = async (
     if (pkg.name in dependencies || pkg.name in devDependencies) {
       const isDevDep = pkg.name in devDependencies
       console.log(`📦 Injecting ${pkg.name} ${isDevDep ? 'dev ' : ''}dependency...`)
-      const { stdout } = await execaCommand(`npm pack --json --ignore-scripts --pack-destination ${cwd}`, {
-        cwd: join(packagesAbsoluteDir, pkg.dirName),
-      })
+      const { stdout } = await run(
+        'npm',
+        ['pack', '--json', '--ignore-scripts', '--pack-destination', cwd],
+        join(packagesAbsoluteDir, pkg.dirName),
+      )
       const [{ filename }] = JSON.parse(stdout)
       // Ensure that even a transitive dependency on this package is overridden.
       overrides[pkg.name] = `file:${filename}`
@@ -91,7 +102,7 @@ const prepareDeps = async (
   await writeFile(join(cwd, 'pnpm-workspace.yaml'), buildWorkspaceYaml(overrides))
   // pnpm 10+ blocks dependency build scripts by default. Using this flag isn't ideal, but
   // the blast radius is small-ish and I can't come up with a better solution.
-  await execaCommand('pnpm install --dangerously-allow-all-builds', { cwd })
+  await run('pnpm', ['install', '--dangerously-allow-all-builds'], cwd)
 }
 
 /** Build a `pnpm-workspace.yaml` pinning the injected local packages to the freshly packed builds. */
@@ -107,10 +118,10 @@ const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
   console.log(`🚀 Building and deploying site...`)
 
   const outputFile = 'deploy-output.txt'
-  const cmd = `ntl deploy --site ${SITE_ID}`
 
-  await execaCommand(cmd, { cwd: isolatedFixtureRoot, all: true }).pipeAll?.(join(isolatedFixtureRoot, outputFile))
-  const output = await readFile(join(isolatedFixtureRoot, outputFile), 'utf-8')
+  const { stdout, stderr } = await run('ntl', ['deploy', '--site', SITE_ID], isolatedFixtureRoot)
+  const output = stdout + stderr
+  await writeFile(join(isolatedFixtureRoot, outputFile), output)
 
   const [url] = new RegExp(/https:.+\.netlify\.app/gm).exec(output) || []
   if (!url) {
@@ -124,7 +135,7 @@ const deploySite = async (isolatedFixtureRoot: string): Promise<Fixture> => {
 }
 
 const copyFixture = async (src: string, dest: string): Promise<void> => {
-  const files = await fg.glob('**/*', {
+  const files = await glob('**/*', {
     ignore: ['node_modules'],
     dot: true,
     cwd: src,

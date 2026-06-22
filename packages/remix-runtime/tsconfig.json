@@ -2,10 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "./build"
+    "outDir": "./build",
+    "types": []
   },
-  "include": ["./src"]
-  // "references": [
-  //   { "path": "../remix-runtime/tsconfig.json"}
-  // ]
+  "include": ["./src"],
+  "exclude": ["node_modules"]
 }

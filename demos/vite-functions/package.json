@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "@netlify/remix-adapter": "workspace:*",
-    "@remix-run/node": "^2.16.4",
-    "@remix-run/react": "^2.16.4",
-    "@remix-run/serve": "^2.16.4",
+    "@remix-run/node": "^2.17.5",
+    "@remix-run/react": "^2.17.5",
+    "@remix-run/serve": "^2.17.5",
     "isbot": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.16.4",
+    "@remix-run/dev": "^2.17.5",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
@@ -31,9 +31,9 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "typescript": "^5.1.6",
-    "vite": "^8.0.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-tsconfig-paths": "^6.1.1"
   },
   "engines": {
     "node": ">=20.6.1"
