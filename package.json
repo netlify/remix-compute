@@ -55,7 +55,6 @@
     "publint": "^0.3.15",
     "tinyglobby": "^0.2.15",
     "typescript": "^6.0.3",
-    "unrun": "^0.3.1",
     "vitest": "^4.0.0"
   },
   "dependencies": {
