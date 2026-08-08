@@ -48,7 +48,7 @@
     "eslint-prettier-config": "^1.0.1",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
-    "netlify-cli": "^26.1.0",
+    "netlify-cli": "^26.2.0",
     "npm-run-all2": "^8.0.0",
     "p-limit": "^7.3.0",
     "prettier": "^3.8.4",
