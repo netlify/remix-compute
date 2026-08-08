@@ -311,8 +311,8 @@ importers:
         specifier: ^5.2.0
         version: 5.3.0
       '@remix-run/node-fetch-server':
-        specifier: ^0.13.0
-        version: 0.13.3
+        specifier: ^0.14.0
+        version: 0.14.0
       isbot:
         specifier: ^5.1.25
         version: 5.1.43
@@ -2180,8 +2180,8 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/node-fetch-server@0.13.3':
-    resolution: {integrity: sha512-UfjOXed/DQteaM5VyTfqTeGpHwyL2J5aoRGY6cydip4tt1ehNNeSwuXCC7AEGE0RWBs/7bgKxYkL/B/+UDe4AA==}
+  '@remix-run/node-fetch-server@0.14.0':
+    resolution: {integrity: sha512-s46HS2YuZwCJxwXIrcWdKTfIXWf2G2S20bXeYR2BqBoUkmc4RSiC+VRely6pqNvSUIio8piaI+uLN40IvoFN/A==}
 
   '@remix-run/node@2.17.5':
     resolution: {integrity: sha512-CwOUCDJqh9o8r/n5N1l+vz4Jh7DFU52/jo7MN56+OL9gM+14aQKdq1aLAh+4V6GuI/qtki9PPk02GmULimmDkw==}
@@ -4001,6 +4001,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cross-env@7.0.3:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
@@ -5211,12 +5212,13 @@ packages:
   git-raw-commits@2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==}
     engines: {node: '>=10'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-raw-commits@5.0.1:
     resolution: {integrity: sha512-Y+csSm2GD/PCSh6Isd/WiMjNAydu0VBiG9J7EdQsNA5P9uXvLayqjmTsNlK5Gs9IhblFZqOU0yid5Il5JPoLiQ==}
     engines: {node: '>=18'}
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-repo-info@2.1.1:
@@ -11496,7 +11498,7 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  '@remix-run/node-fetch-server@0.13.3': {}
+  '@remix-run/node-fetch-server@0.14.0': {}
 
   '@remix-run/node@2.17.5(typescript@5.9.3)':
     dependencies:
