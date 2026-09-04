@@ -1,4 +1,0 @@
-version = 1
-
-[approve]
-auto_approve_usernames = ["renovate"]
