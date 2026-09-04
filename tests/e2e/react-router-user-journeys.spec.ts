@@ -4,7 +4,7 @@ import { type Fixture } from './support/deploy-to-netlify'
 import { expect, test } from './support/fixtures'
 
 const CACHE_STORE_DELAY_BUFFER_MS = 5000
-const CACHE_STATUS_SERVED_FROM_EDGE = /^"Netlify Edge"; [a-z=]+$/
+const CACHE_STATUS_SERVED_FROM_EDGE = /^"Netlify Edge"; [a-z0-9=; -]+$/
 
 /** A test body that runs against a deployed site fixture. */
 type SiteTest = (page: Page, site: Fixture) => Promise<void>
